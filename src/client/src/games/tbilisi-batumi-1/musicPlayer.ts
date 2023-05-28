@@ -2,8 +2,6 @@ import { getRandomFloat } from "./helper/tatukaMath";
 import { GamePlay } from "./scenes/gamePlay";
 
 export default class MusicPlayer {
-  scene!: Phaser.Scene;
-
   georgianRadio: Array<Phaser.Sound.BaseSound> = [];
   americanRockRadio: Array<Phaser.Sound.BaseSound> = [];
 
@@ -14,9 +12,7 @@ export default class MusicPlayer {
 
   specialSongs: Array<Phaser.Sound.BaseSound> = [];
 
-  constructor(scene: Phaser.Scene) {
-    this.scene = scene;
-
+  constructor(public scene: GamePlay) {
     this.radioIndex = Math.floor(getRandomFloat(0, this.radioNumber - 1));
 
     this.init();
@@ -164,5 +160,18 @@ export default class MusicPlayer {
         this.playSong();
       }
     }
+  }
+
+  snoozeRussianSong() {
+    let value = 0.4;
+    const update = setInterval(() => {
+      value -= 0.01;
+      //@ts-ignore
+      this.specialSongs[3].volume = value;
+      if (value < 0) {
+        this.specialSongs[3].stop();
+        clearInterval(update);
+      }
+    }, 200);
   }
 }

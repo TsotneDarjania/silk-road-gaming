@@ -37,14 +37,15 @@ export class GameManager {
   canRadioChange: boolean = false;
 
   saveZonesData: Array<SaveZoneData> = [];
-  saveZoneIndex = 6;
+  saveZoneIndex = 7;
 
   backgroundImage!: Phaser.GameObjects.Image;
 
   asteroids: Array<Asteroid> = [];
   skyRocks: Array<Rock> = [];
 
-  isSkyRocksAlreadyFalling: boolean = false;
+  isSkyRocksAlreadyFalling = false;
+  wolfsSoundsUpdate!: NodeJS.Timeout;
 
   constructor(scene: Phaser.Scene) {
     this.gamePlay = scene as GamePlay;
@@ -98,8 +99,16 @@ export class GameManager {
       },
       {
         carPositions: {
-          x: -156600,
+          x: -154000,
           y: 1150,
+        },
+      },
+      {
+        carPositions: {
+          // x: -264000,
+          // y: 990,
+          x: -275500,
+          y: -180,
         },
       },
     ];
@@ -267,6 +276,27 @@ export class GameManager {
       9: {
         enter: () => {
           this.showScreenText(3);
+          if (this.gamePlay.musicPlayer.specialSongs[3].isPlaying === false) {
+            this.gamePlay.musicPlayer.stopAllSong();
+          }
+          this.gamePlay.musicPlayer.playSpecialSong(3);
+          this.gameMenu.radioOff();
+        },
+        exit: () => {
+          this.emptyFunction();
+        },
+      },
+      10: {
+        enter: () => {
+          this.gamePlay.train.stopMotion();
+          this.stopTrainMotion();
+          this.gamePlay.musicPlayer.snoozeRussianSong();
+          this.gamePlay.car.withCarSound = true;
+          setTimeout(() => {
+            this.gamePlay.wolfSound.play();
+          }, 7000);
+
+          this.changeColorToGameBackground(0x1a181c, 1, 9000);
         },
         exit: () => {
           this.emptyFunction();
@@ -363,6 +393,24 @@ export class GameManager {
     this.gamePlay.car.carBody.applyForce(new Phaser.Math.Vector2(0, 0));
 
     this.gameMenu.speedometerContainer.setVisible(false);
+  }
+
+  stopTrainMotion() {
+    this.gamePlay.car.stopUpdateProcess = false;
+    this.gamePlay.car.carBody.setVelocity(0, 0);
+    this.gamePlay.car.carBody.applyForce(new Phaser.Math.Vector2(0, 0));
+
+    this.gameMenu.speedometerContainer.setVisible(true);
+  }
+
+  playWolfsSounds() {
+    let time = getRandomFloat(7000, 13000);
+    this.wolfsSoundsUpdate = setTimeout(() => {
+      if (this.gamePlay.wolfSound.isPlaying === false) {
+        this.gamePlay.wolfSound.play();
+      }
+      this.playWolfsSounds();
+    }, time);
   }
 }
 

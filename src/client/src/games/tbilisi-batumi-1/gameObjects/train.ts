@@ -1,4 +1,5 @@
 import { colliderCategories } from "../helper/colliderCategories";
+import { getRandomFloat } from "../helper/tatukaMath";
 import { GamePlay } from "../scenes/gamePlay";
 
 export class Train {
@@ -11,6 +12,10 @@ export class Train {
   canMoving = false;
   isAcceleratingLeft = false;
   isAcceleratingRight = false;
+
+  vagonConnectConstraint!: MatterJS.ConstraintType;
+  carLeftConstrint!: MatterJS.ConstraintType;
+  carRightConstrint!: MatterJS.ConstraintType;
 
   constructor(public scene: GamePlay, public x: number, public y: number) {
     this.init();
@@ -52,12 +57,19 @@ export class Train {
     });
   }
 
+  stopMotion() {
+    this.canMoving = false;
+    this.scene.matter.world.remove(this.vagonConnectConstraint);
+    this.scene.matter.world.remove(this.carLeftConstrint);
+    this.scene.matter.world.remove(this.carRightConstrint);
+  }
+
   startMotion() {
     this.scene.gameManager.startTrainMotion();
     this.canMoving = true;
     this.addController();
 
-    const leftConstraint = this.scene.matter.add.constraint(
+    this.carLeftConstrint = this.scene.matter.add.constraint(
       this.backVagon.body as MatterJS.BodyType,
       //@ts-ignore
       this.scene.car.carBody,
@@ -69,7 +81,7 @@ export class Train {
       }
     );
 
-    const rightConstraint = this.scene.matter.add.constraint(
+    this.carRightConstrint = this.scene.matter.add.constraint(
       this.backVagon.body as MatterJS.BodyType,
       //@ts-ignore
       this.scene.car.carBody,
@@ -80,9 +92,9 @@ export class Train {
         pointB: { x: 20, y: -36 }, // Local offset of constraint point on car body
       }
     );
-
-    this.scene.car.carBody.setFixedRotation();
   }
+
+  // "x": -284053,
 
   addController() {
     let accelerationRate = 0.02;
@@ -143,7 +155,7 @@ export class Train {
 
     this.frontVagon.setFixedRotation();
 
-    const constraint = this.scene.matter.add.constraint(
+    this.vagonConnectConstraint = this.scene.matter.add.constraint(
       this.frontVagon.body as MatterJS.BodyType,
       //@ts-ignore
       this.backVagon,
@@ -154,6 +166,69 @@ export class Train {
         pointB: { x: -200, y: -40 }, // Local offset of constraint point on car body
       }
     );
+
+    this.scene.matter.world.on("collisionstart", (event: any) => {
+      event.pairs.forEach((pair: any) => {
+        if (
+          pair.bodyA.gameObject === null &&
+          pair.bodyB.gameObject === this.frontVagon
+        ) {
+          this.stopMotion();
+          this.frontVagon.setVisible(false);
+          this.scene.matter.world.remove(this.frontVagon);
+          this.backVagon.setVisible(false);
+          this.scene.matter.world.remove(this.backVagon);
+          this.leftCircle.setVisible(false);
+          this.scene.matter.world.remove(this.leftCircle);
+          this.rightCircle.setVisible(false);
+          this.scene.matter.world.remove(this.rightCircle);
+
+          this.scene.gameManager.stopTrainMotion();
+
+          let frontExplosions: Array<Phaser.GameObjects.Sprite> = [];
+          for (let i = 0; i < 5; i++) {
+            let x = this.frontVagon.x;
+            let y = this.frontVagon.y;
+            const explotion = this.scene.add
+              .sprite(
+                x + getRandomFloat(-80, 80),
+                y + getRandomFloat(-50, 50),
+                "carExplotion"
+              )
+              .setScale(getRandomFloat(0.1, 1.7));
+            frontExplosions.push(explotion);
+            explotion.play("car_explotion");
+          }
+
+          frontExplosions[4].on("animationcomplete", () => {
+            frontExplosions.forEach((explotion) => {
+              explotion.destroy(true);
+            });
+          });
+
+          let backExplosions: Array<Phaser.GameObjects.Sprite> = [];
+          for (let i = 0; i < 5; i++) {
+            let x = this.backVagon.x;
+            let y = this.backVagon.y;
+            const explotion = this.scene.add
+              .sprite(
+                x + getRandomFloat(-80, 80),
+                y + getRandomFloat(-50, 50),
+                "carExplotion"
+              )
+              .setScale(getRandomFloat(0.1, 1.7));
+            backExplosions.push(explotion);
+            explotion.play("car_explotion");
+          }
+
+          backExplosions[4].on("animationcomplete", () => {
+            backExplosions.forEach((explotion) => {
+              explotion.destroy(true);
+            });
+          });
+        }
+      });
+    });
   }
 
   addBackVagon() {

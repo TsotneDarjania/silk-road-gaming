@@ -14,6 +14,7 @@ export class Car {
   isCarExplosion = false;
   isUpsideDown = false;
   stopUpdateProcess = false;
+  withCarSound = false;
 
   looseWaitTime = 300;
 
@@ -30,10 +31,13 @@ export class Car {
   explosionSound!: Phaser.Sound.BaseSound;
   evilLaughSound!: Phaser.Sound.BaseSound;
 
+  carEngineSound_1!: Phaser.Sound.BaseSound;
+
   constructor(scene: GamePlay, x: number, y: number) {
     this.scene = scene;
     this.x = x;
     this.y = y;
+    this.carEngineSound_1 = scene.carEngine;
 
     this.carMeshe = this.scene.cache.json.get("carMeshe");
 
@@ -203,6 +207,19 @@ export class Car {
         this.checkCarRotation();
         this.carMotionManager(maxSpeed, accelerationRate);
         this.checkLoose();
+
+        if (this.withCarSound) {
+          if (this.carEngineSound_1.isPlaying === false) {
+            this.carEngineSound_1.play();
+          } else {
+            let soundRate = Math.abs(
+              Number((this.carBody.body.velocity.x / 5).toFixed(1))
+            );
+            if (soundRate === 0) return;
+            //@ts-ignore
+            this.carEngineSound_1.rate = soundRate;
+          }
+        }
 
         this.leftTire.rotation += this.carBody.body.velocity.x / 25;
         this.rightTire.rotation += this.carBody.body.velocity.x / 25;

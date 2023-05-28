@@ -40,6 +40,8 @@ export class Preload extends Phaser.Scene {
     this.load.audio("evilLaughSound", ["music/effects/evil-laugh.mp3"]);
     this.load.audio("RSDeadScreamSound", ["music/effects/blyad.mp3"]);
     this.load.audio("bodyFail", ["music/effects/bodyFail.mp3"]);
+    this.load.audio("carEngine", ["music/effects/car-engine.mp3"]);
+    this.load.audio("wolfSound", ["music/effects/wolf-sound.mp3"]);
 
     //asteroid Animation
     this.load.spritesheet("asteroid", "spritesheets/asteroid.png", {
@@ -176,6 +178,15 @@ export class Preload extends Phaser.Scene {
     this.load.image("train", "train/train.png");
     this.load.image("train-circle", "train/circle.png");
     this.load.image("vagon", "train/vagon.png");
+
+    ///Rokoti
+    this.load.image("rikoti-hill-1", "rikoti/hill-1.png");
+    this.load.image("rikoti-hill-2", "rikoti/hill-2.png");
+    this.load.image("rikoti-hill-3", "rikoti/hill-3.png");
+    this.load.image("rikoti-tree-1", "rikoti/tree-1.png");
+    this.load.image("rikoti-tree-2", "rikoti/tree-2.png");
+    this.load.image("monster", "rikoti/monster.png");
+    this.load.image("evil-face", "rikoti/evilFace.png");
   }
 
   create() {

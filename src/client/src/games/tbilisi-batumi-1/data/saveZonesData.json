@@ -40,5 +40,12 @@
     "icon": "big-traparet",
     "text": ["Gori"],
     "index": 6
+  },
+  "7": {
+    "x": -264000,
+    "y": 1020,
+    "icon": "small-traparet",
+    "text": ["Shrosha"],
+    "index": 7
   }
 }

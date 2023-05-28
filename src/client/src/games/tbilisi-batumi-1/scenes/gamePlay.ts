@@ -17,6 +17,7 @@ import starsData from "../data/starsData.json";
 import musicIconsData from "../data/musicIconsData.json";
 import angelsData from "../data/angelsData.json";
 import russianSoldiersData from "../data/russianSoldiers.json";
+import monstersData from "../data/monstersData.json";
 
 import { GameMenu } from "../ui/menu/gameMenu";
 import { Angel } from "../gameObjects/angel";
@@ -34,6 +35,7 @@ import { GovermentStation } from "../gameObjects/govermentStation";
 import {
   AngelsData,
   BombsData,
+  MonsterData,
   MusicIconsData,
   RussianSoldierData,
   SaveZonesData,
@@ -45,6 +47,8 @@ import { RussianSoldier } from "../gameObjects/russialSoldier";
 import { Rail } from "../gameObjects/rail";
 import { Train } from "../gameObjects/train";
 import { OptimizationManager } from "../optimizationManager";
+import { Monster } from "../gameObjects/monster";
+import { EvilFace } from "../gameObjects/evilFace";
 
 export class GamePlay extends Phaser.Scene {
   gameMenu!: GameMenu;
@@ -63,6 +67,7 @@ export class GamePlay extends Phaser.Scene {
 
   tbilisi!: MapBackground;
   roadToGori!: MapBackground;
+  rikoti!: MapBackground;
 
   //ui
   menu!: GameMenu;
@@ -83,11 +88,14 @@ export class GamePlay extends Phaser.Scene {
   rails: Array<Rail> = [];
   angels: Array<Angel> = [];
   russianSoldiers: Array<RussianSoldier> = [];
+  monsters: Array<Monster> = [];
 
   buttonSound!: Phaser.Sound.BaseSound;
   applause!: Phaser.Sound.BaseSound;
   russianSoldierDeadScream!: Phaser.Sound.BaseSound;
   bodyFail!: Phaser.Sound.BaseSound;
+  carEngine!: Phaser.Sound.BaseSound;
+  wolfSound!: Phaser.Sound.BaseSound;
 
   russianTank!: RussianTank;
 
@@ -129,7 +137,7 @@ export class GamePlay extends Phaser.Scene {
     this.addRoads();
     this.addFlowers();
 
-    this.train = new Train(this, -157890, 1108);
+    this.train = new Train(this, -157920, 1108);
     this.addRails();
 
     new BonFire(this, -58100, 1230, 900, 700);
@@ -139,6 +147,10 @@ export class GamePlay extends Phaser.Scene {
 
     this.addMapInformationIcons();
     this.addMonets();
+
+    new EvilFace(this, -277200, 200, 1.5, -200);
+
+    // new Wolf(this, -264500, 1000).setDepth(-10);
 
     this.tbilisi = new MapBackground(this, 0, 500, buildsData.tbilisi).setScale(
       0.7
@@ -150,12 +162,22 @@ export class GamePlay extends Phaser.Scene {
       buildsData.roadToGori
     ).setDepth(-100);
 
+    this.rikoti = new MapBackground(this, -800, 0, buildsData.rikoti).setDepth(
+      -110
+    );
+
     this.setCameraSettings();
 
     this.optimizationManager = new OptimizationManager(this, this.gameManager);
 
     //Start UI Scene for Menu UI Elements
     this.scene.launch("GameMenu");
+  }
+
+  addMonsters() {
+    Object.values(monstersData).forEach((data: MonsterData) => {
+      this.monsters.push(new Monster(this, data.x, data.y, data.jumpStrong));
+    });
   }
 
   addRussianSoldiers() {
@@ -166,13 +188,13 @@ export class GamePlay extends Phaser.Scene {
 
   addRails() {
     let posX = 157040;
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 139; i++) {
       const rail = new Rail(this, -posX, 1304.5);
       this.rails.push(rail);
       posX += 754;
     }
 
-    this.matter.add.rectangle(-257000, 1324.5, 200000, 40, {
+    this.matter.add.rectangle(-206647, 1324.5, 110000, 40, {
       isStatic: true,
       slop: 0,
     });
@@ -235,6 +257,14 @@ export class GamePlay extends Phaser.Scene {
     this.bodyFail = this.sound.add("bodyFail", {
       volume: 1,
     });
+    this.carEngine = this.sound.add("carEngine", {
+      volume: 2,
+      loop: true,
+      rate: 0.01,
+    });
+    this.wolfSound = this.sound.add("wolfSound", {
+      volume: 1,
+    });
   }
 
   addRoads() {
@@ -248,7 +278,7 @@ export class GamePlay extends Phaser.Scene {
       });
     });
 
-    // new Road(this, roadJson.roadToGori[6]);
+    // new Road(this, roadJson.rikoti[0]);
   }
 
   addFlowers() {
@@ -320,19 +350,13 @@ export class GamePlay extends Phaser.Scene {
     if (this.stopUpdateProcess === false) {
       this.addCameraZoomEffects();
 
-      const followOffset = new Phaser.Math.Vector2(this.followOffsetX, 0);
+      const followOffset = new Phaser.Math.Vector2(this.followOffsetX, 120);
       this.cameras.main.setFollowOffset(followOffset.x, followOffset.y);
     }
   }
 
   setCameraSettings() {
-    // Set initial follow offset
-    const initialFollowOffset = new Phaser.Math.Vector2(0, 0);
-    this.cameras.main.setFollowOffset(
-      initialFollowOffset.x,
-      initialFollowOffset.y
-    );
-    this.cameras.main.setBounds(-Infinity, 0, Infinity, 1500);
+    this.cameras.main.setBounds(-Infinity, -500, Infinity, 2100);
     this.cameras.main.startFollow(this.car.carBody, false, 0.1, 0.08);
     this.cameras.main.setZoom(this.camera_z_index);
   }

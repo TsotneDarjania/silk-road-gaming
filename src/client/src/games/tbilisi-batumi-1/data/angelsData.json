@@ -30,5 +30,10 @@
       "You need to reach that location",
       " before the Russian tank arrives!"
     ]
+  },
+  "6": {
+    "x": -265310,
+    "y": 400,
+    "text": ["Move silently to avoid", "arousing the attention of the wolves."]
   }
 }

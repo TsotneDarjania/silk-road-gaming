@@ -35,6 +35,11 @@ export interface RussianSoldierData {
   x: number;
   y: number;
 }
+export interface MonsterData {
+  x: number;
+  y: number;
+  jumpStrong: number;
+}
 
 export interface Responsivedata {
   extraWidth: {

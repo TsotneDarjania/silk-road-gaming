@@ -18,7 +18,7 @@ export class Stars {
         )
         .setScale(0.05)
         .setScrollFactor(0.04, 1)
-        .setDepth(-100);
+        .setDepth(-150);
 
       this.scene.tweens.add({
         targets: star,

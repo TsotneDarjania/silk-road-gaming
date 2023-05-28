@@ -3,6 +3,8 @@ import { GamePlay } from "../scenes/gamePlay";
 export class SaveZone {
   traparet!: Phaser.GameObjects.Image;
 
+  isSaved = false;
+
   constructor(
     public scene: GamePlay,
     public x: number,
@@ -55,7 +57,20 @@ export class SaveZone {
       event.pairs.forEach((pair: any) => {
         if (pair.bodyB === zone) {
           this.scene.gameMenu.radioOnn();
-          //Check if this save zone already access
+          if (this.saveZoneIndex > 6) {
+            this.scene.gameMenu.radioOff();
+            if (this.isSaved === false) {
+              this.scene.car.withCarSound = true;
+              this.scene.gameManager.playWolfsSounds();
+              this.scene.gameManager.changeColorToGameBackground(
+                0x1a181c,
+                1,
+                9000
+              );
+              this.isSaved = true;
+            }
+          }
+          //Check if this save zonealready access
           if (this.saveZoneIndex <= this.scene.gameManager.saveZoneIndex)
             return;
 
