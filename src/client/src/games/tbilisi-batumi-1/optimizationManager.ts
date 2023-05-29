@@ -414,7 +414,6 @@ export class OptimizationManager {
         });
       });
 
-      this.scene.russianTank.tankBody.setVisible(false);
       this.scene.matter.world.remove(this.scene.russianTank.tankBody);
 
       this.scene.train.frontVagon.setVisible(true);
@@ -504,6 +503,180 @@ export class OptimizationManager {
 
       if (this.scene.monsters.length < 1) {
         this.scene.addMonsters();
+      }
+
+      if (this.scene.evilFaces.length < 1) {
+        this.scene.addEvilFaces();
+      }
+    }
+
+    if (index === 8) {
+      {
+        const roads = this.scene.roads.slice(15, 19);
+        roads.forEach((road) => {
+          this.scene.matter.world.add(road.collider);
+          road.polygon.setVisible(true);
+        });
+
+        const stars = this.scene.stars.slice(7, 11);
+        stars.forEach((stars) => {
+          for (let i = 0; i < stars.stars.length; i++) {
+            stars.stars[i].setVisible(true);
+          }
+        });
+
+        const flowers = this.scene.flowers.slice(90, 130);
+        flowers.forEach((flower) => {
+          flower.setVisible(true);
+        });
+
+        const monets = this.scene.monets.slice(43, 50);
+        monets.forEach((monet) => {
+          monet.setVisible(true);
+          this.scene.matter.world.add(monet.zone);
+        });
+
+        const angels = this.scene.angels.slice(5, 9);
+        angels.forEach((angel) => {
+          angel.setVisible(true);
+        });
+
+        this.scene.bombs.forEach((bomb) => {
+          bomb.bombImage.setVisible(false);
+          this.scene.matter.world.remove(bomb.deadZone);
+        });
+
+        this.gameManager.asteroids.forEach((asteroid) => {
+          asteroid.asteroid.setVisible(false);
+          this.scene.matter.world.remove(asteroid.asteroid);
+        });
+
+        this.gameManager.skyRocks.forEach((rock) => {
+          rock.rockImage.setVisible(false);
+          this.scene.matter.world.remove(rock.rockImage);
+        });
+
+        this.scene.russianSoldiers.forEach((soldier) => {
+          soldier.stopShoot();
+          soldier.head.setVisible(false);
+          soldier.body.setVisible(false);
+          soldier.leftLeg.setVisible(false);
+          soldier.rightLeg.setVisible(false);
+          soldier.leftHand.setVisible(false);
+          soldier.rightHand.setVisible(false);
+
+          this.scene.matter.world.remove(soldier.head);
+          this.scene.matter.world.remove(soldier.body);
+          this.scene.matter.world.remove(soldier.leftLeg);
+          this.scene.matter.world.remove(soldier.rightLeg);
+          this.scene.matter.world.remove(soldier.leftHand);
+          this.scene.matter.world.remove(soldier.rightHand);
+
+          soldier.bullets.forEach((bullet) => {
+            bullet.setVisible(false);
+          });
+        });
+
+        this.scene.russianTank.tankBody.setVisible(false);
+        this.scene.matter.world.remove(this.scene.russianTank.tankBody);
+
+        this.scene.rails.forEach((rail) => {
+          rail.leftRail.setVisible(false);
+          rail.rightRail.setVisible(false);
+        });
+
+        if (this.scene.monsters.length < 1) {
+          this.scene.addMonsters();
+        }
+
+        if (this.scene.evilFaces.length < 1) {
+          this.scene.addEvilFaces();
+        }
+      }
+    }
+
+    if (index === 9) {
+      {
+        const roads = this.scene.roads.slice(15, 21);
+        roads.forEach((road) => {
+          this.scene.matter.world.add(road.collider);
+          road.polygon.setVisible(true);
+        });
+
+        const stars = this.scene.stars.slice(7, 11);
+        stars.forEach((stars) => {
+          for (let i = 0; i < stars.stars.length; i++) {
+            stars.stars[i].setVisible(true);
+          }
+        });
+
+        const flowers = this.scene.flowers.slice(105, 130);
+        flowers.forEach((flower) => {
+          flower.setVisible(true);
+        });
+
+        const monets = this.scene.monets.slice(43, 50);
+        monets.forEach((monet) => {
+          monet.setVisible(true);
+          this.scene.matter.world.add(monet.zone);
+        });
+
+        const angels = this.scene.angels.slice(5, 9);
+        angels.forEach((angel) => {
+          angel.setVisible(true);
+        });
+
+        this.scene.bombs.forEach((bomb) => {
+          bomb.bombImage.setVisible(false);
+          this.scene.matter.world.remove(bomb.deadZone);
+        });
+
+        this.gameManager.asteroids.forEach((asteroid) => {
+          asteroid.asteroid.setVisible(false);
+          this.scene.matter.world.remove(asteroid.asteroid);
+        });
+
+        this.gameManager.skyRocks.forEach((rock) => {
+          rock.rockImage.setVisible(false);
+          this.scene.matter.world.remove(rock.rockImage);
+        });
+
+        this.scene.russianSoldiers.forEach((soldier) => {
+          soldier.stopShoot();
+          soldier.head.setVisible(false);
+          soldier.body.setVisible(false);
+          soldier.leftLeg.setVisible(false);
+          soldier.rightLeg.setVisible(false);
+          soldier.leftHand.setVisible(false);
+          soldier.rightHand.setVisible(false);
+
+          this.scene.matter.world.remove(soldier.head);
+          this.scene.matter.world.remove(soldier.body);
+          this.scene.matter.world.remove(soldier.leftLeg);
+          this.scene.matter.world.remove(soldier.rightLeg);
+          this.scene.matter.world.remove(soldier.leftHand);
+          this.scene.matter.world.remove(soldier.rightHand);
+
+          soldier.bullets.forEach((bullet) => {
+            bullet.setVisible(false);
+          });
+        });
+
+        this.scene.russianTank.tankBody.setVisible(false);
+        this.scene.matter.world.remove(this.scene.russianTank.tankBody);
+
+        this.scene.rails.forEach((rail) => {
+          rail.leftRail.setVisible(false);
+          rail.rightRail.setVisible(false);
+        });
+
+        if (this.scene.monsters.length < 1) {
+          this.scene.addMonsters();
+        }
+
+        if (this.scene.evilFaces.length < 1) {
+          this.scene.addEvilFaces();
+        }
       }
     }
   }

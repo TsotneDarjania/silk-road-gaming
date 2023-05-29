@@ -18,6 +18,7 @@ import musicIconsData from "../data/musicIconsData.json";
 import angelsData from "../data/angelsData.json";
 import russianSoldiersData from "../data/russianSoldiers.json";
 import monstersData from "../data/monstersData.json";
+import evilFacesData from "../data/evilFacesData.json";
 
 import { GameMenu } from "../ui/menu/gameMenu";
 import { Angel } from "../gameObjects/angel";
@@ -35,6 +36,7 @@ import { GovermentStation } from "../gameObjects/govermentStation";
 import {
   AngelsData,
   BombsData,
+  EvilFaceData,
   MonsterData,
   MusicIconsData,
   RussianSoldierData,
@@ -89,6 +91,7 @@ export class GamePlay extends Phaser.Scene {
   angels: Array<Angel> = [];
   russianSoldiers: Array<RussianSoldier> = [];
   monsters: Array<Monster> = [];
+  evilFaces: Array<EvilFace> = [];
 
   buttonSound!: Phaser.Sound.BaseSound;
   applause!: Phaser.Sound.BaseSound;
@@ -148,10 +151,6 @@ export class GamePlay extends Phaser.Scene {
     this.addMapInformationIcons();
     this.addMonets();
 
-    new EvilFace(this, -277200, 200, 1.5, -200);
-
-    // new Wolf(this, -264500, 1000).setDepth(-10);
-
     this.tbilisi = new MapBackground(this, 0, 500, buildsData.tbilisi).setScale(
       0.7
     );
@@ -172,6 +171,20 @@ export class GamePlay extends Phaser.Scene {
 
     //Start UI Scene for Menu UI Elements
     this.scene.launch("GameMenu");
+  }
+
+  addEvilFaces() {
+    Object.values(evilFacesData).forEach((data: EvilFaceData) => {
+      this.evilFaces.push(
+        new EvilFace(
+          this,
+          data.x,
+          data.y,
+          data.animationDuration,
+          data.animationPosY
+        )
+      );
+    });
   }
 
   addMonsters() {
@@ -271,14 +284,14 @@ export class GamePlay extends Phaser.Scene {
     Object.keys(roadJson).forEach((regionKey) => {
       //@ts-ignore
       Object.keys(roadJson[regionKey]).forEach((key) => {
-        console.log("regionKey is : " + regionKey + " key is : " + key);
+        // console.log("regionKey is : " + regionKey + " key is : " + key);
         //@ts-ignore
         const road = new Road(this, roadJson[regionKey][key]);
         this.roads.push(road);
       });
     });
 
-    // new Road(this, roadJson.rikoti[0]);
+    // new Road(this, roadJson.rikoti[1]);
   }
 
   addFlowers() {

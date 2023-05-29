@@ -47,5 +47,19 @@
     "icon": "small-traparet",
     "text": ["Shrosha"],
     "index": 7
+  },
+  "8": {
+    "x": -282000,
+    "y": 290,
+    "icon": "small-traparet",
+    "text": ["Boriti"],
+    "index": 8
+  },
+  "9": {
+    "x": -310000,
+    "y": 460,
+    "icon": "small-traparet",
+    "text": ["Shorapani"],
+    "index": 9
   }
 }

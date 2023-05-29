@@ -710,6 +710,14 @@
       "tint": 7663600
     },
     {
+      "x": -11200,
+      "y": 450,
+      "key": "rikoti-hill-3",
+      "scrollFactor": 0.04,
+      "scale": 0.46,
+      "tint": 16777215
+    },
+    {
       "x": -9100,
       "y": 1200,
       "key": "rikoti-hill-3",
@@ -718,8 +726,8 @@
       "tint": 16777215
     },
     {
-      "x": -11000,
-      "y": 1140,
+      "x": -10500,
+      "y": 520,
       "key": "rikoti-hill-3",
       "scrollFactor": 0.04,
       "scale": 0.46,
@@ -771,6 +779,14 @@
       "key": "rikoti-hill-1",
       "scrollFactor": 0.04,
       "scale": 0.6,
+      "tint": 16777215
+    },
+    {
+      "x": -11000,
+      "y": 800,
+      "key": "rikoti-hill-1",
+      "scrollFactor": 0.04,
+      "scale": 0.8,
       "tint": 16777215
     }
   ]

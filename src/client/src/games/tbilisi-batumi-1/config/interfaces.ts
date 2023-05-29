@@ -40,6 +40,12 @@ export interface MonsterData {
   y: number;
   jumpStrong: number;
 }
+export interface EvilFaceData {
+  x: number;
+  y: number;
+  animationDuration: number;
+  animationPosY: number;
+}
 
 export interface Responsivedata {
   extraWidth: {
