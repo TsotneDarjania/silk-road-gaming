@@ -788,6 +788,150 @@
       "scrollFactor": 0.04,
       "scale": 0.8,
       "tint": 16777215
+    },
+    {
+      "x": -12300,
+      "y": 950,
+      "key": "batumi-sea",
+      "scrollFactor": 0.04,
+      "scale": 1,
+      "tint": 9359359
+    },
+    {
+      "x": -13800,
+      "y": 950,
+      "key": "batumi-sea",
+      "scrollFactor": 0.04,
+      "scale": 1,
+      "tint": 9359359
+    },
+    {
+      "x": -13300,
+      "y": 900,
+      "key": "batumi-build-5",
+      "scrollFactor": 0.04,
+      "scale": 0.3,
+      "tint": 16746474
+    },
+    {
+      "x": -13500,
+      "y": 920,
+      "key": "batumi-build-5",
+      "scrollFactor": 0.04,
+      "scale": 0.4,
+      "tint": 11960758
+    },
+    {
+      "x": -13750,
+      "y": 920,
+      "key": "batumi-build-6",
+      "scrollFactor": 0.04,
+      "scale": 0.4,
+      "tint": 2837177
+    },
+    {
+      "x": -13950,
+      "y": 920,
+      "key": "batumi-build-5",
+      "scrollFactor": 0.04,
+      "scale": 0.45,
+      "tint": 2837177
+    },
+    {
+      "x": -14300,
+      "y": 920,
+      "key": "batumi-build-5",
+      "scrollFactor": 0.04,
+      "scale": 0.4,
+      "tint": 16777215
+    },
+    {
+      "x": -14400,
+      "y": 1120,
+      "key": "batumi-build-6",
+      "scrollFactor": 0.04,
+      "scale": 0.4,
+      "tint": 16777215
+    },
+    {
+      "x": -13200,
+      "y": 690,
+      "key": "batumi-build-1",
+      "scrollFactor": 0.04,
+      "scale": 0.25,
+      "tint": 16777215
+    },
+    {
+      "x": -13600,
+      "y": 710,
+      "key": "batumi-build-2",
+      "scrollFactor": 0.04,
+      "scale": 0.35,
+      "tint": 16777215
+    },
+    {
+      "x": -13820,
+      "y": 550,
+      "key": "batumi-build-3",
+      "scrollFactor": 0.04,
+      "scale": 0.5,
+      "tint": 16777215
+    },
+    {
+      "x": -14120,
+      "y": 750,
+      "key": "batumi-build-4",
+      "scrollFactor": 0.04,
+      "scale": 0.4,
+      "tint": 16777215
+    },
+    {
+      "x": -13030,
+      "y": 900,
+      "key": "batumi-build-5",
+      "scrollFactor": 0.04,
+      "scale": 0.3,
+      "tint": 16777215
+    },
+    {
+      "x": -13390,
+      "y": 1220,
+      "key": "batumi-build-6",
+      "scrollFactor": 0.04,
+      "scale": 0.5,
+      "tint": 16777215
+    },
+    {
+      "x": -13220,
+      "y": 1120,
+      "key": "batumi-build-6",
+      "scrollFactor": 0.04,
+      "scale": 0.4,
+      "tint": 16746474
+    },
+    {
+      "x": -13610,
+      "y": 1180,
+      "key": "batumi-build-5",
+      "scrollFactor": 0.04,
+      "scale": 0.5,
+      "tint": 16746474
+    },
+    {
+      "x": -14110,
+      "y": 1280,
+      "key": "batumi-build-6",
+      "scrollFactor": 0.04,
+      "scale": 0.5,
+      "tint": 16777215
+    },
+    {
+      "x": -13810,
+      "y": 1100,
+      "key": "batumi-build-5",
+      "scrollFactor": 0.04,
+      "scale": 0.33,
+      "tint": 16777215
     }
   ]
 }

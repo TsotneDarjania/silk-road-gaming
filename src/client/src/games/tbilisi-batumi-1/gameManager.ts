@@ -37,7 +37,7 @@ export class GameManager {
   canRadioChange: boolean = false;
 
   saveZonesData: Array<SaveZoneData> = [];
-  saveZoneIndex = 6;
+  saveZoneIndex = 1;
 
   backgroundImage!: Phaser.GameObjects.Image;
 
@@ -119,8 +119,14 @@ export class GameManager {
         carPositions: {
           // x: -310010,
           // y: 480,
-          x: -314010,
-          y: 500,
+          x: -355010,
+          y: 480,
+        },
+      },
+      {
+        carPositions: {
+          x: -370010,
+          y: 850,
         },
       },
     ];
@@ -314,6 +320,32 @@ export class GameManager {
           this.emptyFunction();
         },
       },
+      11: {
+        enter: () => {
+          this.stopWolfSounds();
+          if (
+            this.gamePlay.damageRoad === null ||
+            this.gamePlay.damageRoad === undefined
+          ) {
+            this.gamePlay.addDamageRoad();
+          } else {
+            this.gamePlay.damageRoad.collider.setVisible(true);
+            this.gamePlay.damageRoad.collider.setPosition(-337953, -1370);
+          }
+          this.changeColorToGameBackground(0x1a181c, 0, 9000);
+        },
+        exit: () => {
+          this.emptyFunction();
+        },
+      },
+      12: {
+        enter: () => {
+          console.log("win");
+        },
+        exit: () => {
+          this.emptyFunction();
+        },
+      },
     };
 
     Object.values(gameZonesData).forEach((data) => {
@@ -423,6 +455,11 @@ export class GameManager {
       }
       this.playWolfsSounds();
     }, time);
+  }
+
+  stopWolfSounds() {
+    this.gamePlay.wolfSound.stop();
+    clearInterval(this.wolfsSoundsUpdate);
   }
 }
 

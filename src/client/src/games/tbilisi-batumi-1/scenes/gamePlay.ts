@@ -51,6 +51,7 @@ import { Train } from "../gameObjects/train";
 import { OptimizationManager } from "../optimizationManager";
 import { Monster } from "../gameObjects/monster";
 import { EvilFace } from "../gameObjects/evilFace";
+import { DamageRoads } from "../gameObjects/damageRoads";
 
 export class GamePlay extends Phaser.Scene {
   gameMenu!: GameMenu;
@@ -92,6 +93,7 @@ export class GamePlay extends Phaser.Scene {
   russianSoldiers: Array<RussianSoldier> = [];
   monsters: Array<Monster> = [];
   evilFaces: Array<EvilFace> = [];
+  damageRoad!: DamageRoads;
 
   buttonSound!: Phaser.Sound.BaseSound;
   applause!: Phaser.Sound.BaseSound;
@@ -171,6 +173,10 @@ export class GamePlay extends Phaser.Scene {
 
     //Start UI Scene for Menu UI Elements
     this.scene.launch("GameMenu");
+  }
+
+  addDamageRoad() {
+    this.damageRoad = new DamageRoads(this, -337953, -1370);
   }
 
   addEvilFaces() {
@@ -291,7 +297,7 @@ export class GamePlay extends Phaser.Scene {
       });
     });
 
-    // new Road(this, roadJson.rikoti[1]);
+    // new Road(this, roadJson.rikoti[4]);
   }
 
   addFlowers() {

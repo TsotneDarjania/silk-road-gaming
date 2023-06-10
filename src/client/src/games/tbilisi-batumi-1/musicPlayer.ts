@@ -10,6 +10,8 @@ export default class MusicPlayer {
   radioIndex: number = 0;
   radios!: [Phaser.Sound.BaseSound[]];
 
+  winSong!: Phaser.Sound.BaseSound;
+
   specialSongs: Array<Phaser.Sound.BaseSound> = [];
 
   constructor(public scene: GamePlay) {
@@ -64,6 +66,13 @@ export default class MusicPlayer {
   }
 
   addSongs() {
+    this.winSong = this.scene.sound.add("winSong", {
+      volume: 1,
+    });
+    this.winSong.on("complete", () => {
+      this.winSong.play();
+    });
+
     const mtawmindaSong = this.scene.sound.add("mtawmindaSong", {
       volume: 0.1,
     });

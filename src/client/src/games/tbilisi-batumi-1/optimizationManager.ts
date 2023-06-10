@@ -595,7 +595,7 @@ export class OptimizationManager {
       }
     }
 
-    if (index === 9) {
+    if (index >= 9) {
       {
         const roads = this.scene.roads.slice(15, 21);
         roads.forEach((road) => {
@@ -603,14 +603,14 @@ export class OptimizationManager {
           road.polygon.setVisible(true);
         });
 
-        const stars = this.scene.stars.slice(7, 11);
+        const stars = this.scene.stars.slice(7, 13);
         stars.forEach((stars) => {
           for (let i = 0; i < stars.stars.length; i++) {
             stars.stars[i].setVisible(true);
           }
         });
 
-        const flowers = this.scene.flowers.slice(105, 130);
+        const flowers = this.scene.flowers.slice(105, 150);
         flowers.forEach((flower) => {
           flower.setVisible(true);
         });
@@ -621,7 +621,7 @@ export class OptimizationManager {
           this.scene.matter.world.add(monet.zone);
         });
 
-        const angels = this.scene.angels.slice(5, 9);
+        const angels = this.scene.angels.slice(5, 10);
         angels.forEach((angel) => {
           angel.setVisible(true);
         });

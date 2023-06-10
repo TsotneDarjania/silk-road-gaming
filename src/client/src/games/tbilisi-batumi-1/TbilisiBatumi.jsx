@@ -12,9 +12,6 @@ import { StartScene } from "./scenes/start";
 import { Menu } from "./scenes/menu";
 import { Boot } from "./scenes/boot";
 
-import { screenSize } from "./config/getScreenSize";
-import responsiveData from "./config/layoutConfig.json";
-
 export const TbilisiBatumi = () => {
   const canvasContainer = useRef(null);
   const size = useRef(20);

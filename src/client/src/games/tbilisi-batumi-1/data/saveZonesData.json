@@ -61,5 +61,12 @@
     "icon": "small-traparet",
     "text": ["Shorapani"],
     "index": 9
+  },
+  "10": {
+    "x": -370000,
+    "y": 860,
+    "icon": "big-traparet",
+    "text": ["Batumi"],
+    "index": 10
   }
 }

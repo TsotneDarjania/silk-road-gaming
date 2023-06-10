@@ -7,6 +7,7 @@ export class Asteroid {
   scene!: GamePlay;
   x!: number;
   y!: number;
+  sign!: Phaser.GameObjects.Image;
 
   update!: NodeJS.Timeout;
 
@@ -40,6 +41,14 @@ export class Asteroid {
     });
     this.asteroid.setOrigin(0.5, 0.72);
 
+    this.sign = this.scene.add
+      .image(this.x, this.y, "white")
+      .setDisplaySize(200, 5000)
+      .setTint(0xff7d53)
+      .setVisible(false)
+      .setAlpha(0.3)
+      .setDepth(-100);
+
     //add Collision Detection for Right Tire
     this.scene.matter.world.on("collisionstart", (event: any) => {
       event.pairs.forEach((pair: any) => {
@@ -58,9 +67,12 @@ export class Asteroid {
     this.asteroid.setPosition(radnomX, -getRandomFloat(0, 300));
     this.asteroid.setRotation(0);
     this.asteroid.setStatic(false);
+
+    this.sign.setPosition(radnomX, this.asteroid.y);
   }
 
   startFalling() {
+    this.sign.setVisible(true);
     this.startFallingAsteroid();
     this.update = setInterval(() => {
       if (this.asteroid.y > this.scene.car.carBody.y + 1100) {
@@ -72,6 +84,7 @@ export class Asteroid {
   stopFalling() {
     clearInterval(this.update);
     this.reset();
+    this.sign.setVisible(false);
   }
 
   reset() {

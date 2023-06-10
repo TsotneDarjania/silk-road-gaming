@@ -57,8 +57,13 @@ export class SaveZone {
       event.pairs.forEach((pair: any) => {
         if (pair.bodyB === zone) {
           this.scene.gameMenu.radioOnn();
-          if (this.saveZoneIndex > 6) {
+          if (this.saveZoneIndex > 6 && this.saveZoneIndex < 10) {
             this.scene.gameMenu.radioOff();
+            if (this.scene.damageRoad !== undefined) {
+              this.scene.damageRoad.collider.setVisible(false);
+              this.scene.damageRoad.collider.setPosition(0, -5000);
+            }
+
             if (this.isSaved === false) {
               this.scene.car.withCarSound = true;
               this.scene.gameManager.playWolfsSounds();
@@ -69,6 +74,14 @@ export class SaveZone {
               );
               this.isSaved = true;
             }
+          }
+
+          if (this.saveZoneIndex === 10) {
+            this.scene.musicPlayer.stopAllSong();
+            this.scene.car.withCarSound = false;
+            this.scene.car.carEngineSound_1.stop();
+
+            this.scene.musicPlayer.winSong.play();
           }
           //Check if this save zonealready access
           if (this.saveZoneIndex <= this.scene.gameManager.saveZoneIndex)

@@ -34,6 +34,19 @@
   "6": {
     "x": -265310,
     "y": 400,
-    "text": ["Move silently to avoid", "arousing the attention of the wolves."]
+    "text": [
+      "Be cautious of the eerie spirits",
+      "that roam on the night of Halloween in the 'Rikoti' area"
+    ]
+  },
+  "7": {
+    "x": -316810,
+    "y": -150,
+    "text": [
+      "You have a short distance",
+      "remaining before reaching Batumi",
+      "This is the final challenge, ",
+      "so try to pass through these locations swiftly"
+    ]
   }
 }

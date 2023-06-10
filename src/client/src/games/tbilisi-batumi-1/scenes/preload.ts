@@ -30,6 +30,7 @@ export class Preload extends Phaser.Scene {
     this.load.audio("taxi-1", ["music/songs/taxi-1.mp3"]);
     this.load.audio("gulmartali", ["music/songs/gulmartali.mp3"]);
     this.load.audio("russianSong", ["music/songs/russianSong.mp3"]);
+    this.load.audio("winSong", ["music/songs/win-song.mp3"]);
 
     //Sound Effects
     this.load.audio("monetSound", ["music/effects/monet.mp3"]);
@@ -187,6 +188,16 @@ export class Preload extends Phaser.Scene {
     this.load.image("rikoti-tree-2", "rikoti/tree-2.png");
     this.load.image("monster", "rikoti/monster.png");
     this.load.image("evil-face", "rikoti/evilFace.png");
+
+    //batumi
+    this.load.image("batumi-build-1", "batumi/build-1.png");
+    this.load.image("batumi-build-2", "batumi/build-2.png");
+    this.load.image("batumi-build-3", "batumi/build-3.png");
+    this.load.image("batumi-build-4", "batumi/build-4.png");
+    this.load.image("batumi-build-5", "batumi/build-5.png");
+    this.load.image("batumi-build-6", "batumi/build-6.png");
+    this.load.image("batumi-sea", "batumi/sea.png");
+    this.load.image("batumi-tree-1", "batumi/batumi-tree-1.png");
   }
 
   create() {
