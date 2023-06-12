@@ -2,9 +2,6 @@ import { getCookie } from "../../helper/cookie";
 
 const loginSession = getCookie("loginSession");
 
-// let userName = JSON.parse(getCookie("loginSession")).userName;
-// cons userPassword = JSON.parse(getCookie("loginSession")).password;
-
 export class API {
   userName: string = "";
   userPassword: string = "";

@@ -14,7 +14,6 @@ import { Boot } from "./scenes/boot";
 
 export const TbilisiBatumi = () => {
   const canvasContainer = useRef(null);
-  const size = useRef(20);
 
   useEffect(() => {
     if (!canvasContainer.current) return;
@@ -34,8 +33,6 @@ export const TbilisiBatumi = () => {
       type: Phaser.AUTO,
       scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        // width: responsiveData[screenSize()].canvas.width,
-        // height: responsiveData[screenSize()].canvas.height,
         width: window.innerWidth,
         height: window.innerHeight,
       },

@@ -3,6 +3,8 @@ import config from "../config/layoutConfig.json";
 import { Responsivedata } from "../config/interfaces";
 
 import { screenSize } from "../config/getScreenSize";
+import { MenuMap } from "../components/menuMap";
+import { MenuInfo } from "../components/menuInfo";
 
 export class Menu extends Phaser.Scene {
   backgroundZone!: Phaser.GameObjects.Image;
@@ -17,6 +19,8 @@ export class Menu extends Phaser.Scene {
   buttonSound!: Phaser.Sound.BaseSound;
 
   menuButtonsContainer!: Phaser.GameObjects.Container;
+  menuMap!: MenuMap;
+  menuInfo!: MenuInfo;
 
   constructor() {
     super("Menu");
@@ -29,6 +33,8 @@ export class Menu extends Phaser.Scene {
     this.addInteractiveZone();
     this.addTouchToScreenText();
     this.createMenuButtons();
+    this.createMenuMap();
+    this.createMenuInfo();
 
     //Load Sound Effects
     this.plugSound = this.sound.add("plugSound", {
@@ -37,6 +43,14 @@ export class Menu extends Phaser.Scene {
     this.buttonSound = this.sound.add("buttonSound", {
       volume: 1,
     });
+  }
+
+  createMenuMap() {
+    this.menuMap = new MenuMap(this);
+  }
+
+  createMenuInfo() {
+    this.menuInfo = new MenuInfo(this);
   }
 
   createMenuButtons() {
@@ -102,13 +116,16 @@ export class Menu extends Phaser.Scene {
       })
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
         this.buttonSound.play();
+        this.menuButtonsContainer.setVisible(false);
+        this.backgroundZone.removeInteractive();
+        this.menuMap.setVisible(true);
       });
 
     const mapText = this.add
       .text(
         screenSize().menu.mapButton.positions.x,
         screenSize().menu.mapButton.positions.y,
-        "Map",
+        "Load",
         {
           fontFamily: "mainFont",
           color: "#FFF5D7",
@@ -140,6 +157,9 @@ export class Menu extends Phaser.Scene {
       })
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
         this.buttonSound.play();
+        this.menuButtonsContainer.setVisible(false);
+        this.backgroundZone.removeInteractive();
+        this.menuInfo.setVisible(true);
       });
 
     const informationText = this.add

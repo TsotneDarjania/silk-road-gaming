@@ -1,7 +1,7 @@
 {
   "1": {
-    "x": -84000,
-    "y": 1150,
+    "x": -95000,
+    "y": 610,
     "key": "musicIcon",
     "text": ["A new song has been", "added to international radio"],
     "musicKey": "taxi-1"

@@ -1,27 +1,25 @@
 import Phaser from "phaser";
+import { LoadingScreen } from "../../common/loadingScreen";
 
 export class Preload extends Phaser.Scene {
+  loadingScreen!: LoadingScreen;
+
   constructor() {
     super("Preload");
   }
 
   init() {
     /** Create loading visualization here */
+    this.loadingScreen = new LoadingScreen(this);
   }
 
   preload() {
-    this.load.on(Phaser.Loader.Events.PROGRESS, (progress: number) =>
-      console.log(`loaded ${progress}%`)
-    );
+    this.load.on(Phaser.Loader.Events.PROGRESS, (progress: number) => {
+      console.log(`loaded ${progress}%`);
+      this.loadingScreen.updateFillIndicator(progress);
+    });
 
     this.load.setPath(`${process.env.PUBLIC_URL}/assets`);
-    this.load.webFont(
-      "mainFont",
-      "https://fonts.gstatic.com/s/pressstart2p/v14/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2"
-    );
-
-    //Default image
-    this.load.image("white", "white.png");
 
     //Songs
     this.load.audio("mtawmindaSong", ["music/songs/mtawminda.mp3"]);
@@ -163,6 +161,9 @@ export class Preload extends Phaser.Scene {
     this.load.svg("menuCarTire", "menu/menuScene/tire.svg");
     this.load.image("plug", "menu/menuScene/plug.png");
     this.load.image("menuButton", "menu/menuScene/button.png");
+    this.load.image("closeButton", "menu/menuScene/closeButton.png");
+    this.load.image("loadIcon", "menu/menuScene/loadIcon.png");
+    this.load.image("blockIcon", "menu/menuScene/blockIcon.png");
 
     //Russian Soldier
     this.load.image("RSHead", "russianSoldier/head.png");
@@ -201,6 +202,6 @@ export class Preload extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start("GamePlay");
+    this.scene.start("Menu");
   }
 }

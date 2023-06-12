@@ -114,79 +114,79 @@ export class GameMenu extends Phaser.Scene {
   }
 
   createRadioButtons() {
-    // Green Buttons
-    const radioLeftGreenButton = this.add
-      .image(
-        this.screenWidth / 2 +
-          screenSize().gameMenu.radioLeftButtons.positions.x,
-        this.screenHeight + screenSize().gameMenu.radioLeftButtons.positions.y,
-        "radioGreenButton"
-      )
-      .setScale(1.2)
-      .setInteractive()
-      .on(Phaser.Input.Events.POINTER_DOWN, () => {
-        this.gamePlayScene.musicPlayer.changeRadioToUp();
-      })
-      .on(Phaser.Input.Events.POINTER_OVER, () => {
-        radioLeftGreenButton.setScale(1.4);
-      })
-      .on(Phaser.Input.Events.POINTER_OUT, () => {
-        radioLeftGreenButton.setScale(1.2);
-      });
+    // // Green Buttons
+    // const radioLeftGreenButton = this.add
+    //   .image(
+    //     this.screenWidth / 2 +
+    //       screenSize().gameMenu.radioLeftButtons.positions.x,
+    //     this.screenHeight + screenSize().gameMenu.radioLeftButtons.positions.y,
+    //     "radioGreenButton"
+    //   )
+    //   .setScale(1.2)
+    //   .setInteractive()
+    //   .on(Phaser.Input.Events.POINTER_DOWN, () => {
+    //     this.gamePlayScene.musicPlayer.changeRadioToUp();
+    //   })
+    //   .on(Phaser.Input.Events.POINTER_OVER, () => {
+    //     radioLeftGreenButton.setScale(1.4);
+    //   })
+    //   .on(Phaser.Input.Events.POINTER_OUT, () => {
+    //     radioLeftGreenButton.setScale(1.2);
+    //   });
 
-    const radioRightGreenButton = this.add
-      .image(
-        this.screenWidth / 2 +
-          screenSize().gameMenu.radioRightButtons.positions.x,
-        this.screenHeight + screenSize().gameMenu.radioRightButtons.positions.y,
-        "radioGreenButton"
-      )
-      .setScale(1.2)
-      .setFlipY(true)
-      .setInteractive()
-      .on(Phaser.Input.Events.POINTER_OVER, () => {
-        radioRightGreenButton.setScale(1.4);
-      })
-      .on(Phaser.Input.Events.POINTER_OUT, () => {
-        radioRightGreenButton.setScale(1.2);
-      });
+    // const radioRightGreenButton = this.add
+    //   .image(
+    //     this.screenWidth / 2 +
+    //       screenSize().gameMenu.radioRightButtons.positions.x,
+    //     this.screenHeight + screenSize().gameMenu.radioRightButtons.positions.y,
+    //     "radioGreenButton"
+    //   )
+    //   .setScale(1.2)
+    //   .setFlipY(true)
+    //   .setInteractive()
+    //   .on(Phaser.Input.Events.POINTER_OVER, () => {
+    //     radioRightGreenButton.setScale(1.4);
+    //   })
+    //   .on(Phaser.Input.Events.POINTER_OUT, () => {
+    //     radioRightGreenButton.setScale(1.2);
+    //   });
 
-    // Red Buttons
-    const radioLeftRedButton = this.add
-      .image(
-        this.screenWidth / 2 +
-          screenSize().gameMenu.radioLeftButtons.positions.x,
-        this.screenHeight + screenSize().gameMenu.radioLeftButtons.positions.y,
-        "radioRedButton"
-      )
-      .setScale(1.2)
-      .setInteractive()
-      .on(Phaser.Input.Events.POINTER_OVER, () => {
-        radioLeftRedButton.setScale(1.4);
-      })
-      .on(Phaser.Input.Events.POINTER_OUT, () => {
-        radioLeftRedButton.setScale(1.2);
-      });
+    // // Red Buttons
+    // const radioLeftRedButton = this.add
+    //   .image(
+    //     this.screenWidth / 2 +
+    //       screenSize().gameMenu.radioLeftButtons.positions.x,
+    //     this.screenHeight + screenSize().gameMenu.radioLeftButtons.positions.y,
+    //     "radioRedButton"
+    //   )
+    //   .setScale(1.2)
+    //   .setInteractive()
+    //   .on(Phaser.Input.Events.POINTER_OVER, () => {
+    //     radioLeftRedButton.setScale(1.4);
+    //   })
+    //   .on(Phaser.Input.Events.POINTER_OUT, () => {
+    //     radioLeftRedButton.setScale(1.2);
+    //   });
 
-    const radioRightRedButton = this.add
-      .image(
-        this.screenWidth / 2 +
-          screenSize().gameMenu.radioRightButtons.positions.x,
-        this.screenHeight + screenSize().gameMenu.radioRightButtons.positions.y,
-        "radioRedButton"
-      )
-      .setScale(1.2)
-      .setFlipY(true)
-      .setInteractive()
-      .on(Phaser.Input.Events.POINTER_OVER, () => {
-        radioRightRedButton.setScale(1.4);
-      })
-      .on(Phaser.Input.Events.POINTER_OUT, () => {
-        radioRightRedButton.setScale(1.2);
-      });
+    // const radioRightRedButton = this.add
+    //   .image(
+    //     this.screenWidth / 2 +
+    //       screenSize().gameMenu.radioRightButtons.positions.x,
+    //     this.screenHeight + screenSize().gameMenu.radioRightButtons.positions.y,
+    //     "radioRedButton"
+    //   )
+    //   .setScale(1.2)
+    //   .setFlipY(true)
+    //   .setInteractive()
+    //   .on(Phaser.Input.Events.POINTER_OVER, () => {
+    //     radioRightRedButton.setScale(1.4);
+    //   })
+    //   .on(Phaser.Input.Events.POINTER_OUT, () => {
+    //     radioRightRedButton.setScale(1.2);
+    //   });
 
-    this.radioRedButtons.add([radioLeftRedButton, radioRightRedButton]);
-    this.radioGreenButtons.add([radioLeftGreenButton, radioRightGreenButton]);
+    // this.radioRedButtons.add([radioLeftRedButton, radioRightRedButton]);
+    // this.radioGreenButtons.add([radioLeftGreenButton, radioRightGreenButton]);
 
     this.speedometerContainer.add(this.radioGreenButtons);
     this.speedometerContainer.add(this.radioRedButtons);

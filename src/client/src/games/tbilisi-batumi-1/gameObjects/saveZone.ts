@@ -81,7 +81,9 @@ export class SaveZone {
             this.scene.car.withCarSound = false;
             this.scene.car.carEngineSound_1.stop();
 
-            this.scene.musicPlayer.winSong.play();
+            if (this.scene.musicPlayer.winSong.isPlaying === false) {
+              this.scene.musicPlayer.winSong.play();
+            }
           }
           //Check if this save zonealready access
           if (this.saveZoneIndex <= this.scene.gameManager.saveZoneIndex)

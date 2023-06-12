@@ -176,6 +176,16 @@ export class Car {
     if (this.carBody.body.velocity.y < -8) {
       this.carBody.setVelocity(this.carBody.body.velocity.x, 0);
     }
+
+    if (
+      this.carBody.x >
+      this.scene.gameManager.saveZonesData[this.scene.gameManager.saveZoneIndex]
+        .carPositions.x +
+        300
+    ) {
+      const force = new Phaser.Math.Vector2(-0.2, 0);
+      this.carBody.applyForce(force);
+    }
   }
 
   addController() {
