@@ -2,10 +2,16 @@ import React from "react";
 
 import { AiFillLike } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
+import { useState } from "react";
 
 import style from "./gameContainer.module.css";
+import ModalForComments from "./ModalForComments";
+import HandleOutsideClick from "./HandleOutsideClick";
 
 const GameContainer = () => {
+  const [show, setShow] = useState(false)
+
+
   return (
     <div className={style.gameContainer}>
       <div
@@ -32,11 +38,14 @@ const GameContainer = () => {
           </li>
 
           <li className={style.commentIcon}>
-            <FaCommentAlt />
+            <FaCommentAlt onClick={() => setShow(true)}/>
           </li>
         </ul>
         <button className={style.openButton}> Open </button>
       </div>
+      <HandleOutsideClick onClickOutside={() => setShow(false)}>
+        <ModalForComments show={show}/>
+      </HandleOutsideClick>
     </div>
   );
 };

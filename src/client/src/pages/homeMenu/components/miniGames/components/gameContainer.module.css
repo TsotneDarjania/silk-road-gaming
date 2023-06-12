@@ -101,7 +101,7 @@
   transition: 0.4s;
 }
 
-.indicators ul li :hover {
+.indicators ul li :hover :not(.number) {
   color: rgb(144, 255, 129);
 }
 
