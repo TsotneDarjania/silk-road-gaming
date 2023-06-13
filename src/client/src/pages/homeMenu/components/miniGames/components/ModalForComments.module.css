@@ -83,3 +83,11 @@
     outline: none;
 }
 
+@media (max-width: 600px) {
+    .commentsContainer{
+        width: 90%;
+    }
+    .comment{
+        padding-right: 10px;
+    }
+}

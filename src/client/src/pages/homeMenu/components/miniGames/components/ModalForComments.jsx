@@ -33,11 +33,6 @@ const ModalForComments = (props) => {
                 asiudhasiud asiudhasd asiudhasd asiud aisudhqiwudqwd iquwdh
                 iudwd wudhqiud qiwudhwiud diwuw wuwd w wdwd dwd wdiuqwdh
                 qiwudhqiwudhqiwduhqd qdwuhd iudhwiqudhqd iwuw wudhwd
-                iuwhdiuwhdiqwuh qiwudhqiwud qiduqwiduhd
-                asiudhasiud asiudhasd asiudhasd asiud aisudhqiwudqwd iquwdh
-                iudwd wudhqiud qiwudhwiud diwuw wuwd w wdwd dwd wdiuqwdh
-                qiwudhqiwudhqiwduhqd qdwuhd iudhwiqudhqd iwuw wudhwd
-                iuwhdiuwhdiqwuh qiwudhqiwud qiduqwiduhd  
               </p>
             </div>
           </div>
