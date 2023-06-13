@@ -6,6 +6,8 @@ const ModalForComments = (props) => {
   if (!props.show) {
     return null
   }
+  const userRating = 2050;
+
   return (
     <div className={style.commentsContainer}>
       <div className={style.commentsSection}>
@@ -15,7 +17,14 @@ const ModalForComments = (props) => {
               <img src={userAvatar} alt="user Avatar" />
             </div>
             <div>
-              <p>User Name</p>
+              <div className={style.userInfo}>
+                <p>User Name</p>
+                <span
+                  style={{
+                    color: userRating <= 1000 ? 'yellow' : userRating >= 2000 ? 'green' : 'red'
+                  }}
+                >2050</span>
+              </div>
               <p className={style.comment}>
                 asiudhasiud asiudhasd asiudhasd asiud aisudhqiwudqwd iquwdh
                 iudwd wudhqiud qiwudhwiud diwuw wuwd w wdwd dwd wdiuqwdh
@@ -27,9 +36,6 @@ const ModalForComments = (props) => {
         ))}
       </div>
       <div className={style.userComment}>
-        <div className={style.userAvatar}>
-          <img src={userAvatar} alt="user Avatar" />
-        </div>
         <div className={style.inputBox}>
           <textarea placeholder="Add your comment here..." />
           <button className={style.sendIcon}>

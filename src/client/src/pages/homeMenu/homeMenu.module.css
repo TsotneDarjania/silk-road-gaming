@@ -3,7 +3,6 @@
 .homeMenu {
   width: 100vw;
   height: 100vh;
-
   background-color: #0c0616;
 }
 
@@ -14,11 +13,13 @@
   display: flex;
   font-weight: bold;
   font-family: "Geo", sans-serif;
-  display: flex;
   justify-content: center;
   align-items: center;
   list-style: none;
   gap: 30px;
+
+  position: fixed;
+  z-index: 60;
 }
 
 .menu-li {

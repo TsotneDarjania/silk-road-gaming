@@ -2,17 +2,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
 
 .commentsContainer{
-    width: 60%;
-    height: 60%;
+    width: 70%;
+    height: 70%;
     position: fixed;
-    z-index: 5555;
+    z-index: 55;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
     background-color: #0c0616;
     border-radius: 10px;
-    box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
 
     font-family: "Geo", sans-serif;
 
@@ -34,12 +33,19 @@
     border-bottom: 1px solid rgb(26, 26, 26);
 }
 
-.singleComment p{
-    color: rgb(163, 217, 190);
+.userInfo{
+    color: rgb(132, 223, 228);
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+}
+
+.userInfo span{
+    text-shadow: 0.5px 0.5px rgb(192, 184, 184);
 }
 
 .comment{
-    padding: 10px;
+    padding: 5px 0px;
     color: rgb(174, 201, 202);
 }
 
@@ -54,8 +60,7 @@
 .userAvatar, .userAvatar img{
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-
+    border-radius: 2%;
     object-fit: cover;
 
 }
@@ -68,7 +73,7 @@
 }
 
 .inputBox textarea{
-    width: 90%;
+    width: 95%;
     border-radius: 5px;
     padding: 10px;
     resize: none;

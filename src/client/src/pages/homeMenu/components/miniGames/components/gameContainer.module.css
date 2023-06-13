@@ -19,11 +19,9 @@
 
   opacity: 0.2;
   filter: grayscale(100%);
-  z-index: 0;
 }
 
 .miniGameBackgroundImage-1 {
-  z-index: 0;
   position: absolute;
   background-image: url("../../../images/games/miniGames/wallpapers/1.jpg");
 }

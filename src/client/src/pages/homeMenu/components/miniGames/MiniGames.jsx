@@ -1,18 +1,25 @@
-import React from 'react'
-import GameContainer from './components/gameContainer'
+import React, { useState } from "react";
+import GameContainer from "./components/gameContainer";
 
-import style from "./miniGames.module.css"
+import style from "./miniGames.module.css";
 
 const MiniGames = () => {
+  const [show, setShow] = useState(false);
+
   return (
     <div className={style.miniGames}>
-        <GameContainer />
-        <GameContainer />
-        <GameContainer />
-        <GameContainer />
-        <GameContainer />
+      <div
+        className={style.shadow}
+        onClick={() => setShow(false)}
+        style={{ opacity: show ? 0.5 : 0, zIndex: show ? 50 : -5 }}
+      ></div>
+      <GameContainer setShow={setShow} show={show} />
+      <GameContainer setShow={setShow} show={show} />
+      <GameContainer setShow={setShow} show={show} />
+      <GameContainer setShow={setShow} show={show} />
+      <GameContainer setShow={setShow} show={show} />
     </div>
-  )
-}
+  );
+};
 
-export default MiniGames
+export default MiniGames;
