@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './ModalForComments.module.css'
-import { IoSend } from 'react-icons/io5'
 import userAvatar from './userAvatar.png'
+
 const ModalForComments = (props) => {
   if (!props.show) {
     return null
