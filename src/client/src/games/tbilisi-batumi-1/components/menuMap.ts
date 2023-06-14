@@ -1,3 +1,4 @@
+import { gameConfig } from "../config/gameConfig";
 import { Menu } from "../scenes/menu";
 
 export class MenuMap extends Phaser.GameObjects.Container {
@@ -29,6 +30,10 @@ export class MenuMap extends Phaser.GameObjects.Container {
     for (let i = 0; i < 10; i++) {
       const loadItem = new LoadItem(this.scene, posX, posY, i + 1);
       this.loadItemsContainer.add(loadItem);
+
+      if (i + 1 <= gameConfig.saveZoneIndex) {
+        loadItem.makeActive();
+      }
 
       posX += 200;
       if (i === 4) {
@@ -120,7 +125,9 @@ class LoadItem extends Phaser.GameObjects.Container {
       .setTint(0x5b5a61)
       .setOrigin(0)
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
-        alert("aq var");
+        gameConfig.saveZoneIndex = this.value;
+        const scene = this.scene as Menu;
+        scene.playGame();
       });
 
     this.add(this.backgroundImage);

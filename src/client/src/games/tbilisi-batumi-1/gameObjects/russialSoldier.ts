@@ -420,7 +420,9 @@ export class RussianSoldier {
   }
 }
 
-class Bullet extends Phaser.Physics.Matter.Sprite {
+export class Bullet extends Phaser.Physics.Matter.Sprite {
+  bulletResetTimeOut!: NodeJS.Timeout;
+
   constructor(
     public scene: GamePlay,
     x: number,
@@ -472,7 +474,7 @@ class Bullet extends Phaser.Physics.Matter.Sprite {
     this.russianSoldier.bullets.pop();
 
     //Reset
-    setTimeout(() => {
+    this.bulletResetTimeOut = setTimeout(() => {
       this.setRotation(1);
       this.setVisible(false);
       this.setIgnoreGravity(true);

@@ -6,6 +6,7 @@ import { Rock } from "./gameObjects/rock";
 import { getRandomFloat } from "./helper/tatukaMath";
 import { GamePlay } from "./scenes/gamePlay";
 import { GameMenu } from "./ui/menu/gameMenu";
+import { gameConfig } from "./config/gameConfig";
 
 interface SaveZoneData {
   carPositions: {
@@ -37,7 +38,8 @@ export class GameManager {
   canRadioChange: boolean = false;
 
   saveZonesData: Array<SaveZoneData> = [];
-  saveZoneIndex = 0;
+  //saveZoneIndex = gameConfig.saveZoneIndex;
+  saveZoneIndex = 10;
 
   backgroundImage!: Phaser.GameObjects.Image;
 
@@ -125,8 +127,10 @@ export class GameManager {
       },
       {
         carPositions: {
-          x: -370010,
-          y: 850,
+          // x: -370010,
+          // y: 850,
+          x: -356010,
+          y: 450,
         },
       },
     ];

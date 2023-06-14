@@ -8,6 +8,8 @@ import { GameMenu } from "./ui/menu/gameMenu";
 
 import "pathseg";
 import "./helper/WebFontLoader";
+import ScreenOrientation from "screen-orientation";
+
 import { StartScene } from "./scenes/start";
 import { Menu } from "./scenes/menu";
 import { Boot } from "./scenes/boot";
@@ -15,8 +17,27 @@ import { Boot } from "./scenes/boot";
 export const TbilisiBatumi = () => {
   const canvasContainer = useRef(null);
 
+  const hideWidth = window.outerWidth - window.innerWidth;
+  const hideHeight = window.outerHeight - window.innerHeight;
+
+  // const canvasWidth = isLandscapeOrientation() ? window.outerWidth - hideWidth ? ;
+
+  const isLandscapeOrientation = () => {
+    if (window.screen.availHeight > window.screen.availWidth) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  // const [canvasWidth, setCanvasWidth] = useState(0);
+  // const [canvasHeight, setCanvasHeight] = useState(0);
+
   useEffect(() => {
     if (!canvasContainer.current) return;
+
+    // setCanvasWidth(window.outerWidth - hideWidth);
+    // setCanvasHeight(window.outerHeight - hideHeight);
 
     const game = new Phaser.Game({
       dom: { createContainer: true },
@@ -32,9 +53,10 @@ export const TbilisiBatumi = () => {
       parent: canvasContainer.current,
       type: Phaser.AUTO,
       scale: {
+        mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: window.outerWidth - hideWidth,
+        height: window.outerHeight - hideHeight,
       },
 
       backgroundColor: 0x19053b,
