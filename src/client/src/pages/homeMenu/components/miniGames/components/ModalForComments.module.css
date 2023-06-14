@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
 
 .commentsContainer{
+    composes: darkBgColor from '../../../../../global.css';
     width: 70%;
     height: 70%;
     position: fixed;
@@ -10,7 +11,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    background-color: #0c0616;
     border-radius: 10px;
 
     font-family: "Geo", sans-serif;
@@ -34,7 +34,7 @@
 }
 
 .userInfo{
-    color: rgb(132, 223, 228);
+    composes: neonBlueColor from '../../../../../global.css';
     display: flex;
     gap: 10px;
     font-size: 18px;
@@ -45,8 +45,8 @@
 }
 
 .comment{
+    composes: fadedWhiteColor from '../../../../../global.css';
     padding: 5px 0px;
-    color: rgb(174, 201, 202);
 }
 
 .userComment{

@@ -1,20 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
 
 .homeMenu {
+  composes: darkBgColor from '../../global.css';
   width: 100vw;
   height: 100vh;
-  background-color: #0c0616;
 }
 
 .header {
+  composes: flexCenter from '../../global.css';
   width: 100vw;
   height: 12vh;
 
-  display: flex;
   font-weight: bold;
   font-family: "Geo", sans-serif;
-  justify-content: center;
-  align-items: center;
   list-style: none;
   gap: 30px;
 
@@ -51,6 +49,7 @@
 }
 
 .homeButton {
+  composes: orangeBgColor from '../../global.css';
   width: 200px;
   height: 50px;
   position: absolute;
@@ -65,7 +64,6 @@
   border: none;
   box-shadow: 4px 4px 0px 0px rgb(249, 165, 119);
   font-family: "Geo", sans-serif;
-  background-color: rgb(219, 113, 8);
 }
 
 .homeButton:hover {
@@ -74,6 +72,7 @@
 
 @media screen and (max-width: 900px) {
   .homeButton {
+    composes: orangeBgColor from '../../global.css';
     width: 120px;
     height: 40px;
     position: absolute;
@@ -91,7 +90,6 @@
     border: none;
     box-shadow: 4px 4px 0px 0px rgb(249, 165, 119);
     font-family: "Geo", sans-serif;
-    background-color: rgb(219, 113, 8);
   }
 }
 
