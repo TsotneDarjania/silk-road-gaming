@@ -179,15 +179,15 @@ export class Preload extends Phaser.Scene {
     this.load.image("openLoadItem_9", "menu/menuScene/openLoadItems/9.png");
     this.load.image("openLoadItem_10", "menu/menuScene/openLoadItems/10.png");
 
-    // //Russian Soldier
-    // this.load.image("RSHead", "russianSoldier/head.png");
-    // this.load.image("RSBody", "russianSoldier/body.png");
-    // this.load.image("RSLeftLeg", "russianSoldier/leftLeg.png");
-    // this.load.image("RSRightLeg", "russianSoldier/rightLeg.png");
-    // this.load.image("RSLeftHand", "russianSoldier/leftHand.png");
-    // this.load.image("RSRightHand", "russianSoldier/rightHand.png");
+    //Russian Soldier
+    this.load.image("RSHead", "russianSoldier/head.png");
+    this.load.image("RSBody", "russianSoldier/body.png");
+    this.load.image("RSLeftLeg", "russianSoldier/leftLeg.png");
+    this.load.image("RSRightLeg", "russianSoldier/rightLeg.png");
+    this.load.image("RSLeftHand", "russianSoldier/leftHand.png");
+    this.load.image("RSRightHand", "russianSoldier/rightHand.png");
 
-    // this.load.image("RSBullet", "russianSoldier/bullet.png");
+    this.load.image("RSBullet", "russianSoldier/bullet.png");
 
     //train
     this.load.image("rail", "train/rail.png");
