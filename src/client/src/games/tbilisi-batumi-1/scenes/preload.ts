@@ -160,10 +160,24 @@ export class Preload extends Phaser.Scene {
     this.load.svg("menuCarBody", "menu/menuScene/carBody.svg");
     this.load.svg("menuCarTire", "menu/menuScene/tire.svg");
     this.load.image("plug", "menu/menuScene/plug.png");
+    this.load.image("plugBackground", "menu/menuScene/plugBackground.png");
+    this.load.image("darkLamp", "menu/menuScene/darkLamp.png");
+    this.load.image("lightLamp", "menu/menuScene/lightLamp.png");
     this.load.image("menuButton", "menu/menuScene/button.png");
     this.load.image("closeButton", "menu/menuScene/closeButton.png");
-    this.load.image("loadIcon", "menu/menuScene/loadIcon.png");
-    this.load.image("blockIcon", "menu/menuScene/blockIcon.png");
+    this.load.image("blockLoadItem", "menu/menuScene/blockLoadItem.png");
+
+    //loadItemsValue
+    this.load.image("openLoadItem_1", "menu/menuScene/openLoadItems/1.png");
+    this.load.image("openLoadItem_2", "menu/menuScene/openLoadItems/2.png");
+    this.load.image("openLoadItem_3", "menu/menuScene/openLoadItems/3.png");
+    this.load.image("openLoadItem_4", "menu/menuScene/openLoadItems/4.png");
+    this.load.image("openLoadItem_5", "menu/menuScene/openLoadItems/5.png");
+    this.load.image("openLoadItem_6", "menu/menuScene/openLoadItems/6.png");
+    this.load.image("openLoadItem_7", "menu/menuScene/openLoadItems/7.png");
+    this.load.image("openLoadItem_8", "menu/menuScene/openLoadItems/8.png");
+    this.load.image("openLoadItem_9", "menu/menuScene/openLoadItems/9.png");
+    this.load.image("openLoadItem_10", "menu/menuScene/openLoadItems/10.png");
 
     //Russian Soldier
     this.load.image("RSHead", "russianSoldier/head.png");

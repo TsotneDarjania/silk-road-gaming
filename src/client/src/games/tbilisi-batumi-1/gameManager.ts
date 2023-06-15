@@ -38,8 +38,8 @@ export class GameManager {
   canRadioChange: boolean = false;
 
   saveZonesData: Array<SaveZoneData> = [];
-  //saveZoneIndex = gameConfig.saveZoneIndex;
-  saveZoneIndex = 10;
+  saveZoneIndex = gameConfig.saveZoneIndex;
+  // saveZoneIndex = 10;
 
   backgroundImage!: Phaser.GameObjects.Image;
 
@@ -127,10 +127,8 @@ export class GameManager {
       },
       {
         carPositions: {
-          // x: -370010,
-          // y: 850,
-          x: -356010,
-          y: 450,
+          x: -370010,
+          y: 850,
         },
       },
     ];

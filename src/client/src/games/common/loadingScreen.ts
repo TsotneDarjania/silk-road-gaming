@@ -1,3 +1,5 @@
+import { calculatePercentage } from "../tbilisi-batumi-1/helper/tatukaMath";
+
 export class LoadingScreen extends Phaser.GameObjects.Container {
   fillIndicator!: Phaser.GameObjects.Image;
   loadingText!: Phaser.GameObjects.Text;
@@ -21,13 +23,17 @@ export class LoadingScreen extends Phaser.GameObjects.Container {
     this.loadingText = this.scene.add
       .text(
         this.scene.game.canvas.width / 2,
-        this.scene.game.canvas.height / 2 - 70,
+        this.scene.game.canvas.height / 2 -
+          calculatePercentage(10, this.scene.game.canvas.height),
         "0%",
         {
           align: "center",
           fontFamily: "mainFont",
           color: "#FFE40A",
-          fontSize: "30px",
+          fontSize: `${calculatePercentage(
+            1.8,
+            this.scene.game.canvas.width
+          )}20px`,
         }
       )
       .setOrigin(0.5);
@@ -40,13 +46,16 @@ export class LoadingScreen extends Phaser.GameObjects.Container {
     );
     const backImage = this.scene.add
       .image(0, 0, "white")
-      .setDisplaySize(1000, 40)
+      .setDisplaySize(
+        calculatePercentage(70, this.scene.game.canvas.width),
+        calculatePercentage(6, this.scene.game.canvas.height)
+      )
       .setTint(0x262326);
 
     this.fillIndicator = this.scene.add
-      .image(-500, 0, "white")
+      .image(-backImage.displayWidth / 2, 0, "white")
       .setOrigin(0, 0.5)
-      .setDisplaySize(0, 40)
+      .setDisplaySize(0, calculatePercentage(6, this.scene.game.canvas.height))
       .setTint(0xffd20a);
 
     container.add(backImage);
@@ -54,7 +63,12 @@ export class LoadingScreen extends Phaser.GameObjects.Container {
   }
 
   updateFillIndicator(width: number) {
-    this.fillIndicator.setDisplaySize(width * 1000, 40);
+    const fillIndicatorWidth =
+      (width * calculatePercentage(70, this.scene.game.canvas.width)) / 1;
+    this.fillIndicator.setDisplaySize(
+      fillIndicatorWidth,
+      calculatePercentage(6, this.scene.game.canvas.height)
+    );
     this.loadingText.setText(`${(width * 100).toFixed(0)}%`);
   }
 

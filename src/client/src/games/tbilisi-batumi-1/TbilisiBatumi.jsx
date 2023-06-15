@@ -17,11 +17,6 @@ import { Boot } from "./scenes/boot";
 export const TbilisiBatumi = () => {
   const canvasContainer = useRef(null);
 
-  const hideWidth = window.outerWidth - window.innerWidth;
-  const hideHeight = window.outerHeight - window.innerHeight;
-
-  // const canvasWidth = isLandscapeOrientation() ? window.outerWidth - hideWidth ? ;
-
   const isLandscapeOrientation = () => {
     if (window.screen.availHeight > window.screen.availWidth) {
       return false;
@@ -30,8 +25,16 @@ export const TbilisiBatumi = () => {
     }
   };
 
-  // const [canvasWidth, setCanvasWidth] = useState(0);
-  // const [canvasHeight, setCanvasHeight] = useState(0);
+  const hideWidth = window.outerWidth - window.innerWidth;
+  const hideHeight = window.outerHeight - window.innerHeight;
+
+  const canvasWidth = isLandscapeOrientation()
+    ? window.outerWidth - hideWidth
+    : window.outerHeight - hideHeight;
+
+  const canvasHeight = isLandscapeOrientation()
+    ? window.outerHeight - hideHeight
+    : window.outerWidth - hideWidth;
 
   useEffect(() => {
     if (!canvasContainer.current) return;
@@ -53,10 +56,10 @@ export const TbilisiBatumi = () => {
       parent: canvasContainer.current,
       type: Phaser.AUTO,
       scale: {
-        mode: Phaser.Scale.FIT,
+        mode: Phaser.Scale.NONE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: window.outerWidth - hideWidth,
-        height: window.outerHeight - hideHeight,
+        width: canvasWidth,
+        height: canvasHeight,
       },
 
       backgroundColor: 0x19053b,

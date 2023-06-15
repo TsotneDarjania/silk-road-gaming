@@ -1,3 +1,4 @@
+import { screenSize } from "../config/getScreenSize";
 import { Menu } from "../scenes/menu";
 
 export class MenuInfo extends Phaser.GameObjects.Container {
@@ -20,19 +21,23 @@ export class MenuInfo extends Phaser.GameObjects.Container {
   }
 
   addText() {
-    const mainDiv = this.scene.add.dom(
-      this.scene.game.canvas.width / 2,
-      this.scene.game.canvas.height / 2,
-      "div",
-      "width : 74vw; height : 90vh;"
-    );
+    const mainDiv = this.scene.add
+      .dom(
+        this.scene.game.canvas.width / 2,
+        this.scene.game.canvas.height / 2,
+        "div",
+        "width : 74vw; height : 90vh;"
+      )
+      .setOrigin(0.5);
 
     const text = this.scene.add
       .dom(
         0,
-        20,
+        0,
         "p",
-        "color : white; font-size : 30px; text-align: center; width : 97%;",
+        "color : white; font-size : " +
+          screenSize().gameMenu.infoText.fontSize +
+          "px; text-align: center; width : 97%;",
         "Welcome to an extraordinary adventure!  Embark on a surreal journey in this unique game where you take the wheel " +
           "of a car and traverse the distance from the vibrant city of Tbilisi to the enchanting Batumi. " +
           "Prepare yourself to encounter a myriad of obstacles along the way." +
@@ -41,7 +46,7 @@ export class MenuInfo extends Phaser.GameObjects.Container {
           " We are dedicated to crafting an immersive travel experience of remarkable proportions" +
           " Best of all, this game is completely free! Enjoy the ride and have an amazing gaming experience!"
       )
-      .setOrigin(0);
+      .setOrigin(0, 0);
 
     mainDiv.node.appendChild(text.node as HTMLInputElement);
 
@@ -50,7 +55,14 @@ export class MenuInfo extends Phaser.GameObjects.Container {
 
   addCloseImage() {
     this.closeImage = this.scene.add
-      .dom(20, 20, "img", "cursor: pointer; width : 80px; height : 80px")
+      .dom(
+        20,
+        20,
+        "img",
+        `cursor: pointer; width :  ${
+          screenSize().gameMenu.closeButton.widthPercent
+        }vw; height : ${screenSize().gameMenu.closeButton.widthPercent}vw`
+      )
       .setOrigin(0)
       .setInteractive();
 
