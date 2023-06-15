@@ -58,16 +58,16 @@ export class Preload extends Phaser.Scene {
     //   frameHeight: 300,
     // });
 
-    // //Angel
-    // this.load.image("angelHead", "angel/head.png");
-    // this.load.image("angelWing", "angel/wing.png");
-    // this.load.image("angelBody", "angel/body.png");
-    // this.load.image("angelCircle", "angel/circle.png");
+    //Angel
+    this.load.image("angelHead", "angel/head.png");
+    this.load.image("angelWing", "angel/wing.png");
+    this.load.image("angelBody", "angel/body.png");
+    this.load.image("angelCircle", "angel/circle.png");
 
-    // //Demon
-    // this.load.image("demonHead", "demon/head.png");
-    // this.load.image("demonBody", "demon/body.png");
-    // this.load.image("demonWing", "demon/wing.png");
+    //Demon
+    this.load.image("demonHead", "demon/head.png");
+    this.load.image("demonBody", "demon/body.png");
+    this.load.image("demonWing", "demon/wing.png");
 
     //GamePlay Menu
     this.load.image("speedometer", `menu/gamePlay/speedometer.png`);
