@@ -110,20 +110,20 @@ export class Preload extends Phaser.Scene {
     this.load.image("tbilisi-build-10", `tbilisi/build-10.png`);
     this.load.image("tbilisi-build-11", `tbilisi/build-11.png`);
 
-    // //Mtscketa Builds
-    // this.load.image("mtskheta-build-1", `roadToGori/mtskheta/build-1.png`);
-    // this.load.image("mtskheta-build-2", `roadToGori/mtskheta/build-2.png`);
-    // this.load.image("mtskheta-build-3", `roadToGori/mtskheta/build-3.png`);
-    // this.load.image("svetitskhoveli", `roadToGori/mtskheta/svetitskhoveli.png`);
+    //Mtscketa Builds
+    this.load.image("mtskheta-build-1", `roadToGori/mtskheta/build-1.png`);
+    this.load.image("mtskheta-build-2", `roadToGori/mtskheta/build-2.png`);
+    this.load.image("mtskheta-build-3", `roadToGori/mtskheta/build-3.png`);
+    this.load.image("svetitskhoveli", `roadToGori/mtskheta/svetitskhoveli.png`);
 
-    // //Gori Buils
-    // this.load.image("gori-castle", "roadToGori/gori/gori-castle.png");
-    // this.load.image("khashuri-build-1", "roadToGori/gori/khashuri-build-1.png");
-    // this.load.image("khashuri-build-2", "roadToGori/gori/khashuri-build-2.png");
-    // this.load.image(
-    //   "khashuri-traparet",
-    //   "roadToGori/gori/khashuri-traparet.png"
-    // );
+    //Gori Buils
+    this.load.image("gori-castle", "roadToGori/gori/gori-castle.png");
+    this.load.image("khashuri-build-1", "roadToGori/gori/khashuri-build-1.png");
+    this.load.image("khashuri-build-2", "roadToGori/gori/khashuri-build-2.png");
+    this.load.image(
+      "khashuri-traparet",
+      "roadToGori/gori/khashuri-traparet.png"
+    );
 
     // //roadToGori
     // this.load.image("meadow", "roadToGori/meadow.png");
