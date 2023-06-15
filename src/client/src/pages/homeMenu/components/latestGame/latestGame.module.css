@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
 
 .latestGameContainer {
+  composes: flexCenter from '../../../../global.css';
   position: absolute;
 
   top: 12vh;
@@ -12,10 +13,6 @@
 
   width: 80vw;
   height: 70vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .latestGameContainerBackgroundImage {
@@ -56,10 +53,11 @@
   align-items: center;
 }
 
-.leftContainer div {
-  color: rgb(136, 240, 244);
+.leftContainer_Div {
+  composes: neonBlueColor from '../../../../global.css';
   font-size: 23px;
 }
+
 .leftContainer span {
   font-size: 33px;
   font-weight: bold;

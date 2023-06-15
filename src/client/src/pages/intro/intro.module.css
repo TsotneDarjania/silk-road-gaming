@@ -21,13 +21,13 @@
 }
 
 .openButton{
+    composes: orangeColor from '../../global.css';
     width: 200px;
     border: 3px solid rgb(255, 153, 0);
     background: none;
     font-size: 27px;
     border-style: double;
     padding: 0px 2px;
-    color: rgb(244, 142, 41);
     font-family: 'Bungee Inline', cursive;
 
     text-align: center;
@@ -51,13 +51,13 @@
 
 @media screen and (max-width: 1300px) {
     .openButton{
+        composes: orangeColor from '../../global.css';
         width: 150px;
         border: 3px solid rgb(255, 153, 0);
         background: none;
         font-size: 21px;
         border-style: double;
         padding: 0px 2px;
-        color: rgb(244, 142, 41);
         font-family: 'Bungee Inline', cursive;
     
         text-align: center;
@@ -76,13 +76,13 @@
 
 @media screen and (max-width: 800px) {
     .openButton{
+        composes: orangeColor from '../../global.css';
         width: 120px;
         border: 3px solid rgb(255, 153, 0);
         background: none;
         font-size: 19px;
         border-style: double;
         padding: 0px 2px;
-        color: rgb(244, 142, 41);
         font-family: 'Bungee Inline', cursive;
     
         text-align: center;
@@ -102,13 +102,13 @@
 
 @media screen and (max-width: 900px) and (min-height: 617px) {
     .openButton{
+        composes: orangeColor from '../../global.css';
         width: 200px;
         border: 3px solid rgb(255, 153, 0);
         background: none;
         font-size: 29px;
         border-style: double;
         padding: 0px 2px;
-        color: rgb(244, 142, 41);
         font-family: 'Bungee Inline', cursive;
     
         text-align: center;

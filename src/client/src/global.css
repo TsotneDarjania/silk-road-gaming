@@ -1,0 +1,69 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  overflow: hidden;
+}
+/* background colors */
+.greenBgColor{
+  background-color: rgb(0, 255, 157);
+}
+.fadedOrangeBgColor{
+  background-color: rgb(255, 212, 174);
+}
+.orangeBgColor{
+  background-color: rgb(219, 113, 8);
+}
+.darkBgColor{
+  background-color: #0c0616;
+}
+
+
+/* text colors */
+.blueLiColor{
+  color: rgb(16, 180, 180);
+}
+.neonBlueColor{
+  color: rgb(136, 240, 244);
+}
+.fadedWhiteColor{
+  color: rgb(174, 201, 202);
+}
+.orangeColor{
+  color: rgb(244, 142, 41);
+}
+.brownColor{
+  color: rgb(100, 63, 17);
+}
+.darkBlueColor{
+  color: rgb(0, 3, 64);
+}
+
+/* flex box */
+.flexCenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flexCenterColumn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* shadow */
+.shadow{
+  background-color: black;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  transition: 0.5s;
+}

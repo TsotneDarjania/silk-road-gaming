@@ -2,16 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
 
 .warning {
+  composes: flexCenterColumn from '../global.css';
   position: fixed;
   width: 100vw;
   height: 100vh;
 
   z-index: 50;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 .shadow {
@@ -35,6 +31,8 @@
 }
 
 .content {
+  composes: fadedOrangeBgColor from '../global.css';
+
   animation-name: show-anim;
   animation-fill-mode: forwards;
   animation-duration: 0.3s;
@@ -42,7 +40,6 @@
   position: relative;
   width: 900px;
   padding: 30px;
-  background-color: rgb(255, 212, 174);
   z-index: 55;
   text-align: center;
   border-radius: 10px;
@@ -63,13 +60,14 @@
 }
 
 .okButton {
+  composes: fadedOrangeBgColor from '../global.css';
+
   width: 80px;
   height: 80px;
   border-radius: 20px;
   z-index: 70;
   margin-top: 20px;
   font-family: "Bungee Inline", cursive;
-  background-color: rgb(255, 212, 174);
   border: 7px solid rgb(161, 73, 33);
   color: rgb(243, 94, 8);
   font-size: 20px;

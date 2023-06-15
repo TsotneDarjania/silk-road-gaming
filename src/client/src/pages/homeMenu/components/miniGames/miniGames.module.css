@@ -15,8 +15,12 @@
   justify-content: space-between;
 
   overflow-y: scroll;
+
 }
 
+.shadow{
+  composes: shadow from '../../../../global.css';
+}
 /* width */
 ::-webkit-scrollbar {
   width: 20px;

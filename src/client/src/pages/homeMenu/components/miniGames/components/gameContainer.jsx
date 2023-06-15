@@ -4,8 +4,10 @@ import { AiFillLike } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
 
 import style from "./gameContainer.module.css";
+import ModalForComments from "./ModalForComments";
 
-const GameContainer = () => {
+const GameContainer = (props) => {
+
   return (
     <div className={style.gameContainer}>
       <div
@@ -32,11 +34,12 @@ const GameContainer = () => {
           </li>
 
           <li className={style.commentIcon}>
-            <FaCommentAlt />
+            <FaCommentAlt onClick={() => props.setShow(true)}/>
           </li>
         </ul>
         <button className={style.openButton}> Open </button>
       </div>
+        <ModalForComments show={props.show}/>
     </div>
   );
 };

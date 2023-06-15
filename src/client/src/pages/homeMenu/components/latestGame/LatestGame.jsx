@@ -8,17 +8,17 @@ const LatestGame = () => {
     <div className={style.latestGameContainer}>
       <div className={style.latestGameContainerBackgroundImage}></div>
       <div className={style.leftContainer}>
-        <div>
+        <div className={style.leftContainer_Div}>
           <h3>
             <span> Name : </span> {gamesInfo.lastGame.name}
           </h3>
         </div>
-        <div>
+        <div className={style.leftContainer_Div}>
           <h3>
             <span> Publish Date : </span> {gamesInfo.lastGame.publishData}{" "}
           </h3>
         </div>
-        <div>
+        <div className={style.leftContainer_Div}>
           <h3>
             <span> Short Description : </span>
             {gamesInfo.lastGame.shortDescription}
