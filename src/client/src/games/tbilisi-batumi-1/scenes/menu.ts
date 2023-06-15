@@ -42,6 +42,8 @@ export class Menu extends Phaser.Scene {
     this.createMenuMap();
     this.createMenuInfo();
 
+    this.openMenu();
+
     //Load Sound Effects
     this.plugSound = this.sound.add("plugSound", {
       volume: 1,
@@ -65,6 +67,10 @@ export class Menu extends Phaser.Scene {
         this.scene.restart();
       }, 30);
     });
+
+    if (this.scale.isFullscreen === false) {
+      this.closeMenu();
+    }
 
     this.addOrientationEvent();
   }
