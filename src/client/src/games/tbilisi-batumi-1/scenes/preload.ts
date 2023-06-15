@@ -195,14 +195,14 @@ export class Preload extends Phaser.Scene {
     // this.load.image("train-circle", "train/circle.png");
     // this.load.image("vagon", "train/vagon.png");
 
-    // ///Rokoti
-    // this.load.image("rikoti-hill-1", "rikoti/hill-1.png");
-    // this.load.image("rikoti-hill-2", "rikoti/hill-2.png");
-    // this.load.image("rikoti-hill-3", "rikoti/hill-3.png");
-    // this.load.image("rikoti-tree-1", "rikoti/tree-1.png");
-    // this.load.image("rikoti-tree-2", "rikoti/tree-2.png");
-    // this.load.image("monster", "rikoti/monster.png");
-    // this.load.image("evil-face", "rikoti/evilFace.png");
+    //Rokoti
+    this.load.image("rikoti-hill-1", "rikoti/hill-1.png");
+    this.load.image("rikoti-hill-2", "rikoti/hill-2.png");
+    this.load.image("rikoti-hill-3", "rikoti/hill-3.png");
+    this.load.image("rikoti-tree-1", "rikoti/tree-1.png");
+    this.load.image("rikoti-tree-2", "rikoti/tree-2.png");
+    this.load.image("monster", "rikoti/monster.png");
+    this.load.image("evil-face", "rikoti/evilFace.png");
 
     //batumi
     this.load.image("batumi-build-1", "batumi/build-1.png");
