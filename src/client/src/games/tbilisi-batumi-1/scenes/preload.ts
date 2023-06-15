@@ -42,21 +42,21 @@ export class Preload extends Phaser.Scene {
     this.load.audio("carEngine", ["music/effects/car-engine.mp3"]);
     this.load.audio("wolfSound", ["music/effects/wolf-sound.mp3"]);
 
-    // //asteroid Animation
-    // this.load.spritesheet("asteroid", "spritesheets/asteroid.png", {
-    //   frameWidth: 152,
-    //   frameHeight: 150,
-    // });
-    // //bonFire Animation
-    // this.load.spritesheet("bonfire", "spritesheets/bonfire.png", {
-    //   frameWidth: 300,
-    //   frameHeight: 150.5,
-    // });
-    // //car Explotion
-    // this.load.spritesheet("carExplosion", "spritesheets/car-explosion.png", {
-    //   frameWidth: 300,
-    //   frameHeight: 300,
-    // });
+    //asteroid Animation
+    this.load.spritesheet("asteroid", "spritesheets/asteroid.png", {
+      frameWidth: 152,
+      frameHeight: 150,
+    });
+    //bonFire Animation
+    this.load.spritesheet("bonfire", "spritesheets/bonfire.png", {
+      frameWidth: 300,
+      frameHeight: 150.5,
+    });
+    //car Explotion
+    this.load.spritesheet("carExplosion", "spritesheets/car-explosion.png", {
+      frameWidth: 300,
+      frameHeight: 300,
+    });
 
     //Angel
     this.load.image("angelHead", "angel/head.png");
