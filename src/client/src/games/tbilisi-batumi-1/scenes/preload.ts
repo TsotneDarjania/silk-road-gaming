@@ -22,7 +22,7 @@ export class Preload extends Phaser.Scene {
     this.load.setPath(`${process.env.PUBLIC_URL}/assets`);
 
     // //Songs
-    // this.load.audio("mtawmindaSong", ["music/songs/mtawminda.mp3"]);
+    this.load.audio("mtawmindaSong", ["music/songs/mtawminda.mp3"]);
     // this.load.audio("rock-1", ["music/songs/rock-1.mp3"]);
     // this.load.audio("lexseni", ["music/songs/lexseni.mp3"]);
     // this.load.audio("taxi-1", ["music/songs/taxi-1.mp3"]);
