@@ -278,6 +278,11 @@ export class Menu extends Phaser.Scene {
       .setAlpha(0.9)
       .setTint(0x141314)
       .setInteractive()
+      .on(Phaser.Input.Events.POINTER_UP, () => {
+        if (this.game.scale.isFullscreen === false) {
+          this.scale.startFullscreen();
+        }
+      })
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
         this.plugSound.play();
         if (this.isMenuOff) {
@@ -296,10 +301,6 @@ export class Menu extends Phaser.Scene {
     this.backgroundZone.setAlpha(0.4);
     this.darkLamp.setVisible(false);
     this.lightLamp.setVisible(true);
-
-    if (this.game.scale.isFullscreen === false) {
-      this.scale.startFullscreen();
-    }
 
     //Up Plug Animation
     this.tweens.add({
