@@ -189,11 +189,11 @@ export class Preload extends Phaser.Scene {
 
     // this.load.image("RSBullet", "russianSoldier/bullet.png");
 
-    // //train
-    // this.load.image("rail", "train/rail.png");
-    // this.load.image("train", "train/train.png");
-    // this.load.image("train-circle", "train/circle.png");
-    // this.load.image("vagon", "train/vagon.png");
+    //train
+    this.load.image("rail", "train/rail.png");
+    this.load.image("train", "train/train.png");
+    this.load.image("train-circle", "train/circle.png");
+    this.load.image("vagon", "train/vagon.png");
 
     //Rokoti
     this.load.image("rikoti-hill-1", "rikoti/hill-1.png");
