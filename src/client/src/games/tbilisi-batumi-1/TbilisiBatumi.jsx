@@ -29,12 +29,12 @@ export const TbilisiBatumi = () => {
   const hideHeight = window.outerHeight - window.innerHeight;
 
   const canvasWidth = isLandscapeOrientation()
-    ? window.outerWidth - hideWidth
-    : window.outerHeight - hideHeight;
+    ? window.outerWidth
+    : window.outerHeight;
 
   const canvasHeight = isLandscapeOrientation()
-    ? window.outerHeight - hideHeight
-    : window.outerWidth - hideWidth;
+    ? window.outerHeight
+    : window.outerWidth;
 
   useEffect(() => {
     if (!canvasContainer.current) return;

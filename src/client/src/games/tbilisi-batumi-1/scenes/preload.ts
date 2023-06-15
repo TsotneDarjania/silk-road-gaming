@@ -155,17 +155,17 @@ export class Preload extends Phaser.Scene {
     // this.load.image("govermentStation", "map/assets/govermentStation.png");
     // this.load.image("russianTank", `map/assets/russian-tank.png`);
 
-    // //Menu Scene
-    // this.load.image("menuBackground", "menu/menuScene/background.png");
-    // this.load.svg("menuCarBody", "menu/menuScene/carBody.svg");
-    // this.load.svg("menuCarTire", "menu/menuScene/tire.svg");
-    // this.load.image("plug", "menu/menuScene/plug.png");
-    // this.load.image("plugBackground", "menu/menuScene/plugBackground.png");
-    // this.load.image("darkLamp", "menu/menuScene/darkLamp.png");
-    // this.load.image("lightLamp", "menu/menuScene/lightLamp.png");
-    // this.load.image("menuButton", "menu/menuScene/button.png");
-    // this.load.image("closeButton", "menu/menuScene/closeButton.png");
-    // this.load.image("blockLoadItem", "menu/menuScene/blockLoadItem.png");
+    //Menu Scene
+    this.load.image("menuBackground", "menu/menuScene/background.png");
+    this.load.svg("menuCarBody", "menu/menuScene/carBody.svg");
+    this.load.svg("menuCarTire", "menu/menuScene/tire.svg");
+    this.load.image("plug", "menu/menuScene/plug.png");
+    this.load.image("plugBackground", "menu/menuScene/plugBackground.png");
+    this.load.image("darkLamp", "menu/menuScene/darkLamp.png");
+    this.load.image("lightLamp", "menu/menuScene/lightLamp.png");
+    this.load.image("menuButton", "menu/menuScene/button.png");
+    this.load.image("closeButton", "menu/menuScene/closeButton.png");
+    this.load.image("blockLoadItem", "menu/menuScene/blockLoadItem.png");
 
     // //loadItemsValue
     // this.load.image("openLoadItem_1", "menu/menuScene/openLoadItems/1.png");
