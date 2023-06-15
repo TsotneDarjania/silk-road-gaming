@@ -84,14 +84,14 @@ export class Preload extends Phaser.Scene {
     this.load.image("lariIcon", `menu/gamePlay/lari.png`);
     this.load.image("veteran", `menu/gamePlay/veteran.png`);
 
-    // // Car
-    // this.load.svg("carBody", `car/body.svg`);
+    // Car
+    this.load.svg("carBody", `car/body.svg`);
 
-    // this.load.svg("carTire", `car/tire.svg`);
-    // this.load.svg("carBag", `car/bag.svg`);
-    // this.load.svg("carBoy", `car/boy.svg`);
+    this.load.svg("carTire", `car/tire.svg`);
+    this.load.svg("carBag", `car/bag.svg`);
+    this.load.svg("carBoy", `car/boy.svg`);
 
-    // this.load.json("carMeshe", `car/car.json`);
+    this.load.json("carMeshe", `car/car.json`);
 
     // //Rock
     // this.load.json("rockMeshe", "rock/rock.json");
