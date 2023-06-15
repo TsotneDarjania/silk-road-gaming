@@ -125,13 +125,13 @@ export class Preload extends Phaser.Scene {
       "roadToGori/gori/khashuri-traparet.png"
     );
 
-    // //roadToGori
-    // this.load.image("meadow", "roadToGori/meadow.png");
-    // this.load.image("hill", "roadToGori/hill.png");
-    // this.load.image("mountain-1", "roadToGori/mountain-1.png");
-    // this.load.image("mountain-2", "roadToGori/mountain-2.png");
-    // this.load.image("village-house-1", "roadToGori/village-house-1.png");
-    // this.load.image("georgia-flag", "roadToGori/georgia-flag.png");
+    //roadToGori
+    this.load.image("meadow", "roadToGori/meadow.png");
+    this.load.image("hill", "roadToGori/hill.png");
+    this.load.image("mountain-1", "roadToGori/mountain-1.png");
+    this.load.image("mountain-2", "roadToGori/mountain-2.png");
+    this.load.image("village-house-1", "roadToGori/village-house-1.png");
+    this.load.image("georgia-flag", "roadToGori/georgia-flag.png");
 
     //Map Assets
     this.load.image("map-information-icon", "map/assets/info.png");
