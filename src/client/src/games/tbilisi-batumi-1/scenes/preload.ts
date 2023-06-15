@@ -133,27 +133,27 @@ export class Preload extends Phaser.Scene {
     // this.load.image("village-house-1", "roadToGori/village-house-1.png");
     // this.load.image("georgia-flag", "roadToGori/georgia-flag.png");
 
-    // //Map Assets
-    // this.load.image("map-information-icon", "map/assets/info.png");
-    // this.load.image("map-money-icon", "map/assets/money-icon.png");
-    // this.load.image("50-tetri", "map/assets/50-tetri.png");
-    // this.load.image("1-lari", "map/assets/1-lari.png");
-    // this.load.image("2-lari", "map/assets/2-lari.png");
-    // this.load.image("flower-1", "map/assets/flower-1.png");
-    // this.load.image("flower-2", "map/assets/flower-2.png");
-    // this.load.image("flower-3", "map/assets/flower-3.png");
-    // this.load.image("flower-4", "map/assets/flower-4.png");
-    // this.load.image("grass-1", "map/assets/grass-1.png");
-    // this.load.image("tree-1", "map/assets/tree-1.png");
-    // this.load.image("small-traparet", "map/assets/small-traparet.png");
-    // this.load.image("big-traparet", "map/assets/big-traparet.png");
-    // this.load.image("musicIcon", "map/assets/musicIcon.png");
-    // this.load.image("bombIcon", "map/assets/bombIcon.png");
-    // this.load.image("modal", "map/assets/modal.png");
-    // this.load.image("ok-button", "map/assets/ok-button.png");
-    // this.load.image("star", "map/assets/star.png");
-    // this.load.image("govermentStation", "map/assets/govermentStation.png");
-    // this.load.image("russianTank", `map/assets/russian-tank.png`);
+    //Map Assets
+    this.load.image("map-information-icon", "map/assets/info.png");
+    this.load.image("map-money-icon", "map/assets/money-icon.png");
+    this.load.image("50-tetri", "map/assets/50-tetri.png");
+    this.load.image("1-lari", "map/assets/1-lari.png");
+    this.load.image("2-lari", "map/assets/2-lari.png");
+    this.load.image("flower-1", "map/assets/flower-1.png");
+    this.load.image("flower-2", "map/assets/flower-2.png");
+    this.load.image("flower-3", "map/assets/flower-3.png");
+    this.load.image("flower-4", "map/assets/flower-4.png");
+    this.load.image("grass-1", "map/assets/grass-1.png");
+    this.load.image("tree-1", "map/assets/tree-1.png");
+    this.load.image("small-traparet", "map/assets/small-traparet.png");
+    this.load.image("big-traparet", "map/assets/big-traparet.png");
+    this.load.image("musicIcon", "map/assets/musicIcon.png");
+    this.load.image("bombIcon", "map/assets/bombIcon.png");
+    this.load.image("modal", "map/assets/modal.png");
+    this.load.image("ok-button", "map/assets/ok-button.png");
+    this.load.image("star", "map/assets/star.png");
+    this.load.image("govermentStation", "map/assets/govermentStation.png");
+    this.load.image("russianTank", `map/assets/russian-tank.png`);
 
     //Menu Scene
     this.load.image("menuBackground", "menu/menuScene/background.png");

@@ -29,18 +29,15 @@ export const TbilisiBatumi = () => {
   const hideHeight = window.outerHeight - window.innerHeight;
 
   const canvasWidth = isLandscapeOrientation()
-    ? window.outerWidth
-    : window.outerHeight;
+    ? window.outerWidth - hideWidth
+    : window.outerHeight - hideHeight;
 
   const canvasHeight = isLandscapeOrientation()
-    ? window.outerHeight
-    : window.outerWidth;
+    ? window.outerHeight - hideHeight
+    : window.outerWidth - hideWidth;
 
   useEffect(() => {
     if (!canvasContainer.current) return;
-
-    // setCanvasWidth(window.outerWidth - hideWidth);
-    // setCanvasHeight(window.outerHeight - hideHeight);
 
     const game = new Phaser.Game({
       dom: { createContainer: true },

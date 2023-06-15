@@ -297,6 +297,10 @@ export class Menu extends Phaser.Scene {
     this.darkLamp.setVisible(false);
     this.lightLamp.setVisible(true);
 
+    if (this.game.scale.isFullscreen === false) {
+      this.scale.startFullscreen();
+    }
+
     //Up Plug Animation
     this.tweens.add({
       targets: this.plug,
