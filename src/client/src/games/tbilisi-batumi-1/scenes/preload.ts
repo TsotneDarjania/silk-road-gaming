@@ -167,17 +167,17 @@ export class Preload extends Phaser.Scene {
     this.load.image("closeButton", "menu/menuScene/closeButton.png");
     this.load.image("blockLoadItem", "menu/menuScene/blockLoadItem.png");
 
-    // //loadItemsValue
-    // this.load.image("openLoadItem_1", "menu/menuScene/openLoadItems/1.png");
-    // this.load.image("openLoadItem_2", "menu/menuScene/openLoadItems/2.png");
-    // this.load.image("openLoadItem_3", "menu/menuScene/openLoadItems/3.png");
-    // this.load.image("openLoadItem_4", "menu/menuScene/openLoadItems/4.png");
-    // this.load.image("openLoadItem_5", "menu/menuScene/openLoadItems/5.png");
-    // this.load.image("openLoadItem_6", "menu/menuScene/openLoadItems/6.png");
-    // this.load.image("openLoadItem_7", "menu/menuScene/openLoadItems/7.png");
-    // this.load.image("openLoadItem_8", "menu/menuScene/openLoadItems/8.png");
-    // this.load.image("openLoadItem_9", "menu/menuScene/openLoadItems/9.png");
-    // this.load.image("openLoadItem_10", "menu/menuScene/openLoadItems/10.png");
+    //loadItemsValue
+    this.load.image("openLoadItem_1", "menu/menuScene/openLoadItems/1.png");
+    this.load.image("openLoadItem_2", "menu/menuScene/openLoadItems/2.png");
+    this.load.image("openLoadItem_3", "menu/menuScene/openLoadItems/3.png");
+    this.load.image("openLoadItem_4", "menu/menuScene/openLoadItems/4.png");
+    this.load.image("openLoadItem_5", "menu/menuScene/openLoadItems/5.png");
+    this.load.image("openLoadItem_6", "menu/menuScene/openLoadItems/6.png");
+    this.load.image("openLoadItem_7", "menu/menuScene/openLoadItems/7.png");
+    this.load.image("openLoadItem_8", "menu/menuScene/openLoadItems/8.png");
+    this.load.image("openLoadItem_9", "menu/menuScene/openLoadItems/9.png");
+    this.load.image("openLoadItem_10", "menu/menuScene/openLoadItems/10.png");
 
     // //Russian Soldier
     // this.load.image("RSHead", "russianSoldier/head.png");
@@ -204,15 +204,15 @@ export class Preload extends Phaser.Scene {
     // this.load.image("monster", "rikoti/monster.png");
     // this.load.image("evil-face", "rikoti/evilFace.png");
 
-    // //batumi
-    // this.load.image("batumi-build-1", "batumi/build-1.png");
-    // this.load.image("batumi-build-2", "batumi/build-2.png");
-    // this.load.image("batumi-build-3", "batumi/build-3.png");
-    // this.load.image("batumi-build-4", "batumi/build-4.png");
-    // this.load.image("batumi-build-5", "batumi/build-5.png");
-    // this.load.image("batumi-build-6", "batumi/build-6.png");
-    // this.load.image("batumi-sea", "batumi/sea.png");
-    // this.load.image("batumi-tree-1", "batumi/batumi-tree-1.png");
+    //batumi
+    this.load.image("batumi-build-1", "batumi/build-1.png");
+    this.load.image("batumi-build-2", "batumi/build-2.png");
+    this.load.image("batumi-build-3", "batumi/build-3.png");
+    this.load.image("batumi-build-4", "batumi/build-4.png");
+    this.load.image("batumi-build-5", "batumi/build-5.png");
+    this.load.image("batumi-build-6", "batumi/build-6.png");
+    this.load.image("batumi-sea", "batumi/sea.png");
+    this.load.image("batumi-tree-1", "batumi/batumi-tree-1.png");
   }
 
   create() {
