@@ -93,22 +93,22 @@ export class Preload extends Phaser.Scene {
 
     this.load.json("carMeshe", `car/car.json`);
 
-    // //Rock
-    // this.load.json("rockMeshe", "rock/rock.json");
-    // this.load.image("rock", "rock/rock.png");
+    //Rock
+    this.load.json("rockMeshe", "rock/rock.json");
+    this.load.image("rock", "rock/rock.png");
 
-    // //tbilisi builds
-    // this.load.image("tbilisi-build-1", `tbilisi/tbilisi-build-1.png`);
-    // this.load.image("tbilisi-build-2", `tbilisi/tbilisi-build-2.png`);
-    // this.load.image("tbilisi-build-3", `tbilisi/tbilisi-build-3.png`);
-    // this.load.image("tbilisi-build-4", `tbilisi/tbilisi-build-4.png`);
-    // this.load.image("tbilisi-build-5", `tbilisi/build-5.png`);
-    // this.load.image("tbilisi-build-6", `tbilisi/build-6.png`);
-    // this.load.image("tbilisi-build-7", `tbilisi/build-7.png`);
-    // this.load.image("tbilisi-build-8", `tbilisi/build-8.png`);
-    // this.load.image("tbilisi-build-9", `tbilisi/build-9.png`);
-    // this.load.image("tbilisi-build-10", `tbilisi/build-10.png`);
-    // this.load.image("tbilisi-build-11", `tbilisi/build-11.png`);
+    //tbilisi builds
+    this.load.image("tbilisi-build-1", `tbilisi/tbilisi-build-1.png`);
+    this.load.image("tbilisi-build-2", `tbilisi/tbilisi-build-2.png`);
+    this.load.image("tbilisi-build-3", `tbilisi/tbilisi-build-3.png`);
+    this.load.image("tbilisi-build-4", `tbilisi/tbilisi-build-4.png`);
+    this.load.image("tbilisi-build-5", `tbilisi/build-5.png`);
+    this.load.image("tbilisi-build-6", `tbilisi/build-6.png`);
+    this.load.image("tbilisi-build-7", `tbilisi/build-7.png`);
+    this.load.image("tbilisi-build-8", `tbilisi/build-8.png`);
+    this.load.image("tbilisi-build-9", `tbilisi/build-9.png`);
+    this.load.image("tbilisi-build-10", `tbilisi/build-10.png`);
+    this.load.image("tbilisi-build-11", `tbilisi/build-11.png`);
 
     // //Mtscketa Builds
     // this.load.image("mtskheta-build-1", `roadToGori/mtskheta/build-1.png`);
