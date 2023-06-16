@@ -8,12 +8,33 @@ import { GameMenu } from "./ui/menu/gameMenu";
 
 import "pathseg";
 import "./helper/WebFontLoader";
+import ScreenOrientation from "screen-orientation";
+
 import { StartScene } from "./scenes/start";
 import { Menu } from "./scenes/menu";
 import { Boot } from "./scenes/boot";
 
 export const TbilisiBatumi = () => {
   const canvasContainer = useRef(null);
+
+  const isLandscapeOrientation = () => {
+    if (window.screen.availHeight > window.screen.availWidth) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const hideWidth = window.outerWidth - window.innerWidth;
+  const hideHeight = window.outerHeight - window.innerHeight;
+
+  const canvasWidth = isLandscapeOrientation()
+    ? window.outerWidth - hideWidth
+    : window.outerHeight - hideHeight;
+
+  const canvasHeight = isLandscapeOrientation()
+    ? window.outerHeight - hideHeight
+    : window.outerWidth - hideWidth;
 
   useEffect(() => {
     if (!canvasContainer.current) return;
@@ -30,11 +51,13 @@ export const TbilisiBatumi = () => {
         },
       },
       parent: canvasContainer.current,
+      fullscreenTarget: canvasContainer.current,
       type: Phaser.AUTO,
       scale: {
+        mode: Phaser.Scale.NONE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: canvasWidth,
+        height: canvasHeight,
       },
 
       backgroundColor: 0x19053b,

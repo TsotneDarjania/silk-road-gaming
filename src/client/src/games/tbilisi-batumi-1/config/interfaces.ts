@@ -48,80 +48,83 @@ export interface EvilFaceData {
 }
 
 export interface Responsivedata {
-  extraWidth: {
-    canvas: {
-      width: number;
-      height: number;
+  computer: DeviceLayout;
+  mobile: DeviceLayout;
+}
+
+interface DeviceLayout {
+  canvas: {
+    width: number;
+    height: number;
+  };
+  gameMenu: {
+    menuIcon: {
+      positions: {
+        x: number;
+        y: number;
+      };
+      scale: number;
     };
-    gameMenu: {
-      menuIcon: {
-        positions: {
-          x: number;
-          y: number;
-        };
-        scale: number;
-      };
-      speedometer: {
-        positions: {
-          y: number;
-        };
-      };
-      speedometerArrow: {
-        positions: {
-          y: number;
-        };
-      };
-      radioLeftButtons: {
-        positions: {
-          x: number;
-          y: number;
-        };
-        scale: number;
-      };
-      radioRightButtons: {
-        positions: {
-          x: number;
-          y: number;
-        };
-        scale: number;
+    speedometer: {
+      positions: {
+        y: number;
       };
     };
-    menu: {
-      touchScreenText: {
-        text: Array<string>;
-        fontSize: number;
+    speedometerArrow: {
+      positions: {
+        y: number;
       };
-      plug: {
-        positions: {
-          x: number;
-          y: number;
-        };
-        scale: {
-          width: number;
-          height: number;
-        };
+    };
+    radioLeftButtons: {
+      positions: {
+        x: number;
+        y: number;
       };
-      playButton: {
-        positions: {
-          x: number;
-          y: number;
-        };
-        scale: number;
+      scale: number;
+    };
+    radioRightButtons: {
+      positions: {
+        x: number;
+        y: number;
       };
-      playText: {
-        fontSize: number;
+      scale: number;
+    };
+  };
+  menu: {
+    touchScreenText: {
+      text: Array<string>;
+      fontSize: number;
+    };
+    plug: {
+      positions: {
+        x: number;
+        y: number;
       };
-      informationButton: {
-        positions: {
-          x: number;
-          y: number;
-        };
-        scale: number;
+      scale: {
+        width: number;
+        height: number;
       };
-      informationText: {
-        fontSize: number;
-        padding: number;
+    };
+    playButton: {
+      positions: {
+        x: number;
+        y: number;
       };
+      scale: number;
+    };
+    playText: {
+      fontSize: number;
+    };
+    informationButton: {
+      positions: {
+        x: number;
+        y: number;
+      };
+      scale: number;
+    };
+    informationText: {
+      fontSize: number;
+      padding: number;
     };
   };
 }

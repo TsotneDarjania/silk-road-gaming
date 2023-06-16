@@ -3,6 +3,8 @@ import { GamePlay } from "../../scenes/gamePlay";
 import layoutConfig from "../../config/layoutConfig.json";
 
 import { screenSize } from "../../config/getScreenSize";
+import { Bullet } from "../../gameObjects/russialSoldier";
+import { clearInterval } from "timers";
 
 export class GameMenu extends Phaser.Scene {
   layer!: Phaser.GameObjects.Layer;
@@ -401,8 +403,8 @@ export class GameMenu extends Phaser.Scene {
     this.menuButtonsContainer.setVisible(true);
 
     this.continueButtonTween.restart();
-    this.mainMenuTween.restart();
-    this.recordsButtonTween.restart();
+    // this.mainMenuTween.restart();
+    // this.recordsButtonTween.restart();
   }
 
   hideMenu() {
@@ -417,7 +419,11 @@ export class GameMenu extends Phaser.Scene {
 
   addMenuButtons() {
     const continueButton = this.add
-      .image(this.game.canvas.width / 2, 700, "gameplayMenuContinueButton")
+      .image(
+        this.game.canvas.width / 2,
+        this.game.canvas.height / 2,
+        "gameplayMenuContinueButton"
+      )
       .setScale(0)
       .setInteractive()
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
@@ -435,48 +441,51 @@ export class GameMenu extends Phaser.Scene {
       targets: continueButton,
       duration: 200,
       scale: 0.5,
-      delay: 300,
+      delay: 0,
       ease: Phaser.Math.Easing.Bounce.Out,
     });
 
-    const mainMenu = this.add
-      .image(this.game.canvas.width / 2, 450, "gameplayBackToMainMenuButton")
-      .setScale(0)
-      .setInteractive()
-      .on(Phaser.Input.Events.POINTER_OVER, () => {
-        mainMenu.setScale(0.55);
-      })
-      .on(Phaser.Input.Events.POINTER_OUT, () => {
-        mainMenu.setScale(0.5);
-      });
+    // const mainMenu = this.add
+    //   .image(this.game.canvas.width / 2, 450, "gameplayBackToMainMenuButton")
+    //   .setScale(0)
+    //   .setInteractive()
+    //   .on(Phaser.Input.Events.POINTER_OVER, () => {
+    //     mainMenu.setScale(0.55);
+    //   })
+    //   .on(Phaser.Input.Events.POINTER_OUT, () => {
+    //     mainMenu.setScale(0.5);
+    //   })
+    //   .on(Phaser.Input.Events.POINTER_DOWN, () => {
+    //     this.gamePlayScene.scene.restart();
+    //   });
 
-    this.mainMenuTween = this.add.tween({
-      targets: mainMenu,
-      duration: 200,
-      scale: 0.5,
-      delay: 150,
-      ease: Phaser.Math.Easing.Bounce.Out,
-    });
+    // this.mainMenuTween = this.add.tween({
+    //   targets: mainMenu,
+    //   duration: 200,
+    //   scale: 0.5,
+    //   delay: 150,
+    //   ease: Phaser.Math.Easing.Bounce.Out,
+    // });
 
-    const recordsButton = this.add
-      .image(this.game.canvas.width / 2, 200, "gameplayRecordsIcon")
-      .setScale(0)
-      .setInteractive()
-      .on(Phaser.Input.Events.POINTER_OVER, () => {
-        recordsButton.setScale(0.55);
-      })
-      .on(Phaser.Input.Events.POINTER_OUT, () => {
-        recordsButton.setScale(0.5);
-      });
+    // const recordsButton = this.add
+    //   .image(this.game.canvas.width / 2, 200, "gameplayRecordsIcon")
+    //   .setScale(0)
+    //   .setInteractive()
+    //   .on(Phaser.Input.Events.POINTER_OVER, () => {
+    //     recordsButton.setScale(0.55);
+    //   })
+    //   .on(Phaser.Input.Events.POINTER_OUT, () => {
+    //     recordsButton.setScale(0.5);
+    //   });
 
-    this.recordsButtonTween = this.add.tween({
-      targets: recordsButton,
-      duration: 200,
-      scale: 0.5,
-      ease: Phaser.Math.Easing.Bounce.Out,
-    });
+    // this.recordsButtonTween = this.add.tween({
+    //   targets: recordsButton,
+    //   duration: 200,
+    //   scale: 0.5,
+    //   ease: Phaser.Math.Easing.Bounce.Out,
+    // });
 
-    this.menuButtonsContainer.add([continueButton, mainMenu, recordsButton]);
+    this.menuButtonsContainer.add([continueButton]);
   }
 
   addSpeedometer() {

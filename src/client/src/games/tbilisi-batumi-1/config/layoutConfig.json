@@ -1,10 +1,22 @@
 {
-  "extraWidth": {
+  "computer": {
     "canvas": {
       "width": 1500,
       "height": 850
     },
     "gameMenu": {
+      "infoText": {
+        "fontSize": 30
+      },
+      "loadItem": {
+        "scale": 0.73
+      },
+      "closeButton": {
+        "widthPercent": 4.5
+      },
+      "lamp": {
+        "scale": 1.4
+      },
       "menuIcon": {
         "positions": {
           "x": -50,
@@ -40,9 +52,12 @@
     "menu": {
       "touchScreenText": {
         "text": ["Touch To Scren For Open Menu"],
-        "fontSize": 50
+        "fontSize": 2
       },
       "plug": {
+        "pluhBackground": {
+          "scale": 1.4
+        },
         "positions": {
           "x": -108,
           "y": 300
@@ -83,6 +98,109 @@
       },
       "informationText": {
         "fontSize": 35,
+        "padding": 14
+      }
+    }
+  },
+  "mobile": {
+    "canvas": {
+      "width": 1500,
+      "height": 850
+    },
+    "gameMenu": {
+      "infoText": {
+        "fontSize": 18
+      },
+      "loadItem": {
+        "scale": 0.4
+      },
+      "closeButton": {
+        "widthPercent": 7.5
+      },
+      "lamp": {
+        "scale": 1.1
+      },
+      "menuIcon": {
+        "positions": {
+          "x": -50,
+          "y": 50
+        },
+        "scale": 0.5
+      },
+      "speedometer": {
+        "positions": {
+          "y": -80
+        }
+      },
+      "speedometerArrow": {
+        "positions": {
+          "y": -38
+        }
+      },
+      "radioLeftButtons": {
+        "positions": {
+          "x": -160,
+          "y": -46
+        },
+        "scale": 1.2
+      },
+      "radioRightButtons": {
+        "positions": {
+          "x": 160,
+          "y": -46
+        },
+        "scale": 1.2
+      }
+    },
+    "menu": {
+      "touchScreenText": {
+        "text": ["Touch To Scren For Open Menu"],
+        "fontSize": 2.5
+      },
+      "plug": {
+        "pluhBackground": {
+          "scale": 0.8
+        },
+        "positions": {
+          "x": -108,
+          "y": 300
+        },
+        "scale": {
+          "width": 200,
+          "height": 30
+        }
+      },
+      "playButton": {
+        "positions": {
+          "x": 0,
+          "y": -90
+        },
+        "scale": 1
+      },
+      "playText": {
+        "fontSize": 20,
+        "padding": 14
+      },
+      "mapButton": {
+        "positions": {
+          "x": 0,
+          "y": 0
+        },
+        "scale": 1
+      },
+      "mapText": {
+        "fontSize": 20,
+        "padding": 14
+      },
+      "informationButton": {
+        "positions": {
+          "x": 0,
+          "y": 90
+        },
+        "scale": 1
+      },
+      "informationText": {
+        "fontSize": 20,
         "padding": 14
       }
     }

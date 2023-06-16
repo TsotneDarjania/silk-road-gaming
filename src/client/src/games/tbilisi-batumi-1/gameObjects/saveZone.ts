@@ -1,9 +1,13 @@
+import { API } from "../api";
+import { gameConfig } from "../config/gameConfig";
 import { GamePlay } from "../scenes/gamePlay";
 
 export class SaveZone {
   traparet!: Phaser.GameObjects.Image;
 
   isSaved = false;
+
+  api!: API;
 
   constructor(
     public scene: GamePlay,
@@ -19,6 +23,8 @@ export class SaveZone {
   }
 
   init() {
+    this.api = new API();
+
     this.addTraparet();
     this.addTitle();
     this.addZone();
@@ -85,7 +91,7 @@ export class SaveZone {
               this.scene.musicPlayer.winSong.play();
             }
           }
-          //Check if this save zonealready access
+          //Check if this save zone already access
           if (this.saveZoneIndex <= this.scene.gameManager.saveZoneIndex)
             return;
 
@@ -97,6 +103,9 @@ export class SaveZone {
             "Game Saved",
             "Bravo, your awesomeness knows no bounds!"
           );
+
+          gameConfig.saveZoneIndex = this.saveZoneIndex;
+          this.api.saveGame(this.saveZoneIndex);
         }
       });
     });

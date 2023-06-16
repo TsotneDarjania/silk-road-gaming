@@ -181,7 +181,7 @@ export class Car {
       this.carBody.x >
       this.scene.gameManager.saveZonesData[this.scene.gameManager.saveZoneIndex]
         .carPositions.x +
-        300
+        1000
     ) {
       const force = new Phaser.Math.Vector2(-0.2, 0);
       this.carBody.applyForce(force);

@@ -11,7 +11,13 @@ export class Menu extends Phaser.Scene {
   touchToScreenText!: Phaser.GameObjects.Text;
   touchScreenTextTween!: Phaser.Tweens.Tween;
   plug!: Phaser.GameObjects.Image;
+  plugBackground!: Phaser.GameObjects.Image;
+  lightLamp!: Phaser.GameObjects.Image;
+  darkLamp!: Phaser.GameObjects.Image;
   configData: Responsivedata = config;
+
+  canvasHideWidth = window.outerWidth - window.innerWidth;
+  canvasHideHeight = window.outerHeight - window.innerHeight;
 
   isMenuOff = true;
 
@@ -28,13 +34,15 @@ export class Menu extends Phaser.Scene {
 
   create() {
     this.addBackground();
-    this.addCar();
+    this.addLamp();
     this.addPlug();
     this.addInteractiveZone();
     this.addTouchToScreenText();
     this.createMenuButtons();
     this.createMenuMap();
     this.createMenuInfo();
+
+    this.openMenu();
 
     //Load Sound Effects
     this.plugSound = this.sound.add("plugSound", {
@@ -43,6 +51,72 @@ export class Menu extends Phaser.Scene {
     this.buttonSound = this.sound.add("buttonSound", {
       volume: 1,
     });
+
+    this.scale.on(Phaser.Scale.Events.LEAVE_FULLSCREEN, () => {
+      this.scale.removeAllListeners();
+      this.changeOrientationSize(
+        window.outerWidth - this.canvasHideWidth,
+        window.outerHeight - this.canvasHideHeight
+      );
+    });
+
+    this.scale.on(Phaser.Scale.Events.ENTER_FULLSCREEN, () => {
+      setTimeout(() => {
+        this.changeOrientationSize(window.outerWidth, window.outerHeight);
+        this.scale.removeAllListeners();
+        this.scene.restart();
+      }, 30);
+    });
+
+    if (this.scale.isFullscreen === false) {
+      this.closeMenu();
+    }
+
+    this.addOrientationEvent();
+  }
+
+  addOrientationEvent() {
+    this.scale.on(Phaser.Scale.Events.ORIENTATION_CHANGE, () => {
+      this.changeOrientationSize(
+        window.outerWidth - this.canvasHideWidth,
+        window.outerHeight - this.canvasHideHeight
+      );
+    });
+  }
+
+  changeOrientationSize(canvasWidth: number, canvasHeight: number) {
+    this.game.canvas.height = canvasWidth;
+    this.game.canvas.width = canvasHeight;
+
+    if (this.game.scale.isPortrait) {
+      this.scale.resize(this.game.canvas.height, this.game.canvas.width);
+      this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+
+      this.scale.removeAllListeners();
+    } else {
+      this.scale.resize(this.game.canvas.height, this.game.canvas.width);
+      this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+
+      this.scale.removeAllListeners();
+    }
+
+    this.scale.on(Phaser.Scale.Events.RESIZE, () => {
+      this.scale.removeAllListeners();
+      this.scene.restart();
+    });
+  }
+
+  addLamp() {
+    this.darkLamp = this.add
+      .image(this.game.canvas.width / 2, 0, "darkLamp")
+      .setOrigin(0.5, 0.1)
+      .setScale(screenSize().gameMenu.lamp.scale);
+
+    this.lightLamp = this.add
+      .image(this.game.canvas.width / 2, 0, "lightLamp")
+      .setOrigin(0.5, 0.3)
+      .setScale(screenSize().gameMenu.lamp.scale)
+      .setVisible(false);
   }
 
   createMenuMap() {
@@ -192,6 +266,11 @@ export class Menu extends Phaser.Scene {
   }
 
   addTouchToScreenText() {
+    const fontSize = calculatePercentage(
+      screenSize().menu.touchScreenText.fontSize,
+      this.game.canvas.width
+    );
+
     this.touchToScreenText = this.add
       .text(
         this.game.canvas.width / 2,
@@ -200,7 +279,7 @@ export class Menu extends Phaser.Scene {
         {
           align: "center",
           fontFamily: "mainFont",
-          fontSize: `${screenSize().menu.touchScreenText.fontSize}px`,
+          fontSize: `${fontSize}px`,
         }
       )
       .setAlpha(0)
@@ -223,20 +302,29 @@ export class Menu extends Phaser.Scene {
       .setOrigin(0);
   }
 
-  addCar() {
-    this.add.image(812, 603, "menuCarBody").setScale(2);
-    //left Tire
-    this.add.image(570, 730, "menuCarTire").setScale(1.4);
-    //right Tire
-    this.add.image(1076, 730, "menuCarTire").setScale(1.4);
-  }
-
   addPlug() {
+    this.plugBackground = this.add
+      .image(0, 0, "plugBackground")
+      .setScale(screenSize().menu.plug.pluhBackground.scale);
+
+    this.plugBackground
+      .setPosition(
+        this.game.canvas.width - this.plugBackground.displayWidth - 50,
+        50
+      )
+      .setOrigin(0);
+
     this.plug = this.add
-      .image(this.game.canvas.width - 108, 300, "plug")
+      .image(
+        this.plugBackground.x + this.plugBackground.displayWidth / 2,
+        this.plugBackground.y +
+          this.plugBackground.displayHeight -
+          calculatePercentage(20, this.plugBackground.displayHeight),
+        "plug"
+      )
       .setDisplaySize(
-        calculatePercentage(4, this.game.canvas.width),
-        calculatePercentage(2, this.game.canvas.height)
+        calculatePercentage(65, this.plugBackground.displayWidth),
+        calculatePercentage(15, this.plugBackground.displayHeight)
       );
   }
 
@@ -248,6 +336,11 @@ export class Menu extends Phaser.Scene {
       .setAlpha(0.9)
       .setTint(0x141314)
       .setInteractive()
+      .on(Phaser.Input.Events.POINTER_UP, () => {
+        if (this.game.scale.isFullscreen === false) {
+          this.scale.startFullscreen();
+        }
+      })
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
         this.plugSound.play();
         if (this.isMenuOff) {
@@ -264,12 +357,16 @@ export class Menu extends Phaser.Scene {
   openMenu() {
     this.touchToScreenText.setVisible(false);
     this.backgroundZone.setAlpha(0.4);
+    this.darkLamp.setVisible(false);
+    this.lightLamp.setVisible(true);
 
     //Up Plug Animation
     this.tweens.add({
       targets: this.plug,
       duration: 150,
-      y: 230,
+      y:
+        this.plugBackground.y +
+        calculatePercentage(20, this.plugBackground.displayHeight),
     });
 
     //showMenuButtons
@@ -285,11 +382,17 @@ export class Menu extends Phaser.Scene {
     this.backgroundZone.setAlpha(0.9);
     this.touchScreenTextTween.restart();
 
+    this.darkLamp.setVisible(true);
+    this.lightLamp.setVisible(false);
+
     //down Plug Animation
     this.tweens.add({
       targets: this.plug,
       duration: 150,
-      y: 300,
+      y:
+        this.plugBackground.y +
+        this.plugBackground.displayHeight -
+        calculatePercentage(20, this.plugBackground.displayHeight),
     });
 
     //hideMenuButtons
