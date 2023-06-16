@@ -21,6 +21,12 @@ body {
 .darkBgColor{
   background-color: #0c0616;
 }
+.fadedWhiteBgColor{
+  background-color: rgb(255, 241, 224);
+}
+.orangeBtnBgColor{
+  background-color: rgb(244, 132, 53);
+}
 
 
 /* text colors */
