@@ -53,16 +53,6 @@ export default class MusicPlayer {
       newSong.play();
       this.radioIndex = 1;
     }
-    if (song === "gulmartali") {
-      this.stopAllSong();
-      const newSong = this.scene.sound.add("gulmartali", { volume: 0.7 });
-      newSong.on("complete", () => {
-        this.nextSong();
-      });
-      this.georgianRadio.push(newSong);
-      newSong.play();
-      this.radioIndex = 0;
-    }
   }
 
   addSongs() {

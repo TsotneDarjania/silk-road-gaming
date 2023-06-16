@@ -5,12 +5,5 @@
     "key": "musicIcon",
     "text": ["A new song has been", "added to international radio"],
     "musicKey": "taxi-1"
-  },
-  "2": {
-    "x": -110400,
-    "y": 1100,
-    "key": "musicIcon",
-    "text": ["A new song has been", "added to Georgian radio"],
-    "musicKey": "gulmartali"
   }
 }
