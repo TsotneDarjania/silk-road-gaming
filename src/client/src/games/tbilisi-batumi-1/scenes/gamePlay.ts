@@ -270,9 +270,6 @@ export class GamePlay extends Phaser.Scene {
     this.applause = this.sound.add("applauseSound", {
       volume: 1,
     });
-    this.russianSoldierDeadScream = this.sound.add("RSDeadScreamSound", {
-      volume: 1,
-    });
     this.bodyFail = this.sound.add("bodyFail", {
       volume: 1,
     });
