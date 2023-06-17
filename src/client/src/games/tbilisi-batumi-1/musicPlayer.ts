@@ -86,12 +86,6 @@ export default class MusicPlayer {
 
     this.specialSongs.push(mtawmindaSpecialSong);
 
-    const rock_1 = this.scene.sound.add("rock-1", { volume: 0.25 });
-    rock_1.on("complete", () => {
-      rock_1.play();
-    });
-    this.specialSongs.push(rock_1);
-
     const lexseni = this.scene.sound.add("lexseni", { volume: 0.2 });
     lexseni.on("complete", () => {
       this.nextSong();
@@ -101,13 +95,6 @@ export default class MusicPlayer {
 
     this.georgianRadio.push(lexseni);
     this.georgianRadio.push(mtawmindaSong);
-
-    //American Rock Radio
-    const rock_1_radio = this.scene.sound.add("rock-1", { volume: 0.4 });
-    rock_1_radio.on("complete", () => {
-      this.nextSong();
-    });
-    this.americanRockRadio.push(rock_1_radio);
   }
 
   playSpecialSong(index: number) {

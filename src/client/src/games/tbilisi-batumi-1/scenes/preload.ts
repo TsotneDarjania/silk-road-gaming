@@ -22,40 +22,20 @@ export class Preload extends Phaser.Scene {
     this.load.setPath(`${process.env.PUBLIC_URL}/assets`);
 
     //Songs
-    this.load.audio("mtawmindaSong", [
-      "music/songs/mtawminda.ogg",
-      "music/songs/mtawminda.mp3",
-    ]);
-    this.load.audio("rock-1", [
-      "music/songs/rock-1.ogg",
-      "music/songs/rock-1.mp3",
-    ]);
-    this.load.audio("lexseni", [
-      "music/songs/lexseni.ogg",
-      "music/songs/lexseni.mp3",
-    ]);
-    this.load.audio("taxi-1", [
-      "music/songs/taxi-1.ogg",
-      "music/songs/taxi-1.mp3",
-    ]);
-    this.load.audio("russianSong", [
-      "music/songs/russianSong.ogg",
-      "music/songs/russianSong.mp3",
-    ]);
-    this.load.audio("winSong", [
-      "music/songs/win-song.ogg",
-      "music/songs/win-song.mp3",
-    ]);
+    this.load.audio("mtawmindaSong", ["music/songs/mtawminda.mp3"]);
+    this.load.audio("lexseni", ["music/songs/lexseni.mp3"]);
+    this.load.audio("taxi-1", ["music/songs/taxi-1.mp3"]);
+    this.load.audio("russianSong", ["music/songs/russianSong.mp3"]);
+    this.load.audio("winSong", ["music/songs/win-song.mp3"]);
 
     //Sound Effects
     this.load.audio("monetSound", ["music/effects/monet.mp3"]);
     this.load.audio("plugSound", ["music/effects/plug.mp3"]);
-    this.load.audio("buttonSound", ["music/effects/button.mp3"]);
+    this.load.audio("buttonSound", ["music/effects/button.ogg"]);
     this.load.audio("carExplotionSound", ["music/effects/car-explotion.mp3"]);
     this.load.audio("applauseSound", ["music/effects/applause.mp3"]);
     this.load.audio("evilLaughSound", ["music/effects/evil-laugh.mp3"]);
-    this.load.audio("RSDeadScreamSound", ["music/effects/blyad.mp3"]);
-    this.load.audio("bodyFail", ["music/effects/bodyFail.mp3"]);
+    this.load.audio("bodyFail", ["music/effects/bodyFail.ogg"]);
     this.load.audio("carEngine", ["music/effects/car-engine.mp3"]);
     this.load.audio("wolfSound", ["music/effects/wolf-sound.mp3"]);
 

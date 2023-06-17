@@ -238,11 +238,7 @@ export class GameManager {
       },
       4: {
         enter: () => {
-          if (this.gamePlay.musicPlayer.specialSongs[1].isPlaying === false) {
-            this.gamePlay.musicPlayer.stopAllSong();
-          }
           this.gameMenu.radioOff();
-          this.gamePlay.musicPlayer.playSpecialSong(1);
           this.startFallingAsteroids();
           this.changeColorToGameBackground(0x730d31, 1, 9000);
         },
