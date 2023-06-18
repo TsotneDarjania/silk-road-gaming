@@ -8,7 +8,6 @@ import { GameMenu } from "./ui/menu/gameMenu";
 
 import "pathseg";
 import "./helper/WebFontLoader";
-import ScreenOrientation from "screen-orientation";
 
 import { StartScene } from "./scenes/start";
 import { Menu } from "./scenes/menu";
@@ -46,14 +45,9 @@ export const TbilisiBatumi = () => {
     : window.outerWidth - hideWidth;
 
   useEffect(() => {
-    console.log(
-      window.screen.availHeight,
-      window.screen.availWidth,
-      window.screen.width,
-      window.screen.height,
-      isPortrait
-    );
-    if (window.screen.availHeight > window.screen.availWidth) {
+    console.log(window.screen.width, window.screen.height, isPortrait);
+
+    if (window.screen.width > window.screen.height) {
       setIsPortrait(true);
     } else {
       setIsPortrait(false);

@@ -15,7 +15,7 @@ export class Preload extends Phaser.Scene {
 
   preload() {
     this.load.on(Phaser.Loader.Events.PROGRESS, (progress: number) => {
-      console.log(`loaded ${progress}%`);
+      //  console.log(`loaded ${progress}%`);
       this.loadingScreen.updateFillIndicator(progress);
     });
 
