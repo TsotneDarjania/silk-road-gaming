@@ -46,6 +46,7 @@ export const TbilisiBatumi = () => {
     : window.outerWidth - hideWidth;
 
   useEffect(() => {
+    console.log(window.screen.availHeight, isPortrait);
     if (window.screen.availHeight > window.screen.availWidth) {
       setIsPortrait(true);
     } else {
@@ -79,16 +80,15 @@ export const TbilisiBatumi = () => {
     });
 
     return () => game.destroy(true, false);
-  }, []);
+  }, [isPortrait]);
 
   return (
     <div ref={canvasContainer} className={style.canvas}>
-      <div
-        style={isPortrait ? { display: "block" } : { display: "none" }}
-        className={style.orientationWarning}
-      >
-        <h1>please rotate your device to landscape </h1>
-      </div>
+      {isPortrait ? (
+        <div className={style.orientationWarning}>
+          <h1>please rotate your device to landscape </h1>
+        </div>
+      ) : null}
     </div>
   );
 };
