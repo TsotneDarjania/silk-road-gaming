@@ -26,7 +26,7 @@ export const TbilisiBatumi = () => {
   };
 
   window.addEventListener("resize", () => {
-    if (window.screen.availHeight > window.screen.availWidth) {
+    if (window.screen.height > window.screen.width) {
       setIsPortrait(true);
     } else {
       setIsPortrait(false);
