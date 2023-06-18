@@ -31,7 +31,7 @@ export class Preload extends Phaser.Scene {
     //Sound Effects
     this.load.audio("monetSound", ["music/effects/monet.mp3"]);
     this.load.audio("plugSound", ["music/effects/plug.mp3"]);
-    this.load.audio("buttonSound", ["music/effects/button.ogg"]);
+    this.load.audio("buttonSound", ["music/effects/button.mp3"]);
     this.load.audio("carExplotionSound", ["music/effects/car-explotion.mp3"]);
     this.load.audio("applauseSound", ["music/effects/applause.mp3"]);
     this.load.audio("evilLaughSound", ["music/effects/evil-laugh.mp3"]);

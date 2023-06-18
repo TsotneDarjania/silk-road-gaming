@@ -44,14 +44,6 @@ export class Menu extends Phaser.Scene {
 
     this.openMenu();
 
-    //Load Sound Effects
-    this.plugSound = this.sound.add("plugSound", {
-      volume: 1,
-    });
-    this.buttonSound = this.sound.add("buttonSound", {
-      volume: 1,
-    });
-
     this.scale.on(Phaser.Scale.Events.LEAVE_FULLSCREEN, () => {
       this.scale.removeAllListeners();
       this.changeOrientationSize(
