@@ -45,9 +45,9 @@ export const TbilisiBatumi = () => {
     : window.outerWidth - hideWidth;
 
   useEffect(() => {
-    console.log(window.screen.width, window.screen.height, isPortrait);
+    //console.log(window.screen.width, window.screen.height, isPortrait);
 
-    if (window.screen.width > window.screen.height) {
+    if (window.screen.height > window.screen.width) {
       setIsPortrait(true);
     } else {
       setIsPortrait(false);
