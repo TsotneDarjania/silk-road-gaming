@@ -16,6 +16,7 @@ import { Boot } from "./scenes/boot";
 
 export const TbilisiBatumi = () => {
   const canvasContainer = useRef(null);
+  const [isPortrait, setIsPortrait] = useState(false);
 
   const isLandscapeOrientation = () => {
     if (window.screen.availHeight > window.screen.availWidth) {
@@ -24,6 +25,14 @@ export const TbilisiBatumi = () => {
       return true;
     }
   };
+
+  window.addEventListener("resize", () => {
+    if (window.screen.availHeight > window.screen.availWidth) {
+      setIsPortrait(true);
+    } else {
+      setIsPortrait(false);
+    }
+  });
 
   const hideWidth = window.outerWidth - window.innerWidth;
   const hideHeight = window.outerHeight - window.innerHeight;
@@ -37,6 +46,11 @@ export const TbilisiBatumi = () => {
     : window.outerWidth - hideWidth;
 
   useEffect(() => {
+    if (window.screen.availHeight > window.screen.availWidth) {
+      setIsPortrait(true);
+    } else {
+      setIsPortrait(false);
+    }
     if (!canvasContainer.current) return;
 
     const game = new Phaser.Game({
@@ -67,5 +81,14 @@ export const TbilisiBatumi = () => {
     return () => game.destroy(true, false);
   }, []);
 
-  return <div ref={canvasContainer} className={style.canvas}></div>;
+  return (
+    <div ref={canvasContainer} className={style.canvas}>
+      <div
+        style={isPortrait ? { display: "block" } : { display: "none" }}
+        className={style.orientationWarning}
+      >
+        <h1>please rotate your device to landscape </h1>
+      </div>
+    </div>
+  );
 };

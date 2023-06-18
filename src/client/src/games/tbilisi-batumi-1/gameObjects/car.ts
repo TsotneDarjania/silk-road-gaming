@@ -55,14 +55,6 @@ export class Car {
     this.addSoundEffects();
   }
 
-  addUiButtonsForMobile() {
-    const goPedal = this.scene.add.image(0, 0, "pedal");
-    goPedal.setPosition(
-      calculatePercentage(10, this.scene.game.canvas.width),
-      this.scene.game.canvas.height - goPedal.displayHeight
-    );
-  }
-
   addSoundEffects() {
     this.explosionSound = this.scene.sound.add("carExplotionSound", {
       volume: 1,

@@ -39,7 +39,7 @@ export class GameManager {
 
   saveZonesData: Array<SaveZoneData> = [];
   saveZoneIndex = gameConfig.saveZoneIndex;
-  // saveZoneIndex = 4;
+  // saveZoneIndex = 1;
 
   backgroundImage!: Phaser.GameObjects.Image;
 

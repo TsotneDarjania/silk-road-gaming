@@ -33,3 +33,32 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #575756;
 }
+
+.orientationWarning {
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgb(21, 21, 21);
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.orientationWarning h1 {
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+  top: 0;
+  bottom: 0;
+
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 90vw;
+  height: 20vh;
+  text-align: center;
+}

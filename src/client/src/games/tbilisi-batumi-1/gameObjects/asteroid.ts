@@ -21,8 +21,6 @@ export class Asteroid {
   }
 
   init() {
-    let scale = 1;
-
     this.asteroid = this.scene.matter.add
       .sprite(this.x, this.y, "asteroid", undefined, {
         gravityScale: new Phaser.Math.Vector2(0, 0.025),
@@ -31,6 +29,10 @@ export class Asteroid {
       } as Phaser.Types.Physics.Matter.MatterBodyConfig)
       .setDepth(-1);
     this.asteroid.play("asteroid_idle");
+
+    if (this.scene.game.canvas.width < 900) {
+      this.asteroid.setScale(4);
+    }
 
     this.asteroid.setCollisionCategory(colliderCategories[1]);
     this.asteroid.setCollidesWith(colliderCategories[2]);

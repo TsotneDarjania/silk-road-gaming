@@ -40,10 +40,18 @@ export class Preload extends Phaser.Scene {
     this.load.audio("wolfSound", ["music/effects/wolf-sound.mp3"]);
 
     //asteroid Animation
-    this.load.spritesheet("asteroid", "spritesheets/asteroid.png", {
-      frameWidth: 152,
-      frameHeight: 150,
-    });
+    if (this.game.canvas.width > 900) {
+      this.load.spritesheet("asteroid", "spritesheets/asteroid.png", {
+        frameWidth: 152,
+        frameHeight: 150,
+      });
+    } else {
+      this.load.spritesheet("asteroid", "spritesheets/small-asteroid.png", {
+        frameWidth: 28.2,
+        frameHeight: 34,
+      });
+    }
+
     //bonFire Animation
     this.load.spritesheet("bonfire", "spritesheets/bonfire.png", {
       frameWidth: 300,
