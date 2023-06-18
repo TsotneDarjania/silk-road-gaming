@@ -33,6 +33,8 @@ export const TbilisiBatumi = () => {
     } else {
       setIsPortrait(false);
     }
+
+    console.log(isPortrait);
   });
 
   const hideWidth = window.outerWidth - window.innerWidth;
