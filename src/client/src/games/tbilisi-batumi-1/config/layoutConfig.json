@@ -4,6 +4,43 @@
       "width": 1500,
       "height": 850
     },
+    "gamePlay": {
+      "camera": {
+        "camera_z_index": 1.3,
+        "min_zoom": 1.0,
+        "max_zoom": 1.3
+      },
+      "govermentModal": {
+        "scale": 0.8
+      },
+      "speedometerContainer": {
+        "scale": 1
+      },
+      "showInformationOnMaPModal": {
+        "background": {
+          "scale": 0.7
+        },
+        "okButton": {
+          "scale": 0.3
+        },
+        "text": {
+          "fontSize": "17px"
+        }
+      },
+      "showScreenText": {
+        "title": {
+          "fontSize": "120px"
+        },
+        "text": {
+          "fontSize": "62px"
+        }
+      },
+      "menu": {
+        "continueButton": {
+          "scale": 0.5
+        }
+      }
+    },
     "gameMenu": {
       "infoText": {
         "fontSize": 30
@@ -107,6 +144,43 @@
       "width": 1500,
       "height": 850
     },
+    "gamePlay": {
+      "camera": {
+        "camera_z_index": 0.45,
+        "min_zoom": 0.45,
+        "max_zoom": 0.6
+      },
+      "govermentModal": {
+        "scale": 0.5
+      },
+      "speedometerContainer": {
+        "scale": 0.3
+      },
+      "showInformationOnMaPModal": {
+        "background": {
+          "scale": 0.27
+        },
+        "okButton": {
+          "scale": 0.1
+        },
+        "text": {
+          "fontSize": "9px"
+        }
+      },
+      "showScreenText": {
+        "title": {
+          "fontSize": "60px"
+        },
+        "text": {
+          "fontSize": "32px"
+        }
+      },
+      "menu": {
+        "continueButton": {
+          "scale": 0.2
+        }
+      }
+    },
     "gameMenu": {
       "infoText": {
         "fontSize": 18
@@ -122,10 +196,10 @@
       },
       "menuIcon": {
         "positions": {
-          "x": -50,
-          "y": 50
+          "x": -30,
+          "y": 30
         },
-        "scale": 0.5
+        "scale": 0.25
       },
       "speedometer": {
         "positions": {

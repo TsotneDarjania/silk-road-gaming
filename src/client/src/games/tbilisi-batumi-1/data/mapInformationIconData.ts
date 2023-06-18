@@ -10,19 +10,6 @@ export const mapInformationIconsData = {
     y: 570,
     text: [" The objective of this game is", "to safely reach Batumi. "],
   },
-  2: {
-    x: -16000,
-    y: 600,
-    text: [
-      "Initially, the car is equipped with a radio",
-      " that is tuned to only receive",
-      " Georgian radio stations",
-      " However, as you embark on your journey, ",
-      " you will have the opportunity",
-      " to explore and discover ",
-      " a plethora of diverse channels and songs ",
-    ],
-  },
   3: {
     x: -20000,
     y: 650,

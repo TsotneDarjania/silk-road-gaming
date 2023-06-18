@@ -83,6 +83,7 @@ export class Preload extends Phaser.Scene {
 
     // Car
     this.load.svg("carBody", `car/body.svg`);
+    this.load.image("pedal", "car/pedal.png");
 
     this.load.svg("carTire", `car/tire.svg`);
     this.load.svg("carBag", `car/bag.svg`);

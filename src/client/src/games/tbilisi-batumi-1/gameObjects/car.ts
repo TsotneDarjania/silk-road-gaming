@@ -1,5 +1,5 @@
 import { colliderCategories } from "../helper/colliderCategories";
-import { getRandomFloat } from "../helper/tatukaMath";
+import { calculatePercentage, getRandomFloat } from "../helper/tatukaMath";
 import { GamePlay } from "../scenes/gamePlay";
 
 export class Car {
@@ -53,6 +53,14 @@ export class Car {
     this.addController();
     this.addBoy();
     this.addSoundEffects();
+  }
+
+  addUiButtonsForMobile() {
+    const goPedal = this.scene.add.image(0, 0, "pedal");
+    goPedal.setPosition(
+      calculatePercentage(10, this.scene.game.canvas.width),
+      this.scene.game.canvas.height - goPedal.displayHeight
+    );
   }
 
   addSoundEffects() {

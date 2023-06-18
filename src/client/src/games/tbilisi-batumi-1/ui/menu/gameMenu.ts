@@ -5,6 +5,7 @@ import layoutConfig from "../../config/layoutConfig.json";
 import { screenSize } from "../../config/getScreenSize";
 import { Bullet } from "../../gameObjects/russialSoldier";
 import { clearInterval } from "timers";
+import { calculatePercentage } from "../../helper/tatukaMath";
 
 export class GameMenu extends Phaser.Scene {
   layer!: Phaser.GameObjects.Layer;
@@ -77,11 +78,64 @@ export class GameMenu extends Phaser.Scene {
     this.creatScreenTexts();
 
     this.openAccessIndicators();
+
+    if (this.game.canvas.width < 900) {
+      this.addUiButtonsForMobile();
+    }
+  }
+
+  addUiButtonsForMobile() {
+    const goPedal = this.add
+      .image(0, 0, "pedal")
+      .setOrigin(0)
+      .setScale(1.3)
+      .setAlpha(0.5)
+      .setInteractive()
+      .on(Phaser.Input.Events.POINTER_DOWN, () => {
+        goPedal.setAlpha(1);
+        this.gamePlayScene.car.isAcceleratingLeft = true;
+        this.gamePlayScene.car.isMoving = true;
+      })
+      .on(Phaser.Input.Events.POINTER_UP, () => {
+        goPedal.setAlpha(0.5);
+        this.gamePlayScene.car.isAcceleratingLeft = false;
+        this.gamePlayScene.car.isMoving = false;
+      });
+
+    goPedal.setPosition(
+      20,
+      this.game.canvas.height - goPedal.displayHeight - 20
+    );
+
+    const stopPedal = this.add
+      .image(0, 0, "pedal")
+      .setOrigin(0)
+      .setScale(1.3)
+      .setFlipX(true)
+      .setAlpha(0.5)
+      .setInteractive()
+      .on(Phaser.Input.Events.POINTER_DOWN, () => {
+        stopPedal.setAlpha(1);
+        this.gamePlayScene.car.isAcceleratingRight = true;
+        this.gamePlayScene.car.isMoving = true;
+      })
+      .on(Phaser.Input.Events.POINTER_UP, () => {
+        stopPedal.setAlpha(0.5);
+        this.gamePlayScene.car.isAcceleratingRight = false;
+        this.gamePlayScene.car.isMoving = false;
+      });
+
+    stopPedal.setPosition(
+      this.game.canvas.width - stopPedal.displayWidth - 20,
+      this.game.canvas.height - stopPedal.displayHeight - 20
+    );
   }
 
   openAccessIndicators() {
     if (this.radioIsAccess) {
-      this.speedometerContainer.setVisible(true);
+      if (this.game.canvas.width > 900) {
+        this.speedometerContainer.setVisible(true);
+      }
     }
     if (this.moneyIsaccess) {
       this.moneyContainer.setVisible(true);
@@ -215,32 +269,34 @@ export class GameMenu extends Phaser.Scene {
     const modalBackground = this.add
       .image(0, 0, "modal")
       .setOrigin(0.5)
-      .setScale(0.7);
+      .setScale(
+        screenSize().gamePlay.showInformationOnMaPModal.background.scale
+      );
 
     const okButton = this.add
-      .image(modalContainer.width / 2, 368, "ok-button")
+      .image(modalContainer.width / 2, this.game.canvas.height / 2, "ok-button")
       .setInteractive()
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
         this.gamePlayScene.buttonSound.play();
         this.hideMenu();
         modalContainer.destroy(true);
       })
-      .setScale(0.3)
+      .setScale(screenSize().gamePlay.showInformationOnMaPModal.okButton.scale)
       .setTint(0xffd4ca);
 
-    okButton.on(Phaser.Input.Events.POINTER_OVER, () => {
-      okButton.setScale(0.32);
-    });
-    okButton.on(Phaser.Input.Events.POINTER_OUT, () => {
-      okButton.setScale(0.3);
-    });
+    okButton.setPosition(
+      okButton.x,
+      okButton.y -
+        okButton.displayHeight / 2 -
+        calculatePercentage(5, this.game.canvas.height)
+    );
 
     const txt = this.add
       .text(modalContainer.width / 2, modalContainer.height / 2, text, {
         fontFamily: "mainFont",
         color: "black",
         align: "center",
-        fontSize: "17px",
+        fontSize: screenSize().gamePlay.showInformationOnMaPModal.text.fontSize,
       })
       .setOrigin(0.5);
     txt.setLineSpacing(10);
@@ -265,22 +321,14 @@ export class GameMenu extends Phaser.Scene {
     text: string[],
     price: number
   ) {
-    const modalContainer = this.add.container(0, 0);
+    const modalContainer = this.add.container(
+      this.game.canvas.width / 2,
+      this.game.canvas.height / 2
+    );
 
     if (price === 0) {
-      const icon = this.add
-        .image(this.game.canvas.width / 2, 200, iconKey)
-        .setScale(0.8)
-        .setDepth(-1);
-
-      const modalBackground = this.add
-        .image(this.game.canvas.width / 2, 349, "white")
-        .setDisplaySize(400, 40)
-        .setOrigin(0.5)
-        .setTint(0x192e19);
-
       const modalText = this.add
-        .text(this.game.canvas.width / 2, 400, text, {
+        .text(0, 0, text, {
           fontSize: "27px",
           color: "#D8FFBD",
           backgroundColor: "#11140F",
@@ -289,8 +337,23 @@ export class GameMenu extends Phaser.Scene {
         .setPadding(20)
         .setOrigin(0.5, 0);
 
+      const icon = this.add
+        .image(
+          0,
+          -modalText.displayHeight -
+            calculatePercentage(20, modalText.displayHeight),
+          iconKey
+        )
+        .setScale(0.8)
+        .setDepth(-1);
+
       const okButton = this.add
-        .image(this.game.canvas.width / 2, 598, "ok-button")
+        .image(
+          0,
+          modalText.displayHeight +
+            calculatePercentage(20, modalText.displayHeight),
+          "ok-button"
+        )
         .setInteractive()
         .on(Phaser.Input.Events.POINTER_DOWN, () => {
           this.gamePlayScene.buttonSound.play();
@@ -300,14 +363,9 @@ export class GameMenu extends Phaser.Scene {
         .setScale(0.2)
         .setTint(0x93ad80);
 
-      okButton.on(Phaser.Input.Events.POINTER_OVER, () => {
-        okButton.setScale(0.23);
-      });
-      okButton.on(Phaser.Input.Events.POINTER_OUT, () => {
-        okButton.setScale(0.2);
-      });
+      modalContainer.add([icon, modalText, okButton]);
 
-      modalContainer.add([icon, modalBackground, modalText, okButton]);
+      modalContainer.setScale(screenSize().gamePlay.govermentModal.scale);
     } else {
     }
   }
@@ -316,11 +374,12 @@ export class GameMenu extends Phaser.Scene {
     const title = this.add
       .text(
         this.game.canvas.width / 2,
-        this.game.canvas.height / 2 - 200,
+        this.game.canvas.height / 2 -
+          calculatePercentage(20, this.game.canvas.height),
         this.titleText,
         {
           color: "#4BF8FA",
-          fontSize: "120px",
+          fontSize: screenSize().gamePlay.showScreenText.title.fontSize,
           backgroundColor: "#082118",
         }
       )
@@ -328,11 +387,12 @@ export class GameMenu extends Phaser.Scene {
     const text = this.add
       .text(
         this.game.canvas.width / 2,
-        this.game.canvas.height / 2 - 300,
+        this.game.canvas.height / 2 -
+          calculatePercentage(34, this.game.canvas.height),
         this.regionNameText,
         {
           color: "#4BF8FA",
-          fontSize: "62px",
+          fontSize: screenSize().gamePlay.showScreenText.text.fontSize,
           backgroundColor: "#082118",
         }
       )
@@ -440,7 +500,7 @@ export class GameMenu extends Phaser.Scene {
     this.continueButtonTween = this.add.tween({
       targets: continueButton,
       duration: 200,
-      scale: 0.5,
+      scale: screenSize().gamePlay.menu.continueButton.scale,
       delay: 0,
       ease: Phaser.Math.Easing.Bounce.Out,
     });
@@ -489,20 +549,14 @@ export class GameMenu extends Phaser.Scene {
   }
 
   addSpeedometer() {
-    this.speedometer = this.add
-      .image(
-        this.game.canvas.width / 2,
-        this.screenHeight + screenSize().gameMenu.speedometer.positions.y,
-        "speedometer"
-      )
-      .setScale(0.4);
+    this.speedometer = this.add.image(0, 0, "speedometer").setScale(0.4);
 
     this.speedometerContainer.add(this.speedometer);
 
     this.speedometerArrow = this.add
       .image(
-        this.game.canvas.width / 2 + 11,
-        this.screenHeight + screenSize().gameMenu.speedometerArrow.positions.y,
+        0,
+        calculatePercentage(12, this.speedometer.displayHeight),
         "speedometer-arrow"
       )
       .setScale(0.3)
@@ -510,6 +564,15 @@ export class GameMenu extends Phaser.Scene {
       .setRotation(-1.5);
 
     this.speedometerContainer.add(this.speedometerArrow);
+    this.speedometerContainer.setScale(
+      screenSize().gamePlay.speedometerContainer.scale
+    );
+    this.speedometerContainer.setPosition(
+      this.game.canvas.width / 2,
+      this.game.canvas.height -
+        calculatePercentage(21, this.speedometer.displayHeight)
+    );
+
     this.createRadioButtons();
     this.gameIndicatorsContainer.add(this.speedometerContainer);
   }

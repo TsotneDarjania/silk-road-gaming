@@ -52,6 +52,7 @@ import { OptimizationManager } from "../optimizationManager";
 import { Monster } from "../gameObjects/monster";
 import { EvilFace } from "../gameObjects/evilFace";
 import { DamageRoads } from "../gameObjects/damageRoads";
+import { screenSize } from "../config/getScreenSize";
 
 export class GamePlay extends Phaser.Scene {
   gameMenu!: GameMenu;
@@ -61,10 +62,10 @@ export class GamePlay extends Phaser.Scene {
   train!: Train;
 
   // Camera
-  camera_z_index: number = 1.3;
-  min_zoom: number = 1.0;
+  camera_z_index: number = screenSize().gamePlay.camera.camera_z_index;
+  min_zoom: number = screenSize().gamePlay.camera.min_zoom;
 
-  max_zoom: number = 1.3;
+  max_zoom: number = screenSize().gamePlay.camera.max_zoom;
   zoom_factor: number = 0.001;
   followOffsetX = 260;
 

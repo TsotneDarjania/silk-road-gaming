@@ -39,7 +39,7 @@ export class GameManager {
 
   saveZonesData: Array<SaveZoneData> = [];
   saveZoneIndex = gameConfig.saveZoneIndex;
-  // saveZoneIndex = 10;
+  // saveZoneIndex = 4;
 
   backgroundImage!: Phaser.GameObjects.Image;
 
@@ -154,14 +154,15 @@ export class GameManager {
   }
 
   createBackgroundImage() {
+    console.log(
+      this.gamePlay.game.canvas.width,
+      this.gamePlay.game.canvas.height
+    );
     this.backgroundImage = this.gamePlay.add
-      .image(0, 0, "white")
-      .setDisplaySize(
-        this.gamePlay.game.canvas.width,
-        this.gamePlay.game.canvas.height
-      )
+      .image(-3000, -3000, "white")
+      .setDisplaySize(6000, 6000)
       .setScrollFactor(0, 0)
-      .setDepth(-1000)
+      .setDepth(-200)
       .setOrigin(0)
       .setTint(0xff3c52)
       .setAlpha(0);
@@ -198,7 +199,7 @@ export class GameManager {
 
   cameraResetFinish() {
     this.gameMenu.gameIndicatorsContainer.setVisible(true);
-    this.gameMenu.speedometerContainer.setVisible(true);
+    this.gameMenu.openAccessIndicators();
     this.gameMenu.stopUpdateProcess = false;
     this.gamePlay.russianTank.canMotion = false;
     this.gamePlay.russianTank.reset();
@@ -249,10 +250,10 @@ export class GameManager {
       },
       5: {
         enter: () => {
-          if (this.gamePlay.musicPlayer.specialSongs[2].isPlaying === false) {
+          if (this.gamePlay.musicPlayer.specialSongs[1].isPlaying === false) {
             this.gamePlay.musicPlayer.stopAllSong();
           }
-          this.gamePlay.musicPlayer.playSpecialSong(2);
+          this.gamePlay.musicPlayer.playSpecialSong(1);
           this.gameMenu.radioOnn();
           this.showScreenText(2);
         },
@@ -271,10 +272,10 @@ export class GameManager {
       7: {
         enter: () => {
           this.gamePlay.russianTank.canMotion = true;
-          if (this.gamePlay.musicPlayer.specialSongs[3].isPlaying === false) {
+          if (this.gamePlay.musicPlayer.specialSongs[2].isPlaying === false) {
             this.gamePlay.musicPlayer.stopAllSong();
           }
-          this.gamePlay.musicPlayer.playSpecialSong(3);
+          this.gamePlay.musicPlayer.playSpecialSong(2);
           this.gameMenu.radioOff();
         },
         exit: () => {
@@ -292,10 +293,10 @@ export class GameManager {
       9: {
         enter: () => {
           this.showScreenText(3);
-          if (this.gamePlay.musicPlayer.specialSongs[3].isPlaying === false) {
+          if (this.gamePlay.musicPlayer.specialSongs[2].isPlaying === false) {
             this.gamePlay.musicPlayer.stopAllSong();
           }
-          this.gamePlay.musicPlayer.playSpecialSong(3);
+          this.gamePlay.musicPlayer.playSpecialSong(2);
           this.gameMenu.radioOff();
         },
         exit: () => {

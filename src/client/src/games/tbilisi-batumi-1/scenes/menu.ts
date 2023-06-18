@@ -76,12 +76,11 @@ export class Menu extends Phaser.Scene {
   }
 
   addOrientationEvent() {
-    ///asd
     this.scale.on(Phaser.Scale.Events.ORIENTATION_CHANGE, () => {
-      // this.changeOrientationSize(
-      //   window.outerWidth - this.canvasHideWidth,
-      //   window.outerHeight - this.canvasHideHeight
-      // );
+      this.changeOrientationSize(
+        window.outerWidth - this.canvasHideWidth,
+        window.outerHeight - this.canvasHideHeight
+      );
     });
   }
 
@@ -406,6 +405,7 @@ export class Menu extends Phaser.Scene {
   }
 
   playGame() {
+    this.scale.removeAllListeners();
     this.scene.start("GamePlay");
   }
 }
