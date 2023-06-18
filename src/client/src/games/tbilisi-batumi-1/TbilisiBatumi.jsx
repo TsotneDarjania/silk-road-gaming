@@ -25,18 +25,17 @@ export const TbilisiBatumi = () => {
     }
   };
 
-  window.addEventListener("resize", () => {
-    console.log("shevedi", window.screen.width, window.screen.height);
-    if (window.screen.height > window.screen.width) {
-      console.log("tru gavxade");
-      setIsPortrait(true);
-    } else {
-      console.log("false gavxade");
-      setIsPortrait(false);
-    }
+  window
+    .matchMedia("(orientation: portrait)")
+    .addEventListener("change", (e) => {
+      const portrait = e.matches;
 
-    console.log(isPortrait);
-  });
+      if (portrait) {
+        setIsPortrait(true);
+      } else {
+        setIsPortrait(false);
+      }
+    });
 
   const hideWidth = window.outerWidth - window.innerWidth;
   const hideHeight = window.outerHeight - window.innerHeight;
@@ -52,12 +51,11 @@ export const TbilisiBatumi = () => {
   useEffect(() => {
     //console.log(window.screen.width, window.screen.height, isPortrait);
 
-    if (window.screen.height > window.screen.width) {
-      console.log("me chavrte");
-      setIsPortrait(true);
-    } else {
-      setIsPortrait(false);
-    }
+    // if (window.screen.height > window.screen.width) {
+    //   setIsPortrait(true);
+    // } else {
+    //   setIsPortrait(false);
+    // }
     if (!canvasContainer.current) return;
 
     const game = new Phaser.Game({
