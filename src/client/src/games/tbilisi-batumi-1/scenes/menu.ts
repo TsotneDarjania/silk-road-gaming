@@ -65,7 +65,7 @@ export class Menu extends Phaser.Scene {
         this.changeOrientationSize(window.outerWidth, window.outerHeight);
         this.scale.removeAllListeners();
         this.scene.restart();
-      }, 30);
+      }, 100);
     });
 
     if (this.scale.isFullscreen === false) {
@@ -89,10 +89,9 @@ export class Menu extends Phaser.Scene {
     this.game.canvas.width = canvasHeight;
 
     if (this.game.scale.isPortrait) {
-      this.scale.resize(this.game.canvas.height, this.game.canvas.width);
-      this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
-
-      this.scale.removeAllListeners();
+      // this.scale.resize(this.game.canvas.width, this.game.canvas.height);
+      // this.renderer.resize(this.game.canvas.height, this.game.canvas.width);
+      ///  this.scale.removeAllListeners();
     } else {
       this.scale.resize(this.game.canvas.height, this.game.canvas.width);
       this.renderer.resize(this.game.canvas.width, this.game.canvas.height);

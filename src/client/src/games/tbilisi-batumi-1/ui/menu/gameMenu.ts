@@ -79,7 +79,7 @@ export class GameMenu extends Phaser.Scene {
 
     this.openAccessIndicators();
 
-    if (this.game.canvas.width < 900) {
+    if (this.game.canvas.width < 1000) {
       this.addUiButtonsForMobile();
     }
   }

@@ -18,7 +18,7 @@ export const TbilisiBatumi = () => {
   const [isPortrait, setIsPortrait] = useState(false);
 
   const isLandscapeOrientation = () => {
-    if (window.screen.availHeight > window.screen.availWidth) {
+    if (window.screen.height > window.screen.width) {
       return false;
     } else {
       return true;
@@ -49,13 +49,6 @@ export const TbilisiBatumi = () => {
     : window.outerWidth - hideWidth;
 
   useEffect(() => {
-    //console.log(window.screen.width, window.screen.height, isPortrait);
-
-    // if (window.screen.height > window.screen.width) {
-    //   setIsPortrait(true);
-    // } else {
-    //   setIsPortrait(false);
-    // }
     if (!canvasContainer.current) return;
 
     const game = new Phaser.Game({
@@ -84,7 +77,7 @@ export const TbilisiBatumi = () => {
     });
 
     return () => game.destroy(true, false);
-  }, [isPortrait]);
+  }, []);
 
   return (
     <div ref={canvasContainer} className={style.canvas}>
