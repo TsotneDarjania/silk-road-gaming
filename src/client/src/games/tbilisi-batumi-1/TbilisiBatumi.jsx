@@ -28,9 +28,10 @@ export const TbilisiBatumi = () => {
   window.addEventListener("resize", () => {
     console.log("shevedi", window.screen.width, window.screen.height);
     if (window.screen.height > window.screen.width) {
-      console.log("araaa me");
+      console.log("tru gavxade");
       setIsPortrait(true);
     } else {
+      console.log("false gavxade");
       setIsPortrait(false);
     }
 
