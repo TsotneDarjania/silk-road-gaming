@@ -123,6 +123,7 @@ export class GamePlay extends Phaser.Scene {
     // setTimeout(() => {
     //   menuScene.scale.removeAllListeners();
     // }, 3000);
+    this.scale.startFullscreen();
 
     this.createSpriteSheetAnimations();
     this.addSoundEffects();

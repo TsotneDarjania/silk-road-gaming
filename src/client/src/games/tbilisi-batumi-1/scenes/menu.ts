@@ -396,6 +396,7 @@ export class Menu extends Phaser.Scene {
 
   playGame() {
     this.scale.removeAllListeners();
-    this.scene.launch("GamePlay");
+    this.scale.stopFullscreen();
+    this.scene.start("GamePlay");
   }
 }
