@@ -4,6 +4,9 @@ import { LoadingScreen } from "../../common/loadingScreen";
 export class Preload extends Phaser.Scene {
   loadingScreen!: LoadingScreen;
 
+  canvasHideWidth = window.outerWidth - window.innerWidth;
+  canvasHideHeight = window.outerHeight - window.innerHeight;
+
   constructor() {
     super("Preload");
   }
@@ -11,6 +14,39 @@ export class Preload extends Phaser.Scene {
   init() {
     /** Create loading visualization here */
     this.loadingScreen = new LoadingScreen(this);
+
+    this.addOrientationEvent();
+  }
+
+  addOrientationEvent() {
+    this.scale.on(Phaser.Scale.Events.ORIENTATION_CHANGE, () => {
+      this.changeOrientationSize(
+        window.outerWidth - this.canvasHideWidth,
+        window.outerHeight - this.canvasHideHeight
+      );
+    });
+  }
+
+  changeOrientationSize(canvasWidth: number, canvasHeight: number) {
+    this.game.canvas.height = canvasWidth;
+    this.game.canvas.width = canvasHeight;
+
+    if (this.game.scale.isPortrait) {
+      // this.scale.resize(this.game.canvas.width, this.game.canvas.height);
+      // this.renderer.resize(this.game.canvas.height, this.game.canvas.width);
+      ///  this.scale.removeAllListeners();
+    } else {
+      this.scale.resize(this.game.canvas.height, this.game.canvas.width);
+      this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+
+      this.scale.removeAllListeners();
+    }
+
+    this.scale.on(Phaser.Scale.Events.RESIZE, () => {
+      this.scale.removeAllListeners();
+
+      this.scene.restart();
+    });
   }
 
   preload() {

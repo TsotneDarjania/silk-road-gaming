@@ -15,7 +15,6 @@ import { Boot } from "./scenes/boot";
 
 export const TbilisiBatumi = () => {
   const canvasContainer = useRef(null);
-  const [isPortrait, setIsPortrait] = useState(false);
 
   const IOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); // fails on
 
@@ -30,6 +29,10 @@ export const TbilisiBatumi = () => {
       return true;
     }
   };
+
+  const [isPortrait, setIsPortrait] = useState(
+    isLandscapeOrientation() ? false : true
+  );
 
   window
     .matchMedia("(orientation: portrait)")
@@ -50,9 +53,9 @@ export const TbilisiBatumi = () => {
     if (isIOS()) {
       const canvasWidth = isLandscapeOrientation()
         ? window.outerWidth - hideWidth
-        : window.outerHeight - hideHeight;
+        : window.outerWidth - hideWidth;
       const canvasHeight = isLandscapeOrientation()
-        ? window.outerWidth - hideWidth
+        ? window.outerHeight - hideHeight
         : window.outerHeight - hideHeight;
 
       return [canvasWidth, canvasHeight];
