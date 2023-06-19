@@ -24,7 +24,7 @@ export const TbilisiBatumi = () => {
 
   const isLandscapeOrientation = () => {
     if (isIOS()) {
-      if (window.screen.height > window.screen.width) {
+      if (window.screen.width > window.screen.height) {
         return true;
       } else {
         return false;
