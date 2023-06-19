@@ -68,7 +68,7 @@ export class Menu extends Phaser.Scene {
         this.changeOrientationSize(window.outerWidth, window.outerHeight);
         this.scale.removeAllListeners();
         this.scene.restart();
-      }, 100);
+      }, 30);
     });
 
     if (this.scale.isFullscreen === false) {
@@ -353,7 +353,7 @@ export class Menu extends Phaser.Scene {
       .on(Phaser.Input.Events.POINTER_UP, () => {
         if (this.game.scale.isFullscreen === false) {
           if (this.isIOS()) return;
-          // this.scale.startFullscreen();
+          this.scale.startFullscreen();
         }
       })
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
@@ -419,7 +419,7 @@ export class Menu extends Phaser.Scene {
   }
 
   playGame() {
-    this.scale.removeAllListeners();
+    // this.scale.removeAllListeners();
     this.scene.start("GamePlay");
   }
 }

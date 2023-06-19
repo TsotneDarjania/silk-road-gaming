@@ -53,6 +53,7 @@ import { Monster } from "../gameObjects/monster";
 import { EvilFace } from "../gameObjects/evilFace";
 import { DamageRoads } from "../gameObjects/damageRoads";
 import { screenSize } from "../config/getScreenSize";
+import { Menu } from "./menu";
 
 export class GamePlay extends Phaser.Scene {
   gameMenu!: GameMenu;
@@ -119,6 +120,12 @@ export class GamePlay extends Phaser.Scene {
   create() {
     this.createSpriteSheetAnimations();
     this.addSoundEffects();
+
+    const menuScene = this.scene.get("Menu") as Menu;
+
+    setTimeout(() => {
+      menuScene.scale.removeAllListeners();
+    }, 3000);
 
     this.gameMenu = this.scene.get("GameMenu") as GameMenu;
 
