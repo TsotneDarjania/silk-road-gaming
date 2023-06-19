@@ -24,11 +24,8 @@ export const TbilisiBatumi = () => {
 
   const isLandscapeOrientation = () => {
     if (isIOS()) {
-      if (window.screen.width > window.screen.height) {
-        return true;
-      } else {
-        return false;
-      }
+      if (window.innerHeight > window.innerWidth) return false;
+      else return true;
     } else {
       if (window.screen.height > window.screen.width) {
         return false;
@@ -60,11 +57,11 @@ export const TbilisiBatumi = () => {
   const getCanvasSize = () => {
     if (isIOS()) {
       const canvasWidth = isLandscapeOrientation()
-        ? window.outerWidth - hideWidth
-        : window.outerWidth - hideWidth;
+        ? window.innerWidth
+        : window.innerHeight;
       const canvasHeight = isLandscapeOrientation()
-        ? window.outerHeight - hideHeight
-        : window.outerHeight - hideHeight;
+        ? window.innerHeight
+        : window.innerWidth;
 
       return [canvasWidth, canvasHeight];
     } else {
@@ -88,7 +85,7 @@ export const TbilisiBatumi = () => {
       physics: {
         default: "matter",
         matter: {
-          debug: true,
+          debug: false,
           gravity: {
             y: 0.3,
           },
