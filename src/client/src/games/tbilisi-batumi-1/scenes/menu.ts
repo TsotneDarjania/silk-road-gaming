@@ -92,6 +92,7 @@ export class Menu extends Phaser.Scene {
   }
 
   changeOrientationSize(canvasWidth: number, canvasHeight: number) {
+    if (this.isIOS()) return;
     this.game.canvas.height = canvasWidth;
     this.game.canvas.width = canvasHeight;
 
@@ -101,10 +102,9 @@ export class Menu extends Phaser.Scene {
       ///  this.scale.removeAllListeners();
     } else {
       if (this.isIOS()) {
-        this.scale.resize(this.game.canvas.width, this.game.canvas.height);
-        this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
-
-        this.scale.removeAllListeners();
+        // this.scale.resize(this.game.canvas.width, this.game.canvas.height);
+        // this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+        // this.scale.removeAllListeners();
       } else {
         this.scale.resize(this.game.canvas.height, this.game.canvas.width);
         this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
@@ -352,6 +352,7 @@ export class Menu extends Phaser.Scene {
       .setInteractive()
       .on(Phaser.Input.Events.POINTER_UP, () => {
         if (this.game.scale.isFullscreen === false) {
+          if (this.isIOS()) return;
           this.scale.startFullscreen();
         }
       })

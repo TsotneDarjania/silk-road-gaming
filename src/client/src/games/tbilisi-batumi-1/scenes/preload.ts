@@ -35,6 +35,7 @@ export class Preload extends Phaser.Scene {
   }
 
   changeOrientationSize(canvasWidth: number, canvasHeight: number) {
+    if (this.isIOS()) return;
     this.game.canvas.height = canvasWidth;
     this.game.canvas.width = canvasHeight;
 
@@ -44,10 +45,9 @@ export class Preload extends Phaser.Scene {
       ///  this.scale.removeAllListeners();
     } else {
       if (this.isIOS()) {
-        this.scale.resize(this.game.canvas.width, this.game.canvas.height);
-        this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
-
-        this.scale.removeAllListeners();
+        // this.scale.resize(this.game.canvas.width, this.game.canvas.height);
+        // this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+        // this.scale.removeAllListeners();
       } else {
         this.scale.resize(this.game.canvas.height, this.game.canvas.width);
         this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
@@ -140,7 +140,12 @@ export class Preload extends Phaser.Scene {
     this.load.image("veteran", `menu/gamePlay/veteran.png`);
 
     // Car
-    this.load.svg("carBody", `car/body.svg`);
+    if (this.isIOS()) {
+      this.load.image("carBody", `car/body.png`);
+    } else {
+      this.load.svg("carBody", `car/body.svg`);
+    }
+
     this.load.image("pedal", "car/pedal.png");
 
     this.load.svg("carTire", `car/tire.svg`);
