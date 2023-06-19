@@ -5,6 +5,8 @@ import image from "./user.png";
 import { deleteCookies, getCookie } from "../../../../helper/cookie";
 
 import { CgMenuGridR } from "react-icons/cg";
+import UserSettingsModal from "./UserSettingsModal";
+import Shadow from "../../../../components/Shadow";
 
 const HomePageInterface = ({ setIsLogin }) => {
   const [userName, setUserName] = useState(
@@ -17,9 +19,20 @@ const HomePageInterface = ({ setIsLogin }) => {
   };
 
   const [menuClassName, setMenuClassName] = useState("");
+  const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const shadowProperty = {
+    opacity: 0.5,
+    transition: "0.5s",
+    show: show,
+    setShow: setShow,
+    open: open    
+  };
 
   return (
     <div className={style.homePageInterface}>
+      <Shadow props={shadowProperty}/>
       <div
         onClick={() => {
           menuClassName === "showMenu"
@@ -33,7 +46,7 @@ const HomePageInterface = ({ setIsLogin }) => {
 
       <div className={style["menu"] + " " + style[menuClassName]}>
         <ul>
-          <li> {userName} </li>
+          <li onClick={() => setShow(true)}> {userName} </li>
           <li
             onClick={() => {
               logOut();
@@ -76,6 +89,14 @@ const HomePageInterface = ({ setIsLogin }) => {
           </li>
         </ul>
       </div>
+
+      <UserSettingsModal
+        open={open}
+        setOpen={setOpen}
+        show={show}
+        userName={userName}
+        setUserName={setUserName}
+      />
     </div>
   );
 };
