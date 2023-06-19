@@ -75,17 +75,6 @@ export class Menu extends Phaser.Scene {
     if (this.scale.isFullscreen === false) {
       this.closeMenu();
     }
-
-    this.addOrientationEvent();
-  }
-
-  addOrientationEvent() {
-    this.scale.on(Phaser.Scale.Events.ORIENTATION_CHANGE, () => {
-      this.changeOrientationSize(
-        window.outerWidth - this.canvasHideWidth,
-        window.outerHeight - this.canvasHideHeight
-      );
-    });
   }
 
   isIOS() {
@@ -97,37 +86,14 @@ export class Menu extends Phaser.Scene {
     this.game.canvas.height = canvasWidth;
     this.game.canvas.width = canvasHeight;
 
-    if (this.game.scale.isPortrait) {
-      // this.scale.resize(this.game.canvas.width, this.game.canvas.height);
-      // this.renderer.resize(this.game.canvas.height, this.game.canvas.width);
-      ///  this.scale.removeAllListeners();
-    } else {
-      if (this.isIOS()) {
-        // this.scale.resize(this.game.canvas.width, this.game.canvas.height);
-        // this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
-        // this.scale.removeAllListeners();
-      } else {
-        this.scale.resize(this.game.canvas.height, this.game.canvas.width);
-        this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+    if (this.game.scale.isLandscape) {
+      this.scale.resize(this.game.canvas.height, this.game.canvas.width);
+      this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
 
-        const gamePlayScene = this.scene.get("GamePlay") as GamePlay;
-        gamePlayScene.scale.resize(window.outerWidth, window.outerHeight);
-        gamePlayScene.renderer.resize(window.outerWidth, window.outerHeight);
-
-        this.scene.restart();
-        console.log("1111");
-        // gamePlayScene.scene.restart();
-
-        this.scale.removeAllListeners();
-      }
-    }
-
-    this.scale.on(Phaser.Scale.Events.RESIZE, () => {
-      this.scale.removeAllListeners();
-
-      console.log("restart");
       this.scene.restart();
-    });
+
+      this.scale.removeAllListeners();
+    }
   }
 
   addLamp() {
@@ -430,6 +396,6 @@ export class Menu extends Phaser.Scene {
 
   playGame() {
     this.scale.removeAllListeners();
-    this.scene.start("GamePlay");
+    this.scene.launch("GamePlay");
   }
 }
