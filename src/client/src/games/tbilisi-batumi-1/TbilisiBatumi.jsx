@@ -23,10 +23,18 @@ export const TbilisiBatumi = () => {
   }
 
   const isLandscapeOrientation = () => {
-    if (window.screen.height > window.screen.width) {
-      return false;
+    if (isIOS()) {
+      if (window.screen.height > window.screen.width) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
-      return true;
+      if (window.screen.height > window.screen.width) {
+        return false;
+      } else {
+        return true;
+      }
     }
   };
 
