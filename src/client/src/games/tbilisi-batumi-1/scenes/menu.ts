@@ -114,6 +114,10 @@ export class Menu extends Phaser.Scene {
         gamePlayScene.scale.resize(window.outerWidth, window.outerHeight);
         gamePlayScene.renderer.resize(window.outerWidth, window.outerHeight);
 
+        this.scene.restart();
+        console.log("1111");
+        // gamePlayScene.scene.restart();
+
         this.scale.removeAllListeners();
       }
     }
@@ -121,6 +125,7 @@ export class Menu extends Phaser.Scene {
     this.scale.on(Phaser.Scale.Events.RESIZE, () => {
       this.scale.removeAllListeners();
 
+      console.log("restart");
       this.scene.restart();
     });
   }
