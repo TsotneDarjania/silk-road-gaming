@@ -5,6 +5,7 @@ import { Responsivedata } from "../config/interfaces";
 import { screenSize } from "../config/getScreenSize";
 import { MenuMap } from "../components/menuMap";
 import { MenuInfo } from "../components/menuInfo";
+import { GamePlay } from "./gamePlay";
 
 export class Menu extends Phaser.Scene {
   backgroundZone!: Phaser.GameObjects.Image;
@@ -108,6 +109,10 @@ export class Menu extends Phaser.Scene {
       } else {
         this.scale.resize(this.game.canvas.height, this.game.canvas.width);
         this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+
+        const gamePlayScene = this.scene.get("GamePlay") as GamePlay;
+        gamePlayScene.scale.resize(window.outerWidth, window.outerHeight);
+        gamePlayScene.renderer.resize(window.outerWidth, window.outerHeight);
 
         this.scale.removeAllListeners();
       }
