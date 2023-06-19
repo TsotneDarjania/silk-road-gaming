@@ -1,0 +1,131 @@
+/* '../../../../../global.css' */
+.artGameContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.artGameContainerBgImage {
+  width: 100%;
+  height: 70vh;
+
+  transition: 0.5s;
+  opacity: 0.3;
+  filter: grayscale(100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../../images/games/wallpapers/1.jpg");
+}
+
+.leftContainer {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+
+  /* backdrop-filter: hue-rotate(120deg); */
+  font-family: "Geo", sans-serif;
+}
+
+.rightContainer {
+  composes: flexCenter from "../../../../../global.css";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 5;
+}
+
+.leftContainer_Div {
+  composes: neonBlueColor from "../../../../../global.css";
+  font-size: 23px;
+}
+
+.descriptionDiv {
+  height: 220px;
+  overflow-y: scroll;
+}
+
+.leftContainer span:not(.number) {
+  font-size: 33px;
+  font-weight: bold;
+  color: rgb(69, 140, 179);
+}
+
+.gameVideo {
+  position: absolute;
+  width: 80%;
+  height: 82%;
+  z-index: 2;
+}
+
+.playButton {
+  position: absolute;
+  cursor: pointer;
+  font-size: 35px;
+  bottom: 20px;
+  width: 200px;
+  height: 57px;
+  border: none;
+  color: rgb(159, 64, 5);
+  background-color: rgb(255, 180, 81);
+  box-shadow: 5px 5px 0px 0px rgb(196, 106, 17);
+  font-weight: bold;
+  font-family: "Geo", sans-serif;
+  transition: 0.3s;
+  z-index: 5;
+}
+.playButton:hover {
+  color: black;
+  box-shadow: -5px -5px 0px 0px rgb(196, 106, 17);
+}
+
+.indicators {
+  position: absolute;
+  bottom: 25px;
+  left: 225px;
+  width: 100%;
+}
+
+.indicators ul {
+  list-style: none;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  gap: 20px;
+  font-size: 25px;
+  padding-left: 44px;
+}
+
+.indicators ul li {  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+
+  color: rgb(215, 217, 214);
+  transition: 0.4s;
+}
+.number{
+    color: rgb(215, 217, 214);
+    font-size: 30px;
+}
+
+.indicators ul li :hover :not(.number) {
+    color: rgb(136, 240, 244);
+}
+
+.dislikeIcon {
+    margin-top: 12px;
+}
+
+.commentIcon {
+  font-size: 20px;
+}

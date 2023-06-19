@@ -16,6 +16,7 @@
 
   overflow-y: scroll;
 
+  z-index: 54;
 }
 
 /* width */

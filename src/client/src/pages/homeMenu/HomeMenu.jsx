@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import style from "./homeMenu.module.css";
 import LatestGame from "./components/latestGame/LatestGame";
 import MiniGames from "./components/miniGames/MiniGames";
+import ArtGames from "./components/artGame/ArtGames";
 
 export const HomeMenu = ({ setRequestedPage, setTransitionPlayAnimation }) => {
   const [menuMode, setMenuMode] = useState("latest-game");
@@ -73,6 +74,13 @@ export const HomeMenu = ({ setRequestedPage, setTransitionPlayAnimation }) => {
         }
       >
         <MiniGames />
+      </div>
+      <div
+        className={
+          style["menu-item"] + " " + style[menuItemClases["art-games"]]
+        }
+      >
+        <ArtGames />
       </div>
       <button
         onClick={() => {

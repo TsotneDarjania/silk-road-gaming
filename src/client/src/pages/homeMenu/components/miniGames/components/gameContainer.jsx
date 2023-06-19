@@ -4,7 +4,7 @@ import { AiFillLike } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
 
 import style from "./gameContainer.module.css";
-import ModalForComments from "./ModalForComments";
+import ModalForComments from "../../../../../components/ModalForComments";
 
 const GameContainer = (props) => {
 

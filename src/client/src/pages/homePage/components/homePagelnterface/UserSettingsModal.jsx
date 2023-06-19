@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./userSettingsModal.module.css";
-import userAvatar from "../../../homeMenu/components/miniGames/components/userAvatar.png";
+import userAvatar from "../../../homeMenu/images/userAvatar.png";
 import { AiFillCamera } from "react-icons/ai";
 
 const UserSettingsModal = (props) => {
