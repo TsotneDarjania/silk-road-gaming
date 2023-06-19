@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
+
+.settingsContainer{
+    composes: fadedWhiteBgColor from '../../../../global.css';
+    composes: flexCenterColumn from '../../../../global.css';
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 55;
+
+    font-family: "Geo", sans-serif;
+    padding: 10px;
+
+    gap: 50px;
+}
+
+.userAvatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 2%;
+    position: relative;
+}
+.userAvatar img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.cameraBtn{
+    composes: flexCenter from '../../../../global.css';
+    composes: orangeBtnBgColor from '../../../../global.css';
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: none;
+    border-radius: 2%;
+    cursor: pointer;
+    position: absolute;
+    top: 120px;
+    right: -20px;
+}
+.cameraBtn:hover{
+    background-color: #6b3c00;
+    color: white;
+    transition: 0.5s;
+}
+.userNameBox{
+    composes: flexCenter from '../../../../global.css';
+    width: 100%;
+    gap: 20px;
+}
+.userNameBoxTitle{
+    composes: brownColor from '../../../../global.css';
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Geo", sans-serif;
+    border-bottom: 1px solid rgb(100, 63, 17);
+    padding: 10px;
+}
+.userNameBox div{
+    display: flex;
+    gap: 20px;
+}
+.userNameInput{
+    composes: brownColor from '../../../../global.css';
+    font-family: "Geo", sans-serif;
+    height: 40px;
+    font-size: 20px;
+    width: 300px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgb(100, 63, 17);
+    background-color: inherit;
+}
+.userNameInput::placeholder{
+    color: rgb(100, 63, 17);
+}
+.saveBtn, .resetBtn, .btnBox button{
+    border: none;
+    padding: 10px;
+    font-family: "Geo", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+    color: rgb(255, 246, 231);
+    background-color: rgb(137, 89, 0);
+}
+.saveBtn:hover{
+    color: white;
+    background-color: rgb(130, 42, 181);
+}
+.resetBox{
+    composes: flexCenterColumn from '../../../../global.css';
+    gap: 20px;
+}
+.warningBox{
+    composes: flexCenterColumn from '../../../../global.css';
+    width: 100%;
+    gap: 10px;
+}
+.warningBox p{
+    color: rgb(95, 18, 8);
+    font-size: 20px;
+    font-weight: 600;
+}
+.resetBtn{
+    background-color: rgb(139, 50, 14);
+}
+.resetBtn:hover{
+    background-color: rgb(95, 18, 8);
+}
+.btnBox{
+    composes: flexCenter from '../../../../global.css';
+    gap: 20px;
+}
+.btnBox :nth-child(1){
+    background-color: green;
+}
+.btnBox :nth-child(2){
+    background-color: red;
+    width: 48px;
+}
+
+@media (max-width: 1188px) {
+    .userNameBox{
+        flex-direction: column;
+    }
+    .userNameBox div{
+        flex-direction: column;
+        align-items: center;
+    }
+    .userNameInput{
+        width: 377px;
+    }
+    .settingsContainer{
+        width: 65%;
+        height: 65%;
+    }
+    .saveBtn{
+        width: 77px;
+    }
+}
+@media (max-width: 800px){
+    .settingsContainer{
+        width: 80%;
+        height: 80%;
+    }
+}
+@media (max-width: 516px) {
+    .userNameInput{
+        width: 100%;
+    }
+}

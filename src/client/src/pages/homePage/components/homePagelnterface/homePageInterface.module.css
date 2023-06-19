@@ -2,10 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
 
 .homePageInterface {
+  composes: fadedWhiteBgColor from '../../../../global.css';
   width: 100vw;
   height: 100vh;
 
-  background-color: rgb(255, 241, 224);
 }
 
 .gameHistoryContainer {
