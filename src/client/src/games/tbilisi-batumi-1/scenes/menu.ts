@@ -419,7 +419,10 @@ export class Menu extends Phaser.Scene {
   }
 
   playGame() {
-    this.scale.removeAllListeners();
+    setTimeout(() => {
+      this.scale.removeAllListeners();
+    }, 1000);
+
     this.scene.start("GamePlay");
   }
 }
