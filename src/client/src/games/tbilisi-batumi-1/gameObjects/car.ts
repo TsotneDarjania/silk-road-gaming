@@ -275,7 +275,10 @@ export class Car {
         isSensor: false,
         ignoreGravity: false, // Make the tire not be affected by gravity
       } as Phaser.Types.Physics.Matter.MatterBodyConfig)
-      .setOrigin(0.509, 0.49);
+      .setOrigin(
+        this.scene.isIOS() ? 0.5 : 0.509,
+        this.scene.isIOS() ? 0.5 : 0.49
+      );
     this.allObjects.push(this.leftTire);
     this.leftTire.setCollisionCategory(colliderCategories[2]);
     this.leftTire.setCollidesWith(colliderCategories[1]);
@@ -289,7 +292,10 @@ export class Car {
       0, // Stiffness of the constraint (0 = not stiff at all)
       {
         pointA: { x: -0, y: 0 }, // Local offset of constraint point on left tire
-        pointB: { x: -71, y: 26 }, // Local offset of constraint point on car body
+        pointB: {
+          x: this.scene.isIOS() ? -75 : -71,
+          y: this.scene.isIOS() ? 20 : 26,
+        }, // Local offset of constraint point on car body
       }
     );
     //add Collision Detection for Right Tire
@@ -317,7 +323,10 @@ export class Car {
         isSensor: false, // Make the tire not generate collision responses
         ignoreGravity: false, // Make the tire not be affected by gravity
       } as Phaser.Types.Physics.Matter.MatterBodyConfig)
-      .setOrigin(0.509, 0.49);
+      .setOrigin(
+        this.scene.isIOS() ? 0.5 : 0.509,
+        this.scene.isIOS() ? 0.5 : 0.49
+      );
     this.allObjects.push(this.rightTire);
     this.rightTire.setCollisionCategory(colliderCategories[2]);
     this.rightTire.setCollidesWith(colliderCategories[1]);
@@ -331,7 +340,10 @@ export class Car {
       0, // Stiffness of the constraint (0 = not stiff at all)
       {
         pointA: { x: -0, y: 0 }, // Local offset of constraint point on left tire
-        pointB: { x: 55, y: 26 }, // Local offset of constraint point on car body
+        pointB: {
+          x: this.scene.isIOS() ? 50 : 55,
+          y: this.scene.isIOS() ? 20 : 26,
+        }, // Local offset of constraint point on car body
       }
     );
 
@@ -365,6 +377,8 @@ export class Car {
   }
 
   addBags() {
+    if (this.scene.isIOS()) return;
+
     this.bags[0] = this.scene.matter.add
       .sprite(this.x + 60, this.y - 20, "carBag", undefined, {
         isStatic: false,

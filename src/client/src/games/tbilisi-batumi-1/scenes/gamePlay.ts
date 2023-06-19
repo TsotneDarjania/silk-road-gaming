@@ -105,8 +105,15 @@ export class GamePlay extends Phaser.Scene {
 
   russianTank!: RussianTank;
 
+  //@ts-ignore
+  IOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
   constructor() {
     super("GamePlay");
+  }
+
+  isIOS() {
+    return this.IOS ? true : false;
   }
 
   create() {
