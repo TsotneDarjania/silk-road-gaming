@@ -419,7 +419,7 @@ export class Menu extends Phaser.Scene {
   }
 
   playGame() {
-    // this.scale.removeAllListeners();
+    this.scale.removeAllListeners();
     this.scene.start("GamePlay");
   }
 }

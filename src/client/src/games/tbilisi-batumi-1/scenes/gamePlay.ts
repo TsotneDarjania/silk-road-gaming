@@ -118,14 +118,18 @@ export class GamePlay extends Phaser.Scene {
   }
 
   create() {
+    setTimeout(() => {
+      this.changeOrientationSize(window.outerWidth, window.outerHeight);
+    }, 100);
+
+    // const menuScene = this.scene.get("Menu") as Menu;
+
+    // setTimeout(() => {
+    //   menuScene.scale.removeAllListeners();
+    // }, 3000);
+
     this.createSpriteSheetAnimations();
     this.addSoundEffects();
-
-    const menuScene = this.scene.get("Menu") as Menu;
-
-    setTimeout(() => {
-      menuScene.scale.removeAllListeners();
-    }, 3000);
 
     this.gameMenu = this.scene.get("GameMenu") as GameMenu;
 
@@ -188,6 +192,25 @@ export class GamePlay extends Phaser.Scene {
 
     //Start UI Scene for Menu UI Elements
     this.scene.launch("GameMenu");
+  }
+
+  changeOrientationSize(canvasWidth: number, canvasHeight: number) {
+    if (this.isIOS()) return;
+    this.game.canvas.height = canvasWidth;
+    this.game.canvas.width = canvasHeight;
+
+    if (this.game.scale.isLandscape) {
+      this.scale.resize(this.game.canvas.height, this.game.canvas.width);
+      this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+
+      this.scale.removeAllListeners();
+    }
+
+    this.scale.on(Phaser.Scale.Events.RESIZE, () => {
+      this.scale.removeAllListeners();
+
+      this.scene.restart();
+    });
   }
 
   addDamageRoad() {
