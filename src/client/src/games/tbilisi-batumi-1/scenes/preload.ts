@@ -7,6 +7,9 @@ export class Preload extends Phaser.Scene {
   canvasHideWidth = window.outerWidth - window.innerWidth;
   canvasHideHeight = window.outerHeight - window.innerHeight;
 
+  //@ts-ignore
+  IOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); // fails on
+
   constructor() {
     super("Preload");
   }
@@ -27,6 +30,10 @@ export class Preload extends Phaser.Scene {
     });
   }
 
+  isIOS() {
+    return this.IOS ? true : false;
+  }
+
   changeOrientationSize(canvasWidth: number, canvasHeight: number) {
     this.game.canvas.height = canvasWidth;
     this.game.canvas.width = canvasHeight;
@@ -36,10 +43,17 @@ export class Preload extends Phaser.Scene {
       // this.renderer.resize(this.game.canvas.height, this.game.canvas.width);
       ///  this.scale.removeAllListeners();
     } else {
-      this.scale.resize(this.game.canvas.height, this.game.canvas.width);
-      this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+      if (this.isIOS()) {
+        this.scale.resize(this.game.canvas.width, this.game.canvas.height);
+        this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
 
-      this.scale.removeAllListeners();
+        this.scale.removeAllListeners();
+      } else {
+        this.scale.resize(this.game.canvas.height, this.game.canvas.width);
+        this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+
+        this.scale.removeAllListeners();
+      }
     }
 
     this.scale.on(Phaser.Scale.Events.RESIZE, () => {
@@ -258,6 +272,7 @@ export class Preload extends Phaser.Scene {
   }
 
   create() {
+    this.scale.removeAllListeners();
     this.scene.start("Menu");
   }
 }

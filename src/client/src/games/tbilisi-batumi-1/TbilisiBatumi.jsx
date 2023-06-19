@@ -52,8 +52,8 @@ export const TbilisiBatumi = () => {
   const getCanvasSize = () => {
     if (isIOS()) {
       const canvasWidth = isLandscapeOrientation()
-        ? window.outerHeight - hideHeight
-        : window.outerHeight - hideHeight;
+        ? window.outerWidth - hideWidth
+        : window.outerWidth - hideWidth;
       const canvasHeight = isLandscapeOrientation()
         ? window.outerHeight - hideHeight
         : window.outerHeight - hideHeight;

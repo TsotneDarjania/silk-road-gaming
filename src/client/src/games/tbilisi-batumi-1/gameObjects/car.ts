@@ -244,6 +244,7 @@ export class Car {
       "carBody",
       undefined,
       {
+        render: { sprite: { xOffset: 0, yOffset: 0 } },
         friction: 0,
         restitution: 0,
         frictionAir: 0.006,
@@ -270,6 +271,7 @@ export class Car {
           friction: 0,
           restitution: 0,
         },
+        render: { sprite: { xOffset: 0, yOffset: 0 } },
         isSensor: false,
         ignoreGravity: false, // Make the tire not be affected by gravity
       } as Phaser.Types.Physics.Matter.MatterBodyConfig)
@@ -311,6 +313,7 @@ export class Car {
           friction: 0,
           restitution: 0,
         },
+        render: { sprite: { xOffset: 0, yOffset: 0 } },
         isSensor: false, // Make the tire not generate collision responses
         ignoreGravity: false, // Make the tire not be affected by gravity
       } as Phaser.Types.Physics.Matter.MatterBodyConfig)
