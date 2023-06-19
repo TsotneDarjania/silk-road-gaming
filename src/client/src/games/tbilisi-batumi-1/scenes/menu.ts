@@ -353,7 +353,7 @@ export class Menu extends Phaser.Scene {
       .on(Phaser.Input.Events.POINTER_UP, () => {
         if (this.game.scale.isFullscreen === false) {
           if (this.isIOS()) return;
-          this.scale.startFullscreen();
+          // this.scale.startFullscreen();
         }
       })
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
@@ -419,10 +419,7 @@ export class Menu extends Phaser.Scene {
   }
 
   playGame() {
-    setTimeout(() => {
-      //  this.scale.removeAllListeners();
-    }, 1000);
-
+    this.scale.removeAllListeners();
     this.scene.start("GamePlay");
   }
 }
