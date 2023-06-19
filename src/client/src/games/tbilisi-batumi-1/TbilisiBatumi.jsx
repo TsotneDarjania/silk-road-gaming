@@ -17,6 +17,12 @@ export const TbilisiBatumi = () => {
   const canvasContainer = useRef(null);
   const [isPortrait, setIsPortrait] = useState(false);
 
+  const IOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); // fails on
+
+  function isIOS() {
+    return IOS ? true : false;
+  }
+
   const isLandscapeOrientation = () => {
     if (window.screen.height > window.screen.width) {
       return false;
@@ -40,13 +46,31 @@ export const TbilisiBatumi = () => {
   const hideWidth = window.outerWidth - window.innerWidth;
   const hideHeight = window.outerHeight - window.innerHeight;
 
-  const canvasWidth = isLandscapeOrientation()
-    ? window.outerWidth - hideWidth
-    : window.outerHeight - hideHeight;
+  const getCanvasSize = () => {
+    if (isIOS()) {
+      const canvasHeight = isLandscapeOrientation()
+        ? window.outerWidth - hideWidth
+        : window.outerHeight - hideHeight;
 
-  const canvasHeight = isLandscapeOrientation()
-    ? window.outerHeight - hideHeight
-    : window.outerWidth - hideWidth;
+      const canvasWidth = isLandscapeOrientation()
+        ? window.outerHeight - hideHeight
+        : window.outerWidth - hideWidth;
+
+      return [canvasWidth, canvasHeight];
+    } else {
+      const canvasWidth = isLandscapeOrientation()
+        ? window.outerWidth - hideWidth
+        : window.outerHeight - hideHeight;
+
+      const canvasHeight = isLandscapeOrientation()
+        ? window.outerHeight - hideHeight
+        : window.outerWidth - hideWidth;
+
+      return [canvasWidth, canvasHeight];
+    }
+
+    return [0, 0];
+  };
 
   useEffect(() => {
     if (!canvasContainer.current) return;
@@ -68,8 +92,8 @@ export const TbilisiBatumi = () => {
       scale: {
         mode: Phaser.Scale.NONE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: canvasWidth,
-        height: canvasHeight,
+        width: getCanvasSize()[0],
+        height: getCanvasSize()[1],
       },
 
       backgroundColor: 0x19053b,
