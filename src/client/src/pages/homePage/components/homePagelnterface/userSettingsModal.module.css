@@ -19,8 +19,8 @@
 }
 
 .userAvatar{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 2%;
     position: relative;
 }
@@ -39,7 +39,7 @@
     border-radius: 2%;
     cursor: pointer;
     position: absolute;
-    top: 70px;
+    top: 120px;
     right: -20px;
 }
 .cameraBtn:hover{
@@ -125,9 +125,23 @@
     width: 48px;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1188px) {
     .userNameBox{
         flex-direction: column;
+    }
+    .userNameBox div{
+        flex-direction: column;
+        align-items: center;
+    }
+    .userNameInput{
+        width: 377px;
+    }
+    .settingsContainer{
+        width: 65%;
+        height: 65%;
+    }
+    .saveBtn{
+        width: 77px;
     }
 }
 @media (max-width: 800px){
@@ -136,11 +150,7 @@
         height: 80%;
     }
 }
-@media (max-width: 500px) {
-    .userNameBox div{
-        flex-direction: column;
-        justify-content: flex-end;
-    }
+@media (max-width: 516px) {
     .userNameInput{
         width: 100%;
     }
