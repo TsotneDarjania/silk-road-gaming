@@ -264,7 +264,7 @@ export class Car {
 
   addCarTires() {
     this.leftTire = this.scene.matter.add
-      .sprite(this.x - 43, this.y + 30, "carTire", undefined, {
+      .sprite(this.x - 48, this.y + 30, "carTire", undefined, {
         shape: {
           type: "circle",
           radius: 17,
@@ -306,7 +306,7 @@ export class Car {
     });
 
     this.rightTire = this.scene.matter.add
-      .sprite(this.x + 79, this.y + 30, "carTire", undefined, {
+      .sprite(this.x + 74, this.y + 30, "carTire", undefined, {
         shape: {
           type: "circle",
           radius: 17,
