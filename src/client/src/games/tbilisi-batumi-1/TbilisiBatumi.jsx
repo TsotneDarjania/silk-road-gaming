@@ -80,7 +80,7 @@ export const TbilisiBatumi = () => {
       physics: {
         default: "matter",
         matter: {
-          debug: false,
+          debug: true,
           gravity: {
             y: 0.3,
           },
