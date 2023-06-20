@@ -8,7 +8,6 @@
   width: 100%;
   height: 70vh;
 
-  transition: 0.5s;
   opacity: 0.3;
   filter: grayscale(100%);
   background-repeat: no-repeat;
@@ -32,7 +31,7 @@
   font-family: "Geo", sans-serif;
 }
 
-.rightContainer {
+.rightContainer, .activeVideo{
   composes: flexCenter from "../../../../../global.css";
   position: absolute;
   top: 0;
@@ -50,19 +49,38 @@
 .descriptionDiv {
   height: 220px;
   overflow-y: scroll;
+
+}
+
+/* width */
+/* .descriptionDiv::-webkit-scrollbar {
+  width: 12px;
+} */
+
+/* Track */
+.descriptionDiv::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.descriptionDiv::-webkit-scrollbar-thumb {
+  background: #fff9f0;
+}
+
+/* Handle on hover */
+.descriptionDiv::-webkit-scrollbar-thumb:hover {
+  background: #575756;
 }
 
 .leftContainer span:not(.number) {
   font-size: 33px;
   font-weight: bold;
   color: rgb(69, 140, 179);
+  cursor: pointer;
 }
 
-.gameVideo {
-  position: absolute;
-  width: 80%;
-  height: 82%;
-  z-index: 2;
+.artGameGallery{
+  width: 100%;
 }
 
 .playButton {
@@ -128,4 +146,35 @@
 
 .commentIcon {
   font-size: 20px;
+  margin-top: 6px;
+}
+
+.fullScreenIcon{
+  position: absolute;
+  z-index: 5;
+  color: white;
+  font-size: 20px;
+  bottom: 10px;
+  right: 110px;
+  cursor: pointer;
+}
+.videoContainer{
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.gameVideo {
+  width: 80%;
+  height: 82%;
+  z-index: 2;
+}
+.activeVideo{
+  position: fixed;
+  width: 50%;
+  height: 50%;
+  z-index: 55;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -20px;
 }

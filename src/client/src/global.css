@@ -72,3 +72,16 @@ body {
   left: 0;
   position: fixed;
 }
+
+/* for slider */
+.slick-track{
+  display: flex !important;
+  gap: 30px;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.slick-slide{
+  height: 50% !important;
+}
