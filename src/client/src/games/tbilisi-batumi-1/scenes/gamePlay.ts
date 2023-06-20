@@ -106,11 +106,17 @@ export class GamePlay extends Phaser.Scene {
 
   russianTank!: RussianTank;
 
+  sceneIsStart = false;
+
   //@ts-ignore
   IOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   constructor() {
     super("GamePlay");
+  }
+
+  init() {
+    this.sceneIsStart = true;
   }
 
   isIOS() {
@@ -128,7 +134,7 @@ export class GamePlay extends Phaser.Scene {
 
     new GovermentStation(this, -118680, 1120);
 
-    this.addRussianSoldiers();
+    //this.addRussianSoldiers()
 
     this.russianTank = new RussianTank(this, -130700, 1100);
 
@@ -211,9 +217,12 @@ export class GamePlay extends Phaser.Scene {
   }
 
   addRussianSoldiers() {
-    Object.values(russianSoldiersData).forEach((data: RussianSoldierData) => {
-      this.russianSoldiers.push(new RussianSoldier(this, data.x, data.y));
-    });
+    if (this.sceneIsStart === false) return;
+    if (this.game.canvas.width > 1000) {
+      Object.values(russianSoldiersData).forEach((data: RussianSoldierData) => {
+        this.russianSoldiers.push(new RussianSoldier(this, data.x, data.y));
+      });
+    }
   }
 
   addRails() {

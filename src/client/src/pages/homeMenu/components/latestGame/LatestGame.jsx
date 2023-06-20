@@ -26,7 +26,7 @@ const LatestGame = () => {
         </div>
         <button
           onClick={() => {
-            window.open("http://localhost:3000" + gamesInfo.lastGame.url);
+            window.open(gamesInfo.lastGame.url);
           }}
           className={style.playButton}
         >

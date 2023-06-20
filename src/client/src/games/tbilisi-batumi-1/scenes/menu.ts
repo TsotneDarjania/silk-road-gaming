@@ -65,6 +65,7 @@ export class Menu extends Phaser.Scene {
     });
 
     this.scale.on(Phaser.Scale.Events.ENTER_FULLSCREEN, () => {
+      // if (this.game.canvas.width < 1000) return;
       // setTimeout(() => {
       //   this.changeOrientationSize(window.outerWidth, window.outerHeight);
       //   this.scale.removeAllListeners();

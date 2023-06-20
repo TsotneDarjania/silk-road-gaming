@@ -137,7 +137,11 @@
         "fontSize": 35,
         "padding": 14
       },
-      "menuInfoTextSize": "24px"
+      "menuInfoTextSize": "24px",
+      "winModal": {
+        "fontSize": "36px",
+        "buttonScale": 2
+      }
     }
   },
   "mobile": {
@@ -278,7 +282,11 @@
         "fontSize": 20,
         "padding": 14
       },
-      "menuInfoTextSize": "16px"
+      "menuInfoTextSize": "16px",
+      "winModal": {
+        "fontSize": "15px",
+        "buttonScale": 0.8
+      }
     }
   }
 }

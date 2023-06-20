@@ -71,6 +71,8 @@ export class Preload extends Phaser.Scene {
 
     this.load.setPath(`${process.env.PUBLIC_URL}/assets`);
 
+    this.load.image("donateButton", "donateButton.png");
+
     //Songs
     this.load.audio("mtawmindaSong", ["music/songs/mtawminda.mp3"]);
     this.load.audio("lexseni", ["music/songs/lexseni.mp3"]);
