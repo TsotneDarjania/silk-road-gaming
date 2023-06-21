@@ -26,8 +26,7 @@
   display: flex;
   flex-direction: column;
   padding: 30px;
-
-  /* backdrop-filter: hue-rotate(120deg); */
+  justify-content: space-around;
   font-family: "Geo", sans-serif;
 }
 
@@ -49,7 +48,6 @@
 .descriptionDiv {
   height: 220px;
   overflow-y: scroll;
-
 }
 
 /* width */
@@ -84,10 +82,8 @@
 }
 
 .playButton {
-  position: absolute;
   cursor: pointer;
   font-size: 35px;
-  bottom: 20px;
   width: 200px;
   height: 57px;
   border: none;
@@ -104,11 +100,14 @@
   box-shadow: -5px -5px 0px 0px rgb(196, 106, 17);
 }
 
-.indicators {
-  position: absolute;
-  bottom: 25px;
-  left: 225px;
+.buttonsDiv{
   width: 100%;
+  display: flex;
+  align-items: flex-end;
+  column-gap: 30px;
+}
+.indicators {
+  height: 57px;
 }
 
 .indicators ul {
@@ -118,7 +117,6 @@
   display: flex;
   gap: 20px;
   font-size: 25px;
-  padding-left: 44px;
 }
 
 .indicators ul li {  
@@ -148,14 +146,16 @@
   font-size: 20px;
   margin-top: 6px;
 }
+.number{
+  cursor: default;
+}
 
 .fullScreenIcon{
   position: absolute;
   z-index: 5;
   color: white;
   font-size: 20px;
-  bottom: 10px;
-  right: 110px;
+  bottom: 5px;
   cursor: pointer;
 }
 .videoContainer{
@@ -177,4 +177,49 @@
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: -20px;
+}
+
+@media (max-width: 1300px){
+  .rightContainer{
+    display: none;
+  }
+  .leftContainer{
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .buttonsDiv{
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .artGameContainerBgImage{
+    height: 80vh;
+  }
+  .leftContainer{
+    padding: 15px;
+  }
+  .leftContainer_Div{
+    font-size: 16px;
+  }
+  .leftContainer span:not(.number) {
+    font-size: 23px;
+  }
+}
+@media (max-height: 830px) {
+  .descriptionDiv{
+    height: 200px;
+    padding-right: 5px;
+  }
+  .leftContainer_Div{
+    font-size: 16px;
+  }
+  .leftContainer span:not(.number) {
+    font-size: 23px;
+  }
+}
+@media (max-height: 600px) {
+  .descriptionDiv{
+    height: 120px;
+  }
 }

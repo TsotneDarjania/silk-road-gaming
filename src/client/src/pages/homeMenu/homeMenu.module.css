@@ -1,55 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
 
 .homeMenu {
-  composes: darkBgColor from '../../global.css';
+  composes: darkBgColor from "../../global.css";
   width: 100vw;
   height: 100vh;
 }
-
-.header {
-  composes: flexCenter from '../../global.css';
-  width: 100vw;
-  height: 12vh;
-
-  font-weight: bold;
-  font-family: "Geo", sans-serif;
-  list-style: none;
-  gap: 30px;
-
-  position: fixed;
-  z-index: 60;
-}
-
-.menu-li {
-  cursor: pointer;
-  color: rgb(62, 92, 90);
-  transition: 0.3s;
-
-  font-size: 21px;
-  padding: 20px;
-  border: 2px solid rgb(48, 116, 125);
-}
-.menu-li:hover {
-  color: rgb(16, 180, 180);
-}
-
-.selected-li {
-  font-size: 30px;
-  border: 2px solid rgb(16, 180, 180);
-  color: rgb(16, 180, 180);
-}
-
-.menu-item {
-  transition: 0.4s;
-  opacity: 0;
-}
-
-.show-item {
-  opacity: 1;
-}
-
 .homeButton {
-  composes: orangeBgColor from '../../global.css';
+  composes: orangeBgColor from "../../global.css";
   width: 200px;
   height: 50px;
   position: absolute;
@@ -72,7 +29,7 @@
 
 @media screen and (max-width: 900px) {
   .homeButton {
-    composes: orangeBgColor from '../../global.css';
+    composes: orangeBgColor from "../../global.css";
     width: 120px;
     height: 40px;
     position: absolute;
@@ -90,19 +47,5 @@
     border: none;
     box-shadow: 4px 4px 0px 0px rgb(249, 165, 119);
     font-family: "Geo", sans-serif;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .menu-li {
-    font-size: 17px;
-    padding: 7px;
-    border: 2px solid rgb(48, 116, 125);
-  }
-
-  .selected-li {
-    font-size: 21px;
-    border: 2px solid rgb(16, 180, 180);
-    color: rgb(16, 180, 180);
   }
 }

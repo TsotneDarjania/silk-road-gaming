@@ -55,7 +55,7 @@ function App() {
 
   const [isTransitionPlayAnimation, setTransitionPlayAnimation] =
     useState(false);
-
+  
   return (
     <div className="App">
       {page === "intro" && (

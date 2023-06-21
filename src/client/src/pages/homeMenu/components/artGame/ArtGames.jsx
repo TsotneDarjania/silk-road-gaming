@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import style from "./artGames.module.css";
 import ArtGameContainer from "./components/ArtGameContainer";
 import Shadow from "../../../../components/Shadow";
+import artGameInfo from "../../../../data/artgames.json";
 
-const ArtGames = () => {
+const ArtGames = (props) => {
   const [show, setShow] = useState(false);
   const [active, setActive] = useState([false, false]);
   const [showShadow, setShowShadow] = useState(false);
@@ -25,36 +26,41 @@ const ArtGames = () => {
         });
       });
   }, [showShadow]);
-  
+
   const shadowProperty = {
     opacity: 0.5,
     transition: "0.5s",
-    show: showShadow || show,
-    setShow: setShow || setShowShadow,
-  };
-
-  const artGameContainers = () => {
-    const quantity = 5;
-    
-    const elements = Array.from({ length: quantity }, (_, i) => (
-      <ArtGameContainer
-        key={i}
-        show={show}
-        setShow={setShow}
-        active={active}
-        handleFullScreen={handleFullScreen}
-        videoId={i}
-        setShowShadow={setShowShadow}
-      />
-    ));
-  
-    return elements;
+    show: show || showShadow,
+    setShow: setShow,
   };
 
   return (
-    <div className={style.artGames}>
+    <div
+      className={style.artGames}
+      id="art_games_container"
+      onTransitionEnd={(item) => {
+        if (
+          item.target.style.opacity == 0 &&
+          item.target.id === "art_games_container"
+        ) {
+          item.target.style.display = "none";
+        }
+      }}
+    >
       <Shadow props={shadowProperty} />
-      {artGameContainers()}
+      {artGameInfo.map((item, index) => (
+        <ArtGameContainer
+          key={index}
+          show={show}
+          setShow={setShow}
+          active={active}
+          handleFullScreen={handleFullScreen}
+          videoId={index}
+          setShowShadow={setShowShadow}
+          name={item.name}
+          description={item.description}
+        />
+      ))}
     </div>
   );
 };

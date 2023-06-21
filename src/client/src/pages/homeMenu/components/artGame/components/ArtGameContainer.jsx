@@ -11,12 +11,6 @@ import SliderComponent from "../../../../../components/SliderComponent";
 import image from "../../../images/background.jpg";
 
 const ArtGameContainer = (props) => {
-  const description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at dictum ex,
-     vitae ullamcorper magna. Mauris sed ante blandit, commodo sapien non, bibendum neque. 
-     Integer pellentesque sit amet purus non lobortis. Phasellus dui risus, ultrices eget lectus vitae, 
-     tristique viverra elit. Nunc gravida varius diam at lacinia. Nulla luctus tristique elit, eu bibendum nibh sollicitudin sed. 
-     Praesent sed rhoncus purus.`;
-
   const images = [image, image, image, image, image, image];
 
   return (
@@ -25,64 +19,76 @@ const ArtGameContainer = (props) => {
       <div className={style.leftContainer}>
         <div className={style.leftContainer_Div}>
           <h3>
-            <span> Name : </span> {gamesInfo.lastGame.name}
+            <span> Name : </span> {props.name}
           </h3>
+          <div
+            className={
+              props.description.length >= 400 ? style.descriptionDiv : ""
+            }
+          >
+            <h3>
+              <span> Description : </span>
+              {props.description}
+            </h3>
+          </div>
         </div>
-        <div
-          className={`${style.leftContainer_Div} ${
-            description.length >= 400 ? style.descriptionDiv : ""
-          }`}
-        >
-          <h3>
-            <span> Description : </span>
-            {description}
-          </h3>
-        </div>
+
         <div className={style.artGameGallery}>
           <SliderComponent images={images} />
         </div>
-        <button
-          onClick={() => {
-            window.open("http://localhost:3000" + gamesInfo.lastGame.url);
-          }}
-          className={style.playButton}
-        >
-          Play
-        </button>
-        <div className={style.indicators}>
-          <ul>
-            <li className={style.likeIcon}>
-              <AiFillLike /> <span className={style.number}> 0 </span>
-            </li>
 
-            <li>
-              <div className={style.dislikeIcon}>
-                <AiFillDislike />
-              </div>
-              <span className={style.number}> 0 </span>
-            </li>
+        <div className={style.buttonsDiv}>
+          <button
+            onClick={() => {
+              window.open("http://localhost:3000" + gamesInfo.lastGame.url);
+            }}
+            className={style.playButton}
+          >
+            Play
+          </button>
+          <div className={style.indicators}>
+            <ul>
+              <li className={style.likeIcon}>
+                <AiFillLike /> <span className={style.number}> 0 </span>
+              </li>
 
-            <li className={style.commentIcon}>
-              <FaCommentAlt onClick={() => props.setShow(true)} />
-            </li>
+              <li>
+                <div className={style.dislikeIcon}>
+                  <AiFillDislike />
+                </div>
+                <span className={style.number}> 0 </span>
+              </li>
 
-            <li>
-              <MdLeaderboard />
-            </li>
-          </ul>
+              <li className={style.commentIcon}>
+                <FaCommentAlt onClick={() => props.setShow(true)} />
+              </li>
+
+              <li>
+                <MdLeaderboard />
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
-        <div className={`${style.rightContainer} ${props.active[props.videoId] === true ? style.activeVideo : ''}`}>
-          <div className={style.videoContainer}>
-            <video className={style.gameVideo} loop autoPlay>
-              <source src={gameVideo} type="video/mp4" />
-            </video>
-            <div className={style.fullScreenIcon}>
-              <BsFullscreen onClick={() => props.handleFullScreen(props.videoId)} />
-            </div>
+      <div
+        className={`${style.rightContainer} ${
+          props.active[props.videoId] === true ? style.activeVideo : ""
+        }`}
+      >
+        <div className={style.videoContainer}>
+          <video className={style.gameVideo} loop autoPlay>
+            <source src={gameVideo} type="video/mp4" />
+          </video>
+          <div className={`${style.fullScreenIcon}`}
+            style={{right: props.active[props.videoId] === true ? '110px' : '90px'}}
+          >
+            <BsFullscreen
+              onClick={() => props.handleFullScreen(props.videoId)}
+            />
           </div>
         </div>
+      </div>
       <ModalForComments show={props.show} />
     </div>
   );
