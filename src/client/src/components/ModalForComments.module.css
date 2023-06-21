@@ -2,11 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
 
 .commentsContainer{
-    composes: darkBgColor from '../../../../../global.css';
+    composes: darkBgColor from '../global.css';
     width: 70%;
     height: 70%;
     position: fixed;
-    z-index: 55;
+    z-index: 60;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -34,7 +34,7 @@
 }
 
 .userInfo{
-    composes: neonBlueColor from '../../../../../global.css';
+    composes: neonBlueColor from '../global.css';
     display: flex;
     gap: 10px;
     font-size: 18px;
@@ -45,7 +45,7 @@
 }
 
 .comment{
-    composes: fadedWhiteColor from '../../../../../global.css';
+    composes: fadedWhiteColor from '../global.css';
     padding: 5px 0px;
 }
 

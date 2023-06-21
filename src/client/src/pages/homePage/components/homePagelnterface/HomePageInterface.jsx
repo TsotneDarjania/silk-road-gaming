@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import style from "./homePageInterface.module.css";
 
-import image from "./user.png";
 import { deleteCookies, getCookie } from "../../../../helper/cookie";
 
 import { CgMenuGridR } from "react-icons/cg";

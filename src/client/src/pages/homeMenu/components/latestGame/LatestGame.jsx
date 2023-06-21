@@ -5,7 +5,18 @@ import gamesInfo from "../../../../data/gamesInfo.json";
 
 const LatestGame = () => {
   return (
-    <div className={style.latestGameContainer}>
+    <div
+      className={style.latestGameContainer}
+      id="latest_game_container"
+      onTransitionEnd={(item) => {
+        if (
+          item.target.style.opacity == 0 &&
+          item.target.id === "latest_game_container"
+        ) {
+          item.target.style.display = "none";
+        }
+      }}
+    >
       <div className={style.latestGameContainerBackgroundImage}></div>
       <div className={style.leftContainer}>
         <div className={style.leftContainer_Div}>

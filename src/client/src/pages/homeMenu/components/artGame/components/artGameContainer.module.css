@@ -1,0 +1,225 @@
+/* '../../../../../global.css' */
+.artGameContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.artGameContainerBgImage {
+  width: 100%;
+  height: 70vh;
+
+  opacity: 0.3;
+  filter: grayscale(100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../../images/games/wallpapers/1.jpg");
+}
+
+.leftContainer {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  justify-content: space-around;
+  font-family: "Geo", sans-serif;
+}
+
+.rightContainer, .activeVideo{
+  composes: flexCenter from "../../../../../global.css";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 5;
+}
+
+.leftContainer_Div {
+  composes: neonBlueColor from "../../../../../global.css";
+  font-size: 23px;
+}
+
+.descriptionDiv {
+  height: 220px;
+  overflow-y: scroll;
+}
+
+/* width */
+/* .descriptionDiv::-webkit-scrollbar {
+  width: 12px;
+} */
+
+/* Track */
+.descriptionDiv::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.descriptionDiv::-webkit-scrollbar-thumb {
+  background: #fff9f0;
+}
+
+/* Handle on hover */
+.descriptionDiv::-webkit-scrollbar-thumb:hover {
+  background: #575756;
+}
+
+.leftContainer span:not(.number) {
+  font-size: 33px;
+  font-weight: bold;
+  color: rgb(69, 140, 179);
+  cursor: pointer;
+}
+
+.artGameGallery{
+  width: 100%;
+}
+
+.playButton {
+  cursor: pointer;
+  font-size: 35px;
+  width: 200px;
+  height: 57px;
+  border: none;
+  color: rgb(159, 64, 5);
+  background-color: rgb(255, 180, 81);
+  box-shadow: 5px 5px 0px 0px rgb(196, 106, 17);
+  font-weight: bold;
+  font-family: "Geo", sans-serif;
+  transition: 0.3s;
+  z-index: 5;
+}
+.playButton:hover {
+  color: black;
+  box-shadow: -5px -5px 0px 0px rgb(196, 106, 17);
+}
+
+.buttonsDiv{
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  column-gap: 30px;
+}
+.indicators {
+  height: 57px;
+}
+
+.indicators ul {
+  list-style: none;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  gap: 20px;
+  font-size: 25px;
+}
+
+.indicators ul li {  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+
+  color: rgb(215, 217, 214);
+  transition: 0.4s;
+}
+.number{
+    color: rgb(215, 217, 214);
+    font-size: 30px;
+}
+
+.indicators ul li :hover :not(.number) {
+    color: rgb(136, 240, 244);
+}
+
+.dislikeIcon {
+    margin-top: 12px;
+}
+
+.commentIcon {
+  font-size: 20px;
+  margin-top: 6px;
+}
+.number{
+  cursor: default;
+}
+
+.fullScreenIcon{
+  position: absolute;
+  z-index: 5;
+  color: white;
+  font-size: 20px;
+  bottom: 5px;
+  cursor: pointer;
+}
+.videoContainer{
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.gameVideo {
+  width: 80%;
+  height: 82%;
+  z-index: 2;
+}
+.activeVideo{
+  position: fixed;
+  width: 50%;
+  height: 50%;
+  z-index: 55;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -20px;
+}
+
+@media (max-width: 1300px){
+  .rightContainer{
+    display: none;
+  }
+  .leftContainer{
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .buttonsDiv{
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .artGameContainerBgImage{
+    height: 80vh;
+  }
+  .leftContainer{
+    padding: 15px;
+  }
+  .leftContainer_Div{
+    font-size: 16px;
+  }
+  .leftContainer span:not(.number) {
+    font-size: 23px;
+  }
+}
+@media (max-height: 830px) {
+  .descriptionDiv{
+    height: 200px;
+    padding-right: 5px;
+  }
+  .leftContainer_Div{
+    font-size: 16px;
+  }
+  .leftContainer span:not(.number) {
+    font-size: 23px;
+  }
+}
+@media (max-height: 600px) {
+  .descriptionDiv{
+    height: 120px;
+  }
+}
