@@ -19,24 +19,24 @@
 }
 
 /* width */
-::-webkit-scrollbar {
+.miniGames::-webkit-scrollbar {
   width: 20px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+.miniGames::-webkit-scrollbar-track {
   background: #161616;
   border-radius: 30px;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+.miniGames::-webkit-scrollbar-thumb {
   background: #187391;
   border-radius: 30px;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.miniGames::-webkit-scrollbar-thumb:hover {
   background: #55cdf6;
 }
 

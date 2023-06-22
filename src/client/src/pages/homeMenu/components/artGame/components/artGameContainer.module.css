@@ -30,7 +30,8 @@
   font-family: "Geo", sans-serif;
 }
 
-.rightContainer, .activeVideo{
+.rightContainer,
+.activeVideo {
   composes: flexCenter from "../../../../../global.css";
   position: absolute;
   top: 0;
@@ -51,9 +52,9 @@
 }
 
 /* width */
-/* .descriptionDiv::-webkit-scrollbar {
-  width: 12px;
-} */
+.descriptionDiv::-webkit-scrollbar {
+  width: 5px;
+}
 
 /* Track */
 .descriptionDiv::-webkit-scrollbar-track {
@@ -62,12 +63,13 @@
 
 /* Handle */
 .descriptionDiv::-webkit-scrollbar-thumb {
-  background: #fff9f0;
+  background: #187391;
+  border-radius: 30px;
 }
 
 /* Handle on hover */
 .descriptionDiv::-webkit-scrollbar-thumb:hover {
-  background: #575756;
+  background: #55cdf6;
 }
 
 .leftContainer span:not(.number) {
@@ -77,7 +79,7 @@
   cursor: pointer;
 }
 
-.artGameGallery{
+.artGameGallery {
   width: 100%;
 }
 
@@ -100,7 +102,7 @@
   box-shadow: -5px -5px 0px 0px rgb(196, 106, 17);
 }
 
-.buttonsDiv{
+.buttonsDiv {
   width: 100%;
   display: flex;
   align-items: flex-end;
@@ -119,7 +121,7 @@
   font-size: 25px;
 }
 
-.indicators ul li {  
+.indicators ul li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,46 +131,50 @@
   color: rgb(215, 217, 214);
   transition: 0.4s;
 }
-.number{
-    color: rgb(215, 217, 214);
-    font-size: 30px;
+.number {
+  color: rgb(215, 217, 214);
+  font-size: 30px;
 }
 
 .indicators ul li :hover :not(.number) {
-    color: rgb(136, 240, 244);
+  color: rgb(136, 240, 244);
 }
 
 .dislikeIcon {
-    margin-top: 12px;
+  margin-top: 12px;
 }
 
 .commentIcon {
   font-size: 20px;
   margin-top: 6px;
 }
-.number{
+.number {
   cursor: default;
 }
 
-.fullScreenIcon{
-  position: absolute;
+.fullScreenIcon {
   z-index: 5;
   color: white;
   font-size: 20px;
-  bottom: 5px;
   cursor: pointer;
-}
-.videoContainer{
-  position: relative;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  margin-top: -30px;
+  padding: 5px;
+}
+.videoContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
 }
 .gameVideo {
-  width: 80%;
-  height: 82%;
+  width: 100%;
+  height: 100%;
   z-index: 2;
+  cursor: pointer;
 }
-.activeVideo{
+.activeVideo {
   position: fixed;
   width: 50%;
   height: 50%;
@@ -179,27 +185,27 @@
   margin-top: -20px;
 }
 
-@media (max-width: 1300px){
-  .rightContainer{
+@media (max-width: 1300px) {
+  .rightContainer {
     display: none;
   }
-  .leftContainer{
+  .leftContainer {
     width: 100%;
   }
 }
 @media (max-width: 600px) {
-  .buttonsDiv{
+  .buttonsDiv {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
   }
-  .artGameContainerBgImage{
+  .artGameContainerBgImage {
     height: 80vh;
   }
-  .leftContainer{
+  .leftContainer {
     padding: 15px;
   }
-  .leftContainer_Div{
+  .leftContainer_Div {
     font-size: 16px;
   }
   .leftContainer span:not(.number) {
@@ -207,11 +213,11 @@
   }
 }
 @media (max-height: 830px) {
-  .descriptionDiv{
+  .descriptionDiv {
     height: 200px;
     padding-right: 5px;
   }
-  .leftContainer_Div{
+  .leftContainer_Div {
     font-size: 16px;
   }
   .leftContainer span:not(.number) {
@@ -219,7 +225,7 @@
   }
 }
 @media (max-height: 600px) {
-  .descriptionDiv{
+  .descriptionDiv {
     height: 120px;
   }
 }

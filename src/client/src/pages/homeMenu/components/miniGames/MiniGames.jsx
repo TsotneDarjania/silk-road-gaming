@@ -19,7 +19,7 @@ const MiniGames = (props) => {
       id="mini_games_container"
       onTransitionEnd={(item) => {
         if (
-          item.target.style.opacity == 0 &&
+          item.target.style.opacity === "0" &&
           item.target.id === "mini_games_container"
         ) {
           item.target.style.visibility = "hidden";

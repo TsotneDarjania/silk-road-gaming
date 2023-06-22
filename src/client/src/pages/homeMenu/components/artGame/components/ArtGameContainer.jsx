@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import style from "./artGameContainer.module.css";
 import gamesInfo from "../../../../../data/gamesInfo.json";
 import gameVideo from "../../../videos/1.mp4";
-import { AiFillDislike, AiFillLike } from "react-icons/ai";
+import {
+  AiFillDislike,
+  AiFillLike,
+  AiOutlineFullscreen,
+  AiOutlineFullscreenExit,
+} from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
 import { BsFullscreen } from "react-icons/bs";
@@ -77,15 +82,24 @@ const ArtGameContainer = (props) => {
         }`}
       >
         <div className={style.videoContainer}>
-          <video className={style.gameVideo} loop autoPlay>
+          <video
+            className={style.gameVideo}
+            loop
+            autoPlay
+            onClick={() => props.handleFullScreen(props.videoId)}
+          >
             <source src={gameVideo} type="video/mp4" />
           </video>
-          <div className={`${style.fullScreenIcon}`}
-            style={{right: props.active[props.videoId] === true ? '110px' : '90px'}}
-          >
-            <BsFullscreen
-              onClick={() => props.handleFullScreen(props.videoId)}
-            />
+          <div className={`${style.fullScreenIcon}`}>
+            {props.showShadow ? (
+              <AiOutlineFullscreenExit
+                onClick={() => props.handleFullScreen(props.videoId)}
+              />
+            ) : (
+              <AiOutlineFullscreen
+                onClick={() => props.handleFullScreen(props.videoId)}
+              />
+            )}
           </div>
         </div>
       </div>

@@ -25,13 +25,13 @@ const ArtGames = (props) => {
           return (value = false);
         });
       });
-  }, [showShadow]);
+  }, [showShadow, show]);
 
   const shadowProperty = {
     opacity: 0.5,
     transition: "0.5s",
     show: show || showShadow,
-    setShow: setShow,
+    setShow: showShadow === true ? setShowShadow : setShow,
   };
 
   return (
@@ -40,14 +40,13 @@ const ArtGames = (props) => {
       id="art_games_container"
       onTransitionEnd={(item) => {
         if (
-          item.target.style.opacity == 0 &&
+          item.target.style.opacity === "0" &&
           item.target.id === "art_games_container"
         ) {
           item.target.style.visibility = "hidden";
         }
       }}
     >
-      {console.log('art games')}
       <Shadow props={shadowProperty} />
       {artGameInfo.map((item, index) => (
         <ArtGameContainer
@@ -58,6 +57,7 @@ const ArtGames = (props) => {
           handleFullScreen={handleFullScreen}
           videoId={index}
           setShowShadow={setShowShadow}
+          showShadow={showShadow}
           name={item.name}
           description={item.description}
         />

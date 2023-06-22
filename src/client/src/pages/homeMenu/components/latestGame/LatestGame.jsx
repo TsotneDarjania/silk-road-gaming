@@ -10,7 +10,7 @@ const LatestGame = () => {
       id="latest_game_container"
       onTransitionEnd={(item) => {
         if (
-          item.target.style.opacity == 0 &&
+          item.target.style.opacity === "0" &&
           item.target.id === "latest_game_container"
         ) {
           item.target.style.visibility = "hidden";
