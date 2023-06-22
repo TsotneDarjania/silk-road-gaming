@@ -13,7 +13,7 @@ const LatestGame = () => {
           item.target.style.opacity == 0 &&
           item.target.id === "latest_game_container"
         ) {
-          item.target.style.display = "none";
+          item.target.style.visibility = "hidden";
         }
       }}
     >

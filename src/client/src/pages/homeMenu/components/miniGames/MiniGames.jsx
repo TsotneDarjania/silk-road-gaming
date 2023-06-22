@@ -22,7 +22,7 @@ const MiniGames = (props) => {
           item.target.style.opacity == 0 &&
           item.target.id === "mini_games_container"
         ) {
-          item.target.style.display = "none";
+          item.target.style.visibility = "hidden";
         }
       }}
     >

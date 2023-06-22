@@ -8,8 +8,8 @@ import Header from "./components/header/Header";
 
 export const HomeMenu = ({ setRequestedPage, setTransitionPlayAnimation }) => {
   useEffect(() => {
-    document.getElementById("mini_games_container").style.display = "none";
-    document.getElementById("art_games_container").style.display = "none";
+    document.getElementById("mini_games_container").style.visibility = "hidden";
+    document.getElementById("art_games_container").style.visibility = "hidden";
   }, []);
 
   return (
