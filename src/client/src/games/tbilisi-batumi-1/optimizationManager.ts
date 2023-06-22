@@ -60,7 +60,7 @@ export class OptimizationManager {
     });
 
     // this.scene.matter.world.remove(this.scene.russianTank.tankBody);
-    this.scene.russianTank.tankBody.setVisible(false);
+    //this.scene.russianTank.tankBody.setVisible(false);
 
     // this.scene.russianSoldiers.forEach((soldier) => {
     //   //soldier.stopShoot();
@@ -414,7 +414,7 @@ export class OptimizationManager {
         });
       });
 
-      this.scene.matter.world.remove(this.scene.russianTank.tankBody);
+      // this.scene.matter.world.remove(this.scene.russianTank.tankBody);
 
       this.scene.train.frontVagon.setVisible(true);
       this.scene.train.backVagon.setVisible(true);
@@ -493,8 +493,8 @@ export class OptimizationManager {
         });
       });
 
-      this.scene.russianTank.tankBody.setVisible(false);
-      this.scene.matter.world.remove(this.scene.russianTank.tankBody);
+      ///this.scene.russianTank.tankBody.setVisible(false);
+      //this.scene.matter.world.remove(this.scene.russianTank.tankBody);
 
       this.scene.rails.forEach((rail) => {
         rail.leftRail.setVisible(false);
@@ -577,8 +577,8 @@ export class OptimizationManager {
           });
         });
 
-        this.scene.russianTank.tankBody.setVisible(false);
-        this.scene.matter.world.remove(this.scene.russianTank.tankBody);
+        // this.scene.russianTank.tankBody.setVisible(false);
+        //this.scene.matter.world.remove(this.scene.russianTank.tankBody);
 
         this.scene.rails.forEach((rail) => {
           rail.leftRail.setVisible(false);
@@ -662,8 +662,8 @@ export class OptimizationManager {
           });
         });
 
-        this.scene.russianTank.tankBody.setVisible(false);
-        this.scene.matter.world.remove(this.scene.russianTank.tankBody);
+        // this.scene.russianTank.tankBody.setVisible(false);
+        //this.scene.matter.world.remove(this.scene.russianTank.tankBody);
 
         this.scene.rails.forEach((rail) => {
           rail.leftRail.setVisible(false);
