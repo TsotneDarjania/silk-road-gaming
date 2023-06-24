@@ -43,10 +43,11 @@ const ArtGames = (props) => {
           item.target.style.opacity == 0 &&
           item.target.id === "art_games_container"
         ) {
-          item.target.style.display = "none";
+          item.target.style.visibility = "hidden";
         }
       }}
     >
+      {console.log('art games')}
       <Shadow props={shadowProperty} />
       {artGameInfo.map((item, index) => (
         <ArtGameContainer

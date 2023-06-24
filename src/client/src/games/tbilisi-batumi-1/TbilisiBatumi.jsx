@@ -102,7 +102,7 @@ export const TbilisiBatumi = () => {
       },
 
       backgroundColor: 0x19053b,
-      scene: [Boot, Menu, Preload, GamePlay, GameMenu, StartScene],
+      scene: [StartScene, Boot, Menu, Preload, GamePlay, GameMenu],
     });
 
     return () => game.destroy(true, false);

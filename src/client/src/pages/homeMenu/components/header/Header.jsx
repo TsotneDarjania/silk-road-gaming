@@ -6,13 +6,13 @@ const Header = () => {
 
   const handleMenuChange = (mode) => {
     setActive(mode);
+    document.getElementById(mode + "_container").style.visibility = "visible";
     document.getElementById("latest_game_container").style.opacity =
       mode === "latest_game" ? 1 : 0;
     document.getElementById("art_games_container").style.opacity =
       mode === "art_games" ? 1 : 0;
     document.getElementById("mini_games_container").style.opacity =
       mode === "mini_games" ? 1 : 0;
-    document.getElementById(mode + "_container").style.display = "flex";
   };
 
   return (
