@@ -1,4 +1,5 @@
-import { API } from "../api";
+import { Api } from "../../../api/api";
+import { ApiEnums } from "../../../enums/apiEnums";
 import { gameConfig } from "../config/gameConfig";
 import { GamePlay } from "../scenes/gamePlay";
 
@@ -7,7 +8,7 @@ export class SaveZone {
 
   isSaved = false;
 
-  api!: API;
+  api!: Api;
 
   constructor(
     public scene: GamePlay,
@@ -23,7 +24,7 @@ export class SaveZone {
   }
 
   init() {
-    this.api = new API();
+    this.api = new Api();
 
     this.addTraparet();
     this.addTitle();
@@ -105,7 +106,15 @@ export class SaveZone {
           );
 
           gameConfig.saveZoneIndex = this.saveZoneIndex;
-          this.api.saveGame(this.saveZoneIndex);
+          this.api
+            .saveUserDataToGame(
+              gameConfig.username,
+              ApiEnums.batumisken_v_1_CollectionId,
+              { saveZoneIndex: this.saveZoneIndex }
+            )
+            .then((response) => {
+              console.log(response);
+            });
         }
       });
     });

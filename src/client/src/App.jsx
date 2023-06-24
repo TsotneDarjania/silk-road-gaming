@@ -71,6 +71,8 @@ function App() {
       )}
       {page === "homeMenu" && (
         <HomeMenu
+          isLogin={isLogin}
+          setIsLogin={setIsLogin}
           setRequestedPage={setRequestedPage}
           setTransitionPlayAnimation={setTransitionPlayAnimation}
         />

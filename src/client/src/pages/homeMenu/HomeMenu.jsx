@@ -6,7 +6,12 @@ import MiniGames from "./components/miniGames/MiniGames";
 import ArtGames from "./components/artGame/ArtGames";
 import Header from "./components/header/Header";
 
-export const HomeMenu = ({ setRequestedPage, setTransitionPlayAnimation }) => {
+export const HomeMenu = ({
+  setRequestedPage,
+  setTransitionPlayAnimation,
+  setIsLogin,
+  isLogin,
+}) => {
   useEffect(() => {
     document.getElementById("mini_games_container").style.visibility = "hidden";
     document.getElementById("art_games_container").style.visibility = "hidden";
@@ -15,7 +20,7 @@ export const HomeMenu = ({ setRequestedPage, setTransitionPlayAnimation }) => {
   return (
     <div className={style.homeMenu}>
       <Header />
-      <LatestGame />
+      <LatestGame setIsLogin={setIsLogin} isLogin={isLogin} />
       <MiniGames />
       <ArtGames />
       <button
