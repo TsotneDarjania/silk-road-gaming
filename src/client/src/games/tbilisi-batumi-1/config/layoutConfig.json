@@ -136,6 +136,11 @@
       "informationText": {
         "fontSize": 35,
         "padding": 14
+      },
+      "menuInfoTextSize": "24px",
+      "winModal": {
+        "fontSize": "36px",
+        "buttonScale": 2
       }
     }
   },
@@ -186,7 +191,7 @@
         "fontSize": 18
       },
       "loadItem": {
-        "scale": 0.4
+        "scale": 0.3
       },
       "closeButton": {
         "widthPercent": 7.5
@@ -276,6 +281,11 @@
       "informationText": {
         "fontSize": 20,
         "padding": 14
+      },
+      "menuInfoTextSize": "16px",
+      "winModal": {
+        "fontSize": "15px",
+        "buttonScale": 0.8
       }
     }
   }

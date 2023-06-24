@@ -4,6 +4,12 @@ import { LoadingScreen } from "../../common/loadingScreen";
 export class Preload extends Phaser.Scene {
   loadingScreen!: LoadingScreen;
 
+  canvasHideWidth = window.outerWidth - window.innerWidth;
+  canvasHideHeight = window.outerHeight - window.innerHeight;
+
+  //@ts-ignore
+  IOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); // fails on
+
   constructor() {
     super("Preload");
   }
@@ -11,6 +17,50 @@ export class Preload extends Phaser.Scene {
   init() {
     /** Create loading visualization here */
     this.loadingScreen = new LoadingScreen(this);
+
+    this.addOrientationEvent();
+  }
+
+  addOrientationEvent() {
+    this.scale.on(Phaser.Scale.Events.ORIENTATION_CHANGE, () => {
+      this.changeOrientationSize(
+        window.outerWidth - this.canvasHideWidth,
+        window.outerHeight - this.canvasHideHeight
+      );
+    });
+  }
+
+  isIOS() {
+    return this.IOS ? true : false;
+  }
+
+  changeOrientationSize(canvasWidth: number, canvasHeight: number) {
+    if (this.isIOS()) return;
+    this.game.canvas.height = canvasWidth;
+    this.game.canvas.width = canvasHeight;
+
+    if (this.game.scale.isPortrait) {
+      // this.scale.resize(this.game.canvas.width, this.game.canvas.height);
+      // this.renderer.resize(this.game.canvas.height, this.game.canvas.width);
+      ///  this.scale.removeAllListeners();
+    } else {
+      if (this.isIOS()) {
+        // this.scale.resize(this.game.canvas.width, this.game.canvas.height);
+        // this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+        // this.scale.removeAllListeners();
+      } else {
+        this.scale.resize(this.game.canvas.height, this.game.canvas.width);
+        this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
+
+        this.scale.removeAllListeners();
+      }
+    }
+
+    this.scale.on(Phaser.Scale.Events.RESIZE, () => {
+      this.scale.removeAllListeners();
+
+      this.scene.restart();
+    });
   }
 
   preload() {
@@ -20,6 +70,8 @@ export class Preload extends Phaser.Scene {
     });
 
     this.load.setPath(`${process.env.PUBLIC_URL}/assets`);
+
+    this.load.image("donateButton", "donateButton.png");
 
     //Songs
     this.load.audio("mtawmindaSong", ["music/songs/mtawminda.mp3"]);
@@ -35,7 +87,7 @@ export class Preload extends Phaser.Scene {
     this.load.audio("carExplotionSound", ["music/effects/car-explotion.mp3"]);
     this.load.audio("applauseSound", ["music/effects/applause.mp3"]);
     this.load.audio("evilLaughSound", ["music/effects/evil-laugh.mp3"]);
-    this.load.audio("bodyFail", ["music/effects/bodyFail.ogg"]);
+    this.load.audio("bodyFail", ["music/effects/bodyFail.mp3"]);
     this.load.audio("carEngine", ["music/effects/car-engine.mp3"]);
     this.load.audio("wolfSound", ["music/effects/wolf-sound.mp3"]);
 
@@ -90,12 +142,19 @@ export class Preload extends Phaser.Scene {
     this.load.image("veteran", `menu/gamePlay/veteran.png`);
 
     // Car
-    this.load.svg("carBody", `car/body.svg`);
-    this.load.image("pedal", "car/pedal.png");
+    if (this.isIOS()) {
+      this.load.image("carBody", `car/body.png`);
+      this.load.image("carTire", `car/tire.png`);
+      this.load.image("carBoy", `car/boy.png`);
+      this.load.image("carBag", `car/bag.png`);
+    } else {
+      this.load.svg("carBody", `car/body.svg`);
+      this.load.svg("carTire", `car/tire.svg`);
+      this.load.svg("carBoy", `car/boy.svg`);
+      this.load.svg("carBag", `car/bag.svg`);
+    }
 
-    this.load.svg("carTire", `car/tire.svg`);
-    this.load.svg("carBag", `car/bag.svg`);
-    this.load.svg("carBoy", `car/boy.svg`);
+    this.load.image("pedal", "car/pedal.png");
 
     this.load.json("carMeshe", `car/car.json`);
 
@@ -222,6 +281,7 @@ export class Preload extends Phaser.Scene {
   }
 
   create() {
+    this.scale.removeAllListeners();
     this.scene.start("Menu");
   }
 }
