@@ -23,7 +23,8 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
       api.userLogin(userName, userPassword).then(
         (response) => {
           if (response.password === userPassword) {
-            saveUser(userName, userPassword);
+            saveUserIntoCookie(userName, userPassword);
+            setIsLogin(true);
           } else {
             setShowWarning(true);
             setShowWarningText("Username or password is incorrect");
@@ -61,7 +62,8 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
     if (isValidation(userName, userPassword)) {
       api.userRegistration(userName, userPassword).then(
         (response) => {
-          saveUser(userName, userPassword);
+          saveUserIntoCookie(userName, userPassword);
+          setIsLogin(true);
         },
         (error) => {
           if (error.code === 409) {
@@ -76,7 +78,7 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
     event.preventDefault();
   };
 
-  const saveUser = (username, password) => {
+  const saveUserIntoCookie = (username, password) => {
     setCookie(
       "loginSession",
       JSON.stringify({
@@ -85,7 +87,6 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
       }),
       2100
     );
-    setIsLogin(true);
   };
 
   return (
