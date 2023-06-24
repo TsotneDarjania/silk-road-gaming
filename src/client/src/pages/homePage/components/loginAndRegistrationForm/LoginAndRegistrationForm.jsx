@@ -1,102 +1,78 @@
-import React, { useState } from "react";
+import React, { useState, useReducer, useRef } from "react";
 import Warning from "../../../../components/Warning";
 import { deleteCookies, setCookie } from "../../../../helper/cookie";
 import style from "./loginAndRegistrationForm.module.css";
+import { Api } from "../../../../api/api";
+
+const api = new Api();
 
 const LoginAndRegistrationForm = ({ setIsLogin }) => {
-  const [userName, setUserName] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+  const userLoginNameRef = useRef(null);
+  const userLoginPasswordRef = useRef(null);
+  const userRegistrationNameRef = useRef(null);
+  const userRegistrationPassowrdRef = useRef(null);
 
-  const [userLoginName, setUserLoginName] = useState("");
-  const [userLoginPassword, setUserLogginPassword] = useState("");
-
-  const [showMinUserNameWarning, setShowMinUserNameWarning] = useState(false);
-  const [showMinPasswordWarning, setShowMinPasswordWarning] = useState(false);
-  const [showUserNameAlreadyUsedWarning, setshowUserNameAlreadyUsedWarning] =
-    useState(false);
-  const [showWrongUsernameOrPassword, setShowWrongUsernameOrPassword] =
-    useState(false);
+  const [showWarning, setShowWarning] = useState(false);
+  const [showWarningText, setShowWarningText] = useState("");
 
   const login = (event) => {
-    //Check Validation
-    if (userLoginName.length < 3) {
-      setShowMinUserNameWarning(true);
-      return;
-    }
-    if (userLoginPassword.length < 3) {
-      setShowMinPasswordWarning(true);
-      return;
-    }
+    const userName = userLoginNameRef.current.value;
+    const userPassword = userLoginPasswordRef.current.value;
 
-    //Send Information to server
-    fetch("http://localhost:3000/user-login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // We convert the React state to JSON and send it as the POST body
-      body: JSON.stringify({
-        userName: userLoginName,
-        userPassword: userLoginPassword,
-      }),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        if (data.statusCode === 1) {
-          console.log(data.responseMessage);
-          saveUser(userLoginName, userLoginPassword);
+    if (isValidation(userName, userPassword)) {
+      api.userLogin(userName, userPassword).then(
+        (response) => {
+          if (response.password === userPassword) {
+            saveUser(userName, userPassword);
+          } else {
+            setShowWarning(true);
+            setShowWarningText("Username or password is incorrect");
+          }
+        },
+        (error) => {
+          if (error.code === 404) {
+            setShowWarning(true);
+            setShowWarningText("Username or password is incorrect");
+          }
         }
-        if (data.statusCode === 0) {
-          console.log(data.responseMessage);
-          setShowWrongUsernameOrPassword(true);
-        }
-      });
-
+      );
+    }
     event.preventDefault();
   };
 
-  const registration = (event) => {
-    //Check Validation
+  const isValidation = (userName, password) => {
     if (userName.length < 3) {
-      setShowMinUserNameWarning(true);
-      return;
+      setShowWarning(true);
+      setShowWarningText("Your Username must have a minimum of 3 characters.");
+      return false;
     }
-    if (userPassword.length < 3) {
-      setShowMinPasswordWarning(true);
-      return;
+    if (password.length < 3) {
+      setShowWarning(true);
+      setShowWarningText("Your Password must have a minimum of 3 characters.");
+      return false;
     }
+    return true;
+  };
 
-    //Send Information to server
-    fetch("http://localhost:3000/user-registration", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      //convert the React state to JSON and send it as the POST body
-      body: JSON.stringify({
-        userName: userName,
-        userPassword: userPassword,
-      }),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        if (data.statusCode === 1) {
-          console.log(data.responseMessage);
+  const registration = (event) => {
+    const userName = userRegistrationNameRef.current.value;
+    const userPassword = userRegistrationPassowrdRef.current.value;
+
+    if (isValidation(userName, userPassword)) {
+      api.userRegistration(userName, userPassword).then(
+        (response) => {
           saveUser(userName, userPassword);
+        },
+        (error) => {
+          if (error.code === 409) {
+            setShowWarning(true);
+            setShowWarningText(
+              "This username already exists, please try another"
+            );
+          }
         }
-        if (data.statusCode === 2) {
-          console.log(data.responseMessage);
-          setshowUserNameAlreadyUsedWarning(true);
-        }
-        if (data.statusCode === 0) {
-          console.log(data.responseMessage);
-        }
-      });
-
+      );
+    }
     event.preventDefault();
   };
 
@@ -114,31 +90,8 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
 
   return (
     <div className={style.loginAndRegistrationForm}>
-      {showMinUserNameWarning && (
-        <Warning
-          okState={setShowMinUserNameWarning}
-          text={"Your Username must have a minimum of 3 characters."}
-        />
-      )}
-      {showMinPasswordWarning && (
-        <Warning
-          okState={setShowMinPasswordWarning}
-          text={"Your password must have a minimum of 3 characters."}
-        />
-      )}
-      {showUserNameAlreadyUsedWarning && (
-        <Warning
-          okState={setshowUserNameAlreadyUsedWarning}
-          text={
-            "We're sorry, but that username is already in use. Please choose a different username"
-          }
-        />
-      )}
-      {showWrongUsernameOrPassword && (
-        <Warning
-          okState={setShowWrongUsernameOrPassword}
-          text={"Username or Password is Incorrect"}
-        />
+      {showWarning && (
+        <Warning okState={setShowWarning} text={showWarningText} />
       )}
 
       <div className={style.centerContainer}>
@@ -147,10 +100,8 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
           <div className={style.userInputDiv}>
             <p className={style.userInputTitle}> Player Name </p>
             <input
-              onChange={(e) => {
-                setUserLoginName(e.target.value);
-              }}
               maxLength={20}
+              ref={userLoginNameRef}
               className={style.userInput}
               type="text"
             />
@@ -158,9 +109,7 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
           <div className={style.userInputDiv}>
             <p className={style.userInputTitle}> Password </p>
             <input
-              onChange={(e) => {
-                setUserLogginPassword(e.target.value);
-              }}
+              ref={userLoginPasswordRef}
               maxLength={20}
               className={style.userInput}
               type="password"
@@ -176,9 +125,7 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
           <div className={style.userInputDiv}>
             <p className={style.userInputTitle}> Player Name </p>
             <input
-              onChange={(e) => {
-                setUserName(e.target.value);
-              }}
+              ref={userRegistrationNameRef}
               maxLength={20}
               className={style.userInput}
               type="text"
@@ -187,9 +134,7 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
           <div className={style.userInputDiv}>
             <p className={style.userInputTitle}> Password </p>
             <input
-              onChange={(e) => {
-                setUserPassword(e.target.value);
-              }}
+              ref={userRegistrationPassowrdRef}
               maxLength={20}
               className={style.userInput}
               type="password"
