@@ -89,10 +89,6 @@ export class Api {
   }
 
   getCommentsAvatars(collectionId: string, gameName: string) {
-    return this.databases().listDocuments(
-      ApiEnums.silkRoadDatabaseID,
-      collectionId,
-      [Query.equal("gameName", ["game_name", gameName])]
-    );
+    return this.storage().getFile;
   }
 }

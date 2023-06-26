@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { deleteCookies, getCookie, setCookie } from "./helper/cookie";
-
 import "./index";
-
 import { Intro } from "./pages/intro/Intro";
 import { HomeMenu } from "./pages/homeMenu/HomeMenu";
 import TransitionAnimation from "./components/Transition";
