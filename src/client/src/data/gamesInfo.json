@@ -1,9 +1,20 @@
 {
-    "lastGame" : {
-        "name" : "Batumisken",
-        "publishData" : "02.34.2023",
-        "shortDescription" : "short description text which comes from json file",
-        "url" : "/games/batumisken/"
+  "lastGame": {
+    "name": "Batumisken",
+    "publishData": "02.34.2023",
+    "shortDescription": "short description text which comes from json file",
+    "url": "games/batumisken/"
+  },
+  "miniGames": [
+    {
+      "name": "mini game 1",
+      "description": "mini games description text wich comes from json ",
+      "url": "games/minigame1"
+    },
+    {
+      "name": "mini game 2",
+      "description": "mini games description text wich comes from json ",
+      "url": "games/minigame2"
     }
-
+  ]
 }

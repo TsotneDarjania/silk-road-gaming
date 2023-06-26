@@ -1,7 +1,8 @@
-import { Client, ID, Databases, Account, Models } from "appwrite";
+import { Client, Databases, Storage } from "appwrite";
 import { ApiEnums } from "../enums/apiEnums";
 import { transliterate } from "transliteration";
 import { generateIdToCorrectFormat } from "../helper/helperFunctions";
+import { ID, Query } from "appwrite";
 
 export class Api {
   client = new Client()
@@ -10,6 +11,10 @@ export class Api {
 
   databases = () => {
     return new Databases(this.client);
+  };
+
+  storage = () => {
+    return new Storage(this.client);
   };
 
   userRegistration = (name: string, password: string) => {
@@ -52,6 +57,42 @@ export class Api {
       collectionId,
       `defaultId${generateIdToCorrectFormat(transliterate(username))}`,
       data
+    );
+  }
+
+  insertCommentForGame(
+    username: string,
+    collectionId: string,
+    gameName: string,
+    comment: string,
+    userRating: number
+  ) {
+    return this.databases().createDocument(
+      ApiEnums.silkRoadDatabaseID,
+      collectionId,
+      ID.unique(),
+      {
+        user: username,
+        gameName: gameName,
+        comment: comment,
+        userRating: userRating,
+      }
+    );
+  }
+
+  getGameComments(collectionId: string, gameName: string) {
+    return this.databases().listDocuments(
+      ApiEnums.silkRoadDatabaseID,
+      collectionId,
+      [Query.equal("gameName", ["game_name", gameName])]
+    );
+  }
+
+  getCommentsAvatars(collectionId: string, gameName: string) {
+    return this.databases().listDocuments(
+      ApiEnums.silkRoadDatabaseID,
+      collectionId,
+      [Query.equal("gameName", ["game_name", gameName])]
     );
   }
 }

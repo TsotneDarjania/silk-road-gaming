@@ -26,7 +26,7 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
       id="latest_game_container"
       onTransitionEnd={(item) => {
         if (
-          item.target.style.opacity == 0 &&
+          item.target.style.opacity === 0 &&
           item.target.id === "latest_game_container"
         ) {
           item.target.style.visibility = "hidden";
@@ -37,7 +37,7 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
         <AuthenticationModal
           setIsLogin={setIsLogin}
           accessAction={() => {
-            window.open("http://localhost:3000" + gamesInfo.lastGame.url);
+            window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
             setShowShadow(false);
             setShowAutenticationModal(false);
           }}
@@ -66,7 +66,7 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
         <button
           onClick={() => {
             if (isLogin) {
-              window.open("http://localhost:3000" + gamesInfo.lastGame.url);
+              window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
             } else {
               setShowAutenticationModal(true);
               setShowShadow(true);

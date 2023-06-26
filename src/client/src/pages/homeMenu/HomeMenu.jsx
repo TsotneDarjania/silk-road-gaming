@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import style from "./homeMenu.module.css";
 import LatestGame from "./components/latestGame/LatestGame";
@@ -21,7 +21,7 @@ export const HomeMenu = ({
     <div className={style.homeMenu}>
       <Header />
       <LatestGame setIsLogin={setIsLogin} isLogin={isLogin} />
-      <MiniGames />
+      <MiniGames setIsLogin={setIsLogin} isLogin={isLogin} />
       <ArtGames />
       <button
         onClick={() => {

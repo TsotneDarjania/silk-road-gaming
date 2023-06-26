@@ -80,8 +80,11 @@ const ArtGameContainer = (props) => {
           <video className={style.gameVideo} loop autoPlay>
             <source src={gameVideo} type="video/mp4" />
           </video>
-          <div className={`${style.fullScreenIcon}`}
-            style={{right: props.active[props.videoId] === true ? '110px' : '90px'}}
+          <div
+            className={`${style.fullScreenIcon}`}
+            style={{
+              right: props.active[props.videoId] === true ? "110px" : "90px",
+            }}
           >
             <BsFullscreen
               onClick={() => props.handleFullScreen(props.videoId)}
@@ -89,7 +92,7 @@ const ArtGameContainer = (props) => {
           </div>
         </div>
       </div>
-      <ModalForComments show={props.show} />
+      {/* {props.isShow && <ModalForComments show={props.show} />} */}
     </div>
   );
 };

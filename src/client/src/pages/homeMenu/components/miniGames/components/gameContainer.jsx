@@ -1,27 +1,50 @@
-import React from "react";
-
+import { useEffect, useState } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
 
 import style from "./gameContainer.module.css";
 import ModalForComments from "../../../../../components/ModalForComments";
+import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
+import Shadow from "../../../../../components/Shadow";
 
 const GameContainer = (props) => {
+  const [showAutenticationModal, setShowAutenticationModal] = useState(false);
+  const [showShadow, setShowShadow] = useState(false);
+  const shadowProperty = {
+    opacity: 0.8,
+    transition: "0.5s",
+    show: showShadow,
+    setShow: setShowShadow,
+  };
+
+  const [showCommentsModal, setShowCommentsModal] = useState(false);
+
+  useEffect(() => {
+    showShadow === false && setShowAutenticationModal(false);
+    props.show === false && setShowCommentsModal(false);
+  }, [showShadow, props.show]);
 
   return (
     <div className={style.gameContainer}>
+      {showAutenticationModal && (
+        <AuthenticationModal
+          setIsLogin={props.setIsLogin}
+          accessAction={() => {
+            window.open(`${window.location.href}${props.data.url}`);
+            setShowShadow(false);
+            setShowAutenticationModal(false);
+          }}
+        />
+      )}
+      <Shadow props={shadowProperty} />
+
       <div
         className={
           style.gameBackgroundImage + " " + style["miniGameBackgroundImage-1"]
         }
       ></div>
-      <p className={style.name}> Batumisken </p>
-      <p className={style.shortDescription}>
-        asiudhasiud asiudhasd asiudhasd asiud aisudhqiwudqwd iquwdh iudwd
-        wudhqiud qiwudhwiud diwuw wuwd w wdwd dwd wdiuqwdh qiwudhqiwudhqiwduhqd
-        qdwuhd iudhwiqudhqd iwuw wudhwd iuwhdiuwhdiqwuh qiwudhqiwud qiduqwiduhd
-        diuwhdw wiudh diuwhdwqdqwuidhd q,dwoasidad
-      </p>
+      <p className={style.name}> {props.data.name} </p>
+      <p className={style.shortDescription}>{props.data.description}</p>
       <div className={style.indicators}>
         <ul>
           <li className={style.likeIcon}>
@@ -34,12 +57,36 @@ const GameContainer = (props) => {
           </li>
 
           <li className={style.commentIcon}>
-            <FaCommentAlt onClick={() => props.setShow(true)}/>
+            <FaCommentAlt
+              onClick={() => {
+                if (props.isLogin) {
+                  props.setShow(true);
+                  setShowCommentsModal(true);
+                } else {
+                  props.setShowWarning(true);
+                  props.setShowWarningText(
+                    "Please login or register before commenting"
+                  );
+                }
+              }}
+            />
           </li>
         </ul>
-        <button className={style.openButton}> Open </button>
+        <button
+          onClick={() => {
+            if (props.isLogin) {
+              window.open(`${window.location.href}${props.data.url}`);
+            } else {
+              setShowAutenticationModal(true);
+              setShowShadow(true);
+            }
+          }}
+          className={style.openButton}
+        >
+          Open
+        </button>
       </div>
-        <ModalForComments show={props.show}/>
+      {showCommentsModal && <ModalForComments gameName={props.data.name} />}
     </div>
   );
 };
