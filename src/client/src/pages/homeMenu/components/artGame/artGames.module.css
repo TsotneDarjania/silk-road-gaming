@@ -1,6 +1,11 @@
 /* '../../../../global.css' */
 
 .artGames {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.artGamesDiv {
   position: absolute;
   top: 12vh;
   left: 0;
@@ -14,17 +19,25 @@
   height: 70vh;
 
   transition: 0.8s;
-  opacity: 0;
   overflow-y: scroll;
 }
+.scroll_div {
+  width: 10vw;
+  position: absolute;
+  right: 0;
+  bottom: 20vh;
+}
 /* width */
-.artGames::-webkit-scrollbar {
+.artGamesDiv::-webkit-scrollbar {
   display: none;
 }
 
 @media (max-width: 600px) {
-  .artGames {
+  .artGamesDiv {
     height: 80vh;
     width: 90%;
+  }
+  .scroll_div {
+    width: 5%;
   }
 }

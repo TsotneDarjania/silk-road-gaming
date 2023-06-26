@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./artGameContainer.module.css";
 import gamesInfo from "../../../../../data/gamesInfo.json";
 import gameVideo from "../../../videos/1.mp4";
@@ -10,10 +10,10 @@ import {
 } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
-import { BsFullscreen } from "react-icons/bs";
 import ModalForComments from "../../../../../components/ModalForComments";
 import SliderComponent from "../../../../../components/SliderComponent";
 import image from "../../../images/background.jpg";
+import Leaderboard from "./Leaderboard";
 
 const ArtGameContainer = (props) => {
   const images = [image, image, image, image, image, image];
@@ -69,7 +69,7 @@ const ArtGameContainer = (props) => {
               </li>
 
               <li>
-                <MdLeaderboard />
+                <MdLeaderboard onClick={() => props.setShowLeader(true)}/>
               </li>
             </ul>
           </div>
@@ -104,6 +104,7 @@ const ArtGameContainer = (props) => {
         </div>
       </div>
       <ModalForComments show={props.show} />
+      <Leaderboard showLeader={props.showLeader}/>
     </div>
   );
 };

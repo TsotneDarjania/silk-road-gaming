@@ -3,11 +3,13 @@ import style from "./artGames.module.css";
 import ArtGameContainer from "./components/ArtGameContainer";
 import Shadow from "../../../../components/Shadow";
 import artGameInfo from "../../../../data/artgames.json";
+import Scroll from "./components/Scroll";
 
-const ArtGames = (props) => {
+const ArtGames = () => {
   const [show, setShow] = useState(false);
   const [active, setActive] = useState([false, false]);
   const [showShadow, setShowShadow] = useState(false);
+  const [showLeader, setShowLeader] = useState(false);
 
   const handleFullScreen = (videoId) => {
     setShowShadow(!showShadow);
@@ -25,13 +27,18 @@ const ArtGames = (props) => {
           return (value = false);
         });
       });
-  }, [showShadow, show]);
+  }, [showShadow, show, showLeader]);
 
   const shadowProperty = {
     opacity: 0.5,
     transition: "0.5s",
-    show: show || showShadow,
-    setShow: showShadow === true ? setShowShadow : setShow,
+    show: show || showShadow || showLeader,
+    setShow:
+      showShadow === true
+        ? setShowShadow
+        : showLeader
+        ? setShowLeader
+        : setShow,
   };
 
   return (
@@ -47,21 +54,28 @@ const ArtGames = (props) => {
         }
       }}
     >
-      <Shadow props={shadowProperty} />
-      {artGameInfo.map((item, index) => (
-        <ArtGameContainer
-          key={index}
-          show={show}
-          setShow={setShow}
-          active={active}
-          handleFullScreen={handleFullScreen}
-          videoId={index}
-          setShowShadow={setShowShadow}
-          showShadow={showShadow}
-          name={item.name}
-          description={item.description}
-        />
-      ))}
+      <div className={style.artGamesDiv}>
+        <Shadow props={shadowProperty} />
+        {artGameInfo.map((item, index) => (
+          <ArtGameContainer
+            key={index}
+            show={show}
+            setShow={setShow}
+            active={active}
+            handleFullScreen={handleFullScreen}
+            videoId={index}
+            setShowShadow={setShowShadow}
+            showShadow={showShadow}
+            name={item.name}
+            description={item.description}
+            showLeader={showLeader}
+            setShowLeader={setShowLeader}
+          />
+        ))}
+      </div>
+      <div className={style.scroll_div}>
+        <Scroll />
+      </div>
     </div>
   );
 };
