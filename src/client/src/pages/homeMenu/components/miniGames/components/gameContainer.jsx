@@ -16,13 +16,17 @@ const GameContainer = (props) => {
     show: showShadow,
     setShow: setShowShadow,
   };
-
+  const [isOpenShadow, setIsOpenShadow] = useState(false);
+  const [shadow, reRenderShadow] = useState(
+    props.shadow(false, setIsOpenShadow)
+  );
   const [showCommentsModal, setShowCommentsModal] = useState(false);
 
   useEffect(() => {
+    isOpenShadow === false && reRenderShadow(() => props.shadow(false, setIsOpenShadow))
     showShadow === false && setShowAutenticationModal(false);
     props.show === false && setShowCommentsModal(false);
-  }, [showShadow, props.show]);
+  }, [showShadow, props.show, isOpenShadow]);
 
   return (
     <div className={style.gameContainer}>
@@ -36,8 +40,8 @@ const GameContainer = (props) => {
           }}
         />
       )}
-      <Shadow props={shadowProperty} />
-
+      {shadow}
+      {console.log("game container")}
       <div
         className={
           style.gameBackgroundImage + " " + style["miniGameBackgroundImage-1"]
@@ -60,8 +64,10 @@ const GameContainer = (props) => {
             <FaCommentAlt
               onClick={() => {
                 if (props.isLogin) {
-                  props.setShow(true);
-                  setShowCommentsModal(true);
+                  reRenderShadow(() => props.shadow(true, setIsOpenShadow));
+                  setIsOpenShadow(true)
+                  // props.setShow(true);
+                  // setShowCommentsModal(true);
                 } else {
                   props.setShowWarning(true);
                   props.setShowWarningText(

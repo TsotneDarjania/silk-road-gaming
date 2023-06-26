@@ -32,7 +32,6 @@ const MiniGames = (props) => {
       }}
     >
       {showWarning && <Warning okState={setShowWarning} text={warningText} />}
-      <Shadow props={shadowProperty} />
       <GameContainer
         data={gamesInfo.miniGames[0]}
         setShow={setShow}
@@ -41,6 +40,7 @@ const MiniGames = (props) => {
         setIsLogin={props.setIsLogin}
         setShowWarning={setShowWarning}
         setShowWarningText={setShowWarningText}
+        shadow={props.shadow}
       />
       <GameContainer
         data={gamesInfo.miniGames[1]}
@@ -50,6 +50,7 @@ const MiniGames = (props) => {
         setIsLogin={props.setIsLogin}
         setShowWarning={setShowWarning}
         setShowWarningText={setShowWarningText}
+        shadow={props.shadow}
       />
     </div>
   );

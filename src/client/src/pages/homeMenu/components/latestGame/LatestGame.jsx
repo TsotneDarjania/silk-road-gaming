@@ -43,7 +43,6 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
           }}
         />
       )}
-      <Shadow props={shadowProperty} />
 
       <div className={style.latestGameContainerBackgroundImage}></div>
       <div className={style.leftContainer}>

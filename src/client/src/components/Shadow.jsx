@@ -1,18 +1,20 @@
 import "../global.css";
+import { useEffect, useRef, useState } from "react";
 
-const Shadow = ({ props }) => {
+const Shadow = (props) => {
   return (
     <div
       className="shadow"
-      onClick={() =>
-        props.open ? props.setShow(true) : props.setShow(false)
-      }
+      onClick={() => props.setShow(false)}
+      // onClick={() =>
+      //   props.open ? props.setShow(true) : props.setShow(false)
+      // }
       style={{
-        opacity: props.show ? props.opacity : 0,
-        zIndex: props.show ? 50 : -5,
-        transition: props.transition,
+        opacity: props.show === true ? 1 : 0,
       }}
-    ></div>
+    >
+      {console.log(props.show)}
+    </div>
   );
 };
 

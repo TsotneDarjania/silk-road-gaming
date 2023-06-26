@@ -48,7 +48,6 @@ const ArtGames = (props) => {
       }}
     >
       {console.log("art games")}
-      <Shadow props={shadowProperty} />
       {artGameInfo.map((item, index) => (
         <ArtGameContainer
           key={index}
