@@ -3,7 +3,6 @@ import style from "./latestGame.module.css";
 import latestGameVideo from "../../videos/1.mp4";
 import gamesInfo from "../../../../data/gamesInfo.json";
 import AuthenticationModal from "../../../../components/autenticationModal/AuthenticationModal";
-import Shadow from "../../../../components/Shadow";
 
 const LatestGame = ({ setIsLogin, isLogin }) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
@@ -41,6 +40,7 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
             setShowShadow(false);
             setShowAutenticationModal(false);
           }}
+          setShowAutenticationModal={setShowAutenticationModal}
         />
       )}
 

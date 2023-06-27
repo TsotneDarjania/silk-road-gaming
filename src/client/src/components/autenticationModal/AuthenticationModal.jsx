@@ -1,13 +1,18 @@
-import React, { useState, useReducer, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 import style from "./autentication.module.css";
 import { Api } from "../../api/api";
 import Warning from "../Warning";
 import { setCookie } from "../../helper/cookie";
+import "../../global.css";
 
 const api = new Api();
 
-const AuthenticationModal = ({ setIsLogin, accessAction }) => {
+const AuthenticationModal = ({
+  setIsLogin,
+  accessAction,
+  setShowAutenticationModal,
+}) => {
   const userLoginNameRef = useRef(null);
   const userLoginPasswordRef = useRef(null);
   const userRegistrationNameRef = useRef(null);
@@ -97,7 +102,10 @@ const AuthenticationModal = ({ setIsLogin, accessAction }) => {
       {showWarning && (
         <Warning okState={setShowWarning} text={showWarningText} />
       )}
-
+      <div
+        className="shadow"
+        onClick={() => setShowAutenticationModal(false)}
+      ></div>
       <div className={style.centerContainer}>
         <div className={style.formContainer}>
           <h3 className={style.formTitle}> Login </h3>

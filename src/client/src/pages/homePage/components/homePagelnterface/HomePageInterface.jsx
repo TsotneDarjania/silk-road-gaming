@@ -5,7 +5,6 @@ import { deleteCookies, getCookie } from "../../../../helper/cookie";
 
 import { CgMenuGridR } from "react-icons/cg";
 import UserSettingsModal from "./UserSettingsModal";
-import Shadow from "../../../../components/Shadow";
 
 const HomePageInterface = ({ setIsLogin }) => {
   const [userName, setUserName] = useState(
@@ -18,20 +17,11 @@ const HomePageInterface = ({ setIsLogin }) => {
   };
 
   const [menuClassName, setMenuClassName] = useState("");
-  const [show, setShow] = useState(false);
+  const [showUserSettingModal, setShowUserSettingModal] = useState(false);
   const [open, setOpen] = useState(false);
-
-  const shadowProperty = {
-    opacity: 0.5,
-    transition: "0.5s",
-    show: show,
-    setShow: setShow,
-    open: open    
-  };
 
   return (
     <div className={style.homePageInterface}>
-      <Shadow props={shadowProperty}/>
       <div
         onClick={() => {
           menuClassName === "showMenu"
@@ -45,7 +35,7 @@ const HomePageInterface = ({ setIsLogin }) => {
 
       <div className={style["menu"] + " " + style[menuClassName]}>
         <ul>
-          <li onClick={() => setShow(true)}> {userName} </li>
+          <li onClick={() => setShowUserSettingModal(true)}> {userName} </li>
           <li
             onClick={() => {
               logOut();
@@ -92,9 +82,10 @@ const HomePageInterface = ({ setIsLogin }) => {
       <UserSettingsModal
         open={open}
         setOpen={setOpen}
-        show={show}
+        showUserSettingModal={showUserSettingModal}
         userName={userName}
         setUserName={setUserName}
+        setShowUserSettingModal={setShowUserSettingModal}
       />
     </div>
   );

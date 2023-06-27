@@ -2,19 +2,11 @@ import React, { useState } from "react";
 import GameContainer from "./components/gameContainer";
 
 import style from "./miniGames.module.css";
-import Shadow from "../../../../components/Shadow";
 
 import gamesInfo from "../../../../data/gamesInfo.json";
 import Warning from "../../../../components/Warning";
 
 const MiniGames = (props) => {
-  const [show, setShow] = useState(false);
-  const shadowProperty = {
-    opacity: 0.5,
-    transition: "0.5s",
-    show: show,
-    setShow: setShow,
-  };
   const [showWarning, setShowWarning] = useState(false);
   const [warningText, setShowWarningText] = useState("");
 
@@ -34,23 +26,17 @@ const MiniGames = (props) => {
       {showWarning && <Warning okState={setShowWarning} text={warningText} />}
       <GameContainer
         data={gamesInfo.miniGames[0]}
-        setShow={setShow}
-        show={show}
         isLogin={props.isLogin}
         setIsLogin={props.setIsLogin}
         setShowWarning={setShowWarning}
         setShowWarningText={setShowWarningText}
-        shadow={props.shadow}
       />
       <GameContainer
         data={gamesInfo.miniGames[1]}
-        setShow={setShow}
-        show={show}
         isLogin={props.isLogin}
         setIsLogin={props.setIsLogin}
         setShowWarning={setShowWarning}
         setShowWarningText={setShowWarningText}
-        shadow={props.shadow}
       />
     </div>
   );

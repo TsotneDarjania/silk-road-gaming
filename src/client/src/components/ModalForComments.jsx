@@ -4,6 +4,7 @@ import userAvatar from "../pages/homeMenu/images/userAvatar.png";
 import { Api } from "../api/api";
 import { ApiEnums } from "../enums/apiEnums";
 import { getCookie } from "../helper/cookie";
+import "../global.css";
 
 const api = new Api();
 
@@ -59,59 +60,64 @@ const ModalForComments = (props) => {
   };
 
   useEffect(() => {
-    console.log(props.gameName);
     if (props.gameName !== undefined && commentsData === undefined)
       getComments();
   }, [commentsData]);
 
-  return (
-    <div className={style.commentsContainer}>
-      <div className={style.commentsSection}>
-        {renderComments(commentsData)}
-      </div>
-      <div className={style.userComment}>
-        <div className={style.inputBox}>
-          <textarea
-            onChange={(e) => {
-              if (e.target.value.length > 2) {
-                commentSendButtonRef.current.style.opacity = 0.5;
-              } else {
-                commentSendButtonRef.current.style.opacity = 0;
-              }
-            }}
-            maxLength={1000}
-            ref={commentRef}
-            placeholder="Add your comment here..."
-          />
-          <button
-            ref={commentSendButtonRef}
-            className={style.commentSendButton}
-            type="button"
-            onClick={() => {
-              if (commentRef.current.value.length > 2) {
-                api
-                  .insertCommentForGame(
-                    JSON.parse(getCookie("loginSession")).userName,
-                    ApiEnums.gameCommentsCollectionId,
-                    props.gameName,
-                    commentRef.current.value,
-                    0
-                  )
-                  .then(
-                    (response) => {
-                      commentSendButtonRef.current.style.opacity = 0;
-                      commentRef.current.value = "";
-                      getComments();
-                    },
-                    (error) => {
-                      console.log(error);
-                    }
-                  );
-              }
-            }}
-          >
-            Send
-          </button>
+    return (
+    <div className={style.commentsModal}>
+      <div
+        className="shadow"
+        onClick={() => props.setShowCommentsModal(false)}
+      ></div>
+      <div className={style.commentsContainer}>
+        <div className={style.commentsSection}>
+          {renderComments(commentsData)}
+        </div>
+        <div className={style.userComment}>
+          <div className={style.inputBox}>
+            <textarea
+              onChange={(e) => {
+                if (e.target.value.length > 2) {
+                  commentSendButtonRef.current.style.opacity = 0.5;
+                } else {
+                  commentSendButtonRef.current.style.opacity = 0;
+                }
+              }}
+              maxLength={1000}
+              ref={commentRef}
+              placeholder="Add your comment here..."
+            />
+            <button
+              ref={commentSendButtonRef}
+              className={style.commentSendButton}
+              type="button"
+              onClick={() => {
+                if (commentRef.current.value.length > 2) {
+                  api
+                    .insertCommentForGame(
+                      JSON.parse(getCookie("loginSession")).userName,
+                      ApiEnums.gameCommentsCollectionId,
+                      props.gameName,
+                      commentRef.current.value,
+                      0
+                    )
+                    .then(
+                      (response) => {
+                        commentSendButtonRef.current.style.opacity = 0;
+                        commentRef.current.value = "";
+                        getComments();
+                      },
+                      (error) => {
+                        console.log(error);
+                      }
+                    );
+                }
+              }}
+            >
+              Send
+            </button>
+          </div>
         </div>
       </div>
     </div>

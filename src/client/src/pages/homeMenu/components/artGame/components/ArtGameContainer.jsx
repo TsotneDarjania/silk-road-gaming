@@ -9,12 +9,17 @@ import { BsFullscreen } from "react-icons/bs";
 import ModalForComments from "../../../../../components/ModalForComments";
 import SliderComponent from "../../../../../components/SliderComponent";
 import image from "../../../images/background.jpg";
+import Warning from "../../../../../components/Warning";
 
 const ArtGameContainer = (props) => {
+  const [showCommentsModal, setShowCommentsModal] = useState(false);
+  const [warningText, setWarningText] = useState();
+  const [showWarning, setShowWarning] = useState(false)
   const images = [image, image, image, image, image, image];
 
   return (
     <div className={style.artGameContainer}>
+      {showWarning && <Warning okState={setShowWarning} text={warningText} />}
       <div className={style.artGameContainerBgImage}></div>
       <div className={style.leftContainer}>
         <div className={style.leftContainer_Div}>
@@ -60,7 +65,18 @@ const ArtGameContainer = (props) => {
               </li>
 
               <li className={style.commentIcon}>
-                <FaCommentAlt onClick={() => props.setShow(true)} />
+                <FaCommentAlt
+                  onClick={() => {
+                    if (props.isLogin) {
+                      setShowCommentsModal(true);
+                    } else {
+                      setShowWarning(true)
+                      setWarningText(
+                        "Please login or register before commenting"
+                      );
+                    }
+                  }}
+                />
               </li>
 
               <li>
@@ -92,7 +108,7 @@ const ArtGameContainer = (props) => {
           </div>
         </div>
       </div>
-      {/* {props.isShow && <ModalForComments show={props.show} />} */}
+      {showCommentsModal && <ModalForComments setShowCommentsModal={setShowCommentsModal}/>}
     </div>
   );
 };
