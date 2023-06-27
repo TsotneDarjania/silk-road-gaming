@@ -2,12 +2,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
 
 .warning {
-  composes: flexCenterColumn from '../global.css';
+  composes: flexCenterColumn from "../global.css";
   position: fixed;
   width: 100vw;
   height: 100vh;
 
-  z-index: 50;
+  top: 0;
+  left: 0;
+
+  z-index: 200;
 }
 
 .shadow {
@@ -31,7 +34,7 @@
 }
 
 .content {
-  composes: fadedOrangeBgColor from '../global.css';
+  composes: fadedOrangeBgColor from "../global.css";
 
   animation-name: show-anim;
   animation-fill-mode: forwards;
@@ -60,7 +63,7 @@
 }
 
 .okButton {
-  composes: fadedOrangeBgColor from '../global.css';
+  composes: fadedOrangeBgColor from "../global.css";
 
   width: 80px;
   height: 80px;

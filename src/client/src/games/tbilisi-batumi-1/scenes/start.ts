@@ -1,18 +1,14 @@
-import { RegistrationModal } from "../../common/registrationModal";
-import { API } from "../api";
+import { Api } from "../../../api/api";
+import { ApiEnums } from "../../../enums/apiEnums";
+import { getCookie } from "../../../helper/cookie";
+import { gameConfig } from "../config/gameConfig";
 
-interface initResponse {
-  statusCode: number;
-  statusMessage: string;
-}
+const loginSession = getCookie("loginSession");
 
 export class StartScene extends Phaser.Scene {
-  initResponse!: any;
-  api!: API;
-
+  api!: Api;
   constructor() {
     super("Start");
-    this.initResponse = null;
   }
 
   preload() {
@@ -28,34 +24,61 @@ export class StartScene extends Phaser.Scene {
   }
 
   create() {
-    this.api = new API();
-    this.initialization();
-  }
-
-  async initialization() {
-    try {
-      this.initResponse = await this.api.init();
-      console.log("Init response:", this.initResponse);
-      this.checkSession();
-    } catch (error) {
-      console.error("Error while initializing:", error);
-    }
+    this.api = new Api();
+    this.checkSession();
   }
 
   checkSession() {
-    if (this.initResponse.statusCode === 1) {
-      this.startGame();
-    }
-    if (this.initResponse.statusCode === 0) {
-      this.showLoginModal();
+    if (loginSession.length > 3) {
+      this.initApi();
+    } else {
+      //@ts-ignore
+      window.location = "../../";
     }
   }
 
-  showLoginModal() {
-    const modal = new RegistrationModal(this, 0, 0, "Preload");
+  initApi() {
+    this.api
+      .getUserDataForGame(
+        JSON.parse(loginSession).userName,
+        ApiEnums.batumisken_v_1_CollectionId
+      )
+      .then(
+        (response) => {
+          console.log(response.saveZoneIndex);
+          gameConfig.saveZoneIndex = response.saveZoneIndex;
+          this.startGame();
+        },
+        (error) => {
+          if (error.code === 404) {
+            this.insertUserToGame();
+          }
+        }
+      );
+  }
+
+  insertUserToGame() {
+    this.api
+      .initUserToGame(
+        JSON.parse(loginSession).userName,
+        ApiEnums.batumisken_v_1_CollectionId,
+        {
+          user: JSON.parse(loginSession).userName,
+          saveZoneIndex: 0,
+        }
+      )
+      .then(
+        (response) => {
+          this.startGame();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   startGame() {
+    gameConfig.username = JSON.parse(loginSession).userName;
     this.scene.start("Boot");
   }
 }

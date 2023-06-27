@@ -1,6 +1,3 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-
 import LoginAndRegistrationForm from "./components/loginAndRegistrationForm/LoginAndRegistrationForm";
 import style from "./homePage.module.css";
 import HomePageInterface from "./components/homePagelnterface/HomePageInterface";

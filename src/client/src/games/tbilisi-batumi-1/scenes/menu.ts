@@ -5,6 +5,7 @@ import { Responsivedata } from "../config/interfaces";
 import { screenSize } from "../config/getScreenSize";
 import { MenuMap } from "../components/menuMap";
 import { MenuInfo } from "../components/menuInfo";
+import { GamePlay } from "./gamePlay";
 
 export class Menu extends Phaser.Scene {
   backgroundZone!: Phaser.GameObjects.Image;
@@ -15,6 +16,9 @@ export class Menu extends Phaser.Scene {
   lightLamp!: Phaser.GameObjects.Image;
   darkLamp!: Phaser.GameObjects.Image;
   configData: Responsivedata = config;
+
+  //@ts-ignore
+  IOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); // fails on
 
   canvasHideWidth = window.outerWidth - window.innerWidth;
   canvasHideHeight = window.outerHeight - window.innerHeight;
@@ -61,49 +65,36 @@ export class Menu extends Phaser.Scene {
     });
 
     this.scale.on(Phaser.Scale.Events.ENTER_FULLSCREEN, () => {
-      setTimeout(() => {
-        this.changeOrientationSize(window.outerWidth, window.outerHeight);
-        this.scale.removeAllListeners();
-        this.scene.restart();
-      }, 100);
+      // if (this.game.canvas.width < 1000) return;
+      // setTimeout(() => {
+      //   this.changeOrientationSize(window.outerWidth, window.outerHeight);
+      //   this.scale.removeAllListeners();
+      //   this.scene.restart();
+      // }, 30);
     });
 
     if (this.scale.isFullscreen === false) {
       this.closeMenu();
     }
-
-    this.addOrientationEvent();
   }
 
-  addOrientationEvent() {
-    this.scale.on(Phaser.Scale.Events.ORIENTATION_CHANGE, () => {
-      this.changeOrientationSize(
-        window.outerWidth - this.canvasHideWidth,
-        window.outerHeight - this.canvasHideHeight
-      );
-    });
+  isIOS() {
+    return this.IOS ? true : false;
   }
 
   changeOrientationSize(canvasWidth: number, canvasHeight: number) {
+    if (this.isIOS()) return;
     this.game.canvas.height = canvasWidth;
     this.game.canvas.width = canvasHeight;
 
-    if (this.game.scale.isPortrait) {
-      // this.scale.resize(this.game.canvas.width, this.game.canvas.height);
-      // this.renderer.resize(this.game.canvas.height, this.game.canvas.width);
-      ///  this.scale.removeAllListeners();
-    } else {
+    if (this.game.scale.isLandscape) {
       this.scale.resize(this.game.canvas.height, this.game.canvas.width);
       this.renderer.resize(this.game.canvas.width, this.game.canvas.height);
 
+      this.scene.restart();
+
       this.scale.removeAllListeners();
     }
-
-    this.scale.on(Phaser.Scale.Events.RESIZE, () => {
-      this.scale.removeAllListeners();
-
-      this.scene.restart();
-    });
   }
 
   addLamp() {
@@ -338,6 +329,7 @@ export class Menu extends Phaser.Scene {
       .setInteractive()
       .on(Phaser.Input.Events.POINTER_UP, () => {
         if (this.game.scale.isFullscreen === false) {
+          if (this.isIOS()) return;
           this.scale.startFullscreen();
         }
       })

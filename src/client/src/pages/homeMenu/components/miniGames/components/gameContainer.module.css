@@ -32,12 +32,11 @@
   font-weight: bold;
   font-size: 35px;
   margin-top: 10px;
-  width: min-content;
   z-index: 1;
 }
 
 .shortDescription {
-  composes: fadedWhiteColor from '../../../../../global.css';
+  composes: fadedWhiteColor from "../../../../../global.css";
   font-family: "Geo", sans-serif;
   font-size: 20px;
   z-index: 1;
@@ -45,8 +44,8 @@
 }
 
 .openButton {
-  composes: greenBgColor from '../../../../../global.css';
-  composes: darkBlueColor from '../../../../../global.css';
+  composes: greenBgColor from "../../../../../global.css";
+  composes: darkBlueColor from "../../../../../global.css";
 
   width: 120px;
   height: 45px;
@@ -128,9 +127,9 @@
 
 @media screen and (max-width: 650px) {
   .openButton {
-    composes: greenBgColor from '../../../../../global.css';
-    composes: darkBlueColor from '../../../../../global.css';
-    
+    composes: greenBgColor from "../../../../../global.css";
+    composes: darkBlueColor from "../../../../../global.css";
+
     width: 80%;
     height: 45px;
     z-index: 10;

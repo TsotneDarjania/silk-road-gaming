@@ -38,8 +38,8 @@ export class GameManager {
   canRadioChange: boolean = false;
 
   saveZonesData: Array<SaveZoneData> = [];
-  saveZoneIndex = gameConfig.saveZoneIndex;
-  // saveZoneIndex = 1;
+  //saveZoneIndex = gameConfig.saveZoneIndex;
+  saveZoneIndex = 5;
 
   backgroundImage!: Phaser.GameObjects.Image;
 
@@ -49,7 +49,7 @@ export class GameManager {
   isSkyRocksAlreadyFalling = false;
   wolfsSoundsUpdate!: NodeJS.Timeout;
 
-  constructor(scene: Phaser.Scene) {
+  constructor(public scene: Phaser.Scene) {
     this.gamePlay = scene as GamePlay;
     this.init();
   }
@@ -133,7 +133,9 @@ export class GameManager {
       },
     ];
 
-    this.initCar();
+    if (this.gamePlay.sceneIsStart) {
+      this.initCar();
+    }
     this.createGameZones();
     this.createBackgroundImage();
     this.createAsteroids();
@@ -339,7 +341,17 @@ export class GameManager {
       },
       12: {
         enter: () => {
-          console.log("win");
+          this.gamePlay.car.canMoving = false;
+          this.gamePlay.car.stopUpdateProcess = true;
+          this.gameMenu.mobileUIButtons.forEach((button) => {
+            button.setVisible(false);
+          });
+          this.gamePlay.applause.play();
+          this.gameMenu.speedometer.setVisible(false);
+          this.gameMenu.speedometerArrow.setVisible(false);
+          this.gameMenu.gameIndicatorsContainer.setVisible(false);
+          this.gameMenu.menuButton.setVisible(false);
+          this.gameMenu.addWinModal();
         },
         exit: () => {
           this.emptyFunction();

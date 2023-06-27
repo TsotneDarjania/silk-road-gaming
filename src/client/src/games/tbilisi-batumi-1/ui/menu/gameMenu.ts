@@ -12,6 +12,7 @@ export class GameMenu extends Phaser.Scene {
   speedometerContainer!: Phaser.GameObjects.Container;
   menuButtonsContainer!: Phaser.GameObjects.Container;
   gameIndicatorsContainer!: Phaser.GameObjects.Container;
+  winModal!: Phaser.GameObjects.Container;
 
   stopUpdateProcess = false;
 
@@ -43,6 +44,8 @@ export class GameMenu extends Phaser.Scene {
 
   screenWidth!: number;
   screenHeight!: number;
+
+  mobileUIButtons: Array<Phaser.GameObjects.Image> = [];
 
   constructor() {
     super("GameMenu");
@@ -82,6 +85,75 @@ export class GameMenu extends Phaser.Scene {
     if (this.game.canvas.width < 1000) {
       this.addUiButtonsForMobile();
     }
+  }
+
+  addWinModal() {
+    this.winModal = this.add.container(0, 0);
+
+    const backgroundImage = this.add
+      .image(0, 0, "white")
+      .setOrigin(0)
+      .setDisplaySize(this.game.canvas.width, this.game.canvas.height)
+      .setDepth(1000)
+      .setTint(0x141717)
+      .setAlpha(0);
+
+    const text = this.add
+      .text(
+        0,
+        0,
+        [
+          "Congratulations on your victory! Thank you for playing ",
+          "Game design by",
+          "Goga Gabidauri",
+          "Programming by",
+          "Tsotne Darjania",
+          " *** ",
+          "If you liked this game and want to",
+          "contribute to the release of the",
+          "second part of this game",
+          "you can click this button and sponsor us",
+        ],
+        {
+          align: "center",
+          color: "white",
+          fontSize: screenSize().menu.winModal.fontSize,
+        }
+      )
+      .setOrigin(0.5);
+
+    text.setPosition(
+      this.game.canvas.width / 2,
+      this.game.canvas.height + text.displayHeight
+    );
+
+    const donateButton = this.add
+      .image(0, 0, "donateButton")
+      .setScale(screenSize().menu.winModal.buttonScale)
+      .setInteractive({ cursor: "pointer" })
+      .on(Phaser.Input.Events.POINTER_DOWN, () => {
+        //@ts-ignore
+        window.location = "/donate";
+      });
+    donateButton.setPosition(
+      this.game.canvas.width / 2,
+      this.game.canvas.height - donateButton.displayHeight / 2
+    );
+
+    this.tweens.add({
+      targets: text,
+      duration: 10000,
+      y: this.game.canvas.height / 2,
+      onComplete: () => {},
+    });
+
+    this.tweens.add({
+      targets: backgroundImage,
+      duration: 5000,
+      alpha: 0.9,
+    });
+
+    this.winModal.add(backgroundImage);
   }
 
   addUiButtonsForMobile() {
@@ -129,6 +201,9 @@ export class GameMenu extends Phaser.Scene {
       this.game.canvas.width - stopPedal.displayWidth - 20,
       this.game.canvas.height - stopPedal.displayHeight - 20
     );
+
+    this.mobileUIButtons.push(goPedal);
+    this.mobileUIButtons.push(stopPedal);
   }
 
   openAccessIndicators() {

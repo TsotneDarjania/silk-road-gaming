@@ -1,12 +1,18 @@
-import React, { useState, useReducer, useRef } from "react";
-import Warning from "../../../../components/Warning";
-import { deleteCookies, setCookie } from "../../../../helper/cookie";
-import style from "./loginAndRegistrationForm.module.css";
-import { Api } from "../../../../api/api";
+import React, { useState, useRef } from "react";
+
+import style from "./autentication.module.css";
+import { Api } from "../../api/api";
+import Warning from "../Warning";
+import { setCookie } from "../../helper/cookie";
+import "../../global.css";
 
 const api = new Api();
 
-const LoginAndRegistrationForm = ({ setIsLogin }) => {
+const AuthenticationModal = ({
+  setIsLogin,
+  accessAction,
+  setShowAutenticationModal,
+}) => {
   const userLoginNameRef = useRef(null);
   const userLoginPasswordRef = useRef(null);
   const userRegistrationNameRef = useRef(null);
@@ -20,11 +26,12 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
     const userPassword = userLoginPasswordRef.current.value;
 
     if (isValidation(userName, userPassword)) {
-      api.userLogin(userName, userPassword).then(
+      api.userLogin(userName).then(
         (response) => {
           if (response.password === userPassword) {
             saveUserIntoCookie(userName, userPassword);
             setIsLogin(true);
+            accessAction();
           } else {
             setShowWarning(true);
             setShowWarningText("Username or password is incorrect");
@@ -64,6 +71,7 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
         (response) => {
           saveUserIntoCookie(userName, userPassword);
           setIsLogin(true);
+          accessAction();
         },
         (error) => {
           if (error.code === 409) {
@@ -94,7 +102,10 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
       {showWarning && (
         <Warning okState={setShowWarning} text={showWarningText} />
       )}
-
+      <div
+        className="shadow"
+        onClick={() => setShowAutenticationModal(false)}
+      ></div>
       <div className={style.centerContainer}>
         <div className={style.formContainer}>
           <h3 className={style.formTitle}> Login </h3>
@@ -154,4 +165,4 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
   );
 };
 
-export default LoginAndRegistrationForm;
+export default AuthenticationModal;
