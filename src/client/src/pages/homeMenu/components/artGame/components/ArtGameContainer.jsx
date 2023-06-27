@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import style from "./artGameContainer.module.css";
 import gamesInfo from "../../../../../data/gamesInfo.json";
 import gameVideo from "../../../videos/1.mp4";
