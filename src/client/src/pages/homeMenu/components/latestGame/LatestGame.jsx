@@ -7,18 +7,6 @@ import AuthenticationModal from "../../../../components/autenticationModal/Authe
 const LatestGame = ({ setIsLogin, isLogin }) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
 
-  const [showShadow, setShowShadow] = useState(false);
-  const shadowProperty = {
-    opacity: 0.8,
-    transition: "0.5s",
-    show: showShadow,
-    setShow: setShowShadow,
-  };
-
-  useEffect(() => {
-    showShadow === false && setShowAutenticationModal(false);
-  }, [showShadow]);
-
   return (
     <div
       className={style.latestGameContainer}
@@ -37,7 +25,6 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
           setIsLogin={setIsLogin}
           accessAction={() => {
             window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
-            setShowShadow(false);
             setShowAutenticationModal(false);
           }}
           setShowAutenticationModal={setShowAutenticationModal}
@@ -68,7 +55,6 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
               window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
             } else {
               setShowAutenticationModal(true);
-              setShowShadow(true);
             }
           }}
           className={style.playButton}

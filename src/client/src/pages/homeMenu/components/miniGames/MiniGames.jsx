@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import GameContainer from "./components/gameContainer";
-
 import style from "./miniGames.module.css";
-
 import gamesInfo from "../../../../data/gamesInfo.json";
 import Warning from "../../../../components/Warning";
 

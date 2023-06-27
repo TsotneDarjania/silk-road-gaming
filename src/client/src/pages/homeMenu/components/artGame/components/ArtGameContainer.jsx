@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import style from "./artGameContainer.module.css";
 import gamesInfo from "../../../../../data/gamesInfo.json";
 import gameVideo from "../../../videos/1.mp4";
-import { AiFillDislike, AiFillLike } from "react-icons/ai";
+import {
+  AiFillDislike,
+  AiFillLike,
+  AiOutlineFullscreen,
+  AiOutlineFullscreenExit,
+} from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
-import { BsFullscreen } from "react-icons/bs";
 import ModalForComments from "../../../../../components/ModalForComments";
 import SliderComponent from "../../../../../components/SliderComponent";
 import image from "../../../images/background.jpg";
 import Warning from "../../../../../components/Warning";
+import "../../../../../global.css";
 
 const ArtGameContainer = (props) => {
   const [showCommentsModal, setShowCommentsModal] = useState(false);
   const [warningText, setWarningText] = useState();
-  const [showWarning, setShowWarning] = useState(false)
+  const [showWarning, setShowWarning] = useState(false);
   const images = [image, image, image, image, image, image];
 
   return (
@@ -70,7 +75,7 @@ const ArtGameContainer = (props) => {
                     if (props.isLogin) {
                       setShowCommentsModal(true);
                     } else {
-                      setShowWarning(true)
+                      setShowWarning(true);
                       setWarningText(
                         "Please login or register before commenting"
                       );
@@ -86,29 +91,47 @@ const ArtGameContainer = (props) => {
           </div>
         </div>
       </div>
-
       <div
         className={`${style.rightContainer} ${
           props.active[props.videoId] === true ? style.activeVideo : ""
         }`}
       >
-        <div className={style.videoContainer}>
-          <video className={style.gameVideo} loop autoPlay>
+        {props.active[props.videoId] === true && (
+          <div
+            className="shadow"
+            onClick={() => props.handleFullScreen(props.videoId)}
+          ></div>
+        )}
+        <div
+          className={style.videoContainer}
+          style={{
+            width: props.active[props.videoId] === true && "50%",
+          }}
+        >
+          <video
+            className={style.gameVideo}
+            loop
+            autoPlay
+            onClick={() => props.handleFullScreen(props.videoId)}
+          >
             <source src={gameVideo} type="video/mp4" />
           </video>
-          <div
-            className={`${style.fullScreenIcon}`}
-            style={{
-              right: props.active[props.videoId] === true ? "110px" : "90px",
-            }}
-          >
-            <BsFullscreen
-              onClick={() => props.handleFullScreen(props.videoId)}
-            />
+          <div className={`${style.fullScreenIcon}`}>
+            {props.active[props.videoId] === true ? (
+              <AiOutlineFullscreenExit
+                onClick={() => props.handleFullScreen(props.videoId)}
+              />
+            ) : (
+              <AiOutlineFullscreen
+                onClick={() => props.handleFullScreen(props.videoId)}
+              />
+            )}
           </div>
         </div>
       </div>
-      {showCommentsModal && <ModalForComments setShowCommentsModal={setShowCommentsModal}/>}
+      {showCommentsModal && (
+        <ModalForComments setShowCommentsModal={setShowCommentsModal} />
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
 
@@ -9,11 +9,6 @@ import AuthenticationModal from "../../../../../components/autenticationModal/Au
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
-
-  // useEffect(() => {
-  //   setShowAutenticationModal(false);
-  //    setShowCommentsModal(false)
-  // }, [showShadow]);
 
   return (
     <div className={style.gameContainer}>
@@ -54,7 +49,7 @@ const GameContainer = (props) => {
                   props.setShowWarning(true);
                   props.setShowWarningText(
                     "Please login or register before commenting"
-                  );
+                  )
                 }
               }}
             />
