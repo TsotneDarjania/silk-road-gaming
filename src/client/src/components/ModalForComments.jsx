@@ -20,10 +20,11 @@ const ModalForComments = (props) => {
     if (comments === undefined) return;
 
     comments.forEach((data) => {
+      console.log(data.userAvatarImageProfiles);
       commentItems.push(
         <div className={style.singleComment} key={Math.random(100000)}>
           <div className={style.userAvatar}>
-            <img src={userAvatar} alt="user Avatar" />
+            <img src={data.userAvatarImageProfiles} alt="user Avatar" />
           </div>
           <div>
             <div className={style.userInfo}>
@@ -55,7 +56,9 @@ const ModalForComments = (props) => {
     api
       .getGameComments(ApiEnums.gameCommentsCollectionId, props.gameName)
       .then((response) => {
-        commentsData = response.documents;
+        // commentsData = response.documents;
+        setCommentsData(response.documents);
+        renderComments(commentsData);
       });
   };
 
@@ -64,7 +67,7 @@ const ModalForComments = (props) => {
       getComments();
   }, [commentsData]);
 
-    return (
+  return (
     <div className={style.commentsModal}>
       <div
         className="shadow"
@@ -100,7 +103,8 @@ const ModalForComments = (props) => {
                       ApiEnums.gameCommentsCollectionId,
                       props.gameName,
                       commentRef.current.value,
-                      0
+                      0,
+                      "https://cloud.appwrite.io/v1/storage/buckets/6498150da54283132635/files/default/view?project=649567e6984aa2b4d5ca&mode=admin"
                     )
                     .then(
                       (response) => {

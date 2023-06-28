@@ -75,10 +75,10 @@ body {
 }
 
 @keyframes shadowAnimation {
-  from{
+  from {
     opacity: 0;
   }
-  to{
+  to {
     opacity: 0.5;
   }
 }

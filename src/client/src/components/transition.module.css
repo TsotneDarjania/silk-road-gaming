@@ -10,7 +10,7 @@
   animation: topAnimationDown 1s forwards;
 }
 .topAnimationUp {
-  animation: topAnimationUp 1s forwards;
+  animation: topAnimationUp 1.5s forwards;
 }
 /* Bottom Part */
 .bottomTransition,
@@ -24,7 +24,7 @@
   animation: bottomAnimationUp 1s forwards;
 }
 .bottomAnimationDown {
-  animation: bottomAnimationDown 1s forwards;
+  animation: bottomAnimationDown 1.5s forwards;
 }
 /* show animations */
 @keyframes topAnimationDown {
@@ -46,18 +46,24 @@
 
 /* hide animations*/
 @keyframes topAnimationUp {
-  from {
+  0% {
     top: 0;
   }
-  to {
+  30% {
+    top: 0vh;
+  }
+  100% {
     top: -50vh;
   }
 }
 @keyframes bottomAnimationDown {
-  from {
+  0% {
     bottom: 0;
   }
-  to {
+  30% {
+    bottom: 0vh;
+  }
+  100% {
     bottom: -50vh;
   }
 }
