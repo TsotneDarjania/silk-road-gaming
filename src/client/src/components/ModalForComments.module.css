@@ -1,23 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
 
-.commentsContainer {
-  composes: darkBgColor from "../global.css";
-  width: 70%;
-  height: 70%;
+.commentsModal {
+  composes: flexCenter from "../global.css";
+  width: 100%;
+  height: 100%;
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 60;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
   border-radius: 10px;
 
   font-family: "Geo", sans-serif;
 
   padding: 10px;
 }
-
+.commentsContainer {
+  composes: darkBgColor from "../global.css";
+  width: 70%;
+  height: 70%;
+}
 .commentsSection {
   height: 75%;
   overflow-y: scroll;

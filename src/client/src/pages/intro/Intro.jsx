@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Phaser from "phaser";
 
 import style from "./intro.module.css";
 import { Home } from "../intro/scenes/home";
-import TransitionAnimation from "../../components/Transition";
 
-export const Intro = ({ setRequestedPage, setTransitionPlayAnimation }) => {
+export const Intro = ({ setRequestedPage }) => {
   const canvasContainer = useRef(null);
 
   useEffect(() => {
@@ -39,7 +38,6 @@ export const Intro = ({ setRequestedPage, setTransitionPlayAnimation }) => {
       <div ref={canvasContainer} className={style.canvas}></div>
       <button
         onClick={() => {
-          setTransitionPlayAnimation(true);
           setRequestedPage("homeMenu");
         }}
         className={style.openButton}

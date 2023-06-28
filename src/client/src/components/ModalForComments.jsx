@@ -4,6 +4,7 @@ import userAvatar from "../pages/homeMenu/images/userAvatar.png";
 import { Api } from "../api/api";
 import { ApiEnums } from "../enums/apiEnums";
 import { getCookie } from "../helper/cookie";
+import "../global.css";
 
 const api = new Api();
 
@@ -19,10 +20,11 @@ const ModalForComments = (props) => {
     if (comments === undefined) return;
 
     comments.forEach((data) => {
+      console.log(data.userAvatarImageProfiles);
       commentItems.push(
         <div className={style.singleComment} key={Math.random(100000)}>
           <div className={style.userAvatar}>
-            <img src={userAvatar} alt="user Avatar" />
+            <img src={data.userAvatarImageProfiles} alt="user Avatar" />
           </div>
           <div>
             <div className={style.userInfo}>
@@ -54,64 +56,72 @@ const ModalForComments = (props) => {
     api
       .getGameComments(ApiEnums.gameCommentsCollectionId, props.gameName)
       .then((response) => {
-        commentsData = response.documents;
+        // commentsData = response.documents;
+        setCommentsData(response.documents);
+        renderComments(commentsData);
       });
   };
 
   useEffect(() => {
-    console.log(props.gameName);
     if (props.gameName !== undefined && commentsData === undefined)
       getComments();
   }, [commentsData]);
 
   return (
-    <div className={style.commentsContainer}>
-      <div className={style.commentsSection}>
-        {renderComments(commentsData)}
-      </div>
-      <div className={style.userComment}>
-        <div className={style.inputBox}>
-          <textarea
-            onChange={(e) => {
-              if (e.target.value.length > 2) {
-                commentSendButtonRef.current.style.opacity = 0.5;
-              } else {
-                commentSendButtonRef.current.style.opacity = 0;
-              }
-            }}
-            maxLength={1000}
-            ref={commentRef}
-            placeholder="Add your comment here..."
-          />
-          <button
-            ref={commentSendButtonRef}
-            className={style.commentSendButton}
-            type="button"
-            onClick={() => {
-              if (commentRef.current.value.length > 2) {
-                api
-                  .insertCommentForGame(
-                    JSON.parse(getCookie("loginSession")).userName,
-                    ApiEnums.gameCommentsCollectionId,
-                    props.gameName,
-                    commentRef.current.value,
-                    0
-                  )
-                  .then(
-                    (response) => {
-                      commentSendButtonRef.current.style.opacity = 0;
-                      commentRef.current.value = "";
-                      getComments();
-                    },
-                    (error) => {
-                      console.log(error);
-                    }
-                  );
-              }
-            }}
-          >
-            Send
-          </button>
+    <div className={style.commentsModal}>
+      <div
+        className="shadow"
+        onClick={() => props.setShowCommentsModal(false)}
+      ></div>
+      <div className={style.commentsContainer}>
+        <div className={style.commentsSection}>
+          {renderComments(commentsData)}
+        </div>
+        <div className={style.userComment}>
+          <div className={style.inputBox}>
+            <textarea
+              onChange={(e) => {
+                if (e.target.value.length > 2) {
+                  commentSendButtonRef.current.style.opacity = 0.5;
+                } else {
+                  commentSendButtonRef.current.style.opacity = 0;
+                }
+              }}
+              maxLength={1000}
+              ref={commentRef}
+              placeholder="Add your comment here..."
+            />
+            <button
+              ref={commentSendButtonRef}
+              className={style.commentSendButton}
+              type="button"
+              onClick={() => {
+                if (commentRef.current.value.length > 2) {
+                  api
+                    .insertCommentForGame(
+                      JSON.parse(getCookie("loginSession")).userName,
+                      ApiEnums.gameCommentsCollectionId,
+                      props.gameName,
+                      commentRef.current.value,
+                      0,
+                      "https://cloud.appwrite.io/v1/storage/buckets/6498150da54283132635/files/default/view?project=649567e6984aa2b4d5ca&mode=admin"
+                    )
+                    .then(
+                      (response) => {
+                        commentSendButtonRef.current.style.opacity = 0;
+                        commentRef.current.value = "";
+                        getComments();
+                      },
+                      (error) => {
+                        console.log(error);
+                      }
+                    );
+                }
+              }}
+            >
+              Send
+            </button>
+          </div>
         </div>
       </div>
     </div>

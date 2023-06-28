@@ -47,6 +47,7 @@ const Header = () => {
       >
         Art Game
       </li>
+      {console.log('header')}
     </ul>
   );
 };

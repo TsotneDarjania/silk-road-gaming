@@ -1,13 +1,18 @@
-import React, { useState, useReducer, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 
 import style from "./autentication.module.css";
 import { Api } from "../../api/api";
 import Warning from "../Warning";
 import { setCookie } from "../../helper/cookie";
+import "../../global.css";
+import UserContext from "../../context/UserContext";
 
 const api = new Api();
 
-const AuthenticationModal = ({ setIsLogin, accessAction }) => {
+const AuthenticationModal = ({
+  accessAction,
+  setShowAutenticationModal,
+}) => {
   const userLoginNameRef = useRef(null);
   const userLoginPasswordRef = useRef(null);
   const userRegistrationNameRef = useRef(null);
@@ -15,6 +20,8 @@ const AuthenticationModal = ({ setIsLogin, accessAction }) => {
 
   const [showWarning, setShowWarning] = useState(false);
   const [showWarningText, setShowWarningText] = useState("");
+
+  const userContext = useContext(UserContext);
 
   const login = (event) => {
     const userName = userLoginNameRef.current.value;
@@ -25,7 +32,7 @@ const AuthenticationModal = ({ setIsLogin, accessAction }) => {
         (response) => {
           if (response.password === userPassword) {
             saveUserIntoCookie(userName, userPassword);
-            setIsLogin(true);
+            userContext.setIsLogin(true)
             accessAction();
           } else {
             setShowWarning(true);
@@ -65,7 +72,7 @@ const AuthenticationModal = ({ setIsLogin, accessAction }) => {
       api.userRegistration(userName, userPassword).then(
         (response) => {
           saveUserIntoCookie(userName, userPassword);
-          setIsLogin(true);
+          userContext.setIsLogin(true)
           accessAction();
         },
         (error) => {
@@ -97,7 +104,10 @@ const AuthenticationModal = ({ setIsLogin, accessAction }) => {
       {showWarning && (
         <Warning okState={setShowWarning} text={showWarningText} />
       )}
-
+      <div
+        className="shadow"
+        onClick={() => setShowAutenticationModal(false)}
+      ></div>
       <div className={style.centerContainer}>
         <div className={style.formContainer}>
           <h3 className={style.formTitle}> Login </h3>

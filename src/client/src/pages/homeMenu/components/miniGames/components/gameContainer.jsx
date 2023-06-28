@@ -1,43 +1,29 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
 
 import style from "./gameContainer.module.css";
 import ModalForComments from "../../../../../components/ModalForComments";
 import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
-import Shadow from "../../../../../components/Shadow";
+import UserContext from "../../../../../context/UserContext";
 
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
-  const [showShadow, setShowShadow] = useState(false);
-  const shadowProperty = {
-    opacity: 0.8,
-    transition: "0.5s",
-    show: showShadow,
-    setShow: setShowShadow,
-  };
-
   const [showCommentsModal, setShowCommentsModal] = useState(false);
 
-  useEffect(() => {
-    showShadow === false && setShowAutenticationModal(false);
-    props.show === false && setShowCommentsModal(false);
-  }, [showShadow, props.show]);
+  const userContext = useContext(UserContext);
 
   return (
     <div className={style.gameContainer}>
       {showAutenticationModal && (
         <AuthenticationModal
-          setIsLogin={props.setIsLogin}
           accessAction={() => {
             window.open(`${window.location.href}${props.data.url}`);
-            setShowShadow(false);
             setShowAutenticationModal(false);
           }}
+          setShowAutenticationModal={setShowAutenticationModal}
         />
       )}
-      <Shadow props={shadowProperty} />
-
       <div
         className={
           style.gameBackgroundImage + " " + style["miniGameBackgroundImage-1"]
@@ -59,14 +45,13 @@ const GameContainer = (props) => {
           <li className={style.commentIcon}>
             <FaCommentAlt
               onClick={() => {
-                if (props.isLogin) {
-                  props.setShow(true);
+                if (userContext.isLogin) {
                   setShowCommentsModal(true);
                 } else {
                   props.setShowWarning(true);
                   props.setShowWarningText(
                     "Please login or register before commenting"
-                  );
+                  )
                 }
               }}
             />
@@ -74,11 +59,10 @@ const GameContainer = (props) => {
         </ul>
         <button
           onClick={() => {
-            if (props.isLogin) {
+            if (userContext.isLogin) {
               window.open(`${window.location.href}${props.data.url}`);
             } else {
               setShowAutenticationModal(true);
-              setShowShadow(true);
             }
           }}
           className={style.openButton}
@@ -86,7 +70,12 @@ const GameContainer = (props) => {
           Open
         </button>
       </div>
-      {showCommentsModal && <ModalForComments gameName={props.data.name} />}
+      {showCommentsModal && (
+        <ModalForComments
+          gameName={props.data.name}
+          setShowCommentsModal={setShowCommentsModal}
+        />
+      )}
     </div>
   );
 };

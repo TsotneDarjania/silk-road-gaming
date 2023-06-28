@@ -1,24 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import style from "./latestGame.module.css";
 import latestGameVideo from "../../videos/1.mp4";
 import gamesInfo from "../../../../data/gamesInfo.json";
 import AuthenticationModal from "../../../../components/autenticationModal/AuthenticationModal";
-import Shadow from "../../../../components/Shadow";
+import UserContext from "../../../../context/UserContext";
 
-const LatestGame = ({ setIsLogin, isLogin }) => {
+const LatestGame = () => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
-
-  const [showShadow, setShowShadow] = useState(false);
-  const shadowProperty = {
-    opacity: 0.8,
-    transition: "0.5s",
-    show: showShadow,
-    setShow: setShowShadow,
-  };
-
-  useEffect(() => {
-    showShadow === false && setShowAutenticationModal(false);
-  }, [showShadow]);
+  const userContext = useContext(UserContext)
 
   return (
     <div
@@ -35,16 +24,13 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
     >
       {showAutenticationModal && (
         <AuthenticationModal
-          setIsLogin={setIsLogin}
           accessAction={() => {
             window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
-            setShowShadow(false);
             setShowAutenticationModal(false);
           }}
+          setShowAutenticationModal={setShowAutenticationModal}
         />
       )}
-      <Shadow props={shadowProperty} />
-
       <div className={style.latestGameContainerBackgroundImage}></div>
       <div className={style.leftContainer}>
         <div className={style.leftContainer_Div}>
@@ -65,11 +51,10 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
         </div>
         <button
           onClick={() => {
-            if (isLogin) {
+            if (userContext.isLogin) {
               window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
             } else {
               setShowAutenticationModal(true);
-              setShowShadow(true);
             }
           }}
           className={style.playButton}
@@ -82,6 +67,7 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
           <source src={latestGameVideo} type="video/mp4" />
         </video>
       </div>
+      {console.log('latest game')}
     </div>
   );
 };

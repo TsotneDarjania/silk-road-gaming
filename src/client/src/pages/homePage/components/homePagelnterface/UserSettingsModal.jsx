@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import style from "./userSettingsModal.module.css";
 import userAvatar from "../../../homeMenu/images/userAvatar.png";
 import { AiFillCamera } from "react-icons/ai";
+import "../../../../global.css";
 
 const UserSettingsModal = (props) => {
   const [name, setName] = useState("");
-  if (!props.show) {
+  if (!props.showUserSettingModal) {
     return null;
   }
   function handleSubmit(e) {
@@ -17,47 +18,58 @@ const UserSettingsModal = (props) => {
   }
 
   return (
-    <div className={style.settingsContainer}>
-      <div className={style.userAvatar}>
-        <img src={userAvatar} alt="user Avatar" />
-        <button className={style.cameraBtn}>
-          <AiFillCamera />
-        </button>
-      </div>
-      <div className={style.userNameBox}>
-        <p className={style.userNameBoxTitle}>Change Name</p>
-        <div>
-          <input
-            className={style.userNameInput}
-            type="text"
-            maxLength={20}
-            onChange={(e) => setName(e.target.value)}
-            placeholder={props.userName}
-            value={name}
-          />
-          <button
-            className={style.saveBtn}
-            onClick={handleSubmit}
-            style={{
-              opacity: name.length >= 3 && name.trim() ? "1" : "0"
-            }}
-          >
-            save
+    <div className={style.userSettingsModal}>
+      <div
+        className="shadow"
+        onClick={() =>
+          props.open === false && props.setShowUserSettingModal(false)
+        }
+      ></div>
+      <div className={style.settingsContainer}>
+        <div className={style.userAvatar}>
+          <img src={userAvatar} alt="user Avatar" />
+          <button className={style.cameraBtn}>
+            <AiFillCamera />
           </button>
         </div>
-      </div>
-      <div className={style.resetBox}>
-        <button onClick={() => props.setOpen(true)} className={style.resetBtn}>
-          RESET
-        </button>
-        <div
-          className={style.warningBox}
-          style={{ display: props.open ? "flex" : "none"}}
-        >
-          <p>ARE YOU SURE?</p>
-          <div className={style.btnBox}>
-            <button onClick={() => props.setOpen(false)}>YES</button>
-            <button onClick={() => props.setOpen(false)}>NO</button>
+        <div className={style.userNameBox}>
+          <p className={style.userNameBoxTitle}>Change Name</p>
+          <div>
+            <input
+              className={style.userNameInput}
+              type="text"
+              maxLength={20}
+              onChange={(e) => setName(e.target.value)}
+              placeholder={props.userName}
+              value={name}
+            />
+            <button
+              className={style.saveBtn}
+              onClick={handleSubmit}
+              style={{
+                opacity: name.length >= 3 && name.trim() ? "1" : "0",
+              }}
+            >
+              save
+            </button>
+          </div>
+        </div>
+        <div className={style.resetBox}>
+          <button
+            onClick={() => props.setOpen(true)}
+            className={style.resetBtn}
+          >
+            RESET
+          </button>
+          <div
+            className={style.warningBox}
+            style={{ display: props.open ? "flex" : "none" }}
+          >
+            <p>ARE YOU SURE?</p>
+            <div className={style.btnBox}>
+              <button onClick={() => props.setOpen(false)}>YES</button>
+              <button onClick={() => props.setOpen(false)}>NO</button>
+            </div>
           </div>
         </div>
       </div>

@@ -65,7 +65,8 @@ export class Api {
     collectionId: string,
     gameName: string,
     comment: string,
-    userRating: number
+    userRating: number,
+    userAvatarImageUrl: string
   ) {
     return this.databases().createDocument(
       ApiEnums.silkRoadDatabaseID,
@@ -76,19 +77,12 @@ export class Api {
         gameName: gameName,
         comment: comment,
         userRating: userRating,
+        userAvatarImageProfiles: userAvatarImageUrl,
       }
     );
   }
 
   getGameComments(collectionId: string, gameName: string) {
-    return this.databases().listDocuments(
-      ApiEnums.silkRoadDatabaseID,
-      collectionId,
-      [Query.equal("gameName", ["game_name", gameName])]
-    );
-  }
-
-  getCommentsAvatars(collectionId: string, gameName: string) {
     return this.databases().listDocuments(
       ApiEnums.silkRoadDatabaseID,
       collectionId,

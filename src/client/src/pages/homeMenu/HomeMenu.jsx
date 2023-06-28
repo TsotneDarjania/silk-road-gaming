@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect } from "react";
 
 import style from "./homeMenu.module.css";
 import LatestGame from "./components/latestGame/LatestGame";
@@ -7,25 +7,20 @@ import ArtGames from "./components/artGame/ArtGames";
 import Header from "./components/header/Header";
 
 export const HomeMenu = ({
-  setRequestedPage,
-  setTransitionPlayAnimation,
-  setIsLogin,
-  isLogin,
+  setRequestedPage
 }) => {
   useEffect(() => {
     document.getElementById("mini_games_container").style.visibility = "hidden";
     document.getElementById("art_games_container").style.visibility = "hidden";
   }, []);
-
   return (
     <div className={style.homeMenu}>
       <Header />
-      <LatestGame setIsLogin={setIsLogin} isLogin={isLogin} />
-      <MiniGames setIsLogin={setIsLogin} isLogin={isLogin} />
-      <ArtGames />
+      <LatestGame/>
+      <MiniGames/>
+      <ArtGames/>
       <button
         onClick={() => {
-          setTransitionPlayAnimation(true);
           setRequestedPage("homePage");
         }}
         type="button"

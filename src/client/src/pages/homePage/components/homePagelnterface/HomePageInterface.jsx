@@ -1,37 +1,30 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import style from "./homePageInterface.module.css";
 
 import { deleteCookies, getCookie } from "../../../../helper/cookie";
 
 import { CgMenuGridR } from "react-icons/cg";
 import UserSettingsModal from "./UserSettingsModal";
-import Shadow from "../../../../components/Shadow";
+import UserContext from "../../../../context/UserContext";
 
-const HomePageInterface = ({ setIsLogin }) => {
+const HomePageInterface = () => {
   const [userName, setUserName] = useState(
     JSON.parse(getCookie("loginSession")).userName
   );
 
+  const userContext = useContext(UserContext)
+
   const logOut = () => {
     deleteCookies();
-    setIsLogin(false);
+    userContext.setIsLogin(false);
   };
 
   const [menuClassName, setMenuClassName] = useState("");
-  const [show, setShow] = useState(false);
+  const [showUserSettingModal, setShowUserSettingModal] = useState(false);
   const [open, setOpen] = useState(false);
-
-  const shadowProperty = {
-    opacity: 0.5,
-    transition: "0.5s",
-    show: show,
-    setShow: setShow,
-    open: open    
-  };
 
   return (
     <div className={style.homePageInterface}>
-      <Shadow props={shadowProperty}/>
       <div
         onClick={() => {
           menuClassName === "showMenu"
@@ -45,7 +38,7 @@ const HomePageInterface = ({ setIsLogin }) => {
 
       <div className={style["menu"] + " " + style[menuClassName]}>
         <ul>
-          <li onClick={() => setShow(true)}> {userName} </li>
+          <li onClick={() => setShowUserSettingModal(true)}> {userName} </li>
           <li
             onClick={() => {
               logOut();
@@ -92,9 +85,10 @@ const HomePageInterface = ({ setIsLogin }) => {
       <UserSettingsModal
         open={open}
         setOpen={setOpen}
-        show={show}
+        showUserSettingModal={showUserSettingModal}
         userName={userName}
         setUserName={setUserName}
+        setShowUserSettingModal={setShowUserSettingModal}
       />
     </div>
   );
