@@ -1,20 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
 
 import style from "./gameContainer.module.css";
 import ModalForComments from "../../../../../components/ModalForComments";
 import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
+import UserContext from "../../../../../context/UserContext";
 
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
 
+  const userContext = useContext(UserContext);
+
   return (
     <div className={style.gameContainer}>
       {showAutenticationModal && (
         <AuthenticationModal
-          setIsLogin={props.setIsLogin}
           accessAction={() => {
             window.open(`${window.location.href}${props.data.url}`);
             setShowAutenticationModal(false);
@@ -43,7 +45,7 @@ const GameContainer = (props) => {
           <li className={style.commentIcon}>
             <FaCommentAlt
               onClick={() => {
-                if (props.isLogin) {
+                if (userContext.isLogin) {
                   setShowCommentsModal(true);
                 } else {
                   props.setShowWarning(true);
@@ -57,7 +59,7 @@ const GameContainer = (props) => {
         </ul>
         <button
           onClick={() => {
-            if (props.isLogin) {
+            if (userContext.isLogin) {
               window.open(`${window.location.href}${props.data.url}`);
             } else {
               setShowAutenticationModal(true);

@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import style from "./latestGame.module.css";
 import latestGameVideo from "../../videos/1.mp4";
 import gamesInfo from "../../../../data/gamesInfo.json";
 import AuthenticationModal from "../../../../components/autenticationModal/AuthenticationModal";
+import UserContext from "../../../../context/UserContext";
 
-const LatestGame = ({ setIsLogin, isLogin }) => {
+const LatestGame = () => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
+  const userContext = useContext(UserContext)
 
   return (
     <div
@@ -22,7 +24,6 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
     >
       {showAutenticationModal && (
         <AuthenticationModal
-          setIsLogin={setIsLogin}
           accessAction={() => {
             window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
             setShowAutenticationModal(false);
@@ -30,7 +31,6 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
           setShowAutenticationModal={setShowAutenticationModal}
         />
       )}
-
       <div className={style.latestGameContainerBackgroundImage}></div>
       <div className={style.leftContainer}>
         <div className={style.leftContainer_Div}>
@@ -51,7 +51,7 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
         </div>
         <button
           onClick={() => {
-            if (isLogin) {
+            if (userContext.isLogin) {
               window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
             } else {
               setShowAutenticationModal(true);
@@ -67,6 +67,7 @@ const LatestGame = ({ setIsLogin, isLogin }) => {
           <source src={latestGameVideo} type="video/mp4" />
         </video>
       </div>
+      {console.log('latest game')}
     </div>
   );
 };

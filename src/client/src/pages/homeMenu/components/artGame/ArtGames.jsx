@@ -14,15 +14,6 @@ const ArtGames = (props) => {
     });
   };
 
-  // useEffect(() => {
-  //   showShadow === false &&
-  //     setActive((active) => {
-  //       return active.map((value) => {
-  //         return (value = false);
-  //       });
-  //     });
-  // }, [showShadow]);
-
   return (
     <div
       className={style.artGames}
@@ -44,9 +35,9 @@ const ArtGames = (props) => {
           videoId={index}
           name={item.name}
           description={item.description}
-          isLogin={props.isLogin}
         />
       ))}
+      {console.log('artgames')}
     </div>
   );
 };

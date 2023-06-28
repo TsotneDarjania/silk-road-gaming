@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import style from "./artGameContainer.module.css";
 import gamesInfo from "../../../../../data/gamesInfo.json";
 import gameVideo from "../../../videos/1.mp4";
@@ -15,12 +15,15 @@ import SliderComponent from "../../../../../components/SliderComponent";
 import image from "../../../images/background.jpg";
 import Warning from "../../../../../components/Warning";
 import "../../../../../global.css";
+import UserContext from "../../../../../context/UserContext";
 
 const ArtGameContainer = (props) => {
   const [showCommentsModal, setShowCommentsModal] = useState(false);
   const [warningText, setWarningText] = useState();
   const [showWarning, setShowWarning] = useState(false);
   const images = [image, image, image, image, image, image];
+
+  const userContext = useContext(UserContext)
 
   return (
     <div className={style.artGameContainer}>
@@ -50,7 +53,11 @@ const ArtGameContainer = (props) => {
         <div className={style.buttonsDiv}>
           <button
             onClick={() => {
-              window.open("http://localhost:3000" + gamesInfo.lastGame.url);
+              if (userContext.isLogin) {
+                window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
+              } else {
+                // setShowAutenticationModal(true);
+              }
             }}
             className={style.playButton}
           >
@@ -72,7 +79,7 @@ const ArtGameContainer = (props) => {
               <li className={style.commentIcon}>
                 <FaCommentAlt
                   onClick={() => {
-                    if (props.isLogin) {
+                    if (userContext.isLogin) {
                       setShowCommentsModal(true);
                     } else {
                       setShowWarning(true);

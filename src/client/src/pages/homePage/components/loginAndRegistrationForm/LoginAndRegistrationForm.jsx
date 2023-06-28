@@ -1,12 +1,13 @@
-import React, { useState, useReducer, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import Warning from "../../../../components/Warning";
-import { deleteCookies, setCookie } from "../../../../helper/cookie";
+import { setCookie } from "../../../../helper/cookie";
 import style from "./loginAndRegistrationForm.module.css";
 import { Api } from "../../../../api/api";
+import UserContext from "../../../../context/UserContext";
 
 const api = new Api();
 
-const LoginAndRegistrationForm = ({ setIsLogin }) => {
+const LoginAndRegistrationForm = () => {
   const userLoginNameRef = useRef(null);
   const userLoginPasswordRef = useRef(null);
   const userRegistrationNameRef = useRef(null);
@@ -14,6 +15,8 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
 
   const [showWarning, setShowWarning] = useState(false);
   const [showWarningText, setShowWarningText] = useState("");
+
+  const userContext = useContext(UserContext)
 
   const login = (event) => {
     const userName = userLoginNameRef.current.value;
@@ -24,7 +27,7 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
         (response) => {
           if (response.password === userPassword) {
             saveUserIntoCookie(userName, userPassword);
-            setIsLogin(true);
+            userContext.setIsLogin(true)
           } else {
             setShowWarning(true);
             setShowWarningText("Username or password is incorrect");
@@ -63,7 +66,7 @@ const LoginAndRegistrationForm = ({ setIsLogin }) => {
       api.userRegistration(userName, userPassword).then(
         (response) => {
           saveUserIntoCookie(userName, userPassword);
-          setIsLogin(true);
+          userContext.setIsLogin(true)
         },
         (error) => {
           if (error.code === 409) {

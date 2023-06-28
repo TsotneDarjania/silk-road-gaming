@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import style from "./homePageInterface.module.css";
 
 import { deleteCookies, getCookie } from "../../../../helper/cookie";
 
 import { CgMenuGridR } from "react-icons/cg";
 import UserSettingsModal from "./UserSettingsModal";
+import UserContext from "../../../../context/UserContext";
 
-const HomePageInterface = ({ setIsLogin }) => {
+const HomePageInterface = () => {
   const [userName, setUserName] = useState(
     JSON.parse(getCookie("loginSession")).userName
   );
 
+  const userContext = useContext(UserContext)
+
   const logOut = () => {
     deleteCookies();
-    setIsLogin(false);
+    userContext.setIsLogin(false);
   };
 
   const [menuClassName, setMenuClassName] = useState("");

@@ -24,18 +24,15 @@ const MiniGames = (props) => {
       {showWarning && <Warning okState={setShowWarning} text={warningText} />}
       <GameContainer
         data={gamesInfo.miniGames[0]}
-        isLogin={props.isLogin}
-        setIsLogin={props.setIsLogin}
         setShowWarning={setShowWarning}
         setShowWarningText={setShowWarningText}
       />
       <GameContainer
         data={gamesInfo.miniGames[1]}
-        isLogin={props.isLogin}
-        setIsLogin={props.setIsLogin}
         setShowWarning={setShowWarning}
         setShowWarningText={setShowWarningText}
       />
+      {console.log('minigames')}
     </div>
   );
 };
