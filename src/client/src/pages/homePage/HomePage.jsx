@@ -6,7 +6,6 @@ import UserContext from "../../context/UserContext";
 
 const HomePage = ({
   setRequestedPage,
-  setTransitionPlayAnimation,
 }) => {
 
   const userContext = useContext(UserContext)
@@ -20,7 +19,6 @@ const HomePage = ({
       )}
       <button
         onClick={() => {
-          setTransitionPlayAnimation(true);
           setRequestedPage("homeMenu");
         }}
         type="button"

@@ -7,8 +7,7 @@ import ArtGames from "./components/artGame/ArtGames";
 import Header from "./components/header/Header";
 
 export const HomeMenu = ({
-  setRequestedPage,
-  setTransitionPlayAnimation,
+  setRequestedPage
 }) => {
   useEffect(() => {
     document.getElementById("mini_games_container").style.visibility = "hidden";
@@ -22,7 +21,6 @@ export const HomeMenu = ({
       <ArtGames/>
       <button
         onClick={() => {
-          setTransitionPlayAnimation(true);
           setRequestedPage("homePage");
         }}
         type="button"
