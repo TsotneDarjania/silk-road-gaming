@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import style from "./latestGame.module.css";
 import latestGameVideo from "../../videos/1.mp4";
 import gamesInfo from "../../../../data/gamesInfo.json";
 import AuthenticationModal from "../../../../components/autenticationModal/AuthenticationModal";
 import UserContext from "../../../../context/UserContext";
 
-const LatestGame = () => {
+const LatestGame = React.memo(() => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
   const userContext = useContext(UserContext)
 
@@ -70,6 +70,6 @@ const LatestGame = () => {
       {console.log('latest game')}
     </div>
   );
-};
+});
 
 export default LatestGame;

@@ -1,11 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import Phaser from "phaser";
 
 import style from "./intro.module.css";
 import { Home } from "../intro/scenes/home";
+import PageContext from "../../context/PageContext";
 
-export const Intro = ({ setRequestedPage }) => {
+export const Intro = () => {
   const canvasContainer = useRef(null);
+  const pageContext = useContext(PageContext)
 
   useEffect(() => {
     if (!canvasContainer.current) return;
@@ -38,7 +40,7 @@ export const Intro = ({ setRequestedPage }) => {
       <div ref={canvasContainer} className={style.canvas}></div>
       <button
         onClick={() => {
-          setRequestedPage("homeMenu");
+          pageContext.setRequestedPage("homeMenu")
         }}
         className={style.openButton}
       >

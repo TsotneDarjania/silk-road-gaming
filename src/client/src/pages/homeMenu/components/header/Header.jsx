@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./header.module.css";
 
-const Header = () => {
+const Header = React.memo(() => {
   const [active, setActive] = useState("latest_game");
 
   const handleMenuChange = (mode) => {
@@ -50,6 +50,6 @@ const Header = () => {
       {console.log('header')}
     </ul>
   );
-};
+});
 
 export default Header;

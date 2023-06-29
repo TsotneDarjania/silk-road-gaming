@@ -16,18 +16,29 @@ import image from "../../../images/background.jpg";
 import Warning from "../../../../../components/Warning";
 import "../../../../../global.css";
 import UserContext from "../../../../../context/UserContext";
+import PageContext from "../../../../../context/PageContext";
+import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
 
 const ArtGameContainer = (props) => {
   const [showCommentsModal, setShowCommentsModal] = useState(false);
-  const [warningText, setWarningText] = useState();
-  const [showWarning, setShowWarning] = useState(false);
+  const [showAutenticationModal, setShowAutenticationModal] = useState(false);
   const images = [image, image, image, image, image, image];
 
-  const userContext = useContext(UserContext)
+  const userContext = useContext(UserContext);
+  const pageContext = useContext(PageContext);
 
   return (
     <div className={style.artGameContainer}>
-      {showWarning && <Warning okState={setShowWarning} text={warningText} />}
+      {showAutenticationModal && (
+        <AuthenticationModal
+          accessAction={() => {
+            window.open(`${window.location.href}${props.data.url}`);
+            setShowAutenticationModal(false);
+          }}
+          setShowAutenticationModal={setShowAutenticationModal}
+        />
+      )}
+      {pageContext.warningProps.show && <Warning />}
       <div className={style.artGameContainerBgImage}></div>
       <div className={style.leftContainer}>
         <div className={style.leftContainer_Div}>
@@ -56,7 +67,7 @@ const ArtGameContainer = (props) => {
               if (userContext.isLogin) {
                 window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
               } else {
-                // setShowAutenticationModal(true);
+                setShowAutenticationModal(true);
               }
             }}
             className={style.playButton}
@@ -82,10 +93,10 @@ const ArtGameContainer = (props) => {
                     if (userContext.isLogin) {
                       setShowCommentsModal(true);
                     } else {
-                      setShowWarning(true);
-                      setWarningText(
-                        "Please login or register before commenting"
-                      );
+                      pageContext.setWarningProps({
+                        text: "Please login or register before commenting",
+                        show: true,
+                      });
                     }
                   }}
                 />

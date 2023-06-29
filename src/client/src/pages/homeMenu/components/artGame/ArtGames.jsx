@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import style from "./artGames.module.css";
 import ArtGameContainer from "./components/ArtGameContainer";
 import artGameInfo from "../../../../data/artgames.json";
 
-const ArtGames = (props) => {
+const ArtGames = React.memo(() => {
   const [active, setActive] = useState([false, false]);
 
   const handleFullScreen = (videoId) => {
@@ -37,9 +37,9 @@ const ArtGames = (props) => {
           description={item.description}
         />
       ))}
-      {console.log('artgames')}
+      {console.log("artgames")}
     </div>
   );
-};
+});
 
 export default ArtGames;

@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from "react";
 import style from "./ModalForComments.module.css";
-import userAvatar from "../pages/homeMenu/images/userAvatar.png";
 import { Api } from "../api/api";
 import { ApiEnums } from "../enums/apiEnums";
 import { getCookie } from "../helper/cookie";

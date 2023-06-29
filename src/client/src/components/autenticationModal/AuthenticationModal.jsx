@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useRef, useContext } from "react";
 
 import style from "./autentication.module.css";
 import { Api } from "../../api/api";
@@ -6,21 +6,17 @@ import Warning from "../Warning";
 import { setCookie } from "../../helper/cookie";
 import "../../global.css";
 import UserContext from "../../context/UserContext";
+import PageContext from "../../context/PageContext";
 
 const api = new Api();
 
-const AuthenticationModal = ({
-  accessAction,
-  setShowAutenticationModal,
-}) => {
+const AuthenticationModal = ({ accessAction, setShowAutenticationModal }) => {
   const userLoginNameRef = useRef(null);
   const userLoginPasswordRef = useRef(null);
   const userRegistrationNameRef = useRef(null);
   const userRegistrationPassowrdRef = useRef(null);
 
-  const [showWarning, setShowWarning] = useState(false);
-  const [showWarningText, setShowWarningText] = useState("");
-
+  const pageContext = useContext(PageContext);
   const userContext = useContext(UserContext);
 
   const login = (event) => {
@@ -32,17 +28,21 @@ const AuthenticationModal = ({
         (response) => {
           if (response.password === userPassword) {
             saveUserIntoCookie(userName, userPassword);
-            userContext.setIsLogin(true)
+            userContext.setIsLogin(true);
             accessAction();
           } else {
-            setShowWarning(true);
-            setShowWarningText("Username or password is incorrect");
+            pageContext.setWarningProps({
+              text: "Username or password is incorrect",
+              show: true,
+            });
           }
         },
         (error) => {
           if (error.code === 404) {
-            setShowWarning(true);
-            setShowWarningText("Username or password is incorrect");
+            pageContext.setWarningProps({
+              text: "Username or password is incorrect",
+              show: true,
+            });
           }
         }
       );
@@ -52,13 +52,17 @@ const AuthenticationModal = ({
 
   const isValidation = (userName, password) => {
     if (userName.length < 3) {
-      setShowWarning(true);
-      setShowWarningText("Your Username must have a minimum of 3 characters.");
+      pageContext.setWarningProps({
+        text: "Your Username must have a minimum of 3 characters.",
+        show: true,
+      });
       return false;
     }
     if (password.length < 3) {
-      setShowWarning(true);
-      setShowWarningText("Your Password must have a minimum of 3 characters.");
+      pageContext.setWarningProps({
+        text: "Your Password must have a minimum of 3 characters.",
+        show: true,
+      });
       return false;
     }
     return true;
@@ -72,15 +76,15 @@ const AuthenticationModal = ({
       api.userRegistration(userName, userPassword).then(
         (response) => {
           saveUserIntoCookie(userName, userPassword);
-          userContext.setIsLogin(true)
+          userContext.setIsLogin(true);
           accessAction();
         },
         (error) => {
           if (error.code === 409) {
-            setShowWarning(true);
-            setShowWarningText(
-              "This username already exists, please try another"
-            );
+            pageContext.setWarningProps({
+              text: "This username already exists, please try another",
+              show: true,
+            });
           }
         }
       );
@@ -101,9 +105,7 @@ const AuthenticationModal = ({
 
   return (
     <div className={style.loginAndRegistrationForm}>
-      {showWarning && (
-        <Warning okState={setShowWarning} text={showWarningText} />
-      )}
+      {pageContext.warningProps.show && <Warning />}
       <div
         className="shadow"
         onClick={() => setShowAutenticationModal(false)}

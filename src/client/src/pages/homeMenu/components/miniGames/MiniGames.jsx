@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import GameContainer from "./components/gameContainer";
 import style from "./miniGames.module.css";
 import gamesInfo from "../../../../data/gamesInfo.json";
 import Warning from "../../../../components/Warning";
+import PageContext from "../../../../context/PageContext";
 
-const MiniGames = (props) => {
-  const [showWarning, setShowWarning] = useState(false);
-  const [warningText, setShowWarningText] = useState("");
+const MiniGames = React.memo(() => {
+  const pageContext = useContext(PageContext);
 
   return (
     <div
@@ -21,20 +21,16 @@ const MiniGames = (props) => {
         }
       }}
     >
-      {showWarning && <Warning okState={setShowWarning} text={warningText} />}
+      {pageContext.warningProps.show && <Warning/>}
       <GameContainer
         data={gamesInfo.miniGames[0]}
-        setShowWarning={setShowWarning}
-        setShowWarningText={setShowWarningText}
       />
       <GameContainer
         data={gamesInfo.miniGames[1]}
-        setShowWarning={setShowWarning}
-        setShowWarningText={setShowWarningText}
       />
       {console.log('minigames')}
     </div>
   );
-};
+});
 
 export default MiniGames;

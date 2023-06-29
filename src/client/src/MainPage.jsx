@@ -7,6 +7,7 @@ import TransitionAnimation from "./components/Transition";
 import HomePage from "./pages/homePage/HomePage";
 import { Api } from "./api/api";
 import UserContext from "./context/UserContext";
+import PageContext from "./context/PageContext";
 
 const api = new Api();
 
@@ -50,24 +51,25 @@ function MainPage() {
   };
 
   const [page, setPage] = useState("intro");
-  const [requestedPage, setRequestedPage] = useState("");
+
+  const pageContext = useContext(PageContext);
 
   const transitionAnimationAction = () => {
-    setPage(requestedPage);
+    setPage(pageContext.requestedPage);
   };
 
   const [isTransitionPlayAnimation, setTransitionPlayAnimation] =
     useState(false);
 
   useEffect(() => {
-    requestedPage !== "" && setTransitionPlayAnimation(true);
-  }, [requestedPage]);
+    pageContext.requestedPage !== "" && setTransitionPlayAnimation(true);
+  }, [pageContext.requestedPage]);
 
   return (
     <div className="App">
-      {page === "intro" && <Intro setRequestedPage={setRequestedPage} />}
-      {page === "homeMenu" && <HomeMenu setRequestedPage={setRequestedPage} />}
-      {page === "homePage" && <HomePage setRequestedPage={setRequestedPage} />}
+      {page === "intro" && <Intro />}
+      {page === "homeMenu" && <HomeMenu />}
+      {page === "homePage" && <HomePage />}
       {isTransitionPlayAnimation && (
         <TransitionAnimation
           setTransitionPlayAnimation={setTransitionPlayAnimation}

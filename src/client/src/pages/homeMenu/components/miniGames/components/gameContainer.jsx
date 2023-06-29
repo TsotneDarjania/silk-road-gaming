@@ -6,12 +6,14 @@ import style from "./gameContainer.module.css";
 import ModalForComments from "../../../../../components/ModalForComments";
 import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
 import UserContext from "../../../../../context/UserContext";
+import PageContext from "../../../../../context/PageContext";
 
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
 
   const userContext = useContext(UserContext);
+  const pageContext = useContext(PageContext);
 
   return (
     <div className={style.gameContainer}>
@@ -48,10 +50,10 @@ const GameContainer = (props) => {
                 if (userContext.isLogin) {
                   setShowCommentsModal(true);
                 } else {
-                  props.setShowWarning(true);
-                  props.setShowWarningText(
-                    "Please login or register before commenting"
-                  )
+                  pageContext.setWarningProps({
+                    text: "Please login or register before commenting",
+                    show: true,
+                  });
                 }
               }}
             />
