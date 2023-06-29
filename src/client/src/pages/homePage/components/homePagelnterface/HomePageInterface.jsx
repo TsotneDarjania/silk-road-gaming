@@ -21,7 +21,6 @@ const HomePageInterface = () => {
 
   const [menuClassName, setMenuClassName] = useState("");
   const [showUserSettingModal, setShowUserSettingModal] = useState(false);
-  const [open, setOpen] = useState(false);
 
   return (
     <div className={style.homePageInterface}>
@@ -83,8 +82,6 @@ const HomePageInterface = () => {
       </div>
 
       <UserSettingsModal
-        open={open}
-        setOpen={setOpen}
         showUserSettingModal={showUserSettingModal}
         userName={userName}
         setUserName={setUserName}

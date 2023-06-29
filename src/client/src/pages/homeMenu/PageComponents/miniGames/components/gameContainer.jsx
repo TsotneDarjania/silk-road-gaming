@@ -24,7 +24,7 @@ const GameContainer = (props) => {
         />
       )}
       <div className={style.gameBackgroundImage}>
-        <img src={bgImage} />
+        <img src={bgImage} alt="MiniGamesBackgroundImg"/>
       </div>
       <p className={style.name}> {props.data.name} </p>
       <p className={style.shortDescription}>{props.data.description}</p>

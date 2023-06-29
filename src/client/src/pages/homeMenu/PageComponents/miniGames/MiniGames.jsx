@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import GameContainer from "./components/gameContainer";
 import style from "./miniGames.module.css";
 import gamesInfo from "../../../../data/gamesInfo.json";
-import Warning from "../../../../components/Warning";
+import Warning from "../../../../components/warning/Warning";
 import PageContext from "../../../../context/PageContext";
 
 const MiniGames = React.memo(() => {

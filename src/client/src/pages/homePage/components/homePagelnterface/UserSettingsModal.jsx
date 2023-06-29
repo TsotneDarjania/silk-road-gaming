@@ -6,9 +6,12 @@ import "../../../../global.css";
 
 const UserSettingsModal = (props) => {
   const [name, setName] = useState("");
+  const [showButtons, setShowButtons] = useState(false)
   if (!props.showUserSettingModal) {
     return null;
   }
+
+   
   function handleSubmit(e) {
     e.preventDefault();
     if (name.length >= 3 && name.trim()) {
@@ -22,7 +25,7 @@ const UserSettingsModal = (props) => {
       <div
         className="shadow"
         onClick={() =>
-          props.open === false && props.setShowUserSettingModal(false)
+          showButtons === false && props.setShowUserSettingModal(false)
         }
       ></div>
       <div className={style.settingsContainer}>
@@ -56,19 +59,19 @@ const UserSettingsModal = (props) => {
         </div>
         <div className={style.resetBox}>
           <button
-            onClick={() => props.setOpen(true)}
+            onClick={() => setShowButtons(true)}
             className={style.resetBtn}
           >
             RESET
           </button>
           <div
             className={style.warningBox}
-            style={{ display: props.open ? "flex" : "none" }}
+            style={{ display: showButtons ? "flex" : "none" }}
           >
             <p>ARE YOU SURE?</p>
             <div className={style.btnBox}>
-              <button onClick={() => props.setOpen(false)}>YES</button>
-              <button onClick={() => props.setOpen(false)}>NO</button>
+              <button onClick={() => setShowButtons(false)}>YES</button>
+              <button onClick={() => setShowButtons(false)}>NO</button>
             </div>
           </div>
         </div>

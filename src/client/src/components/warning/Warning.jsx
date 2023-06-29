@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import style from "./warning.module.css"
-import PageContext from '../context/PageContext'
+import PageContext from '../../context/PageContext'
 
 const Warning = () => {
   const pageContext = useContext(PageContext)

@@ -2,7 +2,7 @@ import React, { useRef, useContext } from "react";
 
 import style from "./autentication.module.css";
 import { Api } from "../../api/api";
-import Warning from "../Warning";
+import Warning from "../warning/Warning";
 import { setCookie } from "../../helper/cookie";
 import "../../global.css";
 import UserContext from "../../context/UserContext";

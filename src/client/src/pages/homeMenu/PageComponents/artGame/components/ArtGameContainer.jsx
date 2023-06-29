@@ -10,7 +10,7 @@ import { MdLeaderboard } from "react-icons/md";
 import ModalForComments from "../../../../../components/commentsModal/ModalForComments";
 import SliderComponent from "../../../../../components/Slider/SliderComponent";
 import image from "../../../images/background.jpg";
-import Warning from "../../../../../components/Warning";
+import Warning from "../../../../../components/warning/Warning";
 import "../../../../../global.css";
 import UserContext from "../../../../../context/UserContext";
 import PageContext from "../../../../../context/PageContext";
@@ -49,7 +49,7 @@ const ArtGameContainer = (props) => {
             }
           >
             <h3>
-              <span> Description : </span>
+              <span className={style.title}> Description : </span>
               {props.description}
             </h3>
           </div>

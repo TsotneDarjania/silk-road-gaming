@@ -1,5 +1,5 @@
 import React, { useRef, useContext } from "react";
-import Warning from "../../../../components/Warning";
+import Warning from "../../../../components/warning/Warning";
 import { setCookie } from "../../../../helper/cookie";
 import style from "./loginAndRegistrationForm.module.css";
 import { Api } from "../../../../api/api";

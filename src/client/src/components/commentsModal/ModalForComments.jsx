@@ -3,7 +3,7 @@ import style from "./ModalForComments.module.css";
 import { Api } from "../../api/api";
 import { ApiEnums } from "../../enums/apiEnums";
 import { getCookie } from "../../helper/cookie";
-import "../../global.css"
+import "../../global.css";
 
 const api = new Api();
 
@@ -12,14 +12,11 @@ const ModalForComments = (props) => {
   const commentSendButtonRef = useRef(null);
   const [commentsData, setCommentsData] = useState();
 
-  const userRating = 2050;
-
   const renderComments = (comments) => {
     const commentItems = [];
     if (comments === undefined) return;
 
     comments.forEach((data) => {
-      console.log(data.userAvatarImageProfiles);
       commentItems.push(
         <div className={style.singleComment} key={Math.random(100000)}>
           <div className={style.userAvatar}>
@@ -33,7 +30,7 @@ const ModalForComments = (props) => {
                   color:
                     data.userRating <= 1000
                       ? "yellow"
-                      : userRating >= 2000
+                      : data.userRating >= 2000
                       ? "green"
                       : "red",
                 }}
