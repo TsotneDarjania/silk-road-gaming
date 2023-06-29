@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
 
 .commentsModal {
-  composes: flexCenter from "../global.css";
+  composes: flexCenter from "../../global.css";
   width: 100%;
   height: 100%;
   position: fixed;
@@ -16,7 +16,7 @@
   padding: 10px;
 }
 .commentsContainer {
-  composes: darkBgColor from "../global.css";
+  composes: darkBgColor from "../../global.css";
   width: 70%;
   height: 70%;
 }
@@ -35,7 +35,7 @@
 }
 
 .userInfo {
-  composes: neonBlueColor from "../global.css";
+  composes: neonBlueColor from "../../global.css";
   display: flex;
   gap: 10px;
   font-size: 18px;
@@ -46,7 +46,7 @@
 }
 
 .comment {
-  composes: fadedWhiteColor from "../global.css";
+  composes: fadedWhiteColor from "../../global.css";
   padding: 5px 0px;
 }
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useRef } from "react";
 
 import style from "./homeMenu.module.css";
-import LatestGame from "./components/latestGame/LatestGame";
-import MiniGames from "./components/miniGames/MiniGames";
-import ArtGames from "./components/artGame/ArtGames";
-import Header from "./components/header/Header";
 import PageContext from "../../context/PageContext";
+import LatestGame from "./PageComponents/latestGame/LatestGame";
+import MiniGames from "./PageComponents/miniGames/MiniGames";
+import ArtGames from "./PageComponents/artGame/ArtGames";
+import Header from "./PageComponents/header/Header";
 
 export const HomeMenu = () => {
   const latestGameRef = useRef(null);
@@ -19,6 +19,7 @@ export const HomeMenu = () => {
     latestGameRef.current.style.opacity = mode === "latest_game" ? 1 : 0;
     miniGamesRef.current.style.opacity = mode === "mini_games" ? 1 : 0;
     artGamesRef.current.style.opacity = mode === "art_games" ? 1 : 0;
+    
     latestGameRef.current.style.visibility =
       mode === "latest_game" ? "visible" : "hidden";
     miniGamesRef.current.style.visibility =

@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from "react";
 import style from "./ModalForComments.module.css";
-import { Api } from "../api/api";
-import { ApiEnums } from "../enums/apiEnums";
-import { getCookie } from "../helper/cookie";
-import "../global.css";
+import { Api } from "../../api/api";
+import { ApiEnums } from "../../enums/apiEnums";
+import { getCookie } from "../../helper/cookie";
+import "../../global.css"
 
 const api = new Api();
 

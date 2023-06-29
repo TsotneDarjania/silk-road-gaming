@@ -20,17 +20,11 @@
   opacity: 0.2;
   filter: grayscale(100%);
 }
-.gameBackgroundImage img{
+.gameBackgroundImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-.miniGameBackgroundImage-1 {
-  position: absolute;
-  background-image: url("../../../images/games/miniGames/wallpapers/1.jpg");
-}
-
 .name {
   font-family: "Geo", sans-serif;
   color: rgb(163, 217, 190);
@@ -47,6 +41,15 @@
   z-index: 1;
   width: 90%;
 }
+.buttonsBox {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
 
 .openButton {
   composes: greenBgColor from "../../../../../global.css";
@@ -55,7 +58,6 @@
   width: 120px;
   height: 45px;
   z-index: 10;
-  margin-right: 20px;
 
   border: none;
 

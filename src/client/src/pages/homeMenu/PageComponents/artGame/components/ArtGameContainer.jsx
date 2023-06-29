@@ -3,21 +3,19 @@ import style from "./artGameContainer.module.css";
 import gamesInfo from "../../../../../data/gamesInfo.json";
 import gameVideo from "../../../videos/1.mp4";
 import {
-  AiFillDislike,
-  AiFillLike,
   AiOutlineFullscreen,
   AiOutlineFullscreenExit,
 } from "react-icons/ai";
-import { FaCommentAlt } from "react-icons/fa";
 import { MdLeaderboard } from "react-icons/md";
-import ModalForComments from "../../../../../components/ModalForComments";
-import SliderComponent from "../../../../../components/SliderComponent";
+import ModalForComments from "../../../../../components/commentsModal/ModalForComments";
+import SliderComponent from "../../../../../components/Slider/SliderComponent";
 import image from "../../../images/background.jpg";
 import Warning from "../../../../../components/Warning";
 import "../../../../../global.css";
 import UserContext from "../../../../../context/UserContext";
 import PageContext from "../../../../../context/PageContext";
 import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
+import Indicators from "../../../components/Indicators";
 
 const ArtGameContainer = (props) => {
   const [showCommentsModal, setShowCommentsModal] = useState(false);
@@ -43,7 +41,7 @@ const ArtGameContainer = (props) => {
       <div className={style.leftContainer}>
         <div className={style.leftContainer_Div}>
           <h3>
-            <span> Name : </span> {props.name}
+            <span className={style.title}> Name : </span> {props.name}
           </h3>
           <div
             className={
@@ -74,39 +72,9 @@ const ArtGameContainer = (props) => {
           >
             Play
           </button>
-          <div className={style.indicators}>
-            <ul>
-              <li className={style.likeIcon}>
-                <AiFillLike /> <span className={style.number}> 0 </span>
-              </li>
-
-              <li>
-                <div className={style.dislikeIcon}>
-                  <AiFillDislike />
-                </div>
-                <span className={style.number}> 0 </span>
-              </li>
-
-              <li className={style.commentIcon}>
-                <FaCommentAlt
-                  onClick={() => {
-                    if (userContext.isLogin) {
-                      setShowCommentsModal(true);
-                    } else {
-                      pageContext.setWarningProps({
-                        text: "Please login or register before commenting",
-                        show: true,
-                      });
-                    }
-                  }}
-                />
-              </li>
-
-              <li>
-                <MdLeaderboard />
-              </li>
-            </ul>
-          </div>
+          <Indicators setShowCommentsModal={setShowCommentsModal}>
+            <MdLeaderboard/>
+          </Indicators>
         </div>
       </div>
       <div

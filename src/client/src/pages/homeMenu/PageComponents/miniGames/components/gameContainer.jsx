@@ -1,20 +1,16 @@
 import { useContext, useState } from "react";
-import { AiFillLike } from "react-icons/ai";
-import { FaCommentAlt } from "react-icons/fa";
-
 import style from "./gameContainer.module.css";
-import ModalForComments from "../../../../../components/ModalForComments";
+import ModalForComments from "../../../../../components/commentsModal/ModalForComments";
 import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
 import UserContext from "../../../../../context/UserContext";
-import PageContext from "../../../../../context/PageContext";
 import bgImage from "../../../images/games/miniGames/wallpapers/1.jpg";
+import Indicators from "../../../components/Indicators";
 
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
 
   const userContext = useContext(UserContext);
-  const pageContext = useContext(PageContext);
 
   return (
     <div className={style.gameContainer}>
@@ -32,32 +28,8 @@ const GameContainer = (props) => {
       </div>
       <p className={style.name}> {props.data.name} </p>
       <p className={style.shortDescription}>{props.data.description}</p>
-      <div className={style.indicators}>
-        <ul>
-          <li className={style.likeIcon}>
-            <AiFillLike /> <span className={style.number}> 0 </span>
-          </li>
-
-          <li className={style.deslikeIcon}>
-            <span className={style.number}> 0 </span>
-            <AiFillLike />
-          </li>
-
-          <li className={style.commentIcon}>
-            <FaCommentAlt
-              onClick={() => {
-                if (userContext.isLogin) {
-                  setShowCommentsModal(true);
-                } else {
-                  pageContext.setWarningProps({
-                    text: "Please login or register before commenting",
-                    show: true,
-                  });
-                }
-              }}
-            />
-          </li>
-        </ul>
+      <div className={style.buttonsBox}>
+        <Indicators setShowCommentsModal={setShowCommentsModal} />
         <button
           onClick={() => {
             if (userContext.isLogin) {

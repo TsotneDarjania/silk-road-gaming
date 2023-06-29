@@ -70,7 +70,7 @@
   background: #55cdf6;
 }
 
-.leftContainer span:not(.number) {
+.title{
   font-size: 33px;
   font-weight: bold;
   color: rgb(69, 140, 179);
@@ -106,50 +106,6 @@
   align-items: flex-end;
   column-gap: 30px;
 }
-.indicators {
-  height: 57px;
-}
-
-.indicators ul {
-  list-style: none;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  gap: 20px;
-  font-size: 25px;
-}
-
-.indicators ul li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  cursor: pointer;
-
-  color: rgb(215, 217, 214);
-  transition: 0.4s;
-}
-.number {
-  color: rgb(215, 217, 214);
-  font-size: 30px;
-}
-
-.indicators ul li :hover :not(.number) {
-  color: rgb(136, 240, 244);
-}
-
-.dislikeIcon {
-  margin-top: 12px;
-}
-
-.commentIcon {
-  font-size: 20px;
-  margin-top: 6px;
-}
-.number {
-  cursor: default;
-}
-
 .fullScreenIcon {
   z-index: 5;
   color: white;

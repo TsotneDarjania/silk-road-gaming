@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider.module.css";
-import "../global.css";
+import "../../global.css";
 
 const SliderComponent = (props) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
