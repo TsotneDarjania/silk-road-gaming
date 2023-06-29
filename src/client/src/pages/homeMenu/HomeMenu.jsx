@@ -38,13 +38,13 @@ export const HomeMenu = () => {
   return (
     <div className={style.homeMenu}>
       <Header handleMenuChange={handleMenuChange} defaultMode={defaultMode} />
-      <div ref={latestGameRef}>
+      <div ref={latestGameRef} className={style.latestGame}>
         <LatestGame />
       </div>
-      <div ref={miniGamesRef}>
+      <div ref={miniGamesRef} className={style.miniGames}>
         <MiniGames />
       </div>
-      <div ref={artGamesRef}>
+      <div ref={artGamesRef} className={style.artGames}>
         <ArtGames />
       </div>
       <button

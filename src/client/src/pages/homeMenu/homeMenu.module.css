@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
 }
-.homeMenu div{
+.latestGame, .miniGames, .artGames{
   transition: 0.6s;
 }
 .homeButton {
