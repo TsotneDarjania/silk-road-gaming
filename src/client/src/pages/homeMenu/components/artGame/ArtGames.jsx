@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./artGames.module.css";
 import ArtGameContainer from "./components/ArtGameContainer";
-import artGameInfo from "../../../../data/artgames.json";
+import gameInfo from "../../../../data/gamesInfo.json";
 
 const ArtGames = React.memo(() => {
   const [active, setActive] = useState([false, false]);
@@ -16,7 +16,7 @@ const ArtGames = React.memo(() => {
 
   return (
     <div className={style.artGames}>
-      {artGameInfo.map((item, index) => (
+      {gameInfo.artGames.map((item, index) => (
         <ArtGameContainer
           key={index}
           active={active}

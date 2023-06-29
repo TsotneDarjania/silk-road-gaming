@@ -7,6 +7,7 @@ import ModalForComments from "../../../../../components/ModalForComments";
 import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
 import UserContext from "../../../../../context/UserContext";
 import PageContext from "../../../../../context/PageContext";
+import bgImage from "../../../images/games/miniGames/wallpapers/1.jpg";
 
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
@@ -26,11 +27,9 @@ const GameContainer = (props) => {
           setShowAutenticationModal={setShowAutenticationModal}
         />
       )}
-      <div
-        className={
-          style.gameBackgroundImage + " " + style["miniGameBackgroundImage-1"]
-        }
-      ></div>
+      <div className={style.gameBackgroundImage}>
+        <img src={bgImage} />
+      </div>
       <p className={style.name}> {props.data.name} </p>
       <p className={style.shortDescription}>{props.data.description}</p>
       <div className={style.indicators}>

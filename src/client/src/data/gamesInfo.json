@@ -16,5 +16,15 @@
       "description": "mini games description text wich comes from json ",
       "url": "games/minigame2"
     }
+  ],
+  "artGames": [
+    {
+      "name": "Batumisken",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at dictum ex, vitae ullamcorper magna. Mauris sed ante blandit, commodo sapien non, bibendum neque. Integer pellentesque sit amet purus non lobortis. Phasellus dui risus, ultrices eget lectus vitae, tristique viverra elit. Nunc gravida varius diam at lacinia. Nulla luctus tristique elit, eu bibendum nibh sollicitudin sed. Praesent sed rhoncus purus."
+    },
+    {
+      "name": "Mafia",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at dictum ex, vitae ullamcorper magna. Mauris sed ante blandit, commodo sapien non, bibendum neque. Integer pellentesque sit amet purus non lobortis. Phasellus dui risus, ultrices eget lectus vitae, tristique viverra elit. Nunc gravida varius diam at lacinia. Nulla luctus tristique elit, eu bibendum nibh sollicitudin sed. Praesent sed rhoncus purus."
+    }
   ]
 }

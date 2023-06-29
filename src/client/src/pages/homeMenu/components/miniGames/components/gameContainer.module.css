@@ -20,6 +20,11 @@
   opacity: 0.2;
   filter: grayscale(100%);
 }
+.gameBackgroundImage img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .miniGameBackgroundImage-1 {
   position: absolute;
