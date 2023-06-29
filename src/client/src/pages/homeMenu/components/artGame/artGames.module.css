@@ -15,7 +15,6 @@
     overflow-y: scroll;
 
     transition: 0.8s;
-    opacity: 0;
 }  
   /* width */
   ::-webkit-scrollbar {

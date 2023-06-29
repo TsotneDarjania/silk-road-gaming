@@ -5,6 +5,9 @@
   width: 100vw;
   height: 100vh;
 }
+.homeMenu div{
+  transition: 0.6s;
+}
 .homeButton {
   composes: orangeBgColor from "../../global.css";
   width: 200px;

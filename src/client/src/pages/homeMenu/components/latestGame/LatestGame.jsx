@@ -7,21 +7,10 @@ import UserContext from "../../../../context/UserContext";
 
 const LatestGame = React.memo(() => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
-  const userContext = useContext(UserContext)
+  const userContext = useContext(UserContext);
 
   return (
-    <div
-      className={style.latestGameContainer}
-      id="latest_game_container"
-      onTransitionEnd={(item) => {
-        if (
-          item.target.style.opacity === 0 &&
-          item.target.id === "latest_game_container"
-        ) {
-          item.target.style.visibility = "hidden";
-        }
-      }}
-    >
+    <div className={style.latestGameContainer}>
       {showAutenticationModal && (
         <AuthenticationModal
           accessAction={() => {
@@ -67,7 +56,6 @@ const LatestGame = React.memo(() => {
           <source src={latestGameVideo} type="video/mp4" />
         </video>
       </div>
-      {console.log('latest game')}
     </div>
   );
 });

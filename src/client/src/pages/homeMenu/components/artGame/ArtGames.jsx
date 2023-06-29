@@ -15,18 +15,7 @@ const ArtGames = React.memo(() => {
   };
 
   return (
-    <div
-      className={style.artGames}
-      id="art_games_container"
-      onTransitionEnd={(item) => {
-        if (
-          item.target.style.opacity == 0 &&
-          item.target.id === "art_games_container"
-        ) {
-          item.target.style.visibility = "hidden";
-        }
-      }}
-    >
+    <div className={style.artGames}>
       {artGameInfo.map((item, index) => (
         <ArtGameContainer
           key={index}
@@ -37,7 +26,6 @@ const ArtGames = React.memo(() => {
           description={item.description}
         />
       ))}
-      {console.log("artgames")}
     </div>
   );
 });

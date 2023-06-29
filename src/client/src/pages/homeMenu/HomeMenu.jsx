@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from "react";
+import React, { useEffect, useContext, useRef } from "react";
 
 import style from "./homeMenu.module.css";
 import LatestGame from "./components/latestGame/LatestGame";
@@ -8,22 +8,47 @@ import Header from "./components/header/Header";
 import PageContext from "../../context/PageContext";
 
 export const HomeMenu = () => {
-  useEffect(() => {
-    document.getElementById("mini_games_container").style.visibility = "hidden";
-    document.getElementById("art_games_container").style.visibility = "hidden";
-  }, []);
+  const latestGameRef = useRef(null);
+  const miniGamesRef = useRef(null);
+  const artGamesRef = useRef(null);
 
-  const pageContext = useContext(PageContext)
+  // change mode for menu
+  const defaultMode = "latest_game";
+
+  const handleMenuChange = (mode) => {
+    latestGameRef.current.style.opacity = mode === "latest_game" ? 1 : 0;
+    miniGamesRef.current.style.opacity = mode === "mini_games" ? 1 : 0;
+    artGamesRef.current.style.opacity = mode === "art_games" ? 1 : 0;
+    latestGameRef.current.style.visibility =
+      mode === "latest_game" ? "visible" : "hidden";
+    miniGamesRef.current.style.visibility =
+      mode === "mini_games" ? "visible" : "hidden";
+    artGamesRef.current.style.visibility =
+      mode === "art_games" ? "visible" : "hidden";
+  };
+
+  useEffect(() => {
+    handleMenuChange(defaultMode);
+  }, []);
+  // ///////////////
+
+  const pageContext = useContext(PageContext);
 
   return (
     <div className={style.homeMenu}>
-      <Header />
-      <LatestGame/>
-      <MiniGames/>
-      <ArtGames/>
+      <Header handleMenuChange={handleMenuChange} defaultMode={defaultMode} />
+      <div ref={latestGameRef}>
+        <LatestGame />
+      </div>
+      <div ref={miniGamesRef}>
+        <MiniGames />
+      </div>
+      <div ref={artGamesRef}>
+        <ArtGames />
+      </div>
       <button
         onClick={() => {
-          pageContext.setRequestedPage("homePage")
+          pageContext.setRequestedPage("homePage");
         }}
         type="button"
         className={style.homeButton}

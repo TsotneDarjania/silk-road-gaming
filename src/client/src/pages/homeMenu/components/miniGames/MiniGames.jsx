@@ -10,17 +10,7 @@ const MiniGames = React.memo(() => {
 
   return (
     <div
-      className={style.miniGames}
-      id="mini_games_container"
-      onTransitionEnd={(item) => {
-        if (
-          item.target.style.opacity === 0 &&
-          item.target.id === "mini_games_container"
-        ) {
-          item.target.style.visibility = "hidden";
-        }
-      }}
-    >
+      className={style.miniGames}>
       {pageContext.warningProps.show && <Warning/>}
       <GameContainer
         data={gamesInfo.miniGames[0]}
@@ -28,7 +18,6 @@ const MiniGames = React.memo(() => {
       <GameContainer
         data={gamesInfo.miniGames[1]}
       />
-      {console.log('minigames')}
     </div>
   );
 });
