@@ -41,7 +41,8 @@
 
 .leftContainer_Div {
   color: var(--neonBlueColor);
-  font-size: 20px;
+  font-size: 26px;
+  line-height: 40px;
 }
 
 .descriptionDiv {
@@ -70,7 +71,7 @@
   background: #55cdf6;
 }
 
-.title{
+.title {
   font-size: 30px;
   font-weight: bold;
   color: var(--skyBlueColor);

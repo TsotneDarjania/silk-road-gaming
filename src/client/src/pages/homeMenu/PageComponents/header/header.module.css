@@ -14,21 +14,40 @@
 
 .menuLi {
   cursor: pointer;
-  color: rgb(62, 92, 90);
+  color: rgb(188, 170, 200);
   transition: 0.3s;
+  letter-spacing: 1px;
+  opacity: 0.3;
 
-  font-size: 21px;
-  padding: 20px;
-  border: 2px solid var(--darkCyanColor);
+  font-size: 17px;
+  padding: 10px 20px 10px 20px;
+  border: 4px solid rgb(116, 98, 137);
+  border-style: dotted;
+
+  animation: flashing 5s infinite forwards;
 }
 .menuLi:hover {
-  color: var(--blueLiColor);
+  color: rgb(240, 220, 248);
+}
+
+@keyframes flashing {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }
 
 .selectedLi {
-  font-size: 30px;
-  border: 2px solid var(--blueLiColor);
-  color: var(--blueLiColor);
+  opacity: 0.8;
+  font-size: 22px;
+  border: 5px solid rgb(52, 48, 66);
+  color: rgb(229, 165, 253);
+  animation: none;
 }
 
 @media screen and (max-width: 700px) {

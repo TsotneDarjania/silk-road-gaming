@@ -19,7 +19,7 @@
 }
 
 .formContainer {
-  composes: flexCenterColumn from '../../../../global.css';
+  composes: flexCenterColumn from "../../../../global.css";
   width: 49.5%;
   border: 2px solid var(--darkBeigeColor);
 }
@@ -66,13 +66,12 @@
 
 .submitButton {
   width: 30%;
-  height: 40px;
   margin-left: 70%;
   margin-top: 5%;
   border: none;
 
   font-family: var(--mainFont);
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
 

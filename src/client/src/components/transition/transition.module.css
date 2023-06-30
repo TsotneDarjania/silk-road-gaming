@@ -3,44 +3,48 @@
 .topAnimationUp {
   position: absolute;
   width: 100vw;
-  height: 50vh;
+  height: 52vh;
   background-color: var(--beigeBgColor);
   z-index: 100;
   top: -50vh;
-  animation: topAnimationDown 1s forwards;
+  animation: topAnimationDown 0.7s forwards;
 }
 .topAnimationUp {
-  animation: topAnimationUp 2s forwards;
+  animation: topAnimationUp 3s forwards;
 }
 /* Bottom Part */
 .bottomTransition,
 .bottomAnimationDown {
   position: absolute;
   width: 100vw;
-  height: 50vh;
+  height: 52vh;
   background-color: var(--beigeBgColor);
   z-index: 100;
   bottom: -50vh;
-  animation: bottomAnimationUp 1s forwards;
+  animation: bottomAnimationUp 0.7s forwards;
 }
 .bottomAnimationDown {
-  animation: bottomAnimationDown 2s forwards;
+  animation: bottomAnimationDown 3s forwards;
 }
 /* show animations */
 @keyframes topAnimationDown {
   from {
+    opacity: 0;
     top: -50vh;
   }
   to {
-    top: 0;
+    opacity: 1;
+    top: 0vh;
   }
 }
 @keyframes bottomAnimationUp {
   from {
+    opacity: 0;
     bottom: -50vh;
   }
   to {
-    bottom: 0;
+    opacity: 1;
+    bottom: 0vh;
   }
 }
 
@@ -51,8 +55,10 @@
   }
   60% {
     top: 0vh;
+    opacity: 1;
   }
   100% {
+    opacity: 0;
     top: -50vh;
   }
 }
@@ -62,8 +68,10 @@
   }
   60% {
     bottom: 0vh;
+    opacity: 1;
   }
   100% {
+    opacity: 0;
     bottom: -50vh;
   }
 }

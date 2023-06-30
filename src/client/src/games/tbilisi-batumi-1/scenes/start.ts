@@ -14,11 +14,6 @@ export class StartScene extends Phaser.Scene {
   preload() {
     this.load.setPath(`${process.env.PUBLIC_URL}/assets`);
 
-    this.load.webFont(
-      "mainFont",
-      "https://db.onlinewebfonts.com/t/309c1296f24c92c0a68d76e6d77d7d58.woff2"
-    );
-
     //registrationModal
     this.load.image("white", "common/images/white.png");
   }

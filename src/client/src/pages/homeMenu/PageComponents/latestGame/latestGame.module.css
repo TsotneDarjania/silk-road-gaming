@@ -52,11 +52,12 @@
 
 .leftContainer_Div {
   color: var(--neonBlueColor);
-  font-size: 23px;
+  font-size: 26px;
+  line-height: 40px;
 }
 
 .leftContainer span {
-  font-size: 33px;
+  font-size: 44px;
   color: var(--skyBlueColor);
 }
 
@@ -66,12 +67,13 @@
   height: 92%;
   z-index: 2;
 }
-.buttonDiv{
+.buttonDiv {
   width: 100%;
   position: absolute;
   left: 0;
   bottom: 20px;
 }
+
 @media screen and (max-width: 1050px) and (min-height: 800px) {
   .latestGameContainer {
     width: 80vw;
