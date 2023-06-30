@@ -58,10 +58,6 @@ function MainPage() {
     setPage(pageContext.requestedPage);
   };
 
-  // function PlayTransitionAnimation () {
-  //   setTransitionPlayAnimation(true)
-  // }
-
   console.log(page, 'page')
 
   return (

@@ -10,7 +10,7 @@
   animation: topAnimationDown 1s forwards;
 }
 .topAnimationUp {
-  animation: topAnimationUp 1.5s forwards;
+  animation: topAnimationUp 2s forwards;
 }
 /* Bottom Part */
 .bottomTransition,
@@ -24,7 +24,7 @@
   animation: bottomAnimationUp 1s forwards;
 }
 .bottomAnimationDown {
-  animation: bottomAnimationDown 1.5s forwards;
+  animation: bottomAnimationDown 2s forwards;
 }
 /* show animations */
 @keyframes topAnimationDown {
@@ -49,7 +49,7 @@
   0% {
     top: 0;
   }
-  30% {
+  60% {
     top: 0vh;
   }
   100% {
@@ -60,7 +60,7 @@
   0% {
     bottom: 0;
   }
-  30% {
+  60% {
     bottom: 0vh;
   }
   100% {

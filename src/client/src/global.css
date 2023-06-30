@@ -1,5 +1,14 @@
-:root{
+
+:root {
+  /* colors */
   --orangeBgColor: rgb(219, 113, 8);
+  --greenBgColor: rgb(0, 255, 157);
+  --darkBlueColor: rgb(0, 3, 64);
+
+
+  /* fonts */
+  --mainFont: 'Ysabeau SC', sans-serif;
+  --textFont: 'Ysabeau Office', sans-serif;
 }
 * {
   padding: 0;
@@ -12,16 +21,16 @@ body {
   overflow: hidden;
 }
 /* Z INDEX */
-.firstLayer{
+.firstLayer {
   z-index: 3;
 }
-.secondLayer{
+.secondLayer {
   z-index: 2;
 }
-.thirdLayer{
+.thirdLayer {
   z-index: 1;
 }
-.forthLayer{
+.forthLayer {
   z-index: 0;
 }
 
@@ -130,8 +139,9 @@ body {
 }
 
 /* BUTTONS */
-.primaryButton{
-  composes: secondLayer;
+
+/* primary button */
+.primaryButton {
   width: 200px;
   height: 50px;
   position: absolute;
@@ -140,19 +150,20 @@ body {
   background-color: var(--orangeBgColor);
   transition: 0.4s;
   color: white;
-  font-size: 32px;
   cursor: pointer;
-  font-weight: bold;
   border: none;
   box-shadow: 4px 4px 0px 0px rgb(249, 165, 119);
-  font-family: "Geo", sans-serif;
+
+  font-family: var(--mainFont);
+  font-size: 32px;
+  font-weight: bold;
 }
-.primaryButton:hover{
+.primaryButton:hover {
   box-shadow: -4px -4px 0px 0px rgb(249, 165, 119);
 }
- 
+
 @media (max-width: 900px) {
-  .primaryButton{
+  .primaryButton {
     width: 120px;
     height: 40px;
     bottom: 10px;
@@ -160,5 +171,66 @@ body {
     left: 0;
     margin: 0 auto;
     font-size: 25px;
+  }
+}
+/* ......... */
+
+/* play button */
+
+.playButton {
+  cursor: pointer;
+  width: 200px;
+  height: 57px;
+  border: none;
+  color: rgb(159, 64, 5);
+  background-color: rgb(255, 180, 81);
+  box-shadow: 5px 5px 0px 0px rgb(196, 106, 17);
+  transition: 0.3s;
+  z-index: 5;
+
+  font-family: var(--mainFont);
+  font-weight: bold;
+  font-size: 35px;
+}
+.playButton:hover {
+  color: black;
+  box-shadow: -5px -5px 0px 0px rgb(196, 106, 17);
+}
+
+@media (max-width: 1050px) and (min-height: 800px) {
+  .playButton {
+    font-size: 30px;
+    width: 180px;
+    height: 48px;
+  }
+}
+/* .......... */
+
+/* open button */
+
+.openButton{
+  background-color: var(--greenBgColor);
+  color: var(--darkBlueColor);
+  max-width: 120px;
+  width: 80%;
+  height: 45px;
+  z-index: 10;
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
+
+  font-size: 28px;
+  font-weight: bold;
+  font-family: var(--mainFont);
+}
+
+.openButton:hover {
+  background-color: rgb(0, 22, 14);
+  color: rgb(238, 239, 255);
+}
+
+@media (max-width: 650px) {
+  .openButton{
+    margin-right: 20px;
   }
 }

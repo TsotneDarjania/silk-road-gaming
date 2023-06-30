@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
 
 .commentsModal {
   composes: flexCenter from "../../global.css";
@@ -11,7 +9,7 @@
   z-index: 60;
   border-radius: 10px;
 
-  font-family: "Geo", sans-serif;
+  font-family: var(--textFont);
 
   padding: 10px;
 }
@@ -93,11 +91,11 @@
   bottom: 4px;
   border: none;
   background-color: rgb(6, 2, 19);
-  font-family: "Geo", sans-serif;
   color: white;
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
+  font-family: var(--mainFont);
 
   opacity: 0;
   transition: 0.4s;

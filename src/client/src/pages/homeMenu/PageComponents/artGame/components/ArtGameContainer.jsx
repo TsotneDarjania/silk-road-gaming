@@ -2,27 +2,23 @@ import React, { useContext, useState } from "react";
 import style from "./artGameContainer.module.css";
 import gamesInfo from "../../../../../data/gamesInfo.json";
 import gameVideo from "../../../videos/1.mp4";
-import {
-  AiOutlineFullscreen,
-  AiOutlineFullscreenExit,
-} from "react-icons/ai";
+import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "react-icons/ai";
 import { MdLeaderboard } from "react-icons/md";
 import ModalForComments from "../../../../../components/commentsModal/ModalForComments";
 import SliderComponent from "../../../../../components/Slider/SliderComponent";
 import image from "../../../images/background.jpg";
 import Warning from "../../../../../components/warning/Warning";
 import "../../../../../global.css";
-import UserContext from "../../../../../context/UserContext";
 import PageContext from "../../../../../context/PageContext";
 import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
 import Indicators from "../../../components/Indicators";
+import LinkButton from "../../../../../components/buttons/LinkButton";
 
 const ArtGameContainer = (props) => {
   const [showCommentsModal, setShowCommentsModal] = useState(false);
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
   const images = [image, image, image, image, image, image];
 
-  const userContext = useContext(UserContext);
   const pageContext = useContext(PageContext);
 
   return (
@@ -60,20 +56,13 @@ const ArtGameContainer = (props) => {
         </div>
 
         <div className={style.buttonsDiv}>
-          <button
-            onClick={() => {
-              if (userContext.isLogin) {
-                window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
-              } else {
-                setShowAutenticationModal(true);
-              }
-            }}
-            className={style.playButton}
-          >
-            Play
-          </button>
+          <LinkButton
+            innerText="Play"
+            gameUrl={gamesInfo.lastGame.url}
+            setShowAutenticationModal={setShowAutenticationModal}
+          />
           <Indicators setShowCommentsModal={setShowCommentsModal}>
-            <MdLeaderboard/>
+            <MdLeaderboard />
           </Indicators>
         </div>
       </div>

@@ -1,6 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
-
 .latestGameContainer {
   composes: flexCenter from "../../../../global.css";
   position: absolute;
@@ -38,10 +35,8 @@
 
   display: flex;
   flex-direction: column;
-  padding: 20px;
-
-  /* backdrop-filter: hue-rotate(120deg); */
-  font-family: "Geo", sans-serif;
+  padding-top: 20px;
+  font-family: var(--textFont);
 }
 
 .rightContainer {
@@ -62,7 +57,6 @@
 
 .leftContainer span {
   font-size: 33px;
-  font-weight: bold;
   color: rgb(69, 140, 179);
 }
 
@@ -72,35 +66,12 @@
   height: 92%;
   z-index: 2;
 }
-
-.playButton {
+.buttonDiv{
+  width: 100%;
   position: absolute;
-  cursor: pointer;
-
-  margin-left: auto;
-  margin-right: auto;
   left: 0;
-  right: 0;
-
-  font-size: 35px;
   bottom: 20px;
-  width: 200px;
-  height: 57px;
-  border: none;
-  color: rgb(159, 64, 5);
-  background-color: rgb(255, 180, 81);
-  box-shadow: 5px 5px 0px 0px rgb(196, 106, 17);
-  font-weight: bold;
-  font-family: "Geo", sans-serif;
-  transition: 0.3s;
-  z-index: 5;
 }
-
-.playButton:hover {
-  color: black;
-  box-shadow: -5px -5px 0px 0px rgb(196, 106, 17);
-}
-
 @media screen and (max-width: 1050px) and (min-height: 800px) {
   .latestGameContainer {
     width: 80vw;
@@ -132,23 +103,9 @@
     font-size: 19px;
     font-weight: bold;
   }
-
-  .playButton {
-    margin-left: inherit;
-    margin-right: inherit;
-    left: inherit;
+  .buttonDiv {
     right: 40px;
-
-    font-size: 30px;
     bottom: 20px;
-    width: 180px;
-    height: 48px;
-    box-shadow: 5px 5px 0px 0px rgb(196, 106, 17);
-  }
-
-  .playButton:hover {
-    color: black;
-    box-shadow: -5px -5px 0px 0px rgb(196, 106, 17);
   }
 }
 
@@ -193,24 +150,6 @@
   .leftContainer span {
     font-size: 22px;
     font-weight: bold;
-  }
-
-  .playButton {
-    margin-left: inherit;
-    margin-right: inherit;
-    left: inherit;
-    right: 40px;
-
-    font-size: 30px;
-    bottom: 20px;
-    width: 180px;
-    height: 48px;
-    box-shadow: 5px 5px 0px 0px rgb(196, 106, 17);
-  }
-
-  .playButton:hover {
-    color: black;
-    box-shadow: -5px -5px 0px 0px rgb(196, 106, 17);
   }
 }
 

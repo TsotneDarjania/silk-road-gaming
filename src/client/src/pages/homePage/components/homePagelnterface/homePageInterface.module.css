@@ -1,11 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
-
 .homePageInterface {
   composes: fadedWhiteBgColor from '../../../../global.css';
   width: 100vw;
   height: 100vh;
-
+  font-family: var(--textFont);
 }
 
 .gameHistoryContainer {
@@ -22,7 +19,6 @@
   margin-bottom: auto;
   top: 0;
   bottom: 0;
-  font-family: "Geo", sans-serif;
 
   display: flex;
   justify-content: start;
@@ -161,7 +157,6 @@
 
 .menu ul li {
   text-align: center;
-  font-family: "Geo", sans-serif;
   font-weight: bold;
   font-size: 25px;
   cursor: pointer;

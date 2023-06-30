@@ -5,6 +5,7 @@ import AuthenticationModal from "../../../../../components/autenticationModal/Au
 import UserContext from "../../../../../context/UserContext";
 import bgImage from "../../../images/games/miniGames/wallpapers/1.jpg";
 import Indicators from "../../../components/Indicators";
+import LinkButton from "../../../../../components/buttons/LinkButton";
 
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
@@ -24,24 +25,17 @@ const GameContainer = (props) => {
         />
       )}
       <div className={style.gameBackgroundImage}>
-        <img src={bgImage} alt="MiniGamesBackgroundImg"/>
+        <img src={bgImage} alt="MiniGamesBackgroundImg" />
       </div>
       <p className={style.name}> {props.data.name} </p>
       <p className={style.shortDescription}>{props.data.description}</p>
       <div className={style.buttonsBox}>
         <Indicators setShowCommentsModal={setShowCommentsModal} />
-        <button
-          onClick={() => {
-            if (userContext.isLogin) {
-              window.open(`${window.location.href}${props.data.url}`);
-            } else {
-              setShowAutenticationModal(true);
-            }
-          }}
-          className={style.openButton}
-        >
-          Open
-        </button>
+        <LinkButton
+          innerText={"Open"}
+          gameUrl={props.data.url}
+          setShowAutenticationModal={setShowAutenticationModal}
+        />
       </div>
       {showCommentsModal && (
         <ModalForComments

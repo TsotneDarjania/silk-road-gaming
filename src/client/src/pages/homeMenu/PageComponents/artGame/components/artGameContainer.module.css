@@ -26,7 +26,7 @@
   flex-direction: column;
   padding: 30px;
   justify-content: space-around;
-  font-family: "Geo", sans-serif;
+  font-family: var(--textFont);
 }
 
 .rightContainer {
@@ -41,7 +41,7 @@
 
 .leftContainer_Div {
   composes: neonBlueColor from "../../../../../global.css";
-  font-size: 23px;
+  font-size: 20px;
 }
 
 .descriptionDiv {
@@ -71,7 +71,7 @@
 }
 
 .title{
-  font-size: 33px;
+  font-size: 30px;
   font-weight: bold;
   color: rgb(69, 140, 179);
   cursor: pointer;
@@ -79,25 +79,6 @@
 
 .artGameGallery {
   width: 100%;
-}
-
-.playButton {
-  cursor: pointer;
-  font-size: 35px;
-  width: 200px;
-  height: 57px;
-  border: none;
-  color: rgb(159, 64, 5);
-  background-color: rgb(255, 180, 81);
-  box-shadow: 5px 5px 0px 0px rgb(196, 106, 17);
-  font-weight: bold;
-  font-family: "Geo", sans-serif;
-  transition: 0.3s;
-  z-index: 5;
-}
-.playButton:hover {
-  color: black;
-  box-shadow: -5px -5px 0px 0px rgb(196, 106, 17);
 }
 
 .buttonsDiv {

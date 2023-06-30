@@ -6,7 +6,6 @@ const PrimaryButton = ({ type }) => {
   const pageContext = useContext(PageContext);
   const [config] = useState({
     back: {
-      className: "primaryButton",
       text: "Back",
       onClick: () => {
         pageContext.setRequestedPage("homeMenu")
@@ -14,7 +13,6 @@ const PrimaryButton = ({ type }) => {
       },
     },
     home: {
-      className: "primaryButton",
       text: "Home",
       onClick: () => {
         pageContext.setRequestedPage("homePage")
@@ -29,7 +27,7 @@ const PrimaryButton = ({ type }) => {
         config[type].onClick();
       }}
       type="button"
-      className={config[type].className}
+      className="primaryButton"
     >
       {config[type].text}
     </button>

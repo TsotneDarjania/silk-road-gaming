@@ -26,9 +26,9 @@
   object-fit: cover;
 }
 .name {
-  font-family: "Geo", sans-serif;
+  font-family: var(--mainFont);
   color: rgb(163, 217, 190);
-  font-weight: bold;
+  font-weight: 900;
   font-size: 35px;
   margin-top: 10px;
   z-index: 1;
@@ -36,11 +36,13 @@
 
 .shortDescription {
   composes: fadedWhiteColor from "../../../../../global.css";
-  font-family: "Geo", sans-serif;
+  font-family: var(--textFont);
+  font-weight: 500;
   font-size: 20px;
   z-index: 1;
   width: 90%;
 }
+
 .buttonsBox {
   position: absolute;
   bottom: 0;
@@ -49,28 +51,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-}
-
-.openButton {
-  composes: greenBgColor from "../../../../../global.css";
-  composes: darkBlueColor from "../../../../../global.css";
-
-  width: 120px;
-  height: 45px;
-  z-index: 10;
-
-  border: none;
-
-  cursor: pointer;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: "Geo", sans-serif;
-  transition: 0.3s;
-}
-
-.openButton:hover {
-  background-color: rgb(0, 22, 14);
-  color: rgb(238, 239, 255);
 }
 
 .indicators {
@@ -133,23 +113,6 @@
 }
 
 @media screen and (max-width: 650px) {
-  .openButton {
-    composes: greenBgColor from "../../../../../global.css";
-    composes: darkBlueColor from "../../../../../global.css";
-
-    width: 80%;
-    height: 45px;
-    z-index: 10;
-    margin-right: 20px;
-
-    border: none;
-
-    cursor: pointer;
-    font-size: 30px;
-    font-weight: bold;
-    font-family: "Geo", sans-serif;
-    transition: 0.3s;
-  }
   .gameContainer {
     width: 100%;
     height: 82%;

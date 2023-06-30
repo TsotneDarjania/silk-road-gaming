@@ -1,13 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import style from "./latestGame.module.css";
 import latestGameVideo from "../../videos/1.mp4";
 import gamesInfo from "../../../../data/gamesInfo.json";
 import AuthenticationModal from "../../../../components/autenticationModal/AuthenticationModal";
-import UserContext from "../../../../context/UserContext";
+import LinkButton from "../../../../components/buttons/LinkButton";
 
 const LatestGame = React.memo(() => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
-  const userContext = useContext(UserContext);
 
   return (
     <div className={style.latestGameContainer}>
@@ -38,18 +37,13 @@ const LatestGame = React.memo(() => {
             {gamesInfo.lastGame.shortDescription}
           </h3>
         </div>
-        <button
-          onClick={() => {
-            if (userContext.isLogin) {
-              window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
-            } else {
-              setShowAutenticationModal(true);
-            }
-          }}
-          className={style.playButton}
-        >
-          Play
-        </button>
+        <div className={style.buttonDiv}>
+          <LinkButton
+            innerText="Play"
+            gameUrl={gamesInfo.lastGame.url}
+            setShowAutenticationModal={setShowAutenticationModal}
+          />
+        </div>
       </div>
       <div className={style.rightContainer}>
         <video className={style.lastGameVideo} loop autoPlay>

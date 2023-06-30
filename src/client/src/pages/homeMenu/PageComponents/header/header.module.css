@@ -4,7 +4,7 @@
   height: 12vh;
 
   font-weight: bold;
-  font-family: "Geo", sans-serif;
+  font-family: var(--mainFont);
   list-style: none;
   gap: 30px;
 
