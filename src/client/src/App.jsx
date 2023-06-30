@@ -8,12 +8,22 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [requestedPage, setRequestedPage] = useState("");
   const [warningProps, setWarningProps] = useState({
-    text: '',
-    show: false
-  })
+    text: "",
+    show: false,
+  });
+  const [isShowTransitionAnimation, setIsShowTransitionAnimation] = useState(false);
 
   return (
-    <PageContext.Provider value={{requestedPage, setRequestedPage, warningProps, setWarningProps}}>
+    <PageContext.Provider
+      value={{
+        requestedPage,
+        setRequestedPage,
+        warningProps,
+        setWarningProps,
+        isShowTransitionAnimation,
+        setIsShowTransitionAnimation,
+      }}
+    >
       <UserContext.Provider
         value={{ userName, setUserName, isLogin, setIsLogin }}
       >

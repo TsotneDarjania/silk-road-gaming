@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import style from "./transition.module.css";
+import PageContext from "../../context/PageContext";
 
 const TransitionAnimation = ({
-  setTransitionPlayAnimation,
   transitionAnimationAction,
 }) => {
   const [animationEnd, setAnimationEnd] = useState(false);
+
+  const pageContext = useContext(PageContext)
 
   return (
     <div className={style.transition}>
@@ -13,7 +15,7 @@ const TransitionAnimation = ({
         onAnimationEnd={() => {
           setAnimationEnd(true);
           !animationEnd && transitionAnimationAction();
-          animationEnd && setTransitionPlayAnimation(false);
+          animationEnd && pageContext.setIsShowTransitionAnimation(false);
         }}
         className={animationEnd ? style.topAnimationUp : style.topTransition}
       ></div>

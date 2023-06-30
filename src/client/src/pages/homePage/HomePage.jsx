@@ -3,12 +3,11 @@ import style from "./homePage.module.css";
 import HomePageInterface from "./components/homePagelnterface/HomePageInterface";
 import { useContext } from "react";
 import UserContext from "../../context/UserContext";
-import PageContext from "../../context/PageContext";
+import PrimaryButton from "../../components/buttons/PrimaryButton";
 
 const HomePage = () => {
 
   const userContext = useContext(UserContext)
-  const pageContext = useContext(PageContext)
 
   return (
     <div className={style.homePage}>
@@ -17,15 +16,7 @@ const HomePage = () => {
       ) : (
         <HomePageInterface />
       )}
-      <button
-        onClick={() => {
-          pageContext.setRequestedPage("homeMenu")
-        }}
-        type="button"
-        className={style.backButton}
-      >
-        Back
-      </button>
+      <PrimaryButton type='back'/>
     </div>
   );
 };

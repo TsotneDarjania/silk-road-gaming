@@ -58,21 +58,19 @@ function MainPage() {
     setPage(pageContext.requestedPage);
   };
 
-  const [isTransitionPlayAnimation, setTransitionPlayAnimation] =
-    useState(false);
+  // function PlayTransitionAnimation () {
+  //   setTransitionPlayAnimation(true)
+  // }
 
-  useEffect(() => {
-    pageContext.requestedPage !== "" && setTransitionPlayAnimation(true);
-  }, [pageContext.requestedPage]);
+  console.log(page, 'page')
 
   return (
     <div className="App">
       {page === "intro" && <Intro />}
       {page === "homeMenu" && <HomeMenu />}
       {page === "homePage" && <HomePage />}
-      {isTransitionPlayAnimation && (
+      {pageContext.isShowTransitionAnimation && (
         <TransitionAnimation
-          setTransitionPlayAnimation={setTransitionPlayAnimation}
           transitionAnimationAction={transitionAnimationAction}
         />
       )}

@@ -1,11 +1,11 @@
-import React, { useEffect, useContext, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import style from "./homeMenu.module.css";
-import PageContext from "../../context/PageContext";
 import LatestGame from "./PageComponents/latestGame/LatestGame";
 import MiniGames from "./PageComponents/miniGames/MiniGames";
 import ArtGames from "./PageComponents/artGame/ArtGames";
 import Header from "./PageComponents/header/Header";
+import PrimaryButton from "../../components/buttons/PrimaryButton";
 
 export const HomeMenu = () => {
   const latestGameRef = useRef(null);
@@ -32,9 +32,6 @@ export const HomeMenu = () => {
     handleMenuChange(defaultMode);
   }, []);
   // ///////////////
-
-  const pageContext = useContext(PageContext);
-
   return (
     <div className={style.homeMenu}>
       <Header handleMenuChange={handleMenuChange} defaultMode={defaultMode} />
@@ -47,15 +44,7 @@ export const HomeMenu = () => {
       <div ref={artGamesRef} className={style.artGames}>
         <ArtGames />
       </div>
-      <button
-        onClick={() => {
-          pageContext.setRequestedPage("homePage");
-        }}
-        type="button"
-        className={style.homeButton}
-      >
-        Home
-      </button>
+      <PrimaryButton type='home'/>
     </div>
   );
 };

@@ -41,10 +41,10 @@ export const Intro = () => {
       <button
         onClick={() => {
           pageContext.setRequestedPage("homeMenu")
+          pageContext.setIsShowTransitionAnimation(true)
         }}
         className={style.openButton}
       >
-        {" "}
         Open
       </button>
     </div>
