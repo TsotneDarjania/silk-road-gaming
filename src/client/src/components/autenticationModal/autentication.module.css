@@ -1,5 +1,6 @@
 
 .loginAndRegistrationForm {
+  composes: flexCenterColumn from '../../global.css';
   position: fixed;
   z-index: 100;
 
@@ -15,20 +16,11 @@
   margin-bottom: auto;
   top: 0;
   bottom: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .centerContainer {
+  composes: flexCenter from '../../global.css';
   width: 90vw;
   height: min-content;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   padding: 30px;
 
   gap: 6px;
@@ -102,32 +94,18 @@
   background-color: var(--darkBgColor);
 }
 
-@media screen and (max-width: 1650px) {
-}
-@media screen and (max-width: 1500px) {
+@media (max-width: 1500px) {
   .userInputDiv {
     width: 70%;
   }
 
   .userInput {
-    width: 50%;
     height: 23px;
   }
 }
-@media screen and (max-width: 1100px) {
-  .userInputDiv {
-    width: 70%;
-  }
-
-  .userInput {
-    width: 50%;
-    height: 23px;
-  }
-
+@media (max-width: 1280px) {
   .centerContainer {
     position: absolute;
-    width: 90vw;
-    height: min-content;
 
     display: flex;
     flex-direction: column;
@@ -141,22 +119,17 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media (max-width: 940px) {
   .formContainer {
     width: 89.5%;
   }
 }
-@media screen and (max-width: 650px) {
+@media (max-width: 730px) {
   .formContainer {
     width: 96.5%;
   }
   .userInputDiv {
-    width: 70%;
     gap: 0;
-  }
-  .userInput {
-    width: 50%;
-    height: 23px;
   }
   .userInputTitle {
     font-size: 20px;
@@ -170,9 +143,22 @@
     margin-left: 40%;
   }
 }
-@media screen and (max-width: 650px) {
+@media (max-width: 650px) {
   .submitButton {
     width: 100%;
     margin-left: 0%;
+  }
+}
+@media (max-width: 500px) {
+  .userInputDiv{
+    width: 100%;
+    flex-direction: column;
+  }
+  .userInputTitle{
+    width: 100%;
+    text-align: center;
+  }
+  .userInput{
+    width: 80%;
   }
 }
