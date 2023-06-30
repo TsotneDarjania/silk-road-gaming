@@ -1,8 +1,8 @@
 .homePageInterface {
-  composes: fadedWhiteBgColor from '../../../../global.css';
   width: 100vw;
   height: 100vh;
   font-family: var(--textFont);
+  background-color: var(--fadedWhiteBgColor);
 }
 
 .gameHistoryContainer {
@@ -21,7 +21,7 @@
   bottom: 0;
 
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 }
@@ -55,7 +55,7 @@
 }
 
 .gamesItem ul li {
-  color: rgb(226, 138, 5);
+  color: var(--introOrangeBgColor);
   font-size: 30px;
   font-weight: bold;
 }
@@ -63,7 +63,7 @@
 .continueButton {
   width: 200px;
   height: 40px;
-  background-color: rgb(244, 132, 53);
+  background-color: var(--orangeBtnBgColor);
   color: white !important;
   text-align: center;
   cursor: pointer;
@@ -74,7 +74,7 @@
   transition: 0.3s;
 }
 .continueButton:hover {
-  background-color: #6b3c00;
+  background-color: var(--lightBrownBgColor);
 }
 
 .homeIcon {
@@ -102,22 +102,22 @@
 }
 
 /* width */
-::-webkit-scrollbar {
+.gamesContainer::-webkit-scrollbar {
   width: 4px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
-  background: #6b3c00;
+.gamesContainer::-webkit-scrollbar-track {
+  background: var(--lightBrownBgColor);
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+.gamesContainer::-webkit-scrollbar-thumb {
   background: #ffd39a;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.gamesContainer::-webkit-scrollbar-thumb:hover {
   background: #dc783e;
 }
 
@@ -141,7 +141,7 @@
 .showMenu {
   opacity: 1;
   display: flex;
-  background-color: rgb(50, 27, 0);
+  background-color: var(--darkBrownBgColor);
 }
 
 .menu ul {
@@ -163,7 +163,7 @@
   transition: 0.3s;
 }
 .menu ul li:hover {
-  color: #ec931e;
+  color: var(--darkYellowColor);
 }
 
 @media screen and (max-width: 1325px) {

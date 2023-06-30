@@ -1,14 +1,59 @@
 
 :root {
-  /* colors */
+  /* background colors */
   --orangeBgColor: rgb(219, 113, 8);
+  --orangeBtnBgColor: rgb(244, 132, 53);
+  --introOrangeBgColor: rgb(226, 129, 3);
+  --darkYellowBgColor: rgb(255, 180, 81);
+  --darkBrownBgColor: rgb(50, 27, 0);
+  --lightBrownBgColor: #6b3c00;
+  --darkOrangeBgColor: rgb(137, 89, 0);
+  --fadedOrangeBgColor: rgb(255, 212, 174);
+  --beigeBgColor: rgb(255, 219, 193);
+  --fadedWhiteBgColor: rgb(255, 241, 224);
+  --darkBgColor: #0c0616;
   --greenBgColor: rgb(0, 255, 157);
+  --purpleBgColor: rgb(130, 42, 181);
+
+  /* colors */
+  --neonOrangeColor: rgb(243, 94, 8);
+  --orangeBtnColor: rgb(159, 64, 5);
+  --orangeColor: rgb(244, 142, 41);
+  --brownColor: rgb(100, 63, 17);
+  --darkYellowColor: #ec931e;
+  --darkRedColor: rgb(95, 18, 8);
   --darkBlueColor: rgb(0, 3, 64);
+  --skyBlueColor: rgb(69, 140, 179);
+  --blueLiColor: rgb(16, 180, 180);
+  --neonBlueColor: rgb(136, 240, 244);
+  --fadedBlueColor: rgb(84, 98, 116);
+  --fadedWhiteColor: rgb(174, 201, 202);
+  --smokyWhiteColor: rgb(215, 217, 214);
+  --whiteColor: rgb(255, 251, 251);
+  
+
+  /* border colors */
+  --darkOrangeBorderColor: rgb(161, 73, 33);
+  --orangeBorderColor: rgb(255, 153, 0);
+  --darkBeigeColor: rgb(244, 202, 175);
+  --darkGreyColor: rgb(63, 63, 63);
+  --blackBorderColor: rgb(26, 26, 26);
+  --darkCyanColor: rgb(48, 116, 125);
+
+  /* box shadow colors */
+  --orangeBoxShadow: rgb(196, 106, 17);
+  --fadedOrangeBoxShadow: rgb(249, 165, 119);
 
 
   /* fonts */
   --mainFont: 'Ysabeau SC', sans-serif;
   --textFont: 'Ysabeau Office', sans-serif;
+
+  /* z-indexs */
+  --firstLayer: 3;
+  --secondLayer: 2;
+  --thirdLayer: 1;
+  --fourthLayer: 0;
 }
 * {
   padding: 0;
@@ -19,59 +64,6 @@
 body {
   overflow-x: hidden;
   overflow: hidden;
-}
-/* Z INDEX */
-.firstLayer {
-  z-index: 3;
-}
-.secondLayer {
-  z-index: 2;
-}
-.thirdLayer {
-  z-index: 1;
-}
-.forthLayer {
-  z-index: 0;
-}
-
-/* BACKGROUND COLORS */
-.greenBgColor {
-  background-color: rgb(0, 255, 157);
-}
-.fadedOrangeBgColor {
-  background-color: rgb(255, 212, 174);
-}
-.orangeBgColor {
-  background-color: rgb(219, 113, 8);
-}
-.darkBgColor {
-  background-color: #0c0616;
-}
-.fadedWhiteBgColor {
-  background-color: rgb(255, 241, 224);
-}
-.orangeBtnBgColor {
-  background-color: rgb(244, 132, 53);
-}
-
-/* TEXT COLORS */
-.blueLiColor {
-  color: rgb(16, 180, 180);
-}
-.neonBlueColor {
-  color: rgb(136, 240, 244);
-}
-.fadedWhiteColor {
-  color: rgb(174, 201, 202);
-}
-.orangeColor {
-  color: rgb(244, 142, 41);
-}
-.brownColor {
-  color: rgb(100, 63, 17);
-}
-.darkBlueColor {
-  color: rgb(0, 3, 64);
 }
 
 /* POSITIONS */
@@ -152,14 +144,14 @@ body {
   color: white;
   cursor: pointer;
   border: none;
-  box-shadow: 4px 4px 0px 0px rgb(249, 165, 119);
+  box-shadow: 4px 4px 0px 0px var(--fadedOrangeBoxShadow);
 
   font-family: var(--mainFont);
   font-size: 32px;
   font-weight: bold;
 }
 .primaryButton:hover {
-  box-shadow: -4px -4px 0px 0px rgb(249, 165, 119);
+  box-shadow: -4px -4px 0px 0px var(--fadedOrangeBoxShadow);
 }
 
 @media (max-width: 900px) {
@@ -182,9 +174,9 @@ body {
   width: 200px;
   height: 57px;
   border: none;
-  color: rgb(159, 64, 5);
-  background-color: rgb(255, 180, 81);
-  box-shadow: 5px 5px 0px 0px rgb(196, 106, 17);
+  color: var(--orangeBtnColor);
+  background-color: var(--darkYellowBgColor);
+  box-shadow: 5px 5px 0px 0px var(--orangeBoxShadow);
   transition: 0.3s;
   z-index: 5;
 
@@ -194,7 +186,7 @@ body {
 }
 .playButton:hover {
   color: black;
-  box-shadow: -5px -5px 0px 0px rgb(196, 106, 17);
+  box-shadow: -5px -5px 0px 0px var(--orangeBoxShadow);
 }
 
 @media (max-width: 1050px) and (min-height: 800px) {
@@ -225,7 +217,7 @@ body {
 }
 
 .openButton:hover {
-  background-color: rgb(0, 22, 14);
+  background-color: var(--blackBorderColor);
   color: rgb(238, 239, 255);
 }
 
@@ -234,3 +226,5 @@ body {
     margin-right: 20px;
   }
 }
+
+/* ........... */

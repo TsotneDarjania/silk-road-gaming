@@ -32,8 +32,7 @@
 }
 
 .content {
-  composes: fadedOrangeBgColor from '../../global.css';
-
+  background-color: var(--fadedOrangeBgColor);
   animation-name: show-anim;
   animation-fill-mode: forwards;
   animation-duration: 0.3s;
@@ -44,11 +43,11 @@
   z-index: 55;
   text-align: center;
   border-radius: 10px;
-  border: 7px solid rgb(161, 73, 33);
+  border: 7px solid var(--darkOrangeBorderColor);
 }
 
 .title {
-  color: rgb(235, 98, 0);
+  color: var(--neonOrangeColor);
   font-size: 30px;
   letter-spacing: 1px;
   font-family: var(--mainFont), cursive;
@@ -61,7 +60,7 @@
 }
 
 .okButton {
-  composes: fadedOrangeBgColor from '../../global.css';
+  background-color: var(--fadedOrangeBgColor);
 
   width: 80px;
   height: 80px;
@@ -69,8 +68,8 @@
   z-index: 70;
   margin-top: 20px;
   font-family: var(--mainFont), cursive;
-  border: 7px solid rgb(161, 73, 33);
-  color: rgb(243, 94, 8);
+  border: 7px solid var(--darkOrangeBorderColor);
+  color: var(--neonOrangeColor);
   font-size: 20px;
   transition: 0.3s;
   cursor: pointer;

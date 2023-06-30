@@ -19,9 +19,9 @@
 }
 
 .openButton{
-    composes: orangeColor from '../../global.css';
+    color: var(--orangeColor);
     width: 200px;
-    border: 3px solid rgb(255, 153, 0);
+    border: 3px solid var(--orangeBorderColor);
     background: none;
     font-size: 27px;
     border-style: double;
@@ -42,16 +42,16 @@
 }
 
 .openButton:hover{
-    background-color: rgb(226, 129, 3);
+    background-color: var(--introOrangeBgColor);
     color: white;
 }
 
 
 @media screen and (max-width: 1300px) {
     .openButton{
-        composes: orangeColor from '../../global.css';
+        color: var(--orangeColor);
         width: 150px;
-        border: 3px solid rgb(255, 153, 0);
+        border: 3px solid var(--orangeBorderColor);
         background: none;
         font-size: 21px;
         border-style: double;
@@ -74,9 +74,9 @@
 
 @media screen and (max-width: 800px) {
     .openButton{
-        composes: orangeColor from '../../global.css';
+        color: var(--orangeColor);
         width: 120px;
-        border: 3px solid rgb(255, 153, 0);
+        border: 3px solid var(--orangeBorderColor);
         background: none;
         font-size: 19px;
         border-style: double;
@@ -100,9 +100,9 @@
 
 @media screen and (max-width: 900px) and (min-height: 617px) {
     .openButton{
-        composes: orangeColor from '../../global.css';
+        color: var(--orangeColor);
         width: 200px;
-        border: 3px solid rgb(255, 153, 0);
+        border: 3px solid var(--orangeBorderColor);
         background: none;
         font-size: 29px;
         border-style: double;

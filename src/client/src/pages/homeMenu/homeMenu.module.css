@@ -1,5 +1,5 @@
 .homeMenu {
-  composes: darkBgColor from "../../global.css";
+  background-color: var(--darkBgColor);
   width: 100vw;
   height: 100vh;
 }

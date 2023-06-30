@@ -51,13 +51,13 @@
 }
 
 .leftContainer_Div {
-  composes: neonBlueColor from "../../../../global.css";
+  color: var(--neonBlueColor);
   font-size: 23px;
 }
 
 .leftContainer span {
   font-size: 33px;
-  color: rgb(69, 140, 179);
+  color: var(--skyBlueColor);
 }
 
 .lastGameVideo {

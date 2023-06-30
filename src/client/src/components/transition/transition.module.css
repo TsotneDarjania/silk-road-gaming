@@ -4,7 +4,7 @@
   position: absolute;
   width: 100vw;
   height: 50vh;
-  background-color: rgb(255, 219, 193);
+  background-color: var(--beigeBgColor);
   z-index: 100;
   top: -50vh;
   animation: topAnimationDown 1s forwards;
@@ -18,7 +18,7 @@
   position: absolute;
   width: 100vw;
   height: 50vh;
-  background-color: rgb(255, 219, 193);
+  background-color: var(--beigeBgColor);
   z-index: 100;
   bottom: -50vh;
   animation: bottomAnimationUp 1s forwards;

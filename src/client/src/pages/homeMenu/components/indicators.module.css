@@ -18,17 +18,16 @@
   gap: 3px;
   cursor: pointer;
 
-  color: rgb(215, 217, 214);
+  color: var(--smokyWhiteColor);
   transition: 0.4s;
 }
 .number {
-  color: rgb(215, 217, 214) ;
   font-size: 30px;
   cursor: default;
 }
 
 .indicators ul li :hover :not(.number) {
-  color: rgb(136, 240, 244);
+  color: var(--neonBlueColor);
 }
 
 .dislikeIcon {

@@ -40,7 +40,7 @@
 }
 
 .leftContainer_Div {
-  composes: neonBlueColor from "../../../../../global.css";
+  color: var(--neonBlueColor);
   font-size: 20px;
 }
 
@@ -73,7 +73,7 @@
 .title{
   font-size: 30px;
   font-weight: bold;
-  color: rgb(69, 140, 179);
+  color: var(--skyBlueColor);
   cursor: pointer;
 }
 

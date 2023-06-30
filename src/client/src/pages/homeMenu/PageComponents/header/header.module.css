@@ -19,28 +19,28 @@
 
   font-size: 21px;
   padding: 20px;
-  border: 2px solid rgb(48, 116, 125);
+  border: 2px solid var(--darkCyanColor);
 }
 .menuLi:hover {
-  color: rgb(16, 180, 180);
+  color: var(--blueLiColor);
 }
 
 .selectedLi {
   font-size: 30px;
-  border: 2px solid rgb(16, 180, 180);
-  color: rgb(16, 180, 180);
+  border: 2px solid var(--blueLiColor);
+  color: var(--blueLiColor);
 }
 
 @media screen and (max-width: 700px) {
   .menuLi {
     font-size: 17px;
     padding: 7px;
-    border: 2px solid rgb(48, 116, 125);
+    border: 2px solid var(--darkCyanColor);
   }
 
   .selectedLi {
     font-size: 21px;
-    border: 2px solid rgb(16, 180, 180);
-    color: rgb(16, 180, 180);
+    border: 2px solid var(--blueLiColor);
+    color: var(--blueLiColor);
   }
 }

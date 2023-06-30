@@ -8,11 +8,10 @@
   z-index: 21;
 }
 .settingsContainer {
-  composes: fadedWhiteBgColor from "../../../../global.css";
   composes: flexCenterColumn from "../../../../global.css";
   width: 50%;
   height: 50%;
-
+  background-color: var(--fadedWhiteBgColor);
   font-family: var(--textFont);
   padding: 10px;
 
@@ -32,7 +31,7 @@
 }
 .cameraBtn {
   composes: flexCenter from "../../../../global.css";
-  composes: orangeBtnBgColor from "../../../../global.css";
+  background-color: var(--orangeBtnBgColor);
   width: 50px;
   height: 50px;
   font-size: 25px;
@@ -44,7 +43,7 @@
   right: -20px;
 }
 .cameraBtn:hover {
-  background-color: #6b3c00;
+  background-color: var(--lightBrownBgColor);
   color: white;
   transition: 0.5s;
 }
@@ -54,10 +53,10 @@
   gap: 20px;
 }
 .userNameBoxTitle {
-  composes: brownColor from "../../../../global.css";
+  color: var(--brownColor);
   font-size: 20px;
   font-weight: bold;
-  border-bottom: 1px solid rgb(100, 63, 17);
+  border-bottom: 1px solid var(--brownColor);
   padding: 3px;
 }
 .userNameBox div {
@@ -65,18 +64,18 @@
   gap: 20px;
 }
 .userNameInput {
-  composes: brownColor from "../../../../global.css";
+  color: var(--brownColor);
   font-family: var(--textFont);
   height: 40px;
   font-size: 20px;
   width: 300px;
   outline: none;
   border: none;
-  border-bottom: 1px solid rgb(100, 63, 17);
+  border-bottom: 1px solid var(--brownColor);
   background-color: inherit;
 }
 .userNameInput::placeholder {
-  color: rgb(100, 63, 17);
+  color: var(--brownColor);
 }
 .saveBtn,
 .resetBtn,
@@ -88,12 +87,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.5s;
-  color: rgb(255, 246, 231);
-  background-color: rgb(137, 89, 0);
+  color: var(--whiteColor);
+  background-color: var(--darkOrangeBgColor);
 }
 .saveBtn:hover {
   color: white;
-  background-color: rgb(130, 42, 181);
+  background-color: var(--purpleBgColor);
 }
 .resetBox {
   composes: flexCenterColumn from "../../../../global.css";
@@ -105,7 +104,7 @@
   gap: 10px;
 }
 .warningBox p {
-  color: rgb(95, 18, 8);
+  color: var(--darkRedColor);
   font-size: 20px;
   font-weight: 600;
 }
@@ -113,7 +112,7 @@
   background-color: rgb(139, 50, 14);
 }
 .resetBtn:hover {
-  background-color: rgb(95, 18, 8);
+  background-color: var(--darkRedColor);
 }
 .btnBox {
   composes: flexCenter from "../../../../global.css";
