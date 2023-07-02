@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import style from "./userSettingsModal.module.css";
-import userAvatar from "../../../homeMenu/images/userAvatar.png";
 import { AiFillCamera } from "react-icons/ai";
 import "../../../../global.css";
+import UserContext from "../../../../context/UserContext";
 
 const UserSettingsModal = (props) => {
+  const userContext = useContext(UserContext);
+
   const [name, setName] = useState("");
-  const [showButtons, setShowButtons] = useState(false)
+  const [showButtons, setShowButtons] = useState(false);
   if (!props.showUserSettingModal) {
     return null;
   }
 
-   
   function handleSubmit(e) {
     e.preventDefault();
     if (name.length >= 3 && name.trim()) {
-      props.setUserName(name);
+      userContext.setUserName(name);
     }
     setName("");
   }
@@ -30,7 +31,8 @@ const UserSettingsModal = (props) => {
       ></div>
       <div className={style.settingsContainer}>
         <div className={style.userAvatar}>
-          <img src={userAvatar} alt="user Avatar" />
+          {console.log(userContext.userAvatar)}
+          <img src={userContext.userAvatar} alt="user Avatar" />
           <button className={style.cameraBtn}>
             <AiFillCamera />
           </button>
@@ -43,7 +45,7 @@ const UserSettingsModal = (props) => {
               type="text"
               maxLength={20}
               onChange={(e) => setName(e.target.value)}
-              placeholder={props.userName}
+              placeholder={userContext.userName}
               value={name}
             />
             <button

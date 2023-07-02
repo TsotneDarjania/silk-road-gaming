@@ -1,6 +1,5 @@
-
 .warning {
-  composes: flexCenterColumn from '../../global.css';
+  composes: flexCenterColumn from "../../global.css";
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -54,29 +53,28 @@
 }
 
 .text {
-  color: rgb(193, 86, 10);
-  font-family: var(--mainFont), cursive;
-  font-size: 20px;
+  color: var(--darkOrangeBorderColor);
+  font-family: var(--textFont), cursive;
+  font-weight: bold;
+  font-size: 35px;
 }
 
 .okButton {
-  background-color: var(--fadedOrangeBgColor);
-
-  width: 80px;
-  height: 80px;
-  border-radius: 20px;
   z-index: 70;
   margin-top: 20px;
   font-family: var(--mainFont), cursive;
   border: 7px solid var(--darkOrangeBorderColor);
-  color: var(--neonOrangeColor);
-  font-size: 20px;
+  color: var(--darkOrangeBorderColor);
+  font-size: 40px;
+  font-weight: bold;
   transition: 0.3s;
   cursor: pointer;
+
+  background: none;
+  border: none;
 }
 
 .okButton:hover {
-  background-color: black;
   color: white;
 }
 

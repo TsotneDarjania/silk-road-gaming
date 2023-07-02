@@ -22,7 +22,12 @@ export class Api {
       ApiEnums.silkRoadDatabaseID,
       ApiEnums.usersCollectionID,
       `defaultId${generateIdToCorrectFormat(transliterate(name))}`,
-      { name, password }
+      {
+        name,
+        password,
+        avatar:
+          "https://cloud.appwrite.io/v1/storage/buckets/6498150da54283132635/files/default/view?project=649567e6984aa2b4d5ca&mode=admin",
+      }
     );
   };
 

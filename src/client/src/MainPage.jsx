@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { deleteCookies, getCookie, setCookie } from "./helper/cookie";
+import { useState, useEffect, useContext } from "react";
+import { deleteCookies, getCookie } from "./helper/cookie";
 import "./index";
 import { Intro } from "./pages/intro/Intro";
 import { HomeMenu } from "./pages/homeMenu/HomeMenu";
@@ -8,6 +8,7 @@ import HomePage from "./pages/homePage/HomePage";
 import { Api } from "./api/api";
 import UserContext from "./context/UserContext";
 import PageContext from "./context/PageContext";
+import { saveUserIntoCookie } from "./utils/autenticationLogic";
 
 const api = new Api();
 
@@ -26,6 +27,10 @@ function MainPage() {
       api.userLogin(userName, userPassword).then(
         (response) => {
           if (response.password === userPassword) {
+            console.log(response);
+            userContext.setUserName(response.name);
+            userContext.setUserAvatar(response.avatar);
+            userContext.setUserRating(response.rating);
             saveUserIntoCookie(userName, userPassword);
             userContext.setIsLogin(true);
           } else {
@@ -39,17 +44,6 @@ function MainPage() {
     }
   };
 
-  const saveUserIntoCookie = (username, password) => {
-    setCookie(
-      "loginSession",
-      JSON.stringify({
-        userName: username,
-        password: password,
-      }),
-      2100
-    );
-  };
-
   const [page, setPage] = useState("intro");
 
   const pageContext = useContext(PageContext);
@@ -57,8 +51,6 @@ function MainPage() {
   const transitionAnimationAction = () => {
     setPage(pageContext.requestedPage);
   };
-
-  console.log(page, 'page')
 
   return (
     <div className="App">
