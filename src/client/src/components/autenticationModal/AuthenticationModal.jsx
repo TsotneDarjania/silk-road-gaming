@@ -1,14 +1,14 @@
-import React, { useRef, useContext } from "react";
-
+import { useRef, useContext } from "react";
 import style from "./autentication.module.css";
-import { Api } from "../../api/api";
 import Warning from "../warning/Warning";
-import { setCookie } from "../../helper/cookie";
 import "../../global.css";
 import UserContext from "../../context/UserContext";
 import PageContext from "../../context/PageContext";
-
-const api = new Api();
+import {
+  isValidation,
+  login,
+  registration,
+} from "../../utils/autenticationLogic";
 
 const AuthenticationModal = ({ accessAction, setShowAutenticationModal }) => {
   const userLoginNameRef = useRef(null);
@@ -19,88 +19,36 @@ const AuthenticationModal = ({ accessAction, setShowAutenticationModal }) => {
   const pageContext = useContext(PageContext);
   const userContext = useContext(UserContext);
 
-  const login = (event) => {
+  const handleLogin = (event) => {
     const userName = userLoginNameRef.current.value;
     const userPassword = userLoginPasswordRef.current.value;
 
-    if (isValidation(userName, userPassword)) {
-      api.userLogin(userName).then(
-        (response) => {
-          if (response.password === userPassword) {
-            saveUserIntoCookie(userName, userPassword);
-            userContext.setIsLogin(true);
-            accessAction();
-          } else {
-            pageContext.setWarningProps({
-              text: "Username or password is incorrect",
-              show: true,
-            });
-          }
-        },
-        (error) => {
-          if (error.code === 404) {
-            pageContext.setWarningProps({
-              text: "Username or password is incorrect",
-              show: true,
-            });
-          }
-        }
+    if (isValidation(userName, userPassword, pageContext.setWarningProps)) {
+      login(
+        userName,
+        userPassword,
+        userContext.setIsLogin,
+        pageContext.setWarningProps,
+        accessAction()
       );
     }
+
     event.preventDefault();
   };
 
-  const isValidation = (userName, password) => {
-    if (userName.length < 3) {
-      pageContext.setWarningProps({
-        text: "Your Username must have a minimum of 3 characters.",
-        show: true,
-      });
-      return false;
-    }
-    if (password.length < 3) {
-      pageContext.setWarningProps({
-        text: "Your Password must have a minimum of 3 characters.",
-        show: true,
-      });
-      return false;
-    }
-    return true;
-  };
-
-  const registration = (event) => {
+  const handleRegistration = (event) => {
     const userName = userRegistrationNameRef.current.value;
     const userPassword = userRegistrationPassowrdRef.current.value;
 
-    if (isValidation(userName, userPassword)) {
-      api.userRegistration(userName, userPassword).then(
-        (response) => {
-          saveUserIntoCookie(userName, userPassword);
-          userContext.setIsLogin(true);
-          accessAction();
-        },
-        (error) => {
-          if (error.code === 409) {
-            pageContext.setWarningProps({
-              text: "This username already exists, please try another",
-              show: true,
-            });
-          }
-        }
+    if (isValidation(userName, userPassword, pageContext.setWarningProps)) {
+      registration(
+        userName,
+        userPassword,
+        userContext.setIsLogin,
+        pageContext.setWarningProps
       );
     }
     event.preventDefault();
-  };
-
-  const saveUserIntoCookie = (username, password) => {
-    setCookie(
-      "loginSession",
-      JSON.stringify({
-        userName: username,
-        password: password,
-      }),
-      2100
-    );
   };
 
   return (
@@ -131,7 +79,11 @@ const AuthenticationModal = ({ accessAction, setShowAutenticationModal }) => {
               type="password"
             />
           </div>
-          <button onClick={login} type="button" className={style.submitButton}>
+          <button
+            onClick={handleLogin}
+            type="button"
+            className={style.submitButton}
+          >
             Login
           </button>
         </div>
@@ -157,7 +109,7 @@ const AuthenticationModal = ({ accessAction, setShowAutenticationModal }) => {
             />
           </div>
           <button
-            onClick={registration}
+            onClick={handleRegistration}
             type="button"
             className={style.submitButton}
           >

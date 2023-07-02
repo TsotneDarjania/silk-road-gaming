@@ -1,6 +1,5 @@
-
 .loginAndRegistrationForm {
-  composes: flexCenterColumn from '../../global.css';
+  composes: flexCenterColumn from "../../global.css";
   position: fixed;
   z-index: 100;
 
@@ -18,7 +17,7 @@
   bottom: 0;
 }
 .centerContainer {
-  composes: flexCenter from '../../global.css';
+  composes: flexCenter from "../../global.css";
   width: 90vw;
   height: min-content;
   padding: 30px;
@@ -74,13 +73,12 @@
 
 .submitButton {
   width: 30%;
-  height: 40px;
   margin-left: 70%;
   margin-top: 5%;
   border: none;
 
   font-family: var(--mainFont);
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
 
@@ -150,15 +148,15 @@
   }
 }
 @media (max-width: 500px) {
-  .userInputDiv{
+  .userInputDiv {
     width: 100%;
     flex-direction: column;
   }
-  .userInputTitle{
+  .userInputTitle {
     width: 100%;
     text-align: center;
   }
-  .userInput{
+  .userInput {
     width: 80%;
   }
 }
