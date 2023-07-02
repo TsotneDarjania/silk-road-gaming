@@ -153,9 +153,9 @@ export default class MusicPlayer {
     const update = setInterval(() => {
       value -= 0.01;
       //@ts-ignore
-      this.specialSongs[3].volume = value;
+      this.specialSongs[2].volume = value;
       if (value < 0) {
-        this.specialSongs[3].stop();
+        this.specialSongs[2].stop();
         clearInterval(update);
       }
     }, 200);
