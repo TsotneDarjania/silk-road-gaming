@@ -142,7 +142,7 @@ body {
   cursor: pointer;
   border: none;
   box-shadow: 5px 5px 0px 0px var(--orangeBoxShadow);
-  padding: 0px 70px 0px 70px;
+  padding-inline: 70px;
   height: 57px;
 
   font-family: var(--mainFont);
@@ -157,15 +157,10 @@ body {
   box-shadow: -5px -5px 0px 0px var(--orangeBoxShadow);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1050px) {
   .primaryButton {
-    width: 120px;
-    height: 40px;
-    bottom: 10px;
-    right: 0;
-    left: 0;
-    margin: 0 auto;
-    font-size: 25px;
+    padding-inline: 50px;
+    font-size: 20px;
   }
 }
 /* ......... */
@@ -180,7 +175,7 @@ body {
   box-shadow: 5px 5px 0px 0px var(--orangeBoxShadow);
   transition: 0.3s;
   z-index: 5;
-  padding: 0px 70px 0px 70px;
+  padding-inline: 70px;
   height: 57px;
   font-family: var(--mainFont);
   font-weight: bold;
@@ -195,10 +190,10 @@ body {
   box-shadow: -5px -5px 0px 0px var(--orangeBoxShadow);
 }
 
-@media (max-width: 1050px) and (min-height: 800px) {
+@media (max-width: 1050px) {
   .playButton {
-    font-size: 30px;
-    height: 57px;
+    font-size: 20px;
+    padding-inline: 50px;
   }
 }
 /* .......... */

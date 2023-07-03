@@ -31,18 +31,12 @@ const LatestGame = React.memo(() => {
             <span> Publish Date : </span> {gamesInfo.lastGame.publishData}{" "}
           </h3>
         </div>
-        <div className={style.leftContainer_Div}>
+        <div className={`${style.leftContainer_Div} ${style.descriptionDiv}`}>
           <h3>
             <span> Short Description : </span>
-            {gamesInfo.lastGame.shortDescription}
+            {/* {gamesInfo.lastGame.shortDescription} */}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, quos, sunt aliquam consectetur numquam sequi, tempore similique ea perspiciatis dicta optio ex odit minima voluptatem excepturi odio nobis deleniti harum!
           </h3>
-        </div>
-        <div className={style.buttonDiv}>
-          <LinkButton
-            innerText="Play"
-            gameUrl={gamesInfo.lastGame.url}
-            setShowAutenticationModal={setShowAutenticationModal}
-          />
         </div>
       </div>
       <div className={style.rightContainer}>
@@ -50,6 +44,13 @@ const LatestGame = React.memo(() => {
           <source src={latestGameVideo} type="video/mp4" />
         </video>
       </div>
+      <div className={style.buttonDiv}>
+          <LinkButton
+            innerText="Play"
+            gameUrl={gamesInfo.lastGame.url}
+            setShowAutenticationModal={setShowAutenticationModal}
+          />
+        </div>
     </div>
   );
 });
