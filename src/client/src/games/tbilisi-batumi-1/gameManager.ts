@@ -40,6 +40,7 @@ export class GameManager {
   saveZonesData: Array<SaveZoneData> = [];
   saveZoneIndex = gameConfig.saveZoneIndex;
 
+
   backgroundImage!: Phaser.GameObjects.Image;
 
   asteroids: Array<Asteroid> = [];
