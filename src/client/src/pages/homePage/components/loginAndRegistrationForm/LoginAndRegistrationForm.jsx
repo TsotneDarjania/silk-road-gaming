@@ -1,11 +1,13 @@
-import React, { useState, useRef, useContext } from "react";
-import Warning from "../../../../components/Warning";
-import { setCookie } from "../../../../helper/cookie";
+import { useRef, useContext } from "react";
+import Warning from "../../../../components/warning/Warning";
 import style from "./loginAndRegistrationForm.module.css";
-import { Api } from "../../../../api/api";
 import UserContext from "../../../../context/UserContext";
-
-const api = new Api();
+import PageContext from "../../../../context/PageContext";
+import {
+  isValidation,
+  login,
+  registration,
+} from "../../../../utils/autenticationLogic";
 
 const LoginAndRegistrationForm = () => {
   const userLoginNameRef = useRef(null);
@@ -13,90 +15,42 @@ const LoginAndRegistrationForm = () => {
   const userRegistrationNameRef = useRef(null);
   const userRegistrationPassowrdRef = useRef(null);
 
-  const [showWarning, setShowWarning] = useState(false);
-  const [showWarningText, setShowWarningText] = useState("");
+  const pageContext = useContext(PageContext);
+  const userContext = useContext(UserContext);
 
-  const userContext = useContext(UserContext)
-
-  const login = (event) => {
+  const handleLogin = (event) => {
     const userName = userLoginNameRef.current.value;
     const userPassword = userLoginPasswordRef.current.value;
 
-    if (isValidation(userName, userPassword)) {
-      api.userLogin(userName, userPassword).then(
-        (response) => {
-          if (response.password === userPassword) {
-            saveUserIntoCookie(userName, userPassword);
-            userContext.setIsLogin(true)
-          } else {
-            setShowWarning(true);
-            setShowWarningText("Username or password is incorrect");
-          }
-        },
-        (error) => {
-          if (error.code === 404) {
-            setShowWarning(true);
-            setShowWarningText("Username or password is incorrect");
-          }
-        }
+    if (isValidation(userName, userPassword, pageContext.setWarningProps)) {
+      login(
+        userName,
+        userPassword,
+        userContext.setIsLogin,
+        pageContext.setWarningProps
       );
     }
     event.preventDefault();
   };
 
-  const isValidation = (userName, password) => {
-    if (userName.length < 3) {
-      setShowWarning(true);
-      setShowWarningText("Your Username must have a minimum of 3 characters.");
-      return false;
-    }
-    if (password.length < 3) {
-      setShowWarning(true);
-      setShowWarningText("Your Password must have a minimum of 3 characters.");
-      return false;
-    }
-    return true;
-  };
-
-  const registration = (event) => {
+  const handleRegistration = (event) => {
     const userName = userRegistrationNameRef.current.value;
     const userPassword = userRegistrationPassowrdRef.current.value;
 
-    if (isValidation(userName, userPassword)) {
-      api.userRegistration(userName, userPassword).then(
-        (response) => {
-          saveUserIntoCookie(userName, userPassword);
-          userContext.setIsLogin(true)
-        },
-        (error) => {
-          if (error.code === 409) {
-            setShowWarning(true);
-            setShowWarningText(
-              "This username already exists, please try another"
-            );
-          }
-        }
+    if (isValidation(userName, userPassword, pageContext.setWarningProps)) {
+      registration(
+        userName,
+        userPassword,
+        userContext.setIsLogin,
+        pageContext.setWarningProps
       );
     }
     event.preventDefault();
-  };
-
-  const saveUserIntoCookie = (username, password) => {
-    setCookie(
-      "loginSession",
-      JSON.stringify({
-        userName: username,
-        password: password,
-      }),
-      2100
-    );
   };
 
   return (
     <div className={style.loginAndRegistrationForm}>
-      {showWarning && (
-        <Warning okState={setShowWarning} text={showWarningText} />
-      )}
+      {pageContext.warningProps.show && <Warning />}
 
       <div className={style.centerContainer}>
         <div className={style.formContainer}>
@@ -119,7 +73,11 @@ const LoginAndRegistrationForm = () => {
               type="password"
             />
           </div>
-          <button onClick={login} type="button" className={style.submitButton}>
+          <button
+            onClick={handleLogin}
+            type="button"
+            className={style.submitButton}
+          >
             Login
           </button>
         </div>
@@ -145,7 +103,7 @@ const LoginAndRegistrationForm = () => {
             />
           </div>
           <button
-            onClick={registration}
+            onClick={handleRegistration}
             type="button"
             className={style.submitButton}
           >

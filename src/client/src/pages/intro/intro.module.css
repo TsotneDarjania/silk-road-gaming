@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
-
 .intro{
     width: 100vw;
     height: 100vh;
@@ -21,9 +19,9 @@
 }
 
 .openButton{
-    composes: orangeColor from '../../global.css';
+    color: var(--orangeColor);
     width: 200px;
-    border: 3px solid rgb(255, 153, 0);
+    border: 3px solid var(--orangeBorderColor);
     background: none;
     font-size: 27px;
     border-style: double;
@@ -44,84 +42,32 @@
 }
 
 .openButton:hover{
-    background-color: rgb(226, 129, 3);
+    background-color: var(--introOrangeBgColor);
     color: white;
 }
 
 
-@media screen and (max-width: 1300px) {
+@media (max-width: 1300px) {
     .openButton{
-        composes: orangeColor from '../../global.css';
         width: 150px;
-        border: 3px solid rgb(255, 153, 0);
-        background: none;
-        font-size: 21px;
-        border-style: double;
-        padding: 0px 2px;
-        font-family: 'Bungee Inline', cursive;
-    
-        text-align: center;
-    
-        position: absolute;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-    
-        cursor: pointer;
+        font-size: 21px;        
         bottom: 20px;
-        transition: 0.3s;
     }
 }
 
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
     .openButton{
-        composes: orangeColor from '../../global.css';
         width: 120px;
-        border: 3px solid rgb(255, 153, 0);
-        background: none;
         font-size: 19px;
-        border-style: double;
-        padding: 0px 2px;
-        font-family: 'Bungee Inline', cursive;
-    
-        text-align: center;
-    
-        position: absolute;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-    
-        cursor: pointer;
         bottom: 10px;
-        transition: 0.3s;
     }
 }
 
-
-@media screen and (max-width: 900px) and (min-height: 617px) {
+@media (max-width: 900px) and (min-height: 617px) {
     .openButton{
-        composes: orangeColor from '../../global.css';
         width: 200px;
-        border: 3px solid rgb(255, 153, 0);
-        background: none;
         font-size: 29px;
-        border-style: double;
-        padding: 0px 2px;
-        font-family: 'Bungee Inline', cursive;
-    
-        text-align: center;
-    
-        position: absolute;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-    
-        cursor: pointer;
         bottom: 30px;
-        transition: 0.3s;
     }
     
 }

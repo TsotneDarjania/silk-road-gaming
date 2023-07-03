@@ -1,0 +1,158 @@
+.latestGameContainer {
+  composes: flexCenter from "../../../../global.css";
+  position: absolute;
+
+  top: 12vh;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+
+  width: 80vw;
+  height: 70vh;
+
+  transition: 0.8s;
+}
+
+.latestGameContainerBackgroundImage {
+  position: absolute;
+  width: 100%;
+  height: 70vh;
+
+  transition: 0.5s;
+  opacity: 0.3;
+  filter: grayscale(100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../images/games/wallpapers/1.jpg");
+}
+
+.leftContainer {
+  width: 40%;
+  height: 90%;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+  font-family: var(--textFont);
+}
+
+.rightContainer {
+  position: relative;
+  width: 40%;
+  height: 90%;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leftContainer_Div {
+  color: var(--neonBlueColor);
+  font-size: 35px;
+  line-height: 35px;
+}
+
+.leftContainer span {
+  font-size: 44px;
+  color: var(--skyBlueColor);
+}
+
+.lastGameVideo {
+  position: absolute;
+  width: 92%;
+  height: 92%;
+  z-index: 2;
+}
+
+.buttonDiv {
+  width: min-content;
+  position: absolute;
+  left: 10%;
+  bottom: 20px;
+}
+
+
+@media (max-width: 1050px) {
+  .latestGameContainer{
+    flex-direction: column;
+  }
+  .leftContainer{
+    width: 80%;
+    height: 30%;
+  }
+  .rightContainer{
+    width: 80%;
+    height: 60%;
+  }
+  .lastGameVideo{
+    width: 70%;
+    height: 70%;
+  }
+  .buttonDiv{
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .descriptionDiv{
+    overflow-y: scroll;
+  }
+}
+
+@media (max-width: 600px) {
+  .lastGameVideo{
+    width: 90%;
+    height: 90%;
+  }
+}
+@media (max-width: 480px){
+  .latestGameContainer{
+    justify-content: flex-start;
+  }
+  .rightContainer{
+    display: none;
+  }
+  .leftContainer{
+    height: 80%;
+  }
+  .leftContainer_Div{
+    font-size: 28px;
+  }
+  .leftContainer_Div span{
+    font-size: 38px;
+  }
+}
+@media (max-height: 600px) {
+  .rightContainer{
+    display: none;
+  }
+  .latestGameContainer{
+    justify-content: flex-start;
+  }
+  .leftContainer{
+    height: 80%;
+  }
+}
+
+/* width */
+.descriptionDiv::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.descriptionDiv::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+.descriptionDiv::-webkit-scrollbar-thumb {
+  background: #187391;
+  border-radius: 30px;
+}
+
+/* Handle on hover */
+.descriptionDiv::-webkit-scrollbar-thumb:hover {
+  background: #55cdf6;
+}

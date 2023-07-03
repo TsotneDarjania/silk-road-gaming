@@ -1,0 +1,42 @@
+.indicators {
+  height: 57px;
+}
+
+.indicators ul {
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 20px;
+  font-size: 25px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.indicators ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+
+  color: var(--smokyWhiteColor);
+  transition: 0.4s;
+}
+.number {
+  font-size: 30px;
+  cursor: default;
+  font-family: var(--textFont);
+}
+
+.indicators ul li :hover :not(.number) {
+  color: var(--neonBlueColor);
+}
+
+.commentIcon {
+  font-size: 20px;
+}
+
+.likeIcon :not(.number){
+  margin-bottom: 4px;
+}

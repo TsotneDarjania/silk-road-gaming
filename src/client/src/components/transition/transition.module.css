@@ -1,0 +1,77 @@
+/* Top Part */
+.topTransition,
+.topAnimationUp {
+  position: absolute;
+  width: 100vw;
+  height: 52vh;
+  background-color: var(--beigeBgColor);
+  z-index: 100;
+  top: -50vh;
+  animation: topAnimationDown 0.7s forwards;
+}
+.topAnimationUp {
+  animation: topAnimationUp 2s forwards;
+}
+/* Bottom Part */
+.bottomTransition,
+.bottomAnimationDown {
+  position: absolute;
+  width: 100vw;
+  height: 52vh;
+  background-color: var(--beigeBgColor);
+  z-index: 100;
+  bottom: -50vh;
+  animation: bottomAnimationUp 0.7s forwards;
+}
+.bottomAnimationDown {
+  animation: bottomAnimationDown 2s forwards;
+}
+/* show animations */
+@keyframes topAnimationDown {
+  from {
+    opacity: 0;
+    top: -50vh;
+  }
+  to {
+    opacity: 1;
+    top: 0vh;
+  }
+}
+@keyframes bottomAnimationUp {
+  from {
+    opacity: 0;
+    bottom: -50vh;
+  }
+  to {
+    opacity: 1;
+    bottom: 0vh;
+  }
+}
+
+/* hide animations*/
+@keyframes topAnimationUp {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 0vh;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    top: -50vh;
+  }
+}
+@keyframes bottomAnimationDown {
+  0% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 0vh;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    bottom: -50vh;
+  }
+}

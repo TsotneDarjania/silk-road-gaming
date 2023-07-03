@@ -1,0 +1,97 @@
+.header {
+  composes: flexCenter from "../../../../global.css";
+  width: 100vw;
+  height: 12vh;
+
+  font-weight: bold;
+  font-family: var(--mainFont);
+  list-style: none;
+  gap: 30px;
+
+  position: fixed;
+}
+
+.menuLi {
+  cursor: pointer;
+  color: rgb(188, 170, 200);
+  transition: 0.3s;
+  letter-spacing: 1px;
+  opacity: 0.3;
+
+  font-size: 17px;
+  padding: 10px 20px;
+  border: 4px solid rgb(116, 98, 137);
+  border-style: dotted;
+
+  animation: flashing 5s infinite forwards;
+}
+.menuLi:hover {
+  color: rgb(240, 220, 248);
+}
+
+@keyframes flashing {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.selectedLi {
+  opacity: 0.8;
+  font-size: 22px;
+  border: 5px solid rgb(52, 48, 66);
+  color: rgb(229, 165, 253);
+  animation: none;
+}
+
+.burgerMenu {
+  display: none;
+  font-size: 70px;
+  cursor: pointer;
+  color: #f9bb6b;
+  height: 12vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.burgerMenu:hover {
+  color: var(--iconOrangeColor);
+}
+
+@media (max-width: 700px) {
+  .burgerMenu {
+    display: flex;
+    position: fixed;
+    z-index: 61;
+  }
+  .header {
+    height: 100%;
+    background-color: var(--beigeBgColor);
+    transition: 0.7s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .menuLi {
+    width: 90%;
+    text-align: center;
+    border: none;
+    color: var(--darkBlueColor);
+    animation: none;
+    opacity: 0.5;
+  }
+  .menuLi:hover {
+    color: inherit;
+  }
+  .selectedLi {
+    color: var(--blackBorderColor);
+    opacity: 1;
+    font-size: 26px;
+  }
+}

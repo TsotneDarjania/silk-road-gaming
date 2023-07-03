@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import style from "./userSettingsModal.module.css";
-import userAvatar from "../../../homeMenu/images/userAvatar.png";
 import { AiFillCamera } from "react-icons/ai";
 import "../../../../global.css";
+import UserContext from "../../../../context/UserContext";
 
 const UserSettingsModal = (props) => {
+  const userContext = useContext(UserContext);
+
   const [name, setName] = useState("");
+  const [showButtons, setShowButtons] = useState(false);
   if (!props.showUserSettingModal) {
     return null;
   }
+
   function handleSubmit(e) {
     e.preventDefault();
     if (name.length >= 3 && name.trim()) {
-      props.setUserName(name);
+      userContext.setUserName(name);
     }
     setName("");
   }
@@ -22,12 +26,13 @@ const UserSettingsModal = (props) => {
       <div
         className="shadow"
         onClick={() =>
-          props.open === false && props.setShowUserSettingModal(false)
+          showButtons === false && props.setShowUserSettingModal(false)
         }
       ></div>
       <div className={style.settingsContainer}>
         <div className={style.userAvatar}>
-          <img src={userAvatar} alt="user Avatar" />
+          {console.log(userContext.userAvatar)}
+          <img src={userContext.userAvatar} alt="user Avatar" />
           <button className={style.cameraBtn}>
             <AiFillCamera />
           </button>
@@ -40,7 +45,7 @@ const UserSettingsModal = (props) => {
               type="text"
               maxLength={20}
               onChange={(e) => setName(e.target.value)}
-              placeholder={props.userName}
+              placeholder={userContext.userName}
               value={name}
             />
             <button
@@ -56,21 +61,20 @@ const UserSettingsModal = (props) => {
         </div>
         <div className={style.resetBox}>
           <button
-            onClick={() => props.setOpen(true)}
+            onClick={() => setShowButtons(true)}
             className={style.resetBtn}
           >
             RESET
           </button>
-          <div
-            className={style.warningBox}
-            style={{ display: props.open ? "flex" : "none" }}
-          >
-            <p>ARE YOU SURE?</p>
-            <div className={style.btnBox}>
-              <button onClick={() => props.setOpen(false)}>YES</button>
-              <button onClick={() => props.setOpen(false)}>NO</button>
+          {showButtons && (
+            <div className={style.warningBox}>
+              <p>ARE YOU SURE?</p>
+              <div className={style.btnBox}>
+                <button onClick={() => setShowButtons(false)}>YES</button>
+                <button onClick={() => setShowButtons(false)}>NO</button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

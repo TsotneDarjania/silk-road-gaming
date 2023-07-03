@@ -1,0 +1,128 @@
+
+.commentsModal {
+  composes: flexCenter from "../../global.css";
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  border-radius: 10px;
+
+  font-family: var(--textFont);
+
+  padding: 10px;
+}
+.commentsContainer {
+  background-color: var(--darkBgColor);
+  width: 70%;
+  height: 70%;
+}
+.commentsSection {
+  height: 75%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.singleComment {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid var(--blackBorderColor);
+}
+
+.userInfo {
+  color: var(--neonBlueColor);
+  display: flex;
+  gap: 10px;
+  font-size: 19px;
+  font-family: var(--universalFont);
+}
+
+.userInfo span {
+  text-shadow: 0.5px 0.5px rgb(192, 184, 184);
+}
+
+.comment {
+  color: var(--fadedWhiteColor);
+  padding: 5px 0px;
+  font-size: 17px;
+  font-family: var(--universalFont);
+}
+.date{
+  position: absolute;
+  right: 10px;
+  color: white;
+}
+
+.userComment {
+  height: 25%;
+  border-top: 1px solid var(--darkGreyColor);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.userAvatar,
+.userAvatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 2%;
+  object-fit: cover;
+}
+
+.inputBox {
+  position: relative;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  gap: 10px;
+}
+
+.inputBox textarea {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  resize: none;
+  background-color: var(--smokyWhiteColor);
+
+  border: none;
+  outline: none;
+}
+
+.commentSendButton {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  border: none;
+  background-color: var(--darkBgColor);
+  color: white;
+  font-weight: bold;
+  font-size: 28px;
+  cursor: pointer;
+  font-family: var(--textFont);
+  text-transform: uppercase;
+  padding-inline: 20px;
+
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.commentSendButton:hover {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .commentsContainer {
+    width: 90%;
+  }
+  .comment {
+    padding-right: 10px;
+  }
+  .commentSendButton{
+    padding-inline: 20px;
+    font-size: 22px;
+  }
+}

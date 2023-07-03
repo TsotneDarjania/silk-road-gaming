@@ -1,36 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Geo&display=swap");
-
 .loginAndRegistrationForm {
+  composes: flexCenterColumn from "../../global.css";
   position: fixed;
   z-index: 100;
 
   width: min-content;
   height: min-content;
 
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-
-  margin-top: auto;
-  margin-bottom: auto;
   top: 0;
   bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto auto;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .centerContainer {
+  composes: flexCenter from "../../global.css";
   width: 90vw;
   height: min-content;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   padding: 30px;
 
   gap: 6px;
@@ -44,10 +30,11 @@
 
 .formTitle {
   text-align: center;
-  font-size: 25px;
   letter-spacing: 2px;
-  color: rgb(84, 98, 116);
-  font-family: "Geo", sans-serif;
+  color: var(--fadedBlueColor);
+
+  font-family: var(--mainFont);
+  font-size: 25px;
 }
 
 .userInputDiv {
@@ -59,37 +46,40 @@
 }
 
 .userInputTitle {
-  color: rgb(84, 98, 116);
-  font-size: 29px;
+  color: var(--fadedBlueColor);
+  font-size: 22px;
   font-weight: bold;
   letter-spacing: 1px;
-  font-family: "Geo", sans-serif;
+  font-family: var(--textFont);
 
   width: 44%;
   text-align: right;
 }
 
 .userInput {
-  composes: brownColor from "../../global.css";
-  font-family: "Geo", sans-serif;
+  color: var(--brownColor);
+  font-family: var(--universalFont);
   width: 50%;
-  height: 27px;
+  height: 23px;
+  padding-bottom: 5px;
 
-  font-size: 26px;
+  font-size: 20px;
 
   border: none;
   outline: none;
+  border-bottom: 1px solid var(--darkCyanColor);
+  background-color: inherit;
 }
 
 .submitButton {
-  width: 30%;
-  height: 40px;
+  width: 30%; 
   margin-left: 70%;
   margin-top: 5%;
+
   border: none;
 
-  font-family: "Geo", sans-serif;
-  font-size: 25px;
+  font-family: var(--mainFont);
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
 
@@ -100,35 +90,20 @@
 
 .submitButton:hover {
   color: white;
-  background-color: rgb(1, 1, 14);
+  background-color: var(--darkBgColor);
 }
 
-@media screen and (max-width: 1650px) {
-}
-@media screen and (max-width: 1500px) {
+@media (max-width: 1500px) {
   .userInputDiv {
     width: 70%;
   }
-
-  .userInput {
-    width: 50%;
-    height: 23px;
+  .submitButton{
+    font-size: 16px;
   }
 }
-@media screen and (max-width: 1100px) {
-  .userInputDiv {
-    width: 70%;
-  }
-
-  .userInput {
-    width: 50%;
-    height: 23px;
-  }
-
+@media (max-width: 1280px) {
   .centerContainer {
     position: absolute;
-    width: 90vw;
-    height: min-content;
 
     display: flex;
     flex-direction: column;
@@ -142,22 +117,23 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media (max-width: 940px) {
   .formContainer {
     width: 89.5%;
   }
 }
-@media screen and (max-width: 650px) {
+@media (max-width: 840px) {
+  .submitButton{
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media (max-width: 730px) {
   .formContainer {
     width: 96.5%;
   }
   .userInputDiv {
-    width: 70%;
     gap: 0;
-  }
-  .userInput {
-    width: 50%;
-    height: 23px;
   }
   .userInputTitle {
     font-size: 20px;
@@ -166,14 +142,26 @@
   .formTitle {
     font-size: 28px;
   }
-  .submitButton {
-    width: 60%;
-    margin-left: 40%;
+}
+@media (max-width: 650px) {
+  .formTitle{
+    font-size: 23px;
   }
 }
-@media screen and (max-width: 650px) {
-  .submitButton {
+@media (max-width: 500px) {
+  .centerContainer{
+    width: 100vw;
+    padding: 10px;
+  }
+  .userInputDiv {
     width: 100%;
-    margin-left: 0%;
+    flex-direction: column;
+  }
+  .userInputTitle {
+    width: 100%;
+    text-align: center;
+  }
+  .userInput {
+    width: 80%;
   }
 }

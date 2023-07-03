@@ -1,0 +1,97 @@
+.warning {
+  composes: flexCenterColumn from "../../global.css";
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  top: 0;
+  left: 0;
+
+  z-index: 200;
+}
+
+.shadow {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  opacity: 0.9;
+
+  animation-name: show-anim;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+}
+@keyframes show-anim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+
+.content {
+  background-color: var(--fadedOrangeBgColor);
+  animation-name: show-anim;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+
+  position: relative;
+  width: 900px;
+  padding: 30px;
+  z-index: 55;
+  text-align: center;
+  border-radius: 10px;
+  border: 7px solid var(--darkOrangeBorderColor);
+}
+
+.title {
+  color: var(--neonOrangeColor);
+  font-size: 30px;
+  letter-spacing: 1px;
+  font-family: var(--mainFont), cursive;
+}
+
+.text {
+  color: var(--darkOrangeBorderColor);
+  font-family: var(--textFont), cursive;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.okButton {
+  z-index: 70;
+  margin-top: 20px;
+  font-family: var(--mainFont), cursive;
+  border: 7px solid var(--darkOrangeBorderColor);
+  color: var(--darkOrangeBorderColor);
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+
+  background: none;
+  border: none;
+}
+
+.okButton:hover {
+  color: white;
+}
+
+@media (max-width: 980px) {
+  .content {
+    width: 700px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 757px) {
+  .content {
+    width: 90vw;
+    padding: 10px;
+  }
+  .text {
+    font-size: 17px;
+    line-height: 25px;
+  }
+}

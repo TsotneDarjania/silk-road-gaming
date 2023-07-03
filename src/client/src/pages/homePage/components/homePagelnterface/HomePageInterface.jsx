@@ -8,11 +8,7 @@ import UserSettingsModal from "./UserSettingsModal";
 import UserContext from "../../../../context/UserContext";
 
 const HomePageInterface = () => {
-  const [userName, setUserName] = useState(
-    JSON.parse(getCookie("loginSession")).userName
-  );
-
-  const userContext = useContext(UserContext)
+  const userContext = useContext(UserContext);
 
   const logOut = () => {
     deleteCookies();
@@ -21,7 +17,6 @@ const HomePageInterface = () => {
 
   const [menuClassName, setMenuClassName] = useState("");
   const [showUserSettingModal, setShowUserSettingModal] = useState(false);
-  const [open, setOpen] = useState(false);
 
   return (
     <div className={style.homePageInterface}>
@@ -38,7 +33,10 @@ const HomePageInterface = () => {
 
       <div className={style["menu"] + " " + style[menuClassName]}>
         <ul>
-          <li onClick={() => setShowUserSettingModal(true)}> {userName} </li>
+          <li onClick={() => setShowUserSettingModal(true)}>
+            {" "}
+            {userContext.userName}{" "}
+          </li>
           <li
             onClick={() => {
               logOut();
@@ -83,11 +81,7 @@ const HomePageInterface = () => {
       </div>
 
       <UserSettingsModal
-        open={open}
-        setOpen={setOpen}
         showUserSettingModal={showUserSettingModal}
-        userName={userName}
-        setUserName={setUserName}
         setShowUserSettingModal={setShowUserSettingModal}
       />
     </div>
