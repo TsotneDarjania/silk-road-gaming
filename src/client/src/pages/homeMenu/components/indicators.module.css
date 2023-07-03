@@ -4,11 +4,13 @@
 
 .indicators ul {
   list-style: none;
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   gap: 20px;
   font-size: 25px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 .indicators ul li {
@@ -24,17 +26,17 @@
 .number {
   font-size: 30px;
   cursor: default;
+  font-family: var(--textFont);
 }
 
 .indicators ul li :hover :not(.number) {
   color: var(--neonBlueColor);
 }
 
-.dislikeIcon {
-  margin-top: 12px;
-}
-
 .commentIcon {
   font-size: 20px;
-  margin-top: 6px;
+}
+
+.likeIcon :not(.number){
+  margin-bottom: 4px;
 }

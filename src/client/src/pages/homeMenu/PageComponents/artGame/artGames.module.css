@@ -10,62 +10,31 @@
     flex-direction: column;
     gap: 20px;
     
-    width: 80%;
+    width: 100%;
     height: 70vh;
     overflow-y: scroll;
 
     transition: 0.8s;
-}  
-  /* width */
-  ::-webkit-scrollbar {
-    width: 20px;
+    /* background-color: RED; */
+  }  
+  .scrollDiv{
+    width: 10vw;
+    position: fixed;
+    bottom: 20vh;
+    right: 0;
+  }
+  .artGames::-webkit-scrollbar {
+    display: none;
   }
   
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #161616;
-    border-radius: 30px;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #187391;
-    border-radius: 30px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #55cdf6;
-  }
-  
-  @media screen and (max-width: 570px) {
-    /* width */
-    ::-webkit-scrollbar {
-      width: 2px;
-    }
-  
-    /* Track */
-    ::-webkit-scrollbar-track {
-      background: #161616;
-      border-radius: 30px;
-    }
-  
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-      background: #187391;
-      border-radius: 30px;
-    }
-  
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: #55cdf6;
-    }
-  }
-  
-  @media (max-width: 600px) {
+
+  @media (max-width: 600px){
     .artGames{
       height: 80vh;
       width: 90%;
+    }
+    .scrollDiv{
+      bottom: 10vh;
     }
   }
   

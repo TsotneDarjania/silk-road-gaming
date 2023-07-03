@@ -25,7 +25,7 @@ const GameContainer = (props) => {
         <img src={bgImage} alt="MiniGamesBackgroundImg" />
       </div>
       <p className={style.name}> {props.data.name} </p>
-      <p className={style.shortDescription}>{props.data.description}</p>
+      <h3 className={style.shortDescription}>{props.data.description}</h3>
       <div className={style.buttonsBox}>
         <Indicators setShowCommentsModal={setShowCommentsModal} />
         <LinkButton

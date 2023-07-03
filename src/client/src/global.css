@@ -45,6 +45,7 @@
   /* fonts */
   --mainFont: "Bungee Shade", cursive;
   --textFont: "Dongle", sans-serif;
+  --normalHeight: 30px;
 
   /* z-indexs */
   --firstLayer: 3;
@@ -141,10 +142,15 @@ body {
   border: none;
   box-shadow: 5px 5px 0px 0px var(--orangeBoxShadow);
   padding: 0px 70px 0px 70px;
+  height: 57px;
 
   font-family: var(--mainFont);
   font-size: 25px;
   font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .primaryButton:hover {
   box-shadow: -5px -5px 0px 0px var(--orangeBoxShadow);
@@ -174,10 +180,14 @@ body {
   transition: 0.3s;
   z-index: 5;
   padding: 0px 70px 0px 70px;
-
+  height: 57px;
   font-family: var(--mainFont);
   font-weight: bold;
   font-size: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .playButton:hover {
   color: black;
@@ -187,8 +197,7 @@ body {
 @media (max-width: 1050px) and (min-height: 800px) {
   .playButton {
     font-size: 30px;
-    width: 180px;
-    height: 48px;
+    height: 57px;
   }
 }
 /* .......... */
@@ -198,7 +207,7 @@ body {
 .openButton {
   background-color: var(--greenBgColor);
   color: var(--darkBlueColor);
-  max-width: 120px;
+  width: 120px;
   z-index: 10;
   transition: 0.3s;
   border: none;
@@ -221,4 +230,9 @@ body {
   }
 }
 
+@media (max-width: 320px) {
+  .openButton{
+    width: 100%;
+  }
+}
 /* ........... */

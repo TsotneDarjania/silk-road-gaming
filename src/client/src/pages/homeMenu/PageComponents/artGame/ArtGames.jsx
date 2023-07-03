@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import style from "./artGames.module.css";
 import ArtGameContainer from "./components/ArtGameContainer";
 import gameInfo from "../../../../data/gamesInfo.json";
+import Scroll from "../../../../components/scroll/Scroll";
 
 const ArtGames = React.memo(() => {
   const [active, setActive] = useState([false, false]);
+  const ref = useRef(null)
 
   const handleFullScreen = (videoId) => {
     setActive((active) => {
@@ -13,6 +15,10 @@ const ArtGames = React.memo(() => {
       });
     });
   };
+
+  const handleClick = () => {
+    ref.current?.scrollIntoView({behavior: 'smooth'})
+  }
 
   return (
     <div className={style.artGames}>
@@ -26,6 +32,12 @@ const ArtGames = React.memo(() => {
           description={item.description}
         />
       ))}
+      <div className={style.scrollDiv} onClick={handleClick}>
+        <Scroll/>
+      </div>
+      <div ref={ref} style={{color: 'white'}}>
+        some text here
+      </div>
     </div>
   );
 });

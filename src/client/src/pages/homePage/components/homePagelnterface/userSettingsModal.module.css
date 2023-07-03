@@ -9,11 +9,11 @@
 }
 .settingsContainer {
   composes: flexCenterColumn from "../../../../global.css";
-  width: 50%;
-  height: 50%;
+  width: min-content;
+  height: min-content;
   background-color: var(--fadedWhiteBgColor);
   font-family: var(--textFont);
-  padding: 10px;
+  padding: 20px;
 
   gap: 50px;
 }
@@ -23,6 +23,7 @@
   height: 150px;
   border-radius: 2%;
   position: relative;
+  background-color: red;
 }
 .userAvatar img {
   object-fit: cover;
@@ -57,7 +58,8 @@
   font-size: 20px;
   font-weight: bold;
   border-bottom: 1px solid var(--brownColor);
-  padding: 3px;
+  padding: 5px;
+  width: max-content;
 }
 .userNameBox div {
   display: flex;
@@ -82,13 +84,18 @@
 .btnBox button {
   border: none;
   font-family: var(--textFont);
-  padding: 10px;
   font-size: 20px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.5s;
   color: var(--whiteColor);
   background-color: var(--darkOrangeBgColor);
+  width: 130px;
+  text-transform: uppercase;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .saveBtn:hover {
   color: white;
@@ -120,6 +127,7 @@
 }
 .btnBox :nth-child(1) {
   background-color: green;
+  width: 48px;
 }
 .btnBox :nth-child(2) {
   background-color: red;
@@ -136,19 +144,6 @@
   }
   .userNameInput {
     width: 377px;
-  }
-  .settingsContainer {
-    width: 65%;
-    height: 65%;
-  }
-  .saveBtn {
-    width: 77px;
-  }
-}
-@media (max-width: 800px) {
-  .settingsContainer {
-    width: 80%;
-    height: 80%;
   }
 }
 @media (max-width: 516px) {

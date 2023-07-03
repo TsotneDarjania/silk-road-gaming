@@ -66,16 +66,15 @@ const UserSettingsModal = (props) => {
           >
             RESET
           </button>
-          <div
-            className={style.warningBox}
-            style={{ display: showButtons ? "flex" : "none" }}
-          >
-            <p>ARE YOU SURE?</p>
-            <div className={style.btnBox}>
-              <button onClick={() => setShowButtons(false)}>YES</button>
-              <button onClick={() => setShowButtons(false)}>NO</button>
+          {showButtons && (
+            <div className={style.warningBox}>
+              <p>ARE YOU SURE?</p>
+              <div className={style.btnBox}>
+                <button onClick={() => setShowButtons(false)}>YES</button>
+                <button onClick={() => setShowButtons(false)}>NO</button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
