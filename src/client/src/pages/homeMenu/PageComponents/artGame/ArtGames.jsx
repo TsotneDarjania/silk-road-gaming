@@ -6,7 +6,7 @@ import Scroll from "../../../../components/scroll/Scroll";
 
 const ArtGames = React.memo(() => {
   const [active, setActive] = useState([false, false]);
-  const ref = useRef(null)
+  const artGameRef = useRef(null);
 
   const handleFullScreen = (videoId) => {
     setActive((active) => {
@@ -17,8 +17,8 @@ const ArtGames = React.memo(() => {
   };
 
   const handleClick = () => {
-    ref.current?.scrollIntoView({behavior: 'smooth'})
-  }
+    artGameRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div className={style.artGames}>
@@ -33,11 +33,9 @@ const ArtGames = React.memo(() => {
         />
       ))}
       <div className={style.scrollDiv} onClick={handleClick}>
-        <Scroll/>
+        <Scroll />
       </div>
-      <div ref={ref} style={{color: 'white'}}>
-        some text here
-      </div>
+      <div className={style.bottomDiv} ref={artGameRef}></div>
     </div>
   );
 });
