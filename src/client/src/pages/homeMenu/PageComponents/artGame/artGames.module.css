@@ -38,3 +38,11 @@
     }
   }
   
+  @media (max-height: 700px) {
+    .scrollDiv{
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      height: min-content;
+    }
+  }

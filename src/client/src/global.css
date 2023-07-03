@@ -120,12 +120,12 @@ body {
 }
 @media (max-height: 830px) {
   .slick-track {
-    height: 190px;
+    height: 150px;
   }
 }
-@media (max-height: 600px) {
+@media (max-height: 700px) {
   .slick-track {
-    height: 140px;
+    height: 100px;
   }
 }
 
@@ -152,6 +152,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  z-index: 5;
 }
 .primaryButton:hover {
   box-shadow: -5px -5px 0px 0px var(--orangeBoxShadow);
