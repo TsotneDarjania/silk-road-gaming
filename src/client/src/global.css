@@ -46,7 +46,7 @@
   /* fonts */
   --mainFont: "Bungee Shade", cursive;
   --textFont: "Dongle", sans-serif;
-  --commentFont: 'Noto Sans Georgian', sans-serif;
+  --universalFont: 'Noto Sans Georgian', sans-serif;
   --normalHeight: 30px;
 
   /* z-indexs */

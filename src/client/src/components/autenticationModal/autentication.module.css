@@ -6,15 +6,12 @@
   width: min-content;
   height: min-content;
 
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-
-  margin-top: auto;
-  margin-bottom: auto;
   top: 0;
   bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto auto;
+
 }
 .centerContainer {
   composes: flexCenter from "../../global.css";
@@ -53,7 +50,7 @@
   font-size: 22px;
   font-weight: bold;
   letter-spacing: 1px;
-  font-family: var(--mainFont);
+  font-family: var(--textFont);
 
   width: 44%;
   text-align: right;
@@ -61,20 +58,24 @@
 
 .userInput {
   color: var(--brownColor);
-  font-family: var(--textFont);
+  font-family: var(--universalFont);
   width: 50%;
-  height: 27px;
+  height: 23px;
+  padding-bottom: 5px;
 
-  font-size: 26px;
+  font-size: 20px;
 
   border: none;
   outline: none;
+  border-bottom: 1px solid var(--darkCyanColor);
+  background-color: inherit;
 }
 
 .submitButton {
-  width: 30%;
+  width: 30%; 
   margin-left: 70%;
   margin-top: 5%;
+
   border: none;
 
   font-family: var(--mainFont);
@@ -96,9 +97,8 @@
   .userInputDiv {
     width: 70%;
   }
-
-  .userInput {
-    height: 23px;
+  .submitButton{
+    font-size: 16px;
   }
 }
 @media (max-width: 1280px) {
@@ -122,6 +122,12 @@
     width: 89.5%;
   }
 }
+@media (max-width: 840px) {
+  .submitButton{
+    width: 100%;
+    margin-left: 0;
+  }
+}
 @media (max-width: 730px) {
   .formContainer {
     width: 96.5%;
@@ -136,18 +142,17 @@
   .formTitle {
     font-size: 28px;
   }
-  .submitButton {
-    width: 60%;
-    margin-left: 40%;
-  }
 }
 @media (max-width: 650px) {
-  .submitButton {
-    width: 100%;
-    margin-left: 0%;
+  .formTitle{
+    font-size: 23px;
   }
 }
 @media (max-width: 500px) {
+  .centerContainer{
+    width: 100vw;
+    padding: 10px;
+  }
   .userInputDiv {
     width: 100%;
     flex-direction: column;

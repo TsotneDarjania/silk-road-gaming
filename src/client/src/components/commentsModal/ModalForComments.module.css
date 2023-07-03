@@ -38,7 +38,7 @@
   display: flex;
   gap: 10px;
   font-size: 19px;
-  font-family: var(--commentFont);
+  font-family: var(--universalFont);
 }
 
 .userInfo span {
@@ -49,7 +49,7 @@
   color: var(--fadedWhiteColor);
   padding: 5px 0px;
   font-size: 17px;
-  font-family: var(--commentFont);
+  font-family: var(--universalFont);
 }
 .date{
   position: absolute;
