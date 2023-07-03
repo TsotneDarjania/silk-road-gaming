@@ -80,8 +80,7 @@
 .homeIcon {
   position: absolute;
 
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto 0;
   top: 0;
   bottom: 0;
 
@@ -166,13 +165,13 @@
   color: var(--darkYellowColor);
 }
 
-@media screen and (max-width: 1325px) {
+@media (max-width: 1325px) {
   .menu {
     width: 220px;
     height: 100vh;
   }
 }
-@media screen and (max-width: 1137px) {
+@media (max-width: 1137px) {
   .gameHistoryContainer {
     position: absolute;
     width: 40vw;
@@ -194,35 +193,30 @@
     font-size: 25px;
   }
 }
-@media screen and (max-width: 519px) {
-  .menu {
-    width: 82.5%;
-    left: 17.5%;
+
+@media (max-width: 950px) {
+  .menu{
+    width: 100%;
+    left: 0%;
+    top: 0vh;
     height: 100vh;
+  }
+  .homeIcon{
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    margin-top: inherit;
+    margin-bottom: inherit;
+    bottom: inherit;
+    top: 10px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
   .gameHistoryContainer {
     position: absolute;
     height: 60vh;
     width: 70vw;
-  }
-  .homeIcon {
-    position: absolute;
-
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-
-    margin-top: inherit;
-    margin-bottom: inherit;
-    bottom: inherit;
-
-    top: 10px;
-
-    font-size: 70px;
   }
   .continueButton {
     width: 100px;
@@ -238,16 +232,5 @@
   }
   .gamesItem {
     height: 70px;
-  }
-
-  .menu ul li {
-    font-size: 25px;
-  }
-
-  .menu {
-    width: 100%;
-    left: 0%;
-    top: 0vh;
-    height: 100vh;
   }
 }

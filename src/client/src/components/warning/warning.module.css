@@ -78,14 +78,14 @@
   color: white;
 }
 
-@media screen and (max-width: 980px) {
+@media (max-width: 980px) {
   .content {
     width: 700px;
     padding: 20px;
   }
 }
 
-@media screen and (max-width: 757px) {
+@media (max-width: 757px) {
   .content {
     width: 90vw;
     padding: 10px;
