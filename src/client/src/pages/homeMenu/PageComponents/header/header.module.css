@@ -20,7 +20,7 @@
   opacity: 0.3;
 
   font-size: 17px;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px;
   border: 4px solid rgb(116, 98, 137);
   border-style: dotted;
 
@@ -50,16 +50,49 @@
   animation: none;
 }
 
-@media screen and (max-width: 700px) {
-  .menuLi {
-    font-size: 17px;
-    padding: 7px;
-    border: 2px solid var(--darkCyanColor);
-  }
+.burgerMenu {
+  display: none;
+  font-size: 70px;
+  cursor: pointer;
+  color: #f9bb6b;
+  height: 12vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.burgerMenu:hover {
+  color: var(--iconOrangeColor);
+}
 
+@media (max-width: 700px) {
+  .burgerMenu {
+    display: flex;
+    position: fixed;
+    z-index: 61;
+  }
+  .header {
+    height: 100%;
+    background-color: var(--beigeBgColor);
+    transition: 0.7s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .menuLi {
+    width: 90%;
+    text-align: center;
+    border: none;
+    color: var(--darkBlueColor);
+    animation: none;
+    opacity: 0.5;
+  }
+  .menuLi:hover {
+    color: inherit;
+  }
   .selectedLi {
-    font-size: 21px;
-    border: 2px solid var(--blueLiColor);
-    color: var(--blueLiColor);
+    color: var(--blackBorderColor);
+    opacity: 1;
+    font-size: 26px;
   }
 }

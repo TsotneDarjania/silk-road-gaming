@@ -1,47 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./header.module.css";
+import { CgMenuGridR } from "react-icons/cg";
 
-const Header = React.memo(({handleMenuChange, defaultMode}) => {
+const Header = React.memo(({ handleMenuChange, defaultMode }) => {
   const [active, setActive] = useState(defaultMode);
-  
+  const [isShowHeader, setIsShowHeader] = useState(true);
+
   const handleMenuBtn = (mode) => {
-    handleMenuChange(mode)
-    setActive(mode)
-  }
+    handleMenuChange(mode);
+    setActive(mode);
+    if(window.innerWidth < 700){
+      setIsShowHeader(false)
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 700) {
+        setIsShowHeader(true);
+      }
+    });
+  }, []);
 
   return (
-    <ul className={style.header}>
-      <li
-        onClick={() => {
-          handleMenuBtn("mini_games")
-        }}
-        className={`${style.menuLi} ${
-          active === "mini_games" ? style.selectedLi : ""
-        }`}
+    <div>
+      <ul
+        className={style.header}
+        style={{ opacity: isShowHeader ? "1" : "0", zIndex: isShowHeader ? 60 : 0,}}
       >
-        Mini Games
-      </li>
-      <li
-        onClick={() => {
-          handleMenuBtn("latest_game")
-        }}
-        className={`${style.menuLi} ${
-          active === "latest_game" ? style.selectedLi : ""
-        }`}
+        <li
+          onClick={() => {
+            handleMenuBtn("mini_games");
+          }}
+          className={`${style.menuLi} ${
+            active === "mini_games" ? style.selectedLi : ""
+          }`}
+        >
+          Mini Games
+        </li>
+        <li
+          onClick={() => {
+            handleMenuBtn("latest_game");
+          }}
+          className={`${style.menuLi} ${
+            active === "latest_game" ? style.selectedLi : ""
+          }`}
+        >
+          Latest Game
+        </li>
+        <li
+          onClick={() => {
+            handleMenuBtn("art_games");
+          }}
+          className={`${style.menuLi} ${
+            active === "art_games" ? style.selectedLi : ""
+          }`}
+        >
+          Art Game
+        </li>
+      </ul>
+      <div
+        className={style.burgerMenu}
+        onClick={() => setIsShowHeader(!isShowHeader)}
       >
-        Latest Game
-      </li>
-      <li
-        onClick={() => {
-          handleMenuBtn("art_games")
-        }}
-        className={`${style.menuLi} ${
-          active === "art_games" ? style.selectedLi : ""
-        }`}
-      >
-        Art Game
-      </li>
-    </ul>
+        <CgMenuGridR />
+      </div>
+    </div>
   );
 });
 

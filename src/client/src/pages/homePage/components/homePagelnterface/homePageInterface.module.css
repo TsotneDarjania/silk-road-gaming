@@ -89,7 +89,7 @@
   height: min-content;
   font-size: 70px;
   cursor: pointer;
-  color: #e15a07;
+  color: var(--iconOrangeColor);
 
   z-index: 50;
 

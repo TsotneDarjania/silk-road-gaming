@@ -27,7 +27,6 @@ function MainPage() {
       api.userLogin(userName, userPassword).then(
         (response) => {
           if (response.password === userPassword) {
-            console.log(response);
             userContext.setUserName(response.name);
             userContext.setUserAvatar(response.avatar);
             userContext.setUserRating(response.rating);
