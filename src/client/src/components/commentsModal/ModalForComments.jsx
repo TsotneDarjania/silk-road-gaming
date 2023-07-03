@@ -39,6 +39,7 @@ const ModalForComments = (props) => {
               </span>
             </div>
             <p className={style.comment}>{data.comment}</p>
+            <p className={style.date}>22.05.2023</p>
           </div>
         </div>
       );

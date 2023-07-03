@@ -27,6 +27,7 @@
 }
 
 .singleComment {
+  position: relative;
   display: flex;
   gap: 10px;
   border-bottom: 1px solid var(--blackBorderColor);
@@ -36,7 +37,8 @@
   color: var(--neonBlueColor);
   display: flex;
   gap: 10px;
-  font-size: 18px;
+  font-size: 19px;
+  font-family: var(--commentFont);
 }
 
 .userInfo span {
@@ -46,6 +48,13 @@
 .comment {
   color: var(--fadedWhiteColor);
   padding: 5px 0px;
+  font-size: 17px;
+  font-family: var(--commentFont);
+}
+.date{
+  position: absolute;
+  right: 10px;
+  color: white;
 }
 
 .userComment {
@@ -85,17 +94,17 @@
 
 .commentSendButton {
   position: absolute;
-  width: 200px;
-  height: 40px;
-  right: 18px;
-  bottom: 4px;
+  right: 5px;
+  bottom: 5px;
   border: none;
   background-color: var(--darkBgColor);
   color: white;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 28px;
   cursor: pointer;
-  font-family: var(--mainFont);
+  font-family: var(--textFont);
+  text-transform: uppercase;
+  padding-inline: 20px;
 
   opacity: 0;
   transition: 0.4s;
@@ -111,5 +120,9 @@
   }
   .comment {
     padding-right: 10px;
+  }
+  .commentSendButton{
+    padding-inline: 20px;
+    font-size: 22px;
   }
 }
