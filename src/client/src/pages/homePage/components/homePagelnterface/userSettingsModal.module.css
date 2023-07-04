@@ -11,11 +11,12 @@
   composes: flexCenterColumn from "../../../../global.css";
   width: min-content;
   height: min-content;
-  background-color: var(--fadedWhiteBgColor);
+  background-color: var(--whiteColor);
   font-family: var(--textFont);
   padding: 20px;
 
   gap: 50px;
+  border: 5px solid var(--smokyWhiteColor);
 }
 
 .userAvatar {
@@ -23,7 +24,7 @@
   height: 150px;
   border-radius: 2%;
   position: relative;
-  background-color: red;
+  border: 5px solid var(--smokyWhiteColor);
 }
 .userAvatar img {
   object-fit: cover;
@@ -32,7 +33,6 @@
 }
 .cameraBtn {
   composes: flexCenter from "../../../../global.css";
-  background-color: var(--orangeBtnBgColor);
   width: 50px;
   height: 50px;
   font-size: 25px;
@@ -42,6 +42,8 @@
   position: absolute;
   top: 120px;
   right: -20px;
+
+  border: 5px solid var(--smokyWhiteColor);
 }
 .cameraBtn:hover {
   background-color: var(--lightBrownBgColor);
@@ -54,11 +56,10 @@
   gap: 20px;
 }
 .userNameBoxTitle {
-  color: var(--brownColor);
-  font-size: 20px;
+  color: var(--fadedBlueColor);
+  font-size: 22px;
   font-weight: bold;
-  border-bottom: 1px solid var(--brownColor);
-  padding: 5px;
+
   width: max-content;
 }
 .userNameBox div {
@@ -66,30 +67,32 @@
   gap: 20px;
 }
 .userNameInput {
-  color: var(--brownColor);
-  font-family: var(--textFont);
+  color: var(--fadedBlueColor);
+  font-family: var(--universalFont);
   height: 40px;
-  font-size: 20px;
+  font-size: 14px;
   width: 300px;
   outline: none;
   border: none;
-  border-bottom: 1px solid var(--brownColor);
+  border-bottom: 1px solid var(--fadedBlueColor);
   background-color: inherit;
 }
 .userNameInput::placeholder {
-  color: var(--brownColor);
+  color: var(--fadedBlueColor);
 }
 .saveBtn,
 .resetBtn,
 .btnBox button {
   border: none;
   font-family: var(--textFont);
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.5s;
-  color: var(--whiteColor);
-  background-color: var(--darkOrangeBgColor);
+  color: var(--darkGreyColor);
+
+  border: 5px solid var(--smokyWhiteColor);
+
   width: 130px;
   text-transform: uppercase;
   height: 40px;
@@ -99,7 +102,7 @@
 }
 .saveBtn:hover {
   color: white;
-  background-color: var(--purpleBgColor);
+  background-color: var(--lightBrownBgColor);
 }
 .resetBox {
   composes: flexCenterColumn from "../../../../global.css";
@@ -116,22 +119,29 @@
   font-weight: 600;
 }
 .resetBtn {
-  background-color: rgb(139, 50, 14);
+  border: 5px solid var(--smokyWhiteColor);
 }
 .resetBtn:hover {
-  background-color: var(--darkRedColor);
+  color: white;
+  background-color: var(--lightBrownBgColor);
 }
 .btnBox {
   composes: flexCenter from "../../../../global.css";
   gap: 20px;
 }
 .btnBox :nth-child(1) {
-  background-color: green;
   width: 48px;
 }
+.btnBox :nth-child(1):hover {
+  color: white;
+  background-color: var(--lightBrownBgColor);
+}
 .btnBox :nth-child(2) {
-  background-color: red;
   width: 48px;
+}
+.btnBox :nth-child(2):hover {
+  color: white;
+  background-color: var(--lightBrownBgColor);
 }
 
 @media (max-width: 1188px) {

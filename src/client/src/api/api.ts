@@ -71,7 +71,8 @@ export class Api {
     gameName: string,
     comment: string,
     userRating: number,
-    userAvatarImageUrl: string
+    userAvatarImageUrl: string,
+    date: string
   ) {
     return this.databases().createDocument(
       ApiEnums.silkRoadDatabaseID,
