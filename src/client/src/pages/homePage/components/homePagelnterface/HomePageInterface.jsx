@@ -53,27 +53,27 @@ const HomePageInterface = () => {
           <li className={style.gamesItem}>
             <ul>
               <li> Batumisken </li>
-              <li> 33/34/1220 </li>
+              <li> 02.11.2023 </li>
               <li className={style.continueButton}> Continue </li>
             </ul>
             <ul>
               <li> Batumisken </li>
-              <li> 33/34/1220 </li>
+              <li> 02.11.2023 </li>
               <li className={style.continueButton}> Continue </li>
             </ul>
             <ul>
               <li> Batumisken </li>
-              <li> 33/34/1220 </li>
+              <li>02.11.2023 </li>
               <li className={style.continueButton}> Continue </li>
             </ul>
             <ul>
               <li> Batumisken </li>
-              <li> 33/34/1220 </li>
+              <li> 02.11.2023 </li>
               <li className={style.continueButton}> Continue </li>
             </ul>
             <ul>
               <li> Batumisken </li>
-              <li> 33/34/1220 </li>
+              <li> 02.11.2023 </li>
               <li className={style.continueButton}> Continue </li>
             </ul>
           </li>
