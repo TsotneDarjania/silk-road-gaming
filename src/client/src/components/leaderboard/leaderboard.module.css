@@ -17,6 +17,7 @@
     width: 60%;
     height: 60%;
     gap: 10px;
+    padding-bottom: 10px;
 }
 .gameInfo{
     composes: flexCenter from '../../global.css';
