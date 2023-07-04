@@ -1,0 +1,155 @@
+.leaderBoard{
+    composes: flexCenter from '../../global.css';
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 60;
+
+    padding: 10px;
+    font-family: var(--universalFont);
+}
+
+.leaderBoardContainer{
+    composes: flexCenterColumn from '../../global.css';
+    background-color: var(--darkBgColor);
+    width: 60%;
+    height: 60%;
+    gap: 10px;
+}
+.gameInfo{
+    composes: flexCenter from '../../global.css';
+    width: 100%;
+}
+.gameIcon{
+    width: 100px;
+    height: 100px;
+}
+
+.gameIcon img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.currentUser{
+    composes: flexCenter from '../../global.css';
+    width: 100%;
+    gap: 10px;
+    color: var(--neonBlueColor);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.currenUserNumber{
+    color: var(--fadedOrangeBgColor);
+}
+
+.userPosition {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 15px;
+    border-bottom: 1px solid var(--blackBorderColor);
+}
+.userName{
+    font-size: 19px;
+    color: var(--neonBlueColor);
+}
+
+.userAvatar{
+    width: 50px;
+    height: 50px;
+}
+.userAvatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.number{
+    composes: flexCenter from '../../global.css';
+    color: var(--fadedOrangeBgColor);
+    font-size: 20px;
+    width: 70px;
+    height: 70px;
+    border-right: 1px solid var(--blackBorderColor);
+}
+.gameScore{
+    color: var(--orangeColor);
+}
+
+.allScore{
+    position: absolute;
+    right: 3%;
+    color: var(--darkCyanColor);
+}
+.leaderBoardList{
+    width: 100%;
+    height: 70%;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.userBox{
+    display: flex;
+    gap: 10px;
+    min-width: 80px;
+    align-items: center;
+}
+
+/* width */
+.leaderBoardList::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  .leaderBoardList::-webkit-scrollbar-track {
+    background: none;
+  }
+  
+  /* Handle */
+  .leaderBoardList::-webkit-scrollbar-thumb {
+    background: #187391;
+    border-radius: 30px;
+  }
+  
+  /* Handle on hover */
+  .leaderBoardList::-webkit-scrollbar-thumb:hover {
+    background: #55cdf6;
+  }
+  
+
+@media (max-width: 900px) {
+    .userBox{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .userPosition{
+        align-items: flex-end;
+        padding-bottom: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .leaderBoardContainer{
+        width: 95%;
+    }
+}
+
+@media (max-width: 500px) {
+    .userName{
+        font-size: 14px;
+    }
+    .number{
+        width: 30px;
+        height: 30px;
+    }
+    .userAvatar{
+        width: 40px;
+        height: 40px;
+        margin-left: -15px;
+    }
+}

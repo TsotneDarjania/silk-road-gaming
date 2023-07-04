@@ -13,10 +13,12 @@ import PageContext from "../../../../../context/PageContext";
 import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
 import Indicators from "../../../components/Indicators";
 import LinkButton from "../../../../../components/buttons/LinkButton";
+import Leaderboard from "../../../../../components/leaderboard/Leaderboard";
 
 const ArtGameContainer = (props) => {
   const [showCommentsModal, setShowCommentsModal] = useState(false);
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
+  const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
   const images = [image, image, image, image, image, image];
 
   const pageContext = useContext(PageContext);
@@ -62,7 +64,7 @@ const ArtGameContainer = (props) => {
             setShowAutenticationModal={setShowAutenticationModal}
           />
           <Indicators setShowCommentsModal={setShowCommentsModal}>
-            <MdLeaderboard />
+            <MdLeaderboard onClick={() => setShowLeaderBoardModal(true)} />
           </Indicators>
         </div>
       </div>
@@ -107,6 +109,7 @@ const ArtGameContainer = (props) => {
       {showCommentsModal && (
         <ModalForComments setShowCommentsModal={setShowCommentsModal} />
       )}
+      {showLeaderBoardModal && <Leaderboard setShowLeaderBoardModal={setShowLeaderBoardModal}/>}
     </div>
   );
 };
