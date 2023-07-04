@@ -31,7 +31,6 @@ const UserSettingsModal = (props) => {
       ></div>
       <div className={style.settingsContainer}>
         <div className={style.userAvatar}>
-          {console.log(userContext.userAvatar)}
           <img src={userContext.userAvatar} alt="user Avatar" />
           <button className={style.cameraBtn}>
             <AiFillCamera />

@@ -34,8 +34,7 @@ const HomePageInterface = () => {
       <div className={style["menu"] + " " + style[menuClassName]}>
         <ul>
           <li onClick={() => setShowUserSettingModal(true)}>
-            {" "}
-            {userContext.userName}{" "}
+            {userContext.userName}
           </li>
           <li
             onClick={() => {
