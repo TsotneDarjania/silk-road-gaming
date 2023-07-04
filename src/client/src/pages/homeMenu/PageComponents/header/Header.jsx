@@ -30,7 +30,7 @@ const Header = React.memo(({ handleMenuChange, defaultMode }) => {
         className={style.header}
         style={{
           opacity: isShowHeader ? "1" : "0",
-          zIndex: isShowHeader ? 60 : 0,
+          zIndex: isShowHeader ? 2 : 1,
         }}
       >
         <li

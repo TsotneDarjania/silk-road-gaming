@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./leaderboard.module.css";
 import "../../global.css";
 import gameIcon from "../../pages/homeMenu/images/batumiskenIcon.png";

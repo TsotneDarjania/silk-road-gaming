@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 21;
+  z-index: var(--secondLayer);
 }
 .settingsContainer {
   composes: flexCenterColumn from "../../../../global.css";

@@ -1,7 +1,7 @@
 .loginAndRegistrationForm {
   composes: flexCenterColumn from "../../global.css";
   position: fixed;
-  z-index: 100;
+  z-index: var(--secondLayer);
 
   width: min-content;
   height: min-content;
@@ -10,7 +10,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  margin: auto auto;
+  margin: auto;
 
 }
 .centerContainer {

@@ -24,6 +24,7 @@ const GameContainer = (props) => {
       <div className={style.gameBackgroundImage}>
         <img src={bgImage} alt="MiniGamesBackgroundImg" />
       </div>
+      <div className={style.content}>
       <p className={style.name}> {props.data.name} </p>
       <h3 className={style.shortDescription}>{props.data.description}</h3>
       <div className={style.buttonsBox}>
@@ -33,6 +34,7 @@ const GameContainer = (props) => {
           gameUrl={props.data.url}
           setShowAutenticationModal={setShowAutenticationModal}
         />
+      </div>
       </div>
       {showCommentsModal && (
         <ModalForComments

@@ -34,7 +34,7 @@ const HomePageInterface = () => {
       <div
         className={style["menu"] + " " + style[menuClassName]}
         style={{
-          zIndex: menuClassName === "showMenu" ? 20 : 0,
+          zIndex: menuClassName === "showMenu" ? 1 : 0,
         }}
       >
         <ul>

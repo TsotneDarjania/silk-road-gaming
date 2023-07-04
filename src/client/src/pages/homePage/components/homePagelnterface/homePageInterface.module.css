@@ -82,7 +82,7 @@
   cursor: pointer;
   color: var(--iconOrangeColor);
 
-  z-index: 50;
+  z-index: var(--secondLayer);
 
   left: 10px;
   transition: 0.3s;
