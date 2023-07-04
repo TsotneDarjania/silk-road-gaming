@@ -82,7 +82,7 @@ const Leaderboard = ({ setShowLeaderBoardModal }) => {
 
         <div className={style.leaderBoardList}>
           {userInfo.map((data, i) => (
-            <div className={style.userPosition}>
+            <div className={style.userPosition} key={i}>
               <span className={style.number}>{i + 1}</span>
               <div className={style.userAvatar}>
                 <img src={data.userAvatar} alt="user avatar" />
