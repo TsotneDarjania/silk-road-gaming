@@ -31,7 +31,12 @@ const HomePageInterface = () => {
         <CgMenuGridR />
       </div>
 
-      <div className={style["menu"] + " " + style[menuClassName]}>
+      <div
+        className={style["menu"] + " " + style[menuClassName]}
+        style={{
+          zIndex: menuClassName === "showMenu" ? 20 : 0,
+        }}
+      >
         <ul>
           <li onClick={() => setShowUserSettingModal(true)}>
             {userContext.userName}
