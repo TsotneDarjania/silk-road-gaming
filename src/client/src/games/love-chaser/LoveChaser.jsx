@@ -3,6 +3,7 @@ import Phaser from "phaser";
 import style from "./style.module.css";
 
 import { Preload } from "./scenes/preload";
+import { GamePlay } from "./scenes/gamePlay";
 
 export const LoveChaser = () => {
   const canvasContainer = useRef(null);
@@ -25,7 +26,7 @@ export const LoveChaser = () => {
       },
 
       backgroundColor: 0x19053b,
-      scene: [Preload],
+      scene: [Preload, GamePlay],
     });
 
     return () => game.destroy(true, false);
