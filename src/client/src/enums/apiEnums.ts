@@ -5,4 +5,5 @@ export enum ApiEnums {
   usersCollectionID = "6495b81982bb7abcdc04",
   batumisken_v_1_CollectionId = "649705a714be905ca4c4",
   gameCommentsCollectionId = "6498254c280c05803e0f",
+  likesAndDeslikesForGamesCollectionId = "64a490058f7bf57bb374",
 }

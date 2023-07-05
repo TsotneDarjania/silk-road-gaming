@@ -84,6 +84,7 @@ export class Api {
         comment: comment,
         userRating: userRating,
         userAvatarImageProfiles: userAvatarImageUrl,
+        date: date,
       }
     );
   }
@@ -94,5 +95,52 @@ export class Api {
       collectionId,
       [Query.equal("gameName", ["game_name", gameName])]
     );
+  }
+
+  getUsersReactions(gameName: string, reaction: string) {
+    return this.databases().listDocuments(
+      ApiEnums.silkRoadDatabaseID,
+      ApiEnums.likesAndDeslikesForGamesCollectionId,
+      [Query.equal("reaction", ["reaction", reaction])]
+    );
+  }
+
+  insertUserReactionForGame(
+    username: string,
+    gameName: string,
+    reaction: string
+  ) {
+    this.databases()
+      .updateDocument(
+        ApiEnums.silkRoadDatabaseID,
+        ApiEnums.likesAndDeslikesForGamesCollectionId,
+        `${generateIdToCorrectFormat(
+          transliterate(gameName)
+        )}${generateIdToCorrectFormat(transliterate(username))}`,
+        {
+          user: username,
+          gameName: gameName,
+          reaction: reaction,
+        }
+      )
+      .then(
+        (response) => {},
+        (error) => {
+          if (error.code === 404) {
+            this.databases().createDocument(
+              ApiEnums.silkRoadDatabaseID,
+              ApiEnums.likesAndDeslikesForGamesCollectionId,
+              `${generateIdToCorrectFormat(
+                transliterate(gameName)
+              )}${generateIdToCorrectFormat(transliterate(username))}`,
+              {
+                user: username,
+                gameName: gameName,
+                reaction: reaction,
+              }
+            );
+          }
+        }
+      );
   }
 }

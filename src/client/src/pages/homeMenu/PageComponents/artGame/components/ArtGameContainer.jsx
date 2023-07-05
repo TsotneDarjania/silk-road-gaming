@@ -63,7 +63,10 @@ const ArtGameContainer = (props) => {
             gameUrl={gamesInfo.lastGame.url}
             setShowAutenticationModal={setShowAutenticationModal}
           />
-          <Indicators setShowCommentsModal={setShowCommentsModal}>
+          <Indicators
+            gameName={props.name}
+            setShowCommentsModal={setShowCommentsModal}
+          >
             <MdLeaderboard onClick={() => setShowLeaderBoardModal(true)} />
           </Indicators>
         </div>
@@ -107,9 +110,14 @@ const ArtGameContainer = (props) => {
         </div>
       </div>
       {showCommentsModal && (
-        <ModalForComments setShowCommentsModal={setShowCommentsModal} />
+        <ModalForComments
+          setShowCommentsModal={setShowCommentsModal}
+          gameName={props.name}
+        />
       )}
-      {showLeaderBoardModal && <Leaderboard setShowLeaderBoardModal={setShowLeaderBoardModal}/>}
+      {showLeaderBoardModal && (
+        <Leaderboard setShowLeaderBoardModal={setShowLeaderBoardModal} />
+      )}
     </div>
   );
 };
