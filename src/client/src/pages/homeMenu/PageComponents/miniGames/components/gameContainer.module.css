@@ -2,11 +2,6 @@
   position: relative;
   width: 48%;
   height: 42%;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .gameBackgroundImage {
@@ -26,13 +21,23 @@
   height: 100%;
   object-fit: cover;
 }
+.content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: var(--thirdLayer);
+}
+
 .name {
   font-family: var(--mainFont);
   color: var(--skyBlueColor);
   font-weight: 900;
   font-size: 30px;
   margin-top: 10px;
-  z-index: 1;
   text-align: center;
 }
 
@@ -40,7 +45,6 @@
   color: var(--neonBlueColor);
   font-family: var(--textFont);
   font-size: 33px;
-  z-index: 1;
   width: 90%;
   line-height: var(--normalHeight);
 }
@@ -90,10 +94,10 @@
 }
 
 @media (max-width: 320px) {
-  .buttonsBox{
+  .buttonsBox {
     flex-direction: column;
   }
-  .name{
+  .name {
     line-height: 40px;
   }
 }

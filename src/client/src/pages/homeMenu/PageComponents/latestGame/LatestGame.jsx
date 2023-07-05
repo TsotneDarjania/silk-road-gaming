@@ -20,37 +20,42 @@ const LatestGame = React.memo(() => {
         />
       )}
       <div className={style.latestGameContainerBackgroundImage}></div>
-      <div className={style.leftContainer}>
-        <div className={style.leftContainer_Div}>
-          <h3>
-            <span> Name : </span> {gamesInfo.lastGame.name}
-          </h3>
+      <div className={style.content}>
+        <div className={style.leftContainer}>
+          <div className={style.leftContainer_Div}>
+            <h3>
+              <span> Name : </span> {gamesInfo.lastGame.name}
+            </h3>
+          </div>
+          <div className={style.leftContainer_Div}>
+            <h3>
+              <span> Publish Date : </span> {gamesInfo.lastGame.publishData}{" "}
+            </h3>
+          </div>
+          <div className={`${style.leftContainer_Div} ${style.descriptionDiv}`}>
+            <h3>
+              <span> Short Description : </span>
+              {/* {gamesInfo.lastGame.shortDescription} */}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+              quos, sunt aliquam consectetur numquam sequi, tempore similique ea
+              perspiciatis dicta optio ex odit minima voluptatem excepturi odio
+              nobis deleniti harum!
+            </h3>
+          </div>
         </div>
-        <div className={style.leftContainer_Div}>
-          <h3>
-            <span> Publish Date : </span> {gamesInfo.lastGame.publishData}{" "}
-          </h3>
+        <div className={style.rightContainer}>
+          <video className={style.lastGameVideo} loop autoPlay>
+            <source src={latestGameVideo} type="video/mp4" />
+          </video>
         </div>
-        <div className={`${style.leftContainer_Div} ${style.descriptionDiv}`}>
-          <h3>
-            <span> Short Description : </span>
-            {/* {gamesInfo.lastGame.shortDescription} */}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, quos, sunt aliquam consectetur numquam sequi, tempore similique ea perspiciatis dicta optio ex odit minima voluptatem excepturi odio nobis deleniti harum!
-          </h3>
-        </div>
-      </div>
-      <div className={style.rightContainer}>
-        <video className={style.lastGameVideo} loop autoPlay>
-          <source src={latestGameVideo} type="video/mp4" />
-        </video>
-      </div>
-      <div className={style.buttonDiv}>
+        <div className={style.buttonDiv}>
           <LinkButton
             innerText="Play"
             gameUrl={gamesInfo.lastGame.url}
             setShowAutenticationModal={setShowAutenticationModal}
           />
         </div>
+      </div>
     </div>
   );
 });

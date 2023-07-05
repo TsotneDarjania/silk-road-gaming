@@ -17,7 +17,7 @@ function MainPage() {
 
   useEffect(() => {
     checkIfLogin();
-  }, []);
+  }, [userContext.isLogin]);
 
   const checkIfLogin = () => {
     if (getCookie("loginSession") !== "") {

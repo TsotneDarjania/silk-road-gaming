@@ -13,10 +13,12 @@ import PageContext from "../../../../../context/PageContext";
 import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
 import Indicators from "../../../components/Indicators";
 import LinkButton from "../../../../../components/buttons/LinkButton";
+import Leaderboard from "../../../../../components/leaderboard/Leaderboard";
 
 const ArtGameContainer = (props) => {
   const [showCommentsModal, setShowCommentsModal] = useState(false);
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
+  const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
   const images = [image, image, image, image, image, image];
 
   const pageContext = useContext(PageContext);
@@ -61,8 +63,11 @@ const ArtGameContainer = (props) => {
             gameUrl={gamesInfo.lastGame.url}
             setShowAutenticationModal={setShowAutenticationModal}
           />
-          <Indicators setShowCommentsModal={setShowCommentsModal}>
-            <MdLeaderboard />
+          <Indicators
+            gameName={props.name}
+            setShowCommentsModal={setShowCommentsModal}
+          >
+            <MdLeaderboard onClick={() => setShowLeaderBoardModal(true)} />
           </Indicators>
         </div>
       </div>
@@ -105,7 +110,13 @@ const ArtGameContainer = (props) => {
         </div>
       </div>
       {showCommentsModal && (
-        <ModalForComments setShowCommentsModal={setShowCommentsModal} />
+        <ModalForComments
+          setShowCommentsModal={setShowCommentsModal}
+          gameName={props.name}
+        />
+      )}
+      {showLeaderBoardModal && (
+        <Leaderboard setShowLeaderBoardModal={setShowLeaderBoardModal} />
       )}
     </div>
   );

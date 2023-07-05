@@ -154,7 +154,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  z-index: 5;
+  z-index: var(--thirdLayer);
 }
 .primaryButton:hover {
   box-shadow: -5px -5px 0px 0px var(--orangeBoxShadow);
@@ -177,7 +177,7 @@ body {
   background-color: var(--darkYellowBgColor);
   box-shadow: 5px 5px 0px 0px var(--orangeBoxShadow);
   transition: 0.3s;
-  z-index: 5;
+  z-index: var(--thirdLayer);
   padding-inline: 70px;
   height: 57px;
   font-family: var(--mainFont);
@@ -207,7 +207,7 @@ body {
   background-color: var(--greenBgColor);
   color: var(--darkBlueColor);
   width: 120px;
-  z-index: 10;
+  z-index: var(--thirdLayer);
   transition: 0.3s;
   border: none;
   cursor: pointer;

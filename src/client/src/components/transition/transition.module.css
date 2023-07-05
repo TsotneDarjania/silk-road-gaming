@@ -5,7 +5,7 @@
   width: 100vw;
   height: 52vh;
   background-color: var(--beigeBgColor);
-  z-index: 100;
+  z-index: var(--firstLayer);
   top: -50vh;
   animation: topAnimationDown 0.7s forwards;
 }
@@ -19,7 +19,7 @@
   width: 100vw;
   height: 52vh;
   background-color: var(--beigeBgColor);
-  z-index: 100;
+  z-index: var(--firstLayer);
   bottom: -50vh;
   animation: bottomAnimationUp 0.7s forwards;
 }

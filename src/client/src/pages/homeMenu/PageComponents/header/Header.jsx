@@ -4,13 +4,15 @@ import { CgMenuGridR } from "react-icons/cg";
 
 const Header = React.memo(({ handleMenuChange, defaultMode }) => {
   const [active, setActive] = useState(defaultMode);
-  const [isShowHeader, setIsShowHeader] = useState(true);
+  const [isShowHeader, setIsShowHeader] = useState(
+    window.innerWidth > 700 ? true : false
+  );
 
   const handleMenuBtn = (mode) => {
     handleMenuChange(mode);
     setActive(mode);
-    if(window.innerWidth < 700){
-      setIsShowHeader(false)
+    if (window.innerWidth < 700) {
+      setIsShowHeader(false);
     }
   };
 
@@ -26,7 +28,10 @@ const Header = React.memo(({ handleMenuChange, defaultMode }) => {
     <div>
       <ul
         className={style.header}
-        style={{ opacity: isShowHeader ? "1" : "0", zIndex: isShowHeader ? 60 : 0,}}
+        style={{
+          opacity: isShowHeader ? "1" : "0",
+          zIndex: isShowHeader ? 2 : 1,
+        }}
       >
         <li
           onClick={() => {

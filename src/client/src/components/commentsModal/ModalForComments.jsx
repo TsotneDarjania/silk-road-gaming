@@ -39,7 +39,7 @@ const ModalForComments = (props) => {
               </span>
             </div>
             <p className={style.comment}>{data.comment}</p>
-            <p className={style.date}>22.05.2023</p>
+            <p className={style.date}>{data.date}</p>
           </div>
         </div>
       );
@@ -94,6 +94,12 @@ const ModalForComments = (props) => {
               type="button"
               onClick={() => {
                 if (commentRef.current.value.length > 2) {
+                  const date = new Date();
+                  const day = String(date.getDate()).padStart(2, "0");
+                  const month = String(date.getMonth() + 1).padStart(2, "0");
+                  const year = date.getFullYear();
+                  const commentDate = `${day}.${month}.${year}`;
+
                   api
                     .insertCommentForGame(
                       JSON.parse(getCookie("loginSession")).userName,
@@ -101,7 +107,8 @@ const ModalForComments = (props) => {
                       props.gameName,
                       commentRef.current.value,
                       0,
-                      "https://cloud.appwrite.io/v1/storage/buckets/6498150da54283132635/files/default/view?project=649567e6984aa2b4d5ca&mode=admin"
+                      "https://cloud.appwrite.io/v1/storage/buckets/6498150da54283132635/files/default/view?project=649567e6984aa2b4d5ca&mode=admin",
+                      commentDate
                     )
                     .then(
                       (response) => {

@@ -21,8 +21,6 @@
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 5;
-
   display: flex;
   flex-direction: column;
   padding: 30px;
@@ -37,7 +35,6 @@
   right: 0;
   width: 50%;
   height: 100%;
-  z-index: 5;
 }
 
 .leftContainer_Div {
@@ -92,7 +89,7 @@
 }
 
 .fullScreenIcon {
-  z-index: 5;
+  z-index: var(--thirdLayer);
   color: white;
   font-size: 20px;
   cursor: pointer;
@@ -112,7 +109,6 @@
 .gameVideo {
   width: 100%;
   height: 100%;
-  z-index: 2;
   cursor: pointer;
 }
 
@@ -120,7 +116,7 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 60;
+  z-index: var(--secondLayer);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -191,5 +187,11 @@
   }
   .leftContainer_Div{
     height: 60%;
+  }
+}
+
+@media (max-height: 760px) {
+  .descriptionDiv{
+    height: 130px;
   }
 }

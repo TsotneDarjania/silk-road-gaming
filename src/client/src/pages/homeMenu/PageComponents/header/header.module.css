@@ -67,7 +67,7 @@
   .burgerMenu {
     display: flex;
     position: fixed;
-    z-index: 61;
+    z-index: var(--secondLayer);
   }
   .header {
     height: 100%;
