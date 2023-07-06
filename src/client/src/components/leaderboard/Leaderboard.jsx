@@ -3,6 +3,9 @@ import style from "./leaderboard.module.css";
 import "../../global.css";
 import gameIcon from "../../pages/homeMenu/images/batumiskenIcon.png";
 import userAvatar from "../../pages/homeMenu/images/userAvatar.png";
+import goldMedalIcon from "../../pages/homeMenu/images/medal icons/goldMedal.png";
+import silverMedalIcon from "../../pages/homeMenu/images/medal icons/silverMedal.png";
+import bronzeMedalIcon from "../../pages/homeMenu/images/medal icons/bronzeMedal.png";
 
 const userInfo = [
   {
@@ -83,7 +86,21 @@ const Leaderboard = ({ setShowLeaderBoardModal }) => {
         <div className={style.leaderBoardList}>
           {userInfo.map((data, i) => (
             <div className={style.userPosition} key={i}>
-              <span className={style.number}>{i + 1}</span>
+              <span className={style.number}>
+                {i < 3 ? (
+                  <img
+                    src={
+                      i === 0
+                        ? goldMedalIcon
+                        : i === 1
+                        ? silverMedalIcon
+                        : bronzeMedalIcon
+                    }
+                  />
+                ) : (
+                  i + 1
+                )}
+              </span>
               <div className={style.userAvatar}>
                 <img src={data.userAvatar} alt="user avatar" />
               </div>
