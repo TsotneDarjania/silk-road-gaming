@@ -64,9 +64,8 @@
 
 .submitButton {
   width: 30%;
-  margin-left: 70%;
-  margin-top: 5%;
-
+  align-self: flex-end;
+  height: 50px;
   border: none;
 
   font-family: var(--mainFont);

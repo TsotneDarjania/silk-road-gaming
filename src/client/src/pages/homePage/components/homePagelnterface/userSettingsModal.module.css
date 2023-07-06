@@ -157,6 +157,9 @@
   }
 }
 @media (max-width: 516px) {
+  .settingsContainer{
+    width: 95vw;
+  }
   .userNameInput {
     width: 100%;
   }

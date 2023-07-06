@@ -19,6 +19,7 @@
 }
 
 .openButton{
+    composes: flexCenter from '../../global.css';
     color: var(--orangeColor);
     width: 200px;
     border: 3px solid var(--orangeBorderColor);
@@ -27,12 +28,11 @@
     border-style: double;
     padding: 0px 2px;
     font-family: 'Bungee Inline', cursive;
-
+    height: 57px;
     text-align: center;
 
     position: absolute;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     left: 0;
     right: 0;
 
