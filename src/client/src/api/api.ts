@@ -3,6 +3,7 @@ import { ApiEnums } from "../enums/apiEnums";
 import { transliterate } from "transliteration";
 import { generateIdToCorrectFormat } from "../helper/helperFunctions";
 import { ID, Query } from "appwrite";
+import { response } from "express";
 
 export class Api {
   client = new Client()
@@ -108,7 +109,8 @@ export class Api {
   insertUserReactionForGame(
     username: string,
     gameName: string,
-    reaction: string
+    reaction: string,
+    callBack: Function | undefined
   ) {
     this.databases()
       .updateDocument(
@@ -124,21 +126,27 @@ export class Api {
         }
       )
       .then(
-        (response) => {},
+        (response) => {
+          callBack !== undefined && callBack();
+        },
         (error) => {
           if (error.code === 404) {
-            this.databases().createDocument(
-              ApiEnums.silkRoadDatabaseID,
-              ApiEnums.likesAndDeslikesForGamesCollectionId,
-              `${generateIdToCorrectFormat(
-                transliterate(gameName)
-              )}${generateIdToCorrectFormat(transliterate(username))}`,
-              {
-                user: username,
-                gameName: gameName,
-                reaction: reaction,
-              }
-            );
+            this.databases()
+              .createDocument(
+                ApiEnums.silkRoadDatabaseID,
+                ApiEnums.likesAndDeslikesForGamesCollectionId,
+                `${generateIdToCorrectFormat(
+                  transliterate(gameName)
+                )}${generateIdToCorrectFormat(transliterate(username))}`,
+                {
+                  user: username,
+                  gameName: gameName,
+                  reaction: reaction,
+                }
+              )
+              .then((response) => {
+                callBack !== undefined && callBack();
+              });
           }
         }
       );

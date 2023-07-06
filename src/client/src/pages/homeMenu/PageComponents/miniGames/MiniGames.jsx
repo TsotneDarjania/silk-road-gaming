@@ -9,15 +9,10 @@ const MiniGames = React.memo(() => {
   const pageContext = useContext(PageContext);
 
   return (
-    <div
-      className={style.miniGames}>
-      {pageContext.warningProps.show && <Warning/>}
-      <GameContainer
-        data={gamesInfo.miniGames[0]}
-      />
-      <GameContainer
-        data={gamesInfo.miniGames[1]}
-      />
+    <div className={style.miniGames}>
+      {pageContext.warningProps.show && <Warning />}
+      <GameContainer data={gamesInfo.miniGames[0]} />
+      <GameContainer data={gamesInfo.miniGames[1]} />
     </div>
   );
 });
