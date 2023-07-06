@@ -36,10 +36,10 @@ const LatestGame = React.memo(() => {
             <h3>
               <span> Short Description : </span>
               {/* {gamesInfo.lastGame.shortDescription} */}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
-              quos, sunt aliquam consectetur numquam sequi, tempore similique ea
-              perspiciatis dicta optio ex odit minima voluptatem excepturi odio
-              nobis deleniti harum!
+              Our designer strongly dislikes using Lorem Ipsum text, considering
+              it distasteful and unappealing. As a tribute to their preference,
+              we have chosen to replace Lorem Ipsum with the following text
+              whenever we need placeholder contents
             </h3>
           </div>
         </div>
