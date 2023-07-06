@@ -15,7 +15,7 @@
     height: 70vh;
 
     transition: 0.8s;
-    /* background-color: RED; */
+    z-index: var(--thirdLayer);
   }  
   .scrollDiv{
     width: 10vw;
