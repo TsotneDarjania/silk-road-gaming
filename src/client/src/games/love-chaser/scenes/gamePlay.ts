@@ -8,13 +8,63 @@ export class GamePlay extends Phaser.Scene {
     super("GamePlay");
   }
 
+  preload() {
+    this.anims.create({
+      key: "boy-down",
+      frameRate: 10,
+      frames: this.anims.generateFrameNumbers("boy-down", {
+        start: 0,
+        end: 3,
+      }),
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "boy-left",
+      frameRate: 10,
+      frames: this.anims.generateFrameNumbers("boy-left", {
+        start: 0,
+        end: 3,
+      }),
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "boy-right",
+      frameRate: 10,
+      frames: this.anims.generateFrameNumbers("boy-right", {
+        start: 0,
+        end: 3,
+      }),
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "boy-up",
+      frameRate: 10,
+      frames: this.anims.generateFrameNumbers("boy-up", {
+        start: 0,
+        end: 3,
+      }),
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "down-idle",
+      frameRate: 7,
+      frames: this.anims.generateFrameNumbers("down-idle", {
+        start: 0,
+        end: 1,
+      }),
+      repeat: -1,
+    });
+  }
+
   create() {
     this.addBackground();
     this.player = new Player(
       this,
       this.game.canvas.width / 2,
       this.game.canvas.width / 2,
-      "boyCharacter"
+      "down-idle"
     );
     this.setCameraSettings();
   }
@@ -41,10 +91,7 @@ export class GamePlay extends Phaser.Scene {
   }
 
   addBackground() {
-    this.add
-      .image(0, 0, "map")
-      .setOrigin(0)
-      .setDisplaySize(this.game.canvas.width, this.game.canvas.height);
+    this.add.image(0, 0, "ground").setOrigin(0);
   }
 
   setCameraSettings() {
