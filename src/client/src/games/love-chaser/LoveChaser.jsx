@@ -21,11 +21,11 @@ export const LoveChaser = () => {
       scale: {
         mode: Phaser.Scale.NONE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: 700,
-        height: 700,
+        width: 1200,
+        height: 800,
       },
 
-      backgroundColor: 0x19053b,
+      backgroundColor: 0x1c1b1a,
       scene: [Preload, GamePlay],
     });
 

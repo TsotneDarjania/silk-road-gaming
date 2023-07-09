@@ -1,11 +1,14 @@
-export class Player extends Phaser.Physics.Arcade.Image {
+export class Player extends Phaser.Physics.Arcade.Sprite {
   speed = 200;
+  direction = "none";
   constructor(scene: Phaser.Scene, x: number, y: number, key: string) {
     super(scene, x, y, key);
     scene.physics.add.existing(this);
     scene.add.existing(this);
 
     this.init();
+
+    this.play("down-idle");
   }
 
   init() {
@@ -14,62 +17,97 @@ export class Player extends Phaser.Physics.Arcade.Image {
   }
 
   addController() {
-    this.scene.input.keyboard.on(
-      Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      (key: any) => {
-        if (
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT ||
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.A
-        ) {
-          this.setVelocity(-this.speed, this.body.velocity.y);
+    const cursors = this.scene.input.keyboard.createCursorKeys();
+
+    this.scene.events.on("update", () => {
+      this.setVelocity(0);
+
+      const { left, right, up, down } = cursors;
+
+      if (left.isDown) {
+        if (this.direction === "up") {
+          this.direction = "upLeft";
         }
-        if (
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT ||
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.D
-        ) {
-          this.setVelocity(this.speed, this.body.velocity.y);
+        if (this.direction === "none") {
+          this.direction = "left";
         }
-        if (
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.UP ||
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.W
-        ) {
-          this.setVelocity(this.body.velocity.x, -this.speed);
-        }
-        if (
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN ||
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.S
-        ) {
-          this.setVelocity(this.body.velocity.x, this.speed);
+        if (this.direction === "down") {
+          this.direction = "downLeft";
         }
       }
-    );
+      if (right.isDown) {
+        if (this.direction === "down") {
+          this.direction = "downRight";
+        }
+        if (this.direction === "none") {
+          this.direction = "right";
+        }
+        if (this.direction === "up") {
+          this.direction = "upRight";
+        }
+      }
+      if (up.isDown) {
+        if (this.direction === "left") {
+          this.direction = "leftUp";
+        }
+        if (this.direction === "none") {
+          this.direction = "up";
+        }
+        if (this.direction === "right") {
+          this.direction = "rightUp";
+        }
+      }
+      if (down.isDown) {
+        if (this.direction === "right") {
+          this.direction = "rightDown";
+        }
+        if (this.direction === "none") {
+          this.direction = "down";
+        }
+        if (this.direction === "left") {
+          this.direction = "leftDown";
+        }
+      }
+
+      if (
+        this.direction === "up" ||
+        this.direction === "leftUp" ||
+        this.direction === "rightUp"
+      ) {
+        this.setVelocity(0, -this.speed);
+        this.anims.currentAnim.key !== "boy-up" && this.play("boy-up");
+      }
+      if (
+        this.direction === "left" ||
+        this.direction === "upLeft" ||
+        this.direction === "downLeft"
+      ) {
+        this.setVelocity(-this.speed, 0);
+        this.anims.currentAnim.key !== "boy-left" && this.play("boy-left");
+      }
+      if (
+        this.direction === "down" ||
+        this.direction === "leftDown" ||
+        this.direction === "rightDown"
+      ) {
+        this.setVelocity(0, this.speed);
+        this.anims.currentAnim.key !== "boy-down" && this.play("boy-down");
+      }
+      if (
+        this.direction === "right" ||
+        this.direction === "upRight" ||
+        this.direction === "downRight"
+      ) {
+        this.setVelocity(this.speed, 0);
+        this.anims.currentAnim.key !== "boy-right" && this.play("boy-right");
+      }
+    });
+
     this.scene.input.keyboard.on(
       Phaser.Input.Keyboard.Events.ANY_KEY_UP,
       (key: any) => {
-        if (
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT ||
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.A
-        ) {
-          this.setVelocity(0, this.body.velocity.y);
-        }
-        if (
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT ||
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.D
-        ) {
-          this.setVelocity(0, this.body.velocity.y);
-        }
-        if (
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.UP ||
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.W
-        ) {
-          this.setVelocity(this.body.velocity.x, 0);
-        }
-        if (
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN ||
-          key.keyCode === Phaser.Input.Keyboard.KeyCodes.S
-        ) {
-          this.setVelocity(this.body.velocity.x, 0);
-        }
+        this.direction = "none";
+        this.play("down-idle");
       }
     );
   }
