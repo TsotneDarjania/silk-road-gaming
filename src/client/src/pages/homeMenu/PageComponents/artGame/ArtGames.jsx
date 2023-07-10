@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import style from "./artGames.module.css";
 import ArtGameContainer from "./components/ArtGameContainer";
 import gameInfo from "../../../../data/gamesInfo.json";
-import Scroll from "../../../../components/scroll/Scroll";
+// import Scroll from "../../../../components/scroll/Scroll";
 
 const ArtGames = React.memo(() => {
   const [active, setActive] = useState([false, false]);
@@ -32,9 +32,9 @@ const ArtGames = React.memo(() => {
           description={item.description}
         />
       ))}
-      <div className={style.scrollDiv} onClick={handleClick}>
+      {/* <div className={style.scrollDiv} onClick={handleClick}>
         <Scroll />
-      </div>
+      </div> */}
       <div className={style.bottomDiv} ref={artGameRef}></div>
     </div>
   );
