@@ -36,7 +36,6 @@ const ArtGames = React.memo(() => {
         <Scroll />
       </div>
       <div className={style.bottomDiv} ref={artGameRef}>
-        text here
       </div>
     </div>
   );
