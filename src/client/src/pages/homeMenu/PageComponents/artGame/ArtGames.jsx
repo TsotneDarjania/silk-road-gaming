@@ -35,7 +35,9 @@ const ArtGames = React.memo(() => {
       <div className={style.scrollDiv} onClick={handleClick}>
         <Scroll />
       </div>
-      <div className={style.bottomDiv} ref={artGameRef} style={{backgroundColor: 'red'}}></div>
+      <div className={style.bottomDiv} ref={artGameRef}>
+        text here
+      </div>
     </div>
   );
 });
