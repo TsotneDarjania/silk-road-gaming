@@ -41,11 +41,7 @@ const ArtGameContainer = (props) => {
           <h3>
             <span className={style.title}> Name : </span> {props.name}
           </h3>
-          <div
-            className={
-              props.description.length >= 400 ? style.descriptionDiv : ""
-            }
-          >
+          <div className={style.descriptionDiv}>
             <h3>
               <span className={style.title}> Description : </span>
               {props.description}
