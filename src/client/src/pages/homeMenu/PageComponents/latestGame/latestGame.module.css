@@ -101,9 +101,6 @@
   .rightContainer{
     display: none;
   }
-  /* .leftContainer{
-    height: 80%;
-  } */
   .leftContainer_Div{
     font-size: 28px;
   }
@@ -116,7 +113,6 @@
     display: none;
   }
   .content{
-    /* justify-content: flex-start; */
     grid-template-rows: 80% min-content;
 
   }
