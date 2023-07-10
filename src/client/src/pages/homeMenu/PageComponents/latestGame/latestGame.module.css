@@ -29,7 +29,6 @@
 }
 .content{
   position: absolute;
-  /* composes: flexCenter from "../../../../global.css"; */
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 90% 10%;
@@ -39,9 +38,6 @@
 }
 
 .leftContainer {
-  /* width: 40%; */
-  /* height: 90%; */
-
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -50,14 +46,8 @@
 }
 
 .rightContainer {
+  composes: flexCenter from '../../../../global.css';
   position: relative;
-  /* width: 40%; */
-  /* height: 90%; */
-
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
 }
 
 .leftContainer_Div {
@@ -78,39 +68,19 @@
 }
 
 .buttonDiv {
-  /* width: min-content; */
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* position: absolute;
-  left: 10%;
-  bottom: 20px; */
 }
 
 
 @media (max-width: 1050px) {
   .content{
-    /* flex-direction: column; */
     grid-template-columns: 1fr;
     grid-template-rows: 40% 40% 20%;
   }
-  /* .leftContainer{
-    width: 80%;
-    height: 30%;
-  }
-  .rightContainer{
-    width: 80%;
-    height: 60%;
-  } */
-  /* .lastGameVideo{
-    width: 70%;
-    height: 70%;
-  } */
   .buttonDiv{
-    /* left: 0;
-    right: 0;
-    margin: 0 auto; */
     justify-content: center;
   }
   .descriptionDiv{
@@ -126,7 +96,6 @@
 }
 @media (max-width: 480px){
   .content{
-    /* justify-content: flex-start; */
     grid-template-rows: 80% 20%;
   }
   .rightContainer{
