@@ -23,24 +23,24 @@ const LatestGame = React.memo(() => {
       <div className={style.content}>
         <div className={style.leftContainer}>
           <div className={style.leftContainer_Div}>
-            <h3>
+            <p>
               <span> Name : </span> {gamesInfo.lastGame.name}
-            </h3>
+            </p>
           </div>
           <div className={style.leftContainer_Div}>
-            <h3>
+            <p>
               <span> Publish Date : </span> {gamesInfo.lastGame.publishData}{" "}
-            </h3>
+            </p>
           </div>
           <div className={`${style.leftContainer_Div} ${style.descriptionDiv}`}>
-            <h3>
+            <p>
               <span> Short Description : </span>
               {/* {gamesInfo.lastGame.shortDescription} */}
               Our designer strongly dislikes using Lorem Ipsum text, considering
               it distasteful and unappealing. As a tribute to their preference,
               we have chosen to replace Lorem Ipsum with the following text
               whenever we need placeholder contents
-            </h3>
+            </p>
           </div>
         </div>
         <div className={style.rightContainer}>

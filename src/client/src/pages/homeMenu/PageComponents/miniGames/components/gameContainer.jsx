@@ -26,7 +26,7 @@ const GameContainer = (props) => {
       </div>
       <div className={style.content}>
         <p className={style.name}> {props.data.name} </p>
-        <h3 className={style.shortDescription}>{props.data.description}</h3>
+        <p className={style.shortDescription}>{props.data.description}</p>
         <div className={style.buttonsBox}>
           <Indicators
             gameName={props.data.name}

@@ -59,36 +59,34 @@
   padding: 10px;
 }
 
-@media screen and (max-width: 1200px) {
+@media (max-width: 1200px) {
   .gameContainer {
     width: 48%;
     height: 72%;
   }
 }
 
-@media screen and (max-width: 850px) {
+@media (max-width: 850px) {
   .gameContainer {
-    width: 100%;
+    width: 90%;
     height: 72%;
   }
 }
 
-@media screen and (max-width: 650px) {
+@media (max-width: 650px) {
   .gameContainer {
-    width: 100%;
     height: 82%;
   }
 }
 
-@media screen and (max-height: 600px) {
+@media (max-height: 600px) {
   .gameContainer {
-    width: 100%;
+    width: 90%;
     height: 102%;
   }
 }
-@media screen and (max-height: 492px) {
+@media (max-height: 492px) {
   .gameContainer {
-    width: 100%;
     height: 122%;
   }
 }

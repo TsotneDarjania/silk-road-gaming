@@ -38,14 +38,14 @@ const ArtGameContainer = (props) => {
       <div className={style.artGameContainerBgImage}></div>
       <div className={style.leftContainer}>
         <div className={style.leftContainer_Div}>
-          <h3>
+          <p>
             <span className={style.title}> Name : </span> {props.name}
-          </h3>
+          </p>
           <div className={style.descriptionDiv}>
-            <h3>
+            <p>
               <span className={style.title}> Description : </span>
               {props.description}
-            </h3>
+            </p>
           </div>
         </div>
 

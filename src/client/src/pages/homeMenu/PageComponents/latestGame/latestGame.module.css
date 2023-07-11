@@ -34,7 +34,7 @@
   grid-template-columns: 50% 50%;
   grid-template-rows: 90% 10%;
   width: 80%;
-  height: 70%;
+  height: 100%;
   z-index: var(--thirdLayer);
 }
 
@@ -59,6 +59,7 @@
 
 .leftContainer span {
   font-size: 44px;
+  font-weight: bold;
   color: var(--skyBlueColor);
 }
 
@@ -72,7 +73,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 }
 
 
@@ -90,6 +91,9 @@
 }
 
 @media (max-width: 600px) {
+  .latestGameContainer{
+    width: 90%;
+  }
   .lastGameVideo{
     width: 90%;
     height: 90%;
@@ -97,7 +101,7 @@
 }
 @media (max-width: 480px){
   .content{
-    grid-template-rows: 80% 20%;
+    grid-template-rows: 60% 40%;
   }
   .rightContainer{
     display: none;
@@ -114,7 +118,7 @@
     display: none;
   }
   .content{
-    grid-template-rows: 80% min-content;
+    grid-template-rows: 60% 40%;
 
   }
   .leftContainer{
