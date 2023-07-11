@@ -5,4 +5,18 @@
 }
 .latestGame, .miniGames, .artGames{
   transition: 0.6s;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.latestGame{
+  background-color: red;
+}
+.miniGames{
+  background-color: green;
+}
+.artGames{
+  background-color: yellow;
 }
