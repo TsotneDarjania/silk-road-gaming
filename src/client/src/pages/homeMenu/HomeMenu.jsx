@@ -7,7 +7,7 @@ import ArtGames from "./PageComponents/artGame/ArtGames";
 import Header from "./PageComponents/header/Header";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
 
-export const HomeMenu = ({setPage}) => {
+export const HomeMenu = () => {
   const latestGameRef = useRef(null);
   const miniGamesRef = useRef(null);
   const artGamesRef = useRef(null);
@@ -29,6 +29,7 @@ export const HomeMenu = ({setPage}) => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     handleMenuChange(defaultMode);
   }, []);
   // ///////////////
@@ -44,7 +45,7 @@ export const HomeMenu = ({setPage}) => {
       <div ref={artGamesRef} className={style.artGames}>
         <ArtGames />
       </div>
-      <PrimaryButton type='home' setPage={setPage}/>
+      <PrimaryButton type='home'/>
     </div>
   );
 };
