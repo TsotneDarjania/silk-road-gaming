@@ -63,7 +63,7 @@ const UserSettingsModal = (props) => {
             onClick={() => setShowButtons(true)}
             className={style.resetBtn}
           >
-            RESET
+            reset
           </button>
           {showButtons && (
             <div className={style.warningBox}>

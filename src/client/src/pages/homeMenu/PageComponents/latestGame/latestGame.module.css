@@ -101,7 +101,7 @@
 }
 @media (max-width: 480px){
   .content{
-    grid-template-rows: 60% 40%;
+    grid-template-rows: 70% 30%;
   }
   .rightContainer{
     display: none;
@@ -118,7 +118,7 @@
     display: none;
   }
   .content{
-    grid-template-rows: 60% 40%;
+    grid-template-rows: 70% 30%;
 
   }
   .leftContainer{

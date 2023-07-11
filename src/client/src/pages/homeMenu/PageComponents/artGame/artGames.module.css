@@ -34,7 +34,10 @@
       width: 100%;
     }
     .scrollDiv{
-      bottom: 10vh;
+      bottom: 0;
+      top: 0;
+      margin: auto 0;
+      height: min-content;
     }
   }
   

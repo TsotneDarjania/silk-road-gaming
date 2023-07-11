@@ -83,9 +83,8 @@
 .saveBtn,
 .resetBtn,
 .btnBox button {
-  border: none;
-  font-family: var(--textFont);
-  font-size: 23px;
+  font-family: var(--universalFont);
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.5s;
@@ -95,10 +94,10 @@
 
   width: 130px;
   text-transform: uppercase;
-  height: min-content;
+  padding: 4px 0px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 .saveBtn:hover {
   color: white;
@@ -117,9 +116,6 @@
   color: var(--darkRedColor);
   font-size: 20px;
   font-weight: 600;
-}
-.resetBtn {
-  border: 5px solid var(--smokyWhiteColor);
 }
 .resetBtn:hover {
   color: white;
