@@ -1,7 +1,7 @@
 /* Top Part */
 .topTransition,
 .topAnimationUp {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 52vh;
   background-color: var(--beigeBgColor);
@@ -15,7 +15,7 @@
 /* Bottom Part */
 .bottomTransition,
 .bottomAnimationDown {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 52vh;
   background-color: var(--beigeBgColor);
