@@ -14,6 +14,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   init() {
     this.setDisplaySize(100, 100);
     this.addController();
+
+    this.setSize(35, 25);
+    this.setOffset(20, 55);
   }
 
   addController() {

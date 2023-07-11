@@ -21,10 +21,10 @@
   opacity: 0.3;
   filter: grayscale(100%);
   background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url("../../images/games/wallpapers/1.jpg");
+  background-size: 100% 100%;
+  background-image: url("../../images/games/wallpapers/batumisken.png");
 }
-.content{
+.content {
   position: absolute;
   composes: flexCenter from "../../../../global.css";
   width: 100%;
@@ -77,69 +77,68 @@
   bottom: 20px;
 }
 
-
 @media (max-width: 1050px) {
-  .content{
+  .content {
     flex-direction: column;
   }
-  .leftContainer{
+  .leftContainer {
     width: 80%;
     height: 30%;
   }
-  .rightContainer{
+  .rightContainer {
     width: 80%;
     height: 60%;
   }
-  .lastGameVideo{
+  .lastGameVideo {
     width: 70%;
     height: 70%;
   }
-  .buttonDiv{
+  .buttonDiv {
     left: 0;
     right: 0;
     margin: 0 auto;
   }
-  .descriptionDiv{
+  .descriptionDiv {
     overflow-y: scroll;
   }
 }
 
 @media (max-width: 600px) {
-  .lastGameVideo{
+  .lastGameVideo {
     width: 90%;
     height: 90%;
   }
 }
-@media (max-width: 480px){
-  .content{
+@media (max-width: 480px) {
+  .content {
     justify-content: flex-start;
   }
-  .rightContainer{
+  .rightContainer {
     display: none;
   }
-  .leftContainer{
+  .leftContainer {
     height: 80%;
   }
-  .leftContainer_Div{
+  .leftContainer_Div {
     font-size: 28px;
   }
-  .leftContainer_Div span{
+  .leftContainer_Div span {
     font-size: 38px;
   }
 }
 @media (max-height: 600px) {
-  .rightContainer{
+  .rightContainer {
     display: none;
   }
-  .content{
+  .content {
     justify-content: flex-start;
   }
-  .leftContainer{
+  .leftContainer {
     height: 80%;
   }
 }
 @media (max-height: 760px) {
-  .descriptionDiv{
+  .descriptionDiv {
     overflow-y: scroll;
     height: 50%;
   }
