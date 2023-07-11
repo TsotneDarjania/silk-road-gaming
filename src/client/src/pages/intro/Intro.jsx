@@ -10,7 +10,6 @@ export const Intro = () => {
   const pageContext = useContext(PageContext)
 
   useEffect(() => {
-    // window.scrollTo(0, 0)
     if (!canvasContainer.current) return;
     const game = new Phaser.Game({
       physics: {

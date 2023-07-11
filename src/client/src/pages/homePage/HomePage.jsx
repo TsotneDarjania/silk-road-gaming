@@ -8,9 +8,7 @@ import PrimaryButton from "../../components/buttons/PrimaryButton";
 const HomePage = () => {
 
   const userContext = useContext(UserContext)
-  useEffect(() => {
-    // window.scrollTo(0, 0)
-  }, []);
+  
 
   return (
     <div className={style.homePage}>
