@@ -1,8 +1,8 @@
 .miniGames {
-  position: absolute;
+  position: fixed;
   width: 90vw;
   height: 88%;
-  top: 22%;
+  top: 12%;
   left: 5vw;
   row-gap: 65px;
   display: flex;

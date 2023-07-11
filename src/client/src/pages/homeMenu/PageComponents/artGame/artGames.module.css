@@ -1,9 +1,9 @@
 /* '../../../../global.css' */
 
 .artGames {
-    position: absolute;  
+    position: fixed;  
 
-    top: 22%;
+    top: 12%;
     left: 0;
     right: 0;
     margin: 0 auto;
