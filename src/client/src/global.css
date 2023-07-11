@@ -134,7 +134,7 @@ body {
 
 /* primary button */
 .primaryButton {
-  position: absolute;
+  position: fixed;
   bottom: 30px;
   right: 30px;
   background-color: var(--darkYellowBgColor);
