@@ -1,14 +1,16 @@
 .header {
   composes: flexCenter from "../../../../global.css";
   width: 100vw;
-  height: 12vh;
+  height: 12%;
 
   font-weight: bold;
   font-family: var(--mainFont);
   list-style: none;
   gap: 30px;
 
+  background-color: blue;
   position: fixed;
+  top: 0;
 }
 
 .menuLi {

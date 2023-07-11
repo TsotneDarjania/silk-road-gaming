@@ -5,9 +5,4 @@
 }
 .latestGame, .miniGames, .artGames{
   transition: 0.6s;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
 }

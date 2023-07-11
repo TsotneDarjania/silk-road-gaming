@@ -3,8 +3,7 @@
 .artGames {
     position: absolute;  
 
-    top: 12vh;
-    bottom: 0;
+    top: 12%;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -16,7 +15,7 @@
     
     width: 100%;
     overflow-y: scroll;
-    height: 88vh;
+    height: 88%;
     background-color: yellow;
     transition: 0.8s;
     z-index: var(--thirdLayer);
