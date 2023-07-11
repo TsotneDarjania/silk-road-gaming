@@ -1,9 +1,9 @@
 .miniGames {
   position: absolute;
   width: 90vw;
-  height: 70vh;
+  height: 88vh;
 
-  top: 12vh;
+  bottom: 0;
   left: 5vw;
   row-gap: 65px;
 
@@ -11,6 +11,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   overflow-y: scroll;
+  background-color: green;
 }
 
 /* width */

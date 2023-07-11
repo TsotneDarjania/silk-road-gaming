@@ -1,7 +1,6 @@
 .latestGameContainer {
   position: absolute;
 
-  top: 12vh;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -13,7 +12,8 @@
   transition: 0.8s;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  background-color: red;
 }
 
 .latestGameContainerBackgroundImage {
@@ -34,7 +34,7 @@
   grid-template-columns: 50% 50%;
   grid-template-rows: 90% 10%;
   width: 80%;
-  height: 90%;
+  height: 70vh;
   z-index: var(--thirdLayer);
 }
 
