@@ -56,7 +56,8 @@
   font-size: 70px;
   cursor: pointer;
   color: #f9bb6b;
-  height: 12vh;
+  height: 12%;
+  top: 0;
   width: 100%;
   justify-content: center;
   align-items: center;
