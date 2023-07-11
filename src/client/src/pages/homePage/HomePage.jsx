@@ -5,7 +5,7 @@ import { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
 
-const HomePage = () => {
+const HomePage = ({setPage}) => {
 
   const userContext = useContext(UserContext)
 
@@ -16,7 +16,7 @@ const HomePage = () => {
       ) : (
         <HomePageInterface />
       )}
-      <PrimaryButton type='back'/>
+      <PrimaryButton type='back' setPage={setPage}/>
     </div>
   );
 };

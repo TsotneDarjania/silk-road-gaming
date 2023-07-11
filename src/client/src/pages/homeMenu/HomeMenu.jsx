@@ -7,7 +7,7 @@ import ArtGames from "./PageComponents/artGame/ArtGames";
 import Header from "./PageComponents/header/Header";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
 
-export const HomeMenu = () => {
+export const HomeMenu = ({setPage}) => {
   const latestGameRef = useRef(null);
   const miniGamesRef = useRef(null);
   const artGamesRef = useRef(null);
@@ -44,7 +44,7 @@ export const HomeMenu = () => {
       <div ref={artGamesRef} className={style.artGames}>
         <ArtGames />
       </div>
-      <PrimaryButton type='home'/>
+      <PrimaryButton type='home' setPage={setPage}/>
     </div>
   );
 };

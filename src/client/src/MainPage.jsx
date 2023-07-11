@@ -43,24 +43,25 @@ function MainPage() {
     }
   };
 
-  const [page, setPage] = useState("intro");
+  // const [page, setPage] = useState("intro");
+  const [page, setPage] = useState("homeMenu")
 
   const pageContext = useContext(PageContext);
 
-  const transitionAnimationAction = () => {
-    setPage(pageContext.requestedPage);
-  };
+  // const transitionAnimationAction = () => {
+  //   setPage(pageContext.requestedPage);
+  // };
 
   return (
     <div className="App">
-      {page === "intro" && <Intro />}
-      {page === "homeMenu" && <HomeMenu />}
-      {page === "homePage" && <HomePage />}
-      {pageContext.isShowTransitionAnimation && (
+      {/* {page === "intro" && <Intro />} */}
+      {page === "homeMenu" && <HomeMenu setPage={setPage}/>}
+      {page === "homePage" && <HomePage setPage={setPage}/>}
+      {/* {pageContext.isShowTransitionAnimation && (
         <TransitionAnimation
           transitionAnimationAction={transitionAnimationAction}
         />
-      )}
+      )} */}
     </div>
   );
 }

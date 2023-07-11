@@ -2,21 +2,24 @@ import React, { useContext, useState } from "react";
 import PageContext from "../../context/PageContext";
 import "../../global.css";
 
-const PrimaryButton = ({ type }) => {
+const PrimaryButton = ({ type, setPage }) => {
   const pageContext = useContext(PageContext);
   const [config] = useState({
     back: {
       text: "Back",
       onClick: () => {
-        pageContext.setRequestedPage("homeMenu")
-        pageContext.setIsShowTransitionAnimation(true)
+        // pageContext.setRequestedPage("homeMenu")
+        // pageContext.setIsShowTransitionAnimation(true)
+        setPage("homeMenu")
+        
       },
     },
     home: {
       text: "Home",
       onClick: () => {
-        pageContext.setRequestedPage("homePage")
-        pageContext.setIsShowTransitionAnimation(true)
+        // pageContext.setRequestedPage("homePage")
+        // pageContext.setIsShowTransitionAnimation(true)
+        setPage("homePage")
       },
     },
   });
