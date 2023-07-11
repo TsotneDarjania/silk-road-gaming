@@ -3,6 +3,8 @@
   height: 100vh;
   font-family: var(--textFont);
   background-color: var(--fadedWhiteBgColor);
+  position: fixed;
+  top: 0;
 }
 
 .gameHistoryContainer {
