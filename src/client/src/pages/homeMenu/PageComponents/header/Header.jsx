@@ -29,8 +29,7 @@ const Header = React.memo(({ handleMenuChange, defaultMode }) => {
       <ul
         className={style.header}
         style={{
-          opacity: isShowHeader ? "1" : "0",
-          zIndex: isShowHeader ? 2 : 1,
+          animationName: isShowHeader ? 'headerAnimation' : ''
         }}
       >
         <li
