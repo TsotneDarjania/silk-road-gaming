@@ -38,7 +38,6 @@
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: red;
 }
 
 .gamesItem {
@@ -207,9 +206,8 @@
     position: absolute;
     height: 60vh;
     width: 70vw;
-  }
-  .gamesContainer{
-    height: 80%;
+    margin: 0 auto;
+    top: 15%;
   }
   .continueButton {
     width: 100px;
@@ -229,7 +227,8 @@
 }
 
 @media (max-height: 650px) {
-  .gamesContainer{
-    height: 80%;
+  .gameHistoryContainer{
+    margin: 0 auto;
+    top: 15%;
   }
 }
