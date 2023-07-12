@@ -5,8 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: var(--secondLayer);
-
+  z-index: var(--firstLayer);
   padding: 10px;
   font-family: var(--universalFont);
 }
@@ -18,6 +17,7 @@
   height: 60%;
   gap: 10px;
   padding-bottom: 10px;
+  z-index: var(--firstLayer);
 }
 .gameInfo {
   composes: flexCenter from "../../global.css";

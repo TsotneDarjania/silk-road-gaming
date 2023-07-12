@@ -237,9 +237,10 @@ body {
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 400px) {
   .openButton{
     width: 100%;
+    margin-right: 0;
   }
 }
 /* ........... */

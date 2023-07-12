@@ -3,7 +3,6 @@ import style from "./artGameContainer.module.css";
 import gamesInfo from "../../../../../data/gamesInfo.json";
 import gameVideo from "../../../videos/1.mp4";
 import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "react-icons/ai";
-import { MdLeaderboard } from "react-icons/md";
 import ModalForComments from "../../../../../components/commentsModal/ModalForComments";
 import SliderComponent from "../../../../../components/Slider/SliderComponent";
 import image from "../../../images/background.jpg";
@@ -62,8 +61,8 @@ const ArtGameContainer = (props) => {
           <Indicators
             gameName={props.name}
             setShowCommentsModal={setShowCommentsModal}
+            setShowLeaderBoardModal={setShowLeaderBoardModal}
           >
-            <MdLeaderboard onClick={() => setShowLeaderBoardModal(true)} />
           </Indicators>
         </div>
       </div>
