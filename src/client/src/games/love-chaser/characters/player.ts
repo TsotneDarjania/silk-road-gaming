@@ -1,7 +1,10 @@
+import { GamePlay } from "../scenes/gamePlay";
+import { GameData } from "../utils/gameData";
+
 export class Player extends Phaser.Physics.Arcade.Sprite {
   speed = 200;
   direction = "none";
-  constructor(scene: Phaser.Scene, x: number, y: number, key: string) {
+  constructor(public scene: GamePlay, x: number, y: number, key: string) {
     super(scene, x, y, key);
     scene.physics.add.existing(this);
     scene.add.existing(this);

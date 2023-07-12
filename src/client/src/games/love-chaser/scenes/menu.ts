@@ -2,6 +2,10 @@ import { response } from "express";
 import { calculatePercentage } from "../../tbilisi-batumi-1/helper/tatukaMath";
 import { AppWrite } from "../utils/appwrite";
 import { GameData } from "../utils/gameData";
+import { getCookie } from "../../../helper/cookie";
+import { generateIdToCorrectFormat } from "../../../helper/helperFunctions";
+import { transliterate } from "transliteration";
+import { error } from "console";
 
 export class Menu extends Phaser.Scene {
   characterOptionModal!: Phaser.GameObjects.Container;
@@ -14,11 +18,15 @@ export class Menu extends Phaser.Scene {
   roompPositiony = 0;
   isRoomBackgroundDark = false;
 
+  appWrite!: AppWrite;
+
   constructor() {
     super("Menu");
   }
 
   create() {
+    this.appWrite = new AppWrite(this);
+
     this.characterOptionModal = this.add.container(0, 0);
     this.characterOptionModal.setVisible(false);
 
@@ -42,21 +50,35 @@ export class Menu extends Phaser.Scene {
     this.createRoomsListModal();
 
     this.getOnlineRooms();
+
+    this.appWrite.addNewRoomEventListener(this.scene.key);
   }
 
-  getOnlineRooms() {
+  newRoomEvent() {
+    if (this.roomsListModal.node === null) return;
+
     while (this.roomsListModal.node.firstChild) {
       this.roomsListModal.node.removeChild(this.roomsListModal.node.firstChild);
     }
 
-    const appWrite = new AppWrite(this);
+    this.getOnlineRooms();
+  }
 
-    appWrite.addNewRoomEventListener();
+  getOnlineRooms() {
+    this.roompPositionX = 0;
+    this.roompPositiony = 0;
 
-    appWrite.getOnlineRooms().then(
+    if (this.roomsListModal.node === null) return;
+
+    while (this.roomsListModal.node.firstChild) {
+      this.roomsListModal.node.removeChild(this.roomsListModal.node.firstChild);
+    }
+
+    this.appWrite.getOnlineRooms().then(
       (response) => {
         response.documents.map((room) => {
-          this.addNewRoom(room.owner, room.ownerCharacter, room.roomCode);
+          if (this.roomsListModal.node === null) return;
+          this.addNewRoom(room.owner, room.ownerCharacter, room.$id);
         });
       },
       (error) => {
@@ -90,7 +112,7 @@ export class Menu extends Phaser.Scene {
     this.roomsListModalContainer.add([title, this.roomsListModal]);
   }
 
-  addNewRoom(owner: string, charachter: string, roomCode: number) {
+  addNewRoom(owner: string, charachter: string, roomId: string) {
     let roomBackgroundColor;
 
     if (this.isRoomBackgroundDark) {
@@ -143,7 +165,7 @@ export class Menu extends Phaser.Scene {
       .setOrigin(0.5);
 
     joinButton.node.addEventListener("click", () => {
-      alert(roomCode);
+      this.joinGame(roomId);
     });
 
     room.node.appendChild(joinButton.node);
@@ -167,30 +189,37 @@ export class Menu extends Phaser.Scene {
 
   startRoom() {
     const appwirte = new AppWrite(this);
+    GameData.roomID = generateIdToCorrectFormat(
+      transliterate(GameData.username)
+    );
+
     appwirte.initOwnerPlayer().then(
       (response) => {
+        GameData.owner = JSON.parse(getCookie("loginSession")).userName;
         this.scene.start("GamePlay");
       },
       (error) => {
+        console.log(error);
         if (error.code === 409) {
-          appwirte.deleteRoom().then(
-            (response) => {
-              appwirte.initOwnerPlayer().then(
-                (response) => {
-                  this.scene.start("GamePlay");
-                },
-                (error) => {
-                  console.log(error);
-                }
-              );
-            },
-            (error) => {
-              console.log(error);
-            }
-          );
+          GameData.owner = JSON.parse(getCookie("loginSession")).userName;
+          this.scene.start("GamePlay");
         }
       }
     );
+  }
+
+  joinGame(roomid: string) {
+    GameData.roomID = roomid;
+    this.appWrite
+      .joinGuestPlayer(roomid, JSON.parse(getCookie("loginSession")).userName)
+      .then(
+        (response) => {
+          this.scene.start("GamePlay");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   showMenuButtons() {

@@ -5,13 +5,13 @@ import { generateIdToCorrectFormat } from "../../../helper/helperFunctions";
 export const GameData = {
   username: JSON.parse(getCookie("loginSession")).userName,
 
-  owner: JSON.parse(getCookie("loginSession")).userName,
+  owner: "",
   guest: "",
 
   ownerCharacter: "",
   guestCharacter: "",
 
-  roomUrl: `${window.location.href}/${generateIdToCorrectFormat(
+  roomID: `${window.location.href}/${generateIdToCorrectFormat(
     transliterate(JSON.parse(getCookie("loginSession")).userName)
   )}`,
 };

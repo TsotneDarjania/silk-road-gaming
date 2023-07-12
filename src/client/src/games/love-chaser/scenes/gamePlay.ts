@@ -74,8 +74,6 @@ export class GamePlay extends Phaser.Scene {
   }
 
   create() {
-    this.ably = new myAbly();
-
     this.background = this.add.container(0, 0);
     this.addBackground();
 

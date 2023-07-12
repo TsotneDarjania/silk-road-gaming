@@ -1,8 +1,10 @@
+import { GamePlay } from "../scenes/gamePlay";
+
 export class OnlinePlayer extends Phaser.Physics.Arcade.Sprite {
   speed = 200;
   direction = "none";
 
-  constructor(scene: Phaser.Scene, x: number, y: number, key: string) {
+  constructor(public scene: GamePlay, x: number, y: number, key: string) {
     super(scene, x, y, key);
     scene.physics.add.existing(this);
     scene.add.existing(this);
@@ -23,6 +25,10 @@ export class OnlinePlayer extends Phaser.Physics.Arcade.Sprite {
   addController() {
     this.scene.events.on("update", () => {
       this.setVelocity(0);
+
+      if (this.direction === "none") {
+        this.anims.currentAnim.key !== "down-idle" && this.play("down-idle");
+      }
 
       if (
         this.direction === "up" ||

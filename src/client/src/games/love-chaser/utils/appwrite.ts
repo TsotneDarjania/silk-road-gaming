@@ -21,13 +21,24 @@ export class AppWrite {
     return this.databases().createDocument(
       ApiEnums.silkRoadDatabaseID,
       "LoveChaserRooms",
-      `${generateIdToCorrectFormat(transliterate(GameData.owner))}`,
+      `${generateIdToCorrectFormat(transliterate(GameData.username))}`,
       {
-        roomCode: getRandomFloat(0, 999999).toString(),
-        owner: generateIdToCorrectFormat(transliterate(GameData.owner)),
+        roomCode: Math.floor(Math.random() * 100000000).toString(),
+        owner: generateIdToCorrectFormat(transliterate(GameData.username)),
         guest: "none",
         ownerCharacter: GameData.ownerCharacter,
         guestCharacter: GameData.guestCharacter,
+      }
+    );
+  }
+
+  joinGuestPlayer(roomId: string, user: string) {
+    return this.databases().updateDocument(
+      ApiEnums.silkRoadDatabaseID,
+      "LoveChaserRooms",
+      roomId,
+      {
+        guest: user,
       }
     );
   }
@@ -39,11 +50,11 @@ export class AppWrite {
     );
   }
 
-  getRoomData() {
+  getRoomData(roomId: string) {
     return this.databases().getDocument(
       ApiEnums.silkRoadDatabaseID,
       "LoveChaserRooms",
-      `${generateIdToCorrectFormat(transliterate(GameData.owner))}`
+      roomId
     );
   }
 
@@ -55,14 +66,16 @@ export class AppWrite {
     );
   }
 
-  addNewRoomEventListener() {
+  addNewRoomEventListener(scene: string) {
+    if (scene !== "Menu") return;
+
     this.client.subscribe("documents", (response) => {
-      console.log(response.payload);
+      // console.log(response.payload);
 
       //@ts-ignore
       if (response.payload.$collectionId === "LoveChaserRooms") {
         const menuScene = this.scene as Menu;
-        menuScene.getOnlineRooms();
+        menuScene.newRoomEvent();
       }
     });
   }

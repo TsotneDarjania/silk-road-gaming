@@ -1,16 +1,18 @@
 import { Realtime, Types } from "ably";
 import { getCookie } from "../../../helper/cookie";
+import { GameData } from "./gameData";
+import { GameManager } from "./gameManager";
 
 export class myAbly {
   channel!: Types.RealtimeChannelPromise;
 
-  userName = JSON.parse(getCookie("loginSession")).userName;
+  players: Array<string> = [];
 
   x = 200;
   y = 200;
   direction = "none";
 
-  constructor() {
+  constructor(public gameManager: GameManager) {
     this.init();
   }
 
@@ -30,14 +32,40 @@ export class myAbly {
     // get the channel to subscribe to
     this.channel = ably.channels.get("quickstart");
 
-    this.channel.subscribe("greeting", (data) => {
-      this.x = data.data[0];
-      this.y = data.data[1];
-      this.direction = data.data[2];
+    this.channel.subscribe(GameData.roomID, (data) => {
+      const user = data.data[0];
+
+      if (this.players.includes(user) === false) {
+        this.players.push(user);
+        this.channel.publish(GameData.roomID, [GameData.username]);
+      }
+
+      if (this.players.length == 2) {
+        this.gameManager.startMatch();
+      } else {
+        return;
+      }
+
+      this.gameManager.synchronizeOnlinePlayerDirection(
+        data.data[0],
+        data.data[1]
+      );
+    });
+
+    this.channel.subscribe(`${GameData.roomID}/positions}`, (data) => {
+      this.gameManager.synchronizeOnlinePlayerPositions(
+        data.data[0],
+        data.data[1],
+        data.data[2]
+      );
     });
   }
 
-  sendData(x: string, y: string, direction: string) {
-    this.channel.publish("greeting", [x, y, direction]);
+  sendData(data: any) {
+    this.channel.publish(GameData.roomID, data);
+  }
+
+  sendPositionsData(data: any) {
+    this.channel.publish(`${GameData.roomID}/positions}`, data);
   }
 }
