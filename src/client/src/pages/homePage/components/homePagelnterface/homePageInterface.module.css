@@ -38,6 +38,7 @@
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  background-color: red;
 }
 
 .gamesItem {
@@ -115,6 +116,7 @@
 }
 
 .menu {
+  composes: flexCenterColumn from '../../../../global.css';
   position: absolute;
   left: 92px;
   width: 0;
@@ -123,11 +125,6 @@
   height: 100vh;
 
   opacity: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .showMenu {
@@ -211,6 +208,9 @@
     height: 60vh;
     width: 70vw;
   }
+  .gamesContainer{
+    height: 80%;
+  }
   .continueButton {
     width: 100px;
     height: 30px;
@@ -225,5 +225,11 @@
   }
   .gamesItem {
     height: 70px;
+  }
+}
+
+@media (max-height: 650px) {
+  .gamesContainer{
+    height: 80%;
   }
 }
