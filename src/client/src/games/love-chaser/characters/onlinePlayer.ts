@@ -1,9 +1,9 @@
 import { GamePlay } from "../scenes/gamePlay";
-import { GameData } from "../utils/gameData";
 
-export class Player extends Phaser.Physics.Arcade.Sprite {
+export class OnlinePlayer extends Phaser.Physics.Arcade.Sprite {
   speed = 200;
   direction = "none";
+
   constructor(public scene: GamePlay, x: number, y: number, key: string) {
     super(scene, x, y, key);
     scene.physics.add.existing(this);
@@ -23,56 +23,11 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   addController() {
-    const cursors = this.scene.input.keyboard.createCursorKeys();
-
     this.scene.events.on("update", () => {
       this.setVelocity(0);
 
-      const { left, right, up, down } = cursors;
-
-      if (left.isDown) {
-        if (this.direction === "up") {
-          this.direction = "upLeft";
-        }
-        if (this.direction === "none") {
-          this.direction = "left";
-        }
-        if (this.direction === "down") {
-          this.direction = "downLeft";
-        }
-      }
-      if (right.isDown) {
-        if (this.direction === "down") {
-          this.direction = "downRight";
-        }
-        if (this.direction === "none") {
-          this.direction = "right";
-        }
-        if (this.direction === "up") {
-          this.direction = "upRight";
-        }
-      }
-      if (up.isDown) {
-        if (this.direction === "left") {
-          this.direction = "leftUp";
-        }
-        if (this.direction === "none") {
-          this.direction = "up";
-        }
-        if (this.direction === "right") {
-          this.direction = "rightUp";
-        }
-      }
-      if (down.isDown) {
-        if (this.direction === "right") {
-          this.direction = "rightDown";
-        }
-        if (this.direction === "none") {
-          this.direction = "down";
-        }
-        if (this.direction === "left") {
-          this.direction = "leftDown";
-        }
+      if (this.direction === "none") {
+        this.anims.currentAnim.key !== "down-idle" && this.play("down-idle");
       }
 
       if (
@@ -108,13 +63,5 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.anims.currentAnim.key !== "boy-right" && this.play("boy-right");
       }
     });
-
-    this.scene.input.keyboard.on(
-      Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      (key: any) => {
-        this.direction = "none";
-        this.play("down-idle");
-      }
-    );
   }
 }

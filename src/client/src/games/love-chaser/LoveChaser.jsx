@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Phaser from "phaser";
 import style from "./style.module.css";
 
 import { Preload } from "./scenes/preload";
 import { GamePlay } from "./scenes/gamePlay";
+import { Menu } from "./scenes/menu";
+
+import "../common/WebFontLoader";
 
 export const LoveChaser = () => {
   const canvasContainer = useRef(null);
@@ -15,18 +18,21 @@ export const LoveChaser = () => {
       dom: { createContainer: true },
       physics: {
         default: "arcade",
+        arcade: {
+          debug: false,
+        },
       },
       parent: canvasContainer.current,
       type: Phaser.AUTO,
       scale: {
         mode: Phaser.Scale.NONE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: 1200,
-        height: 800,
+        width: window.innerWidth,
+        height: window.innerHeight,
       },
 
-      backgroundColor: 0x1c1b1a,
-      scene: [Preload, GamePlay],
+      backgroundColor: 0x62768a,
+      scene: [Preload, Menu, GamePlay],
     });
 
     return () => game.destroy(true, false);
