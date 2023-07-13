@@ -18,7 +18,7 @@ const LinkButton = ({
         setShowAutenticationModal(true);
       }
     }}
-    className={innerText === 'Open' ? 'openButton' : 'playButton'}
+    className='playButton'
   >
     {innerText}
   </button>

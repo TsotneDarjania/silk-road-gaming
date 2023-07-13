@@ -36,7 +36,7 @@ const GameContainer = (props) => {
             setShowLeaderBoardModal={props.setShowLeaderBoardModal}
           />
           <LinkButton
-            innerText={"Open"}
+            innerText={"Play"}
             gameUrl={props.data.url}
             setShowAutenticationModal={setShowAutenticationModal}
           />

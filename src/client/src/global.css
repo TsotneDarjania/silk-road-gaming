@@ -171,67 +171,51 @@ body {
 /* play button */
 
 .playButton {
-  cursor: pointer;
-  border: none;
-  color: var(--orangeBtnColor);
-  background-color: var(--darkYellowBgColor);
-  box-shadow: 5px 5px 0px 0px var(--orangeBoxShadow);
-  transition: 0.3s;
-  z-index: var(--thirdLayer);
-  padding-inline: 70px;
-  height: 57px;
-  font-family: var(--mainFont);
-  font-weight: bold;
-  font-size: 25px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.playButton:hover {
-  color: black;
-  box-shadow: -5px -5px 0px 0px var(--orangeBoxShadow);
-}
-
-@media (max-width: 1050px) {
-  .playButton {
-    font-size: 20px;
-    padding-inline: 50px;
-  }
-}
-/* .......... */
-
-/* open button */
-
-.openButton {
-  background-color: var(--greenBgColor);
-  color: var(--darkBlueColor);
+  background-color: transparent;
+  color: var(--greenBgColor);
   width: 120px;
   z-index: var(--thirdLayer);
   transition: 0.3s;
   border: none;
+  outline: 4px solid var(--greenBgColor);
   cursor: pointer;
   padding: 0 20px;
   height: 57px;
   font-size: 22px;
   font-weight: bold;
   font-family: var(--mainFont);
+  position: relative;
+  overflow: hidden;
+  transition: 1.2s;
 }
 
-.openButton:hover {
-  background-color: var(--blackBorderColor);
-  color: rgb(238, 239, 255);
+.playButton::before{
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: 0;
+  background: var(--greenBgColor);
+  z-index: -1;
+  transition: 1.2s;
 }
+.playButton:hover {
+  color: black;
+}
+.playButton:hover::before{
+  width: 180%;
+}
+
 
 @media (max-width: 650px) {
-  .openButton {
+  .playButton {
     margin-right: 20px;
-    /* height: 0px; */
   }
 }
 
 @media (max-width: 320px) {
-  .openButton{
+  .playButton{
     width: 100%;
   }
 }
