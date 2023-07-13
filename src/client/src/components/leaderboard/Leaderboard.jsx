@@ -7,7 +7,7 @@ import goldMedalIcon from "../../pages/homeMenu/images/medal icons/goldMedal.png
 import silverMedalIcon from "../../pages/homeMenu/images/medal icons/silverMedal.png";
 import bronzeMedalIcon from "../../pages/homeMenu/images/medal icons/bronzeMedal.png";
 import UserContext from "../../context/UserContext";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import { AiOutlineCloseSquare } from "react-icons/ai";
 
 const userInfo = [
   {
@@ -80,7 +80,7 @@ const Leaderboard = ({ setShowLeaderBoardModal }) => {
           className={style.closeIcon}
           onClick={() => setShowLeaderBoardModal(false)}
         >
-          <AiOutlineCloseCircle />
+          <AiOutlineCloseSquare />
         </div>
         <div className={style.gameInfo}>
           <div className={style.gameIcon}>
