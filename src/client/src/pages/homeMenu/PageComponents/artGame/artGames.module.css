@@ -16,7 +16,6 @@
     width: 100%;
     overflow-y: scroll;
     height: 70%;
-    transition: 0.8s;
     z-index: var(--thirdLayer);
   }  
   .scrollDiv{

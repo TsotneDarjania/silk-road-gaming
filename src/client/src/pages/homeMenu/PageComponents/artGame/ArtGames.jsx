@@ -6,6 +6,7 @@ import Scroll from "../../../../components/scroll/Scroll";
 
 const ArtGames = React.memo(() => {
   const [active, setActive] = useState([false, false]);
+  const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
   const artGameRef = useRef(null);
 
   const handleFullScreen = (videoId) => {
@@ -21,7 +22,10 @@ const ArtGames = React.memo(() => {
   };
 
   return (
-    <div className={style.artGames}>
+    <div
+      className={style.artGames}
+      style={{ zIndex: showLeaderBoardModal ? 3 : 1 }}
+    >
       {gameInfo.artGames.map((item, index) => (
         <ArtGameContainer
           key={index}
@@ -30,13 +34,14 @@ const ArtGames = React.memo(() => {
           videoId={index}
           name={item.name}
           description={item.description}
+          showLeaderBoardModal={showLeaderBoardModal}
+          setShowLeaderBoardModal={setShowLeaderBoardModal}
         />
       ))}
       <div className={style.scrollDiv} onClick={handleClick}>
         <Scroll />
       </div>
-      <div className={style.bottomDiv} ref={artGameRef}>
-      </div>
+      <div className={style.bottomDiv} ref={artGameRef}></div>
     </div>
   );
 });

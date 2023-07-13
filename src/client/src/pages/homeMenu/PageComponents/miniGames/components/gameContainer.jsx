@@ -5,10 +5,12 @@ import AuthenticationModal from "../../../../../components/autenticationModal/Au
 import bgImage from "../../../images/games/miniGames/wallpapers/1.jpg";
 import Indicators from "../../../components/Indicators";
 import LinkButton from "../../../../../components/buttons/LinkButton";
+import Leaderboard from "../../../../../components/leaderboard/Leaderboard";
 
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
+  // const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
 
   return (
     <div className={style.gameContainer}>
@@ -31,6 +33,7 @@ const GameContainer = (props) => {
           <Indicators
             gameName={props.data.name}
             setShowCommentsModal={setShowCommentsModal}
+            setShowLeaderBoardModal={props.setShowLeaderBoardModal}
           />
           <LinkButton
             innerText={"Open"}
@@ -44,6 +47,9 @@ const GameContainer = (props) => {
           gameName={props.data.name}
           setShowCommentsModal={setShowCommentsModal}
         />
+      )}
+      {props.showLeaderBoardModal && (
+        <Leaderboard setShowLeaderBoardModal={props.setShowLeaderBoardModal}/>
       )}
     </div>
   );

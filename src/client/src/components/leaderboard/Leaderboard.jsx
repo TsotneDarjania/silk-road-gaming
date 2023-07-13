@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./leaderboard.module.css";
 import "../../global.css";
 import gameIcon from "../../pages/homeMenu/images/batumiskenIcon.png";
@@ -6,6 +6,8 @@ import userAvatar from "../../pages/homeMenu/images/userAvatar.png";
 import goldMedalIcon from "../../pages/homeMenu/images/medal icons/goldMedal.png";
 import silverMedalIcon from "../../pages/homeMenu/images/medal icons/silverMedal.png";
 import bronzeMedalIcon from "../../pages/homeMenu/images/medal icons/bronzeMedal.png";
+import UserContext from "../../context/UserContext";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const userInfo = [
   {
@@ -65,6 +67,8 @@ const userInfo = [
 ];
 
 const Leaderboard = ({ setShowLeaderBoardModal }) => {
+  const userContext = useContext(UserContext);
+
   return (
     <div className={style.leaderBoard}>
       <div
@@ -72,16 +76,24 @@ const Leaderboard = ({ setShowLeaderBoardModal }) => {
         onClick={() => setShowLeaderBoardModal(false)}
       ></div>
       <div className={style.leaderBoardContainer}>
+        <div
+          className={style.closeIcon}
+          onClick={() => setShowLeaderBoardModal(false)}
+        >
+          <AiOutlineCloseCircle />
+        </div>
         <div className={style.gameInfo}>
           <div className={style.gameIcon}>
             <img src={gameIcon} alt="game icon" />
           </div>
         </div>
 
-        <div className={style.currentUser}>
-          <p>Your Position: </p>
-          <span className={style.currenUserNumber}>205</span>
-        </div>
+        {userContext.isLogin && (
+          <div className={style.currentUser}>
+            <p>Your Position: </p>
+            <span className={style.currenUserNumber}>205</span>
+          </div>
+        )}
 
         <div className={style.leaderBoardList}>
           {userInfo.map((data, i) => (
@@ -96,6 +108,7 @@ const Leaderboard = ({ setShowLeaderBoardModal }) => {
                         ? silverMedalIcon
                         : bronzeMedalIcon
                     }
+                    alt="medal icon"
                   />
                 ) : (
                   i + 1
