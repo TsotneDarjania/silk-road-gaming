@@ -10,7 +10,7 @@ import Leaderboard from "../../../../../components/leaderboard/Leaderboard";
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
-  const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
+  // const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
 
   return (
     <div className={style.gameContainer}>
@@ -33,7 +33,7 @@ const GameContainer = (props) => {
           <Indicators
             gameName={props.data.name}
             setShowCommentsModal={setShowCommentsModal}
-            setShowLeaderBoardModal={setShowLeaderBoardModal}
+            setShowLeaderBoardModal={props.setShowLeaderBoardModal}
           />
           <LinkButton
             innerText={"Open"}
@@ -48,8 +48,8 @@ const GameContainer = (props) => {
           setShowCommentsModal={setShowCommentsModal}
         />
       )}
-      {showLeaderBoardModal && (
-        <Leaderboard setShowLeaderBoardModal={setShowLeaderBoardModal}/>
+      {props.showLeaderBoardModal && (
+        <Leaderboard setShowLeaderBoardModal={props.setShowLeaderBoardModal}/>
       )}
     </div>
   );

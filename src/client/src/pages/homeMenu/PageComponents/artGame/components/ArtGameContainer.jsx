@@ -17,7 +17,6 @@ import Leaderboard from "../../../../../components/leaderboard/Leaderboard";
 const ArtGameContainer = (props) => {
   const [showCommentsModal, setShowCommentsModal] = useState(false);
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
-  const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
   const images = [image, image, image, image, image, image];
 
   const pageContext = useContext(PageContext);
@@ -61,7 +60,7 @@ const ArtGameContainer = (props) => {
           <Indicators
             gameName={props.name}
             setShowCommentsModal={setShowCommentsModal}
-            setShowLeaderBoardModal={setShowLeaderBoardModal}
+            setShowLeaderBoardModal={props.setShowLeaderBoardModal}
           >
           </Indicators>
         </div>
@@ -110,8 +109,8 @@ const ArtGameContainer = (props) => {
           gameName={props.name}
         />
       )}
-      {showLeaderBoardModal && (
-        <Leaderboard setShowLeaderBoardModal={setShowLeaderBoardModal} />
+      {props.showLeaderBoardModal && (
+        <Leaderboard setShowLeaderBoardModal={props.setShowLeaderBoardModal} />
       )}
     </div>
   );
