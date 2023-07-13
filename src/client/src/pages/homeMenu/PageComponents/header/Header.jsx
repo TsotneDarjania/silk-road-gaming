@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "./header.module.css";
 import { CgMenuGridR } from "react-icons/cg";
 
@@ -7,10 +7,12 @@ const Header = React.memo(({ handleMenuChange, defaultMode }) => {
   const [isShowHeader, setIsShowHeader] = useState(
     window.innerWidth > 700 ? true : false
   );
+  const headerRef = useRef(null);
 
   const handleMenuBtn = (mode) => {
     handleMenuChange(mode);
     setActive(mode);
+    headerRef.current.style.transitionDelay = "0.5s";
     if (window.innerWidth < 700) {
       setIsShowHeader(false);
     }
@@ -27,9 +29,10 @@ const Header = React.memo(({ handleMenuChange, defaultMode }) => {
   return (
     <div>
       <ul
+        ref={headerRef}
         className={style.header}
         style={{
-          animationName: isShowHeader ? 'headerAnimation' : ''
+          left: isShowHeader ? 0 : "-100%",
         }}
       >
         <li
@@ -65,7 +68,10 @@ const Header = React.memo(({ handleMenuChange, defaultMode }) => {
       </ul>
       <div
         className={style.burgerMenu}
-        onClick={() => setIsShowHeader(!isShowHeader)}
+        onClick={() => {
+          setIsShowHeader(!isShowHeader);
+          headerRef.current.style.transitionDelay = "0s";
+        }}
       >
         <CgMenuGridR />
       </div>
