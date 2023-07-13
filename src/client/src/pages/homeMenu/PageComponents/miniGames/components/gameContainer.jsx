@@ -10,7 +10,6 @@ import Leaderboard from "../../../../../components/leaderboard/Leaderboard";
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
-  // const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
 
   return (
     <div className={style.gameContainer}>

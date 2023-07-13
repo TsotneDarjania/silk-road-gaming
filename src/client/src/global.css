@@ -207,16 +207,4 @@ body {
   width: 180%;
 }
 
-
-@media (max-width: 650px) {
-  .playButton {
-    margin-right: 20px;
-  }
-}
-
-@media (max-width: 320px) {
-  .playButton{
-    width: 100%;
-  }
-}
 /* ........... */
