@@ -1,0 +1,34 @@
+h1{
+    margin-left: 0;
+    margin-right: 0;
+    color: rgb(44, 44, 44);
+    font-size: 2vw;
+    text-align: center;
+}
+#georgianLanguageIcon{
+    position: absolute;
+    width: 17vw;
+    height: 10vw;
+    margin-left: 29vw;
+    margin-top: 3vw;
+    cursor: pointer;
+}
+#englishLanguageIcon{
+    position: absolute;
+    width: 15vw;
+    height: 10vw;
+    margin-left: 53vw;
+    margin-top: 3vw;
+    border :"thick solid #0000FF";
+    cursor: pointer;
+}
+
+#continueBtn{
+    position: absolute;
+    width: 15vw;
+    height: 3vw;
+    margin-left: 40vw;
+    margin-top: 28vw;
+    font-size: 1.6vw;
+    cursor: pointer;
+}
