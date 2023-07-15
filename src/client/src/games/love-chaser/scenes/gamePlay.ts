@@ -1,16 +1,20 @@
 import { getCookie, setCookie } from "../../../helper/cookie";
-import { myAbly } from "../utils/ably";
+import { myAbly } from "../services/ably";
 import Wall from "../gameObjects/wall";
 import { Player } from "./../characters/player";
-import { GameManager } from "../utils/gameManager";
+import { GameManager } from "../core/gameManager";
+import { OnlinePlayer } from "../characters/onlinePlayer";
+import { GamePlayInterface } from "./gameplayInterface";
 
 export class GamePlay extends Phaser.Scene {
   player!: Player;
-  onlinePlayer!: Player;
+  onlinePlayer!: OnlinePlayer;
+
+  interface!: GamePlayInterface;
 
   cameraZoom = 1;
 
-  background!: Phaser.GameObjects.Container;
+  mapBackground!: Phaser.GameObjects.Container;
   assets: Array<Phaser.Physics.Arcade.Image> = [];
 
   gameManager!: GameManager;
@@ -63,54 +67,89 @@ export class GamePlay extends Phaser.Scene {
       repeat: -1,
     });
     this.anims.create({
-      key: "down-idle",
+      key: "boy-down-idle",
       frameRate: 7,
-      frames: this.anims.generateFrameNumbers("down-idle", {
+      frames: this.anims.generateFrameNumbers("boy-down-idle", {
         start: 0,
         end: 1,
+      }),
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: "girl-down-idle",
+      frameRate: 7,
+      frames: this.anims.generateFrameNumbers("girl-down-idle", {
+        start: 0,
+        end: 1,
+      }),
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "girl-right",
+      frameRate: 10,
+      frames: this.anims.generateFrameNumbers("girl-right", {
+        start: 0,
+        end: 3,
+      }),
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "girl-left",
+      frameRate: 10,
+      frames: this.anims.generateFrameNumbers("girl-left", {
+        start: 0,
+        end: 3,
+      }),
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "girl-up",
+      frameRate: 10,
+      frames: this.anims.generateFrameNumbers("girl-up", {
+        start: 0,
+        end: 3,
+      }),
+      repeat: -1,
+    });
+    this.anims.create({
+      key: "girl-down",
+      frameRate: 10,
+      frames: this.anims.generateFrameNumbers("girl-down", {
+        start: 0,
+        end: 3,
       }),
       repeat: -1,
     });
   }
 
   create() {
-    this.background = this.add.container(0, 0);
-    this.addBackground();
-
     this.gameManager = new GameManager(this);
-
-    // if (this.ably.userName === "admin") {
-    //   setInterval(() => {
-    //     this.ably.sendData(
-    //       this.player.x.toString(),
-    //       this.player.y.toString(),
-    //       this.player.direction
-    //     );
-    //   }, 100);
-    // }
-
-    // if (this.ably.userName !== "admin")
-    //   setInterval(() => {
-    //     //this.player.setPosition(Number(this.ably.x), Number(this.ably.y));
-    //   }, 500);
+    this.scene.launch("GamePlayInterface");
   }
 
-  startGame() {
-    new Wall(this, "horizontal", 19).setPosition(20, 0);
-    new Wall(this, "vertical", 13).setPosition(0, 20);
-    new Wall(this, "horizontal", 19).setPosition(20, 1385);
-    new Wall(this, "vertical", 13).setPosition(2080, 20);
-
-    new Wall(this, "horizontal", 5).setPosition(20, 300);
-    new Wall(this, "vertical", 7).setPosition(300, 390);
+  initRoom() {
+    this.createMap();
+    this.addAssets();
 
     this.setCameraSettings();
+    this.addColliderDetectinos();
 
+    this.updateProcess = true;
+  }
+
+  addColliderDetectinos() {
+    this.physics.add.collider(this.player, this.assets, () => {});
+  }
+
+  addAssets() {
     const box_1 = this.physics.add
       .image(100, 210, "box-1")
       .setImmovable(true)
       .setDisplaySize(70, 70);
     this.assets.push(box_1);
+
+    this.add.image(200, 20, "bookshelf");
 
     const box_2 = this.physics.add
       .image(100, 140, "box-1")
@@ -153,25 +192,22 @@ export class GamePlay extends Phaser.Scene {
       .setOffset(14, 13)
       .setImmovable(true);
     this.assets.push(table_4);
+  }
 
-    this.add.image(200, 20, "bookshelf");
+  createMap() {
+    this.addMapBackground();
+    new Wall(this, "horizontal", 19).setPosition(20, 0);
+    new Wall(this, "vertical", 13).setPosition(0, 20);
+    new Wall(this, "horizontal", 19).setPosition(20, 1385);
+    new Wall(this, "vertical", 13).setPosition(2080, 20);
 
-    this.physics.add.collider(this.player, this.assets, () => {});
-
-    this.updateProcess = true;
+    new Wall(this, "horizontal", 5).setPosition(20, 300);
+    new Wall(this, "vertical", 7).setPosition(300, 390);
   }
 
   update() {
-    if (this.updateProcess) {
-      this.updateCameraZoom();
-    }
-
-    // console.log(this.ably.x, this.ably.y);
-    // if (this.ably.userName !== "admin") {
-    //   this.player.direction = this.ably.direction;
-    // }
-
-    // this.ably.sendData(this.player.x.toString());
+    if (this.updateProcess === false) return;
+    this.updateCameraZoom();
   }
 
   updateCameraZoom() {
@@ -191,13 +227,15 @@ export class GamePlay extends Phaser.Scene {
     this.cameras.main.setZoom(this.cameraZoom);
   }
 
-  addBackground() {
+  addMapBackground() {
+    this.mapBackground = this.add.container(0, 0);
+
     let x = 0;
     let y = 0;
 
     for (let i = 0; i < 16; i++) {
       const ground = this.add.image(x, y, "ground").setOrigin(0);
-      this.background.add(ground);
+      this.mapBackground.add(ground);
 
       x += 500;
 

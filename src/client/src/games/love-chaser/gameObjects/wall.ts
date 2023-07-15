@@ -26,11 +26,11 @@ export default class Wall extends Phaser.GameObjects.Container {
         }
       }
       if (this.direction === "vertical") {
-        if (this.scene.player.x < this.x) {
-          this.setDepth(120);
-        } else {
-          this.setDepth(0);
-        }
+        // if (this.scene.player.x < this.x) {
+        //   this.setDepth(120);
+        // } else {
+        //   this.setDepth(0);
+        // }
       }
     });
 

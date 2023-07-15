@@ -1,3 +1,5 @@
+import { getCookie } from "../../../helper/cookie";
+import { GameData } from "../core/gameData";
 import WebFontFile from "../helper/webFontLoader";
 
 export class Preload extends Phaser.Scene {
@@ -24,6 +26,7 @@ export class Preload extends Phaser.Scene {
     //menu
     this.load.image("menu-heart", "/images/heart.png");
     this.load.image("button", "/images/button.png");
+    this.load.image("back-button", "/images/back.png");
 
     this.load.spritesheet("boy-down", "/spritesheets/boy-down.png", {
       frameWidth: 86,
@@ -42,8 +45,33 @@ export class Preload extends Phaser.Scene {
       frameHeight: 80,
     });
 
-    this.load.spritesheet("down-idle", "/spritesheets/down-idle.png", {
+    this.load.spritesheet("boy-down-idle", "/spritesheets/boy-down-idle.png", {
       frameWidth: 82,
+      frameHeight: 80,
+    });
+
+    this.load.spritesheet(
+      "girl-down-idle",
+      "/spritesheets/girl-down-idle.png",
+      {
+        frameWidth: 101,
+        frameHeight: 80,
+      }
+    );
+    this.load.spritesheet("girl-right", "/spritesheets/girl-right.png", {
+      frameWidth: 100.5,
+      frameHeight: 80,
+    });
+    this.load.spritesheet("girl-left", "/spritesheets/girl-left.png", {
+      frameWidth: 100.5,
+      frameHeight: 80,
+    });
+    this.load.spritesheet("girl-up", "/spritesheets/girl-up.png", {
+      frameWidth: 100,
+      frameHeight: 80,
+    });
+    this.load.spritesheet("girl-down", "/spritesheets/girl-down.png", {
+      frameWidth: 100.5,
       frameHeight: 80,
     });
 
@@ -54,6 +82,12 @@ export class Preload extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start("Menu");
+    if (getCookie("loginSession").length > 3) {
+      GameData.username = JSON.parse(getCookie("loginSession")).userName;
+      this.scene.start("Menu");
+    } else {
+      //@ts-ignore
+      window.location = "../../";
+    }
   }
 }
