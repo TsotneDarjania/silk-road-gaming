@@ -33,6 +33,8 @@ export class GameManager {
 
   gamePlayInterface!: GamePlayInterface;
 
+  startSinchronization = false;
+
   constructor(public scene: GamePlay) {
     this.init();
   }
@@ -151,12 +153,36 @@ export class GameManager {
     this.scene.player.canMotion = true;
     this.gamePlayInterface.timerText.setVisible(false);
     this.gamePlayInterface.shadowImage.setVisible(false);
+
+    this.startSinchronization = true;
+    this.update();
   }
 
   update() {
+    setInterval(() => {
+      this.sendPlayerPositions();
+    }, 500);
+
     this.scene.events.on("update", () => {
-      if (this.isMatchStart === false) return;
+      if (this.startSinchronization === false) return;
+
+      this.sendPlayerDirection();
     });
+  }
+
+  sendPlayerPositions() {
+    this.ably.snedPosiions([
+      GameData.username,
+      this.scene.player.x,
+      this.scene.player.y,
+    ]);
+  }
+
+  sendPlayerDirection() {
+    if (this.scene.player.direction !== this.playerLastDirection) {
+      this.playerLastDirection = this.scene.player.direction;
+      this.ably.snedDirection([GameData.username, this.scene.player.direction]);
+    }
   }
 
   initPlayer() {
@@ -174,8 +200,8 @@ export class GameManager {
 
   initOnlinePlayer() {
     const character = this.isOwner
-      ? GameData.ownerCharacter
-      : GameData.guestCharacter;
+      ? GameData.guestCharacter
+      : GameData.ownerCharacter;
 
     this.scene.onlinePlayer = new OnlinePlayer(
       this.scene,
@@ -185,13 +211,13 @@ export class GameManager {
     ).setDepth(100);
   }
 
-  synchronizeOnlinePlayerDirection(user: string, direction: string) {
+  getOnlinePlayerDirection(user: string, direction: string) {
     if (user !== GameData.username) {
       this.scene.onlinePlayer.direction = direction;
     }
   }
 
-  synchronizeOnlinePlayerPositions(user: string, x: string, y: string) {
+  getOnlinePlayerPositions(user: string, x: string, y: string) {
     if (user !== GameData.username) {
       this.scene.onlinePlayer.x = Number(x);
       this.scene.onlinePlayer.y = Number(y);

@@ -67,6 +67,23 @@ export class myAbly {
         this.gameManager.startMatch();
       }
     });
+
+    //direction
+    this.channel.subscribe(`${GameData.roomID}/direction}`, (data) => {
+      const user = data.data[0];
+      const direction = data.data[1];
+
+      this.gameManager.getOnlinePlayerDirection(user, direction);
+    });
+
+    //positions
+    this.channel.subscribe(`${GameData.roomID}/positions}`, (data) => {
+      const user = data.data[0];
+      const x = data.data[1];
+      const y = data.data[2];
+
+      this.gameManager.getOnlinePlayerPositions(user, x, y);
+    });
   }
 
   makeConnection(data: any) {
@@ -75,5 +92,13 @@ export class myAbly {
 
   sendEvent(data: any) {
     this.channel.publish(`${GameData.roomID}/event}`, data);
+  }
+
+  snedDirection(data: any) {
+    this.channel.publish(`${GameData.roomID}/direction}`, data);
+  }
+
+  snedPosiions(data: any) {
+    this.channel.publish(`${GameData.roomID}/positions}`, data);
   }
 }
