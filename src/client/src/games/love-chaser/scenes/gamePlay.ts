@@ -5,6 +5,8 @@ import { Player } from "./../characters/player";
 import { GameManager } from "../core/gameManager";
 import { OnlinePlayer } from "../characters/onlinePlayer";
 import { GamePlayInterface } from "./gameplayInterface";
+import { MapKey } from "../gameObjects/mapKey";
+import { Door } from "../gameObjects/door";
 
 export class GamePlay extends Phaser.Scene {
   player!: Player;
@@ -13,6 +15,7 @@ export class GamePlay extends Phaser.Scene {
   interface!: GamePlayInterface;
 
   cameraZoom = 1;
+  bricks: Array<Phaser.Physics.Arcade.Image> = [];
 
   mapBackground!: Phaser.GameObjects.Container;
   assets: Array<Phaser.Physics.Arcade.Image> = [];
@@ -22,6 +25,8 @@ export class GamePlay extends Phaser.Scene {
   ably!: myAbly;
 
   updateProcess = false;
+
+  currentDoor!: Door;
 
   constructor() {
     super("GamePlay");
@@ -131,6 +136,7 @@ export class GamePlay extends Phaser.Scene {
   initRoom() {
     this.createMap();
     this.addAssets();
+    this.addKeys();
 
     this.setCameraSettings();
     this.addColliderDetectinos();
@@ -140,6 +146,7 @@ export class GamePlay extends Phaser.Scene {
 
   addColliderDetectinos() {
     this.physics.add.collider(this.player, this.assets, () => {});
+    this.physics.add.collider(this.player, this.bricks, () => {});
   }
 
   addAssets() {
@@ -192,17 +199,123 @@ export class GamePlay extends Phaser.Scene {
       .setOffset(14, 13)
       .setImmovable(true);
     this.assets.push(table_4);
+
+    const toliet_1 = this.physics.add
+      .image(170, 2450, "toliet")
+      .setScale(1.35)
+      .setImmovable(true);
+    this.assets.push(toliet_1);
+
+    const toliet_2 = this.physics.add
+      .image(320, 2450, "toliet")
+      .setScale(1.35)
+      .setImmovable(true);
+    this.assets.push(toliet_2);
+
+    const toliet_3 = this.physics.add
+      .image(470, 2450, "toliet")
+      .setScale(1.35)
+      .setImmovable(true);
+    this.assets.push(toliet_3);
+
+    const toliet_4 = this.physics.add
+      .image(620, 2450, "toliet")
+      .setScale(1.35)
+      .setImmovable(true);
+    this.assets.push(toliet_4);
+
+    const toliet_5 = this.physics.add
+      .image(770, 2450, "toliet")
+      .setScale(1.35)
+      .setImmovable(true);
+    this.assets.push(toliet_5);
+
+    const armChair = this.physics.add
+      .image(1120, 1850, "arm-chair")
+      .setScale(0.5)
+      .setImmovable(true);
+    this.assets.push(armChair);
+
+    const armChair_2 = this.physics.add
+      .image(1400, 2080, "arm-chair")
+      .setRotation(1.57)
+      .setOffset(0, 0)
+      .setFlipY(true)
+      .setFlipX(true)
+      .setScale(0.5)
+      .setImmovable(true);
+    armChair_2.setSize(armChair.displayHeight * 2, armChair.displayWidth * 2);
+    this.assets.push(armChair_2);
+
+    const armChair_3 = this.physics.add
+      .image(1600, 2080, "arm-chair")
+      .setRotation(1.57)
+      .setOffset(0, 0)
+      .setFlipY(true)
+      .setFlipX(true)
+      .setScale(0.5)
+      .setImmovable(true);
+    armChair_3.setSize(armChair.displayHeight * 2, armChair.displayWidth * 2);
+    this.assets.push(armChair_3);
+
+    this.add.image(1590, 1820, "stage").setScale(0.7).setTint(0x082c4d);
+  }
+
+  addKeys() {
+    const door_1 = new Door(this, 1015, 2500);
+    const key_1 = new MapKey(this, 1100, 2300, door_1);
+
+    const door_2 = new Door(this, 1013, 1590);
+    const key_2 = new MapKey(this, 1100, 1690, door_2);
   }
 
   createMap() {
     this.addMapBackground();
-    new Wall(this, "horizontal", 19).setPosition(20, 0);
-    new Wall(this, "vertical", 13).setPosition(0, 20);
-    new Wall(this, "horizontal", 19).setPosition(20, 1385);
-    new Wall(this, "vertical", 13).setPosition(2080, 20);
 
-    new Wall(this, "horizontal", 5).setPosition(20, 300);
-    new Wall(this, "vertical", 7).setPosition(300, 390);
+    //borders
+    new Wall(this, "horizontal", 13).setPosition(100, 0);
+    new Wall(this, "vertical", 9).setPosition(1, 175);
+    new Wall(this, "horizontal", 13).setPosition(100, 2577);
+    new Wall(this, "vertical", 9).setPosition(3610, 99);
+    new Wall(this, "vertical", 1).setPosition(3610, 2479);
+
+    new Wall(this, "vertical", 4).setPosition(1788, 1640);
+    new Wall(this, "vertical", 1).setPosition(1273, 2440);
+    new Wall(this, "horizontal", 2).setPosition(1373, 2190);
+    new Wall(this, "vertical", 3).setPosition(1010, 1775);
+    new Wall(this, "horizontal", 4).setPosition(150, 2190);
+
+    new Wall(this, "horizontal", 4).setPosition(500, 1520);
+    new Wall(this, "vertical", 2).setPosition(840, 1620);
+    new Wall(this, "horizontal", 2).setPosition(305, 1670);
+    new Wall(this, "horizontal", 2).setPosition(305, 1740);
+    new Wall(this, "horizontal", 2).setPosition(305, 1900);
+    new Wall(this, "vertical", 2).setPosition(208, 1210);
+    new Wall(this, "horizontal", 3).setPosition(305, 1340);
+    new Wall(this, "vertical", 1).setPosition(1108, 1340);
+  }
+
+  addMapBackground() {
+    this.mapBackground = this.add.container(0, 0).setDepth(-10);
+
+    let x = 0;
+    let y = 0;
+
+    for (let i = 0; i < 35; i++) {
+      const ground = this.add
+        .image(x, y, "floor")
+        .setTint(0x3c608f)
+        .setDepth(-10)
+        .setOrigin(0);
+      this.mapBackground.add(ground);
+
+      x += ground.displayWidth;
+
+      if (i === 6 || i === 13 || i === 20 || i === 27) {
+        x = 0;
+        y += ground.displayHeight;
+      }
+    }
   }
 
   update() {
@@ -227,27 +340,7 @@ export class GamePlay extends Phaser.Scene {
     this.cameras.main.setZoom(this.cameraZoom);
   }
 
-  addMapBackground() {
-    this.mapBackground = this.add.container(0, 0);
-
-    let x = 0;
-    let y = 0;
-
-    for (let i = 0; i < 16; i++) {
-      const ground = this.add.image(x, y, "ground").setOrigin(0);
-      this.mapBackground.add(ground);
-
-      x += 500;
-
-      if (i === 3 || i === 7 || i === 11) {
-        x = 0;
-        y += 350;
-      }
-    }
-  }
-
   setCameraSettings() {
-    // this.cameras.main.setBounds(-Infinity, -500, Infinity, 2100);
     this.cameras.main.startFollow(this.player, false, 0.09, 0.09);
   }
 }

@@ -12,11 +12,11 @@ import { GamePlayInterface } from "../scenes/gameplayInterface";
 export class GameManager {
   ably!: myAbly;
 
-  ownerPositionX = 500;
-  ownerPositionY = 500;
+  ownerPositionX = 1590;
+  ownerPositionY = 2380;
 
-  guestPositionX = 900;
-  guestPositionY = 900;
+  guestPositionX = 2000;
+  guestPositionY = 2380;
 
   appWrite!: AppWrite;
 
@@ -126,7 +126,7 @@ export class GameManager {
     //reset player position
     this.scene.player.setPosition(
       this.isOwner ? this.ownerPositionX : this.guestPositionX,
-      this.isOwner ? this.ownerPositionX : this.guestPositionY
+      this.isOwner ? this.ownerPositionY : this.guestPositionY
     );
     this.initOnlinePlayer();
   }
@@ -193,7 +193,7 @@ export class GameManager {
     this.scene.player = new Player(
       this.scene,
       this.isOwner ? this.ownerPositionX : this.guestPositionX,
-      this.isOwner ? this.ownerPositionX : this.guestPositionY,
+      this.isOwner ? this.ownerPositionY : this.guestPositionY,
       `${character}-down-idle`
     ).setDepth(100);
   }
@@ -206,9 +206,31 @@ export class GameManager {
     this.scene.onlinePlayer = new OnlinePlayer(
       this.scene,
       this.isOwner ? this.guestPositionX : this.ownerPositionX,
-      this.isOwner ? this.guestPositionY : this.ownerPositionX,
+      this.isOwner ? this.guestPositionY : this.ownerPositionY,
       `${character}-down-idle`
     ).setDepth(100);
+
+    this.addCollisionDetectionToOnlinePlayer();
+  }
+
+  addCollisionDetectionToOnlinePlayer() {
+    this.scene.physics.add.collider(
+      this.scene.onlinePlayer,
+      this.scene.bricks,
+      () => {}
+    );
+
+    this.scene.physics.add.collider(
+      this.scene.onlinePlayer,
+      this.scene.assets,
+      () => {}
+    );
+
+    this.scene.physics.add.collider(
+      this.scene.onlinePlayer,
+      this.scene.player,
+      () => {}
+    );
   }
 
   getOnlinePlayerDirection(user: string, direction: string) {

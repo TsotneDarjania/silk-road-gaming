@@ -48,7 +48,7 @@ export class Lobby {
   }
 
   deleteRoom(roomName: string) {
-    this.appwrite
+    return this.appwrite
       .databases()
       .deleteDocument(ApiEnums.silkRoadDatabaseID, "LoveChaserRooms", roomName);
   }

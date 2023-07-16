@@ -27,8 +27,16 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.setDisplaySize(100, 100);
     this.addController();
 
-    this.setSize(35, 25);
-    this.setOffset(20, 55);
+    this.setSize(43, 30);
+    this.setOffset(9, 48);
+
+    if (this.character === "girl") {
+      this.setSize(48, 30);
+      this.setOffset(2, 48);
+    } else {
+      this.setSize(37, 30);
+      this.setOffset(16, 48);
+    }
   }
 
   addController() {

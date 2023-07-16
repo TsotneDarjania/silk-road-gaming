@@ -2,6 +2,7 @@ import { calculatePercentage } from "../../tbilisi-batumi-1/helper/tatukaMath";
 import { GamePlay } from "./gamePlay";
 import { MenuButton } from "../components/buttons/menuButton";
 import { GameData } from "../core/gameData";
+import { GamePlayButton } from "../components/buttons/gamePlayButton";
 
 export class GamePlayInterface extends Phaser.Scene {
   gameStartText!: Phaser.GameObjects.Text;
@@ -15,16 +16,63 @@ export class GamePlayInterface extends Phaser.Scene {
 
   shadowImage!: Phaser.GameObjects.Image;
 
+  openDoorButton!: GamePlayButton;
+  closeDoorButton!: GamePlayButton;
+
+  gamePlayScene!: GamePlay;
+
   constructor() {
     super("GamePlayInterface");
   }
 
   create() {
+    this.gamePlayScene = this.scene.get("GamePlay") as GamePlay;
     this.addShadowImage();
 
     this.createGameStartModal();
     this.createGameIndicators();
     this.createTimerText();
+
+    this.createDoorButtons();
+  }
+
+  createDoorButtons() {
+    this.openDoorButton = new GamePlayButton(this, 0, 0, "Open", "#67C732").on(
+      Phaser.Input.Events.POINTER_DOWN,
+      () => {
+        this.gamePlayScene.currentDoor.open();
+        this.openDoorButton.setVisible(false);
+      }
+    );
+    this.openDoorButton.setPosition(
+      this.game.canvas.width -
+        this.openDoorButton.getBounds().width -
+        calculatePercentage(2, this.game.canvas.width),
+      this.game.canvas.height -
+        this.openDoorButton.getBounds().height -
+        calculatePercentage(2, this.game.canvas.height)
+    );
+
+    this.closeDoorButton = new GamePlayButton(
+      this,
+      0,
+      0,
+      "Close",
+      "#67C732"
+    ).on(Phaser.Input.Events.POINTER_DOWN, () => {
+      this.gamePlayScene.currentDoor.close();
+      this.closeDoorButton.setVisible(false);
+    });
+    this.closeDoorButton.setPosition(
+      this.game.canvas.width -
+        this.closeDoorButton.getBounds().width -
+        calculatePercentage(2, this.game.canvas.width),
+      this.game.canvas.height -
+        this.closeDoorButton.getBounds().height -
+        calculatePercentage(2, this.game.canvas.height)
+    );
+
+    this.openDoorButton.setVisible(false);
   }
 
   createTimerText() {
@@ -49,8 +97,10 @@ export class GamePlayInterface extends Phaser.Scene {
     this.shadowImage = this.add
       .image(-500, -500, "default-image")
       .setOrigin(0)
+
       .setTint(0x160d24)
       .setAlpha(0.7)
+      .setAlpha(0)
       .setDisplaySize(this.game.canvas.width * 2, this.game.canvas.height * 2);
   }
 

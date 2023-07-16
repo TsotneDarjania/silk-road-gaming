@@ -11,12 +11,13 @@ export class Preload extends Phaser.Scene {
     this.load.setPath(`${process.env.PUBLIC_URL}/assets/games/love-chaser`);
     this.load.image("boyCharacter", "/images/boyCharacter.png");
     this.load.image("girlCharacter", "/images/girlCharacter.png");
-    this.load.image("ground", "/images/ground.jpg");
-    this.load.image("brick", "/images/brick.png");
+
     this.load.image("box-1", "/images/box-1.png");
     this.load.image("bed", "/images/bed.webp");
     this.load.image("table", "/images/table.png");
     this.load.image("bookshelf", "/images/bookshelf.png");
+    this.load.image("gamePlayButton", "/images/gamePlayButton.png");
+    this.load.image("stage", "/images/stage.png");
 
     this.load.image("boy-default", "/images/boy-default.png");
     this.load.image("girl-default", "/images/girl-default.png");
@@ -27,6 +28,15 @@ export class Preload extends Phaser.Scene {
     this.load.image("menu-heart", "/images/heart.png");
     this.load.image("button", "/images/button.png");
     this.load.image("back-button", "/images/back.png");
+
+    //map
+    this.load.image("floor", "/images/map/floor.jpg");
+    this.load.image("border", "/images/map/border.png");
+
+    //assets
+    this.load.image("toliet", "/images/assets/toilet.png");
+    this.load.image("key", "/images/assets/key.png");
+    this.load.image("arm-chair", "/images/assets/armChair.png");
 
     this.load.spritesheet("boy-down", "/spritesheets/boy-down.png", {
       frameWidth: 86,

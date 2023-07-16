@@ -32,7 +32,7 @@ export const LoveChaser = () => {
         height: window.innerHeight,
       },
 
-      backgroundColor: 0x62768a,
+      backgroundColor: 0x0d1624,
       scene: [Preload, Menu, GamePlay, GamePlayInterface],
     });
 

@@ -56,11 +56,14 @@ export class Menu extends Phaser.Scene {
       )
       .then(
         (response) => {
-          this.lobby.deleteRoom(
-            generateIdToCorrectFormat(transliterate(GameData.username))
-          );
-          this.roomList.clearRoomList();
-          this.lobby.getOnlineRooms();
+          this.lobby
+            .deleteRoom(
+              generateIdToCorrectFormat(transliterate(GameData.username))
+            )
+            .then((response) => {
+              this.roomList.clearRoomList();
+              this.lobby.getOnlineRooms();
+            });
         },
         (error) => {}
       );
