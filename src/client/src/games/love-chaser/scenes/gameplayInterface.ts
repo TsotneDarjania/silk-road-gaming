@@ -73,6 +73,7 @@ export class GamePlayInterface extends Phaser.Scene {
     );
 
     this.openDoorButton.setVisible(false);
+    this.closeDoorButton.setVisible(false);
   }
 
   createTimerText() {

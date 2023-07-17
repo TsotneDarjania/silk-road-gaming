@@ -18,6 +18,10 @@ export class Preload extends Phaser.Scene {
     this.load.image("bookshelf", "/images/bookshelf.png");
     this.load.image("gamePlayButton", "/images/gamePlayButton.png");
     this.load.image("stage", "/images/stage.png");
+    this.load.image("light-device", "/images/light-device.png");
+    this.load.image("light-effect", "/images/light-effect.png");
+    this.load.image("bar-top-part", "/images/bar-top-part.png");
+    this.load.image("bar-bottom-part", "/images/bar-bottom-part.png");
 
     this.load.image("boy-default", "/images/boy-default.png");
     this.load.image("girl-default", "/images/girl-default.png");
@@ -37,6 +41,7 @@ export class Preload extends Phaser.Scene {
     this.load.image("toliet", "/images/assets/toilet.png");
     this.load.image("key", "/images/assets/key.png");
     this.load.image("arm-chair", "/images/assets/armChair.png");
+    this.load.image("gameplay-heart", "/images/assets/gamePlayHeart.png");
 
     this.load.spritesheet("boy-down", "/spritesheets/boy-down.png", {
       frameWidth: 86,

@@ -12,8 +12,10 @@ import { GamePlayInterface } from "../scenes/gameplayInterface";
 export class GameManager {
   ably!: myAbly;
 
-  ownerPositionX = 1590;
-  ownerPositionY = 2380;
+  // ownerPositionX = 1590;
+  // ownerPositionY = 2380;
+  ownerPositionX = 1200;
+  ownerPositionY = 800;
 
   guestPositionX = 2000;
   guestPositionY = 2380;
