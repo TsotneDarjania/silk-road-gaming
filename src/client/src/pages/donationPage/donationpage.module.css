@@ -1,0 +1,53 @@
+.donationContainer{
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--fadedWhiteBgColor);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10%;
+}
+.textBox{
+    width: 80%;
+    font-family: var(--textFont);
+    font-size: 33px;
+    height: min-content;
+}
+.numberBox{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 50%;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    gap: 20px;
+    background-color: red;
+}
+.numberBox button{
+    padding: 20px 50px;
+    outline: none;
+    border: none;
+    background-color: blue; 
+    cursor: pointer;
+}
+
+@media (max-width: 600px){
+    .numberBox{
+        position: unset;
+    }
+}
+
+@media (max-height: 600px) {
+    .donationContainer{
+        padding: 20px;
+    }
+    .textBox{
+        overflow-y: scroll;
+        height: 400px;
+    }
+}
