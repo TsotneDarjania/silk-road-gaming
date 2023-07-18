@@ -9,6 +9,7 @@ import { MapKey } from "../gameObjects/mapKey";
 import { Door } from "../gameObjects/door";
 import { ClubLight } from "../gameObjects/clubLight";
 import { GamePlayHeart } from "../gameObjects/gamePlayHeart";
+import { Border, HideZone, mapConfig } from "../config/mapConfig";
 
 export class GamePlay extends Phaser.Scene {
   player!: Player;
@@ -403,130 +404,22 @@ export class GamePlay extends Phaser.Scene {
   createMap() {
     this.addMapBackground();
 
-    //hideZones
-    this.add
-      .image(105, 1550, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(125, 120)
-      .setDepth(400);
+    //add hide Zones
+    Object.values(mapConfig.hideZones).forEach((zone: HideZone) => {
+      this.add
+        .image(zone.x, zone.y, "default-image")
+        .setTint(0x43de71)
+        .setDisplaySize(zone.width, zone.height)
+        .setDepth(400);
+    });
 
-    this.add
-      .image(105, 1200, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(125, 120)
-      .setDepth(400);
-
-    this.add
-      .image(605, 1430, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(325, 100)
-      .setDepth(400);
-
-    this.add
-      .image(1365, 1430, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(135, 100)
-      .setDepth(400);
-
-    this.add
-      .image(1895, 1790, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(140, 200)
-      .setDepth(400);
-
-    this.add
-      .image(3112, 2106, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(110, 160)
-      .setDepth(400);
-
-    this.add
-      .image(3532, 1806, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(74, 160)
-      .setDepth(400);
-
-    this.add
-      .image(2886, 960, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(200, 100)
-      .setDepth(400);
-
-    this.add
-      .image(2986, 644, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(200, 100)
-      .setDepth(400);
-
-    this.add
-      .image(2236, 654, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(200, 200)
-      .setDepth(400);
-
-    this.add
-      .image(1200, 100, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(200, 123)
-      .setDepth(400);
-
-    this.add
-      .image(1170, 600, "default-image")
-      .setTint(0x43de71)
-      .setDisplaySize(110, 183)
-      .setDepth(400);
-
-    //borders
-    new Wall(this, "horizontal", 13).setPosition(100, 0);
-    new Wall(this, "vertical", 9).setPosition(1, 175);
-    new Wall(this, "horizontal", 13).setPosition(100, 2577);
-    new Wall(this, "vertical", 9).setPosition(3610, 99);
-    new Wall(this, "vertical", 1).setPosition(3610, 2479);
-
-    new Wall(this, "vertical", 4).setPosition(1788, 1640);
-    new Wall(this, "vertical", 1).setPosition(1273, 2440);
-    new Wall(this, "horizontal", 2).setPosition(1373, 2190);
-    new Wall(this, "vertical", 3).setPosition(1010, 1775);
-    new Wall(this, "horizontal", 4).setPosition(150, 2190);
-
-    new Wall(this, "horizontal", 4).setPosition(500, 1520);
-    new Wall(this, "vertical", 2).setPosition(840, 1620);
-    new Wall(this, "horizontal", 2).setPosition(305, 1670);
-    new Wall(this, "horizontal", 2).setPosition(305, 1740);
-    new Wall(this, "horizontal", 2).setPosition(305, 1900);
-    new Wall(this, "vertical", 2).setPosition(208, 1210);
-    new Wall(this, "horizontal", 3).setPosition(305, 1340);
-    new Wall(this, "vertical", 1).setPosition(1108, 1340);
-    new Wall(this, "horizontal", 6).setPosition(385, 1180);
-    new Wall(this, "horizontal", 4).setPosition(1360, 1340);
-
-    new Wall(this, "vertical", 2).setPosition(2008, 1640);
-    new Wall(this, "horizontal", 3).setPosition(1960, 2095);
-    new Wall(this, "horizontal", 3).setPosition(2360, 1595);
-    new Wall(this, "vertical", 2).setPosition(3018, 1769);
-    new Wall(this, "horizontal", 4).setPosition(2260, 2227);
-
-    new Wall(this, "vertical", 3).setPosition(3458, 1759);
-    new Wall(this, "horizontal", 1).setPosition(3195, 1949);
-    new Wall(this, "horizontal", 1).setPosition(3282, 1779);
-    new Wall(this, "horizontal", 3).setPosition(2602, 1429);
-    new Wall(this, "vertical", 5).setPosition(3458, 309);
-    new Wall(this, "vertical", 2).setPosition(2741, 979);
-    new Wall(this, "horizontal", 2).setPosition(3000, 1242);
-    new Wall(this, "horizontal", 2).setPosition(2920, 1052);
-    new Wall(this, "horizontal", 2).setPosition(2840, 732);
-
-    new Wall(this, "vertical", 2).setPosition(3141, 179);
-    new Wall(this, "horizontal", 1).setPosition(2962, 555);
-    new Wall(this, "vertical", 2).setPosition(2785, 279);
-    new Wall(this, "vertical", 3).setPosition(2485, 579);
-    new Wall(this, "horizontal", 2).setPosition(2212, 305);
-    new Wall(this, "vertical", 2).setPosition(1965, 173);
-    new Wall(this, "vertical", 3).setPosition(1555, 443);
-    new Wall(this, "horizontal", 3).setPosition(730, 203);
-    new Wall(this, "vertical", 2).setPosition(1267, 380);
-    new Wall(this, "horizontal", 3).setPosition(830, 953);
-    new Wall(this, "horizontal", 3).setPosition(380, 353);
+    //add Borders
+    Object.values(mapConfig.borders).forEach((border: Border) => {
+      new Wall(this, border.direction, border.quantity).setPosition(
+        border.x,
+        border.y
+      );
+    });
   }
 
   addMapBackground() {

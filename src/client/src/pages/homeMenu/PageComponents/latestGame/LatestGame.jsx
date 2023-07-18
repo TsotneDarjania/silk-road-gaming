@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./latestGame.module.css";
-import latestGameVideo from "../../videos/1.mp4";
+import latestGameVideo from "../../videos/batumisken-video.mp4";
 import gamesInfo from "../../../../data/gamesInfo.json";
 import AuthenticationModal from "../../../../components/autenticationModal/AuthenticationModal";
 import LinkButton from "../../../../components/buttons/LinkButton";
@@ -44,7 +44,7 @@ const LatestGame = React.memo(() => {
           </div>
         </div>
         <div className={style.rightContainer}>
-          <video className={style.lastGameVideo} loop autoPlay>
+          <video className={style.lastGameVideo} autoPlay muted loop>
             <source src={latestGameVideo} type="video/mp4" />
           </video>
         </div>
