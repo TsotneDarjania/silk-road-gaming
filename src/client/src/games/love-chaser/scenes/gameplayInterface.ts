@@ -47,9 +47,32 @@ export class GamePlayInterface extends Phaser.Scene {
 
     this.addGuestHeart();
     this.createFinishModal();
+    this.addEnterListener();
 
     this.clickSound = this.sound.add("clickSound", {
       volume: 0.2,
+    });
+  }
+
+  addEnterListener() {
+    // Listen for the Enter key press
+    this.input.keyboard.on("keydown", (event: any) => {
+      if (
+        event.key === "Enter" ||
+        event.code === "Enter" ||
+        event.keyCode === 13
+      ) {
+        if (this.closeDoorButton.visible) {
+          this.clickSound.play();
+          this.gamePlayScene.currentDoor.open();
+          this.openDoorButton.setVisible(false);
+        }
+        if (this.closeDoorButton.visible) {
+          this.clickSound.play();
+          this.gamePlayScene.currentDoor.close();
+          this.closeDoorButton.setVisible(false);
+        }
+      }
     });
   }
 
