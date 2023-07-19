@@ -1,7 +1,7 @@
 .donationContainer{
     width: 100vw;
     height: 100vh;
-    background-color: var(--fadedWhiteBgColor);
+    background-color: var(--whiteColor);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +12,7 @@
     font-family: var(--textFont);
     font-size: 33px;
     height: min-content;
+    text-align: center;
 }
 .numberBox{
     position: absolute;
@@ -31,19 +32,21 @@
     border: none;
     background-color: transparent;
     text-align: center;
-    font-size: 18px;
+    font-size: 38px;
 }
 .numberBox input::selection{
     background-color: transparent;
 }
 .numberBox button{
+    font-family: var(--textFont);
     width: 150px;
-    padding: 20px 0px;
     outline: none;
     border: none;
-    background-color: blue; 
+    background-color: var(--fadedBlueColor); 
+    color: var(--whiteColor);
     cursor: pointer;
     text-transform: uppercase;
+    font-size: 35px;
 }
 
 @media (max-width: 600px){
