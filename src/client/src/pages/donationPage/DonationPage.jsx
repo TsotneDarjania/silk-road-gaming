@@ -1,5 +1,7 @@
 import React, {useRef, useState} from "react";
 import style from "./donationpage.module.css";
+import Background from "../../components/effects/background/Background";
+import image from '../homeMenu/images/medal icons/goldMedal.png'
 
 const DonationPage = () => {
     const [copyText, setCopyText] = useState('copy')
@@ -21,6 +23,7 @@ const DonationPage = () => {
 
   return (
     <div className={style.donationContainer}>
+      <Background images={[image]}/>
       <div className={style.textBox}>
         Our designer strongly dislikes using Lorem Ipsum text, considering it
         distasteful and unappealing. As a tribute to their preference, we have
