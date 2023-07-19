@@ -1,8 +1,7 @@
+import { calculatePercentage } from "../../tbilisi-batumi-1/helper/tatukaMath";
 import { GamePlay } from "../scenes/gamePlay";
 
 export default class Wall extends Phaser.GameObjects.Container {
-  bricks: Array<Phaser.Physics.Arcade.Image> = [];
-
   constructor(
     public scene: GamePlay,
     public direction: string,
@@ -12,21 +11,12 @@ export default class Wall extends Phaser.GameObjects.Container {
     scene.add.existing(this);
 
     this.init();
-
-    this.scene.physics.add.collider(this.scene.player, this.bricks, () => {});
   }
 
   init() {
     this.scene.events.on("update", () => {
       if (this.direction === "horizontal") {
         if (this.scene.player.y < this.y) {
-          this.setDepth(120);
-        } else {
-          this.setDepth(0);
-        }
-      }
-      if (this.direction === "vertical") {
-        if (this.scene.player.x < this.x) {
           this.setDepth(120);
         } else {
           this.setDepth(0);
@@ -40,16 +30,16 @@ export default class Wall extends Phaser.GameObjects.Container {
 
       for (let i = 0; i < this.quantity; i++) {
         const brick = this.scene.physics.add
-          .image(x, y, "brick")
+          .image(x, y, "border")
           .setImmovable(true)
-          .setSize(100, 20)
-          .setOffset(0, 20)
-          .setTint(0x0d2336)
-          .setDisplaySize(120, 80);
+          .setTint(0x0b292e);
 
-        x += 112;
+        brick.setSize(brick.displayWidth, brick.displayHeight);
+        brick.setOffset(0, 0);
 
-        this.bricks.push(brick);
+        x += brick.displayWidth;
+
+        this.scene.bricks.push(brick);
         this.add(brick);
       }
     }
@@ -60,17 +50,16 @@ export default class Wall extends Phaser.GameObjects.Container {
 
       for (let i = 0; i < this.quantity; i++) {
         const brick = this.scene.physics.add
-          .image(x, y, "brick")
+          .image(x, y, "border")
           .setRotation(1.57)
           .setImmovable(true)
-          .setSize(50, 51)
-          .setOffset(30, 0)
-          .setTint(0x0d2336)
-          .setDisplaySize(120, 80);
+          .setTint(0x0b292e);
 
-        y += 110;
+        brick.setSize(brick.displayHeight, brick.displayWidth);
 
-        this.bricks.push(brick);
+        y += brick.displayWidth;
+
+        this.scene.bricks.push(brick);
         this.add(brick);
       }
     }

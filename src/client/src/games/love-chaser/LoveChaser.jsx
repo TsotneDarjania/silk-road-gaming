@@ -7,6 +7,8 @@ import { GamePlay } from "./scenes/gamePlay";
 import { Menu } from "./scenes/menu";
 
 import "../common/WebFontLoader";
+import { GamePlayInterface } from "./scenes/gameplayInterface";
+import { Boot } from "./scenes/boot";
 
 export const LoveChaser = () => {
   const canvasContainer = useRef(null);
@@ -31,8 +33,8 @@ export const LoveChaser = () => {
         height: window.innerHeight,
       },
 
-      backgroundColor: 0x62768a,
-      scene: [Preload, Menu, GamePlay],
+      backgroundColor: 0x0d1624,
+      scene: [Boot, Preload, Menu, GamePlay, GamePlayInterface],
     });
 
     return () => game.destroy(true, false);
