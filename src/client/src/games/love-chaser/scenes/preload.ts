@@ -1,16 +1,33 @@
 import { getCookie } from "../../../helper/cookie";
+import { LoadingScreen } from "../../common/loadingScreen";
 import { GameData } from "../core/gameData";
 import WebFontFile from "../helper/webFontLoader";
 
 export class Preload extends Phaser.Scene {
+  loadingScreen!: LoadingScreen;
+
   constructor() {
     super("Preload");
   }
 
+  init() {
+    /** Create loading visualization here */
+    this.loadingScreen = new LoadingScreen(this);
+  }
+
   preload() {
+    this.load.on(Phaser.Loader.Events.PROGRESS, (progress: number) => {
+      this.loadingScreen.updateFillIndicator(progress);
+    });
+
     this.load.setPath(`${process.env.PUBLIC_URL}/assets/games/love-chaser`);
     this.load.image("boyCharacter", "/images/boyCharacter.png");
     this.load.image("girlCharacter", "/images/girlCharacter.png");
+
+    //sounds
+    this.load.audio("walkSound", ["sound/effects/walk.mp3"]);
+    this.load.audio("clickSound", ["sound/effects/click.mp3"]);
+    this.load.audio("song", ["sound/song.mp3"]);
 
     this.load.image("box-1", "/images/box-1.png");
     this.load.image("bed", "/images/bed.webp");

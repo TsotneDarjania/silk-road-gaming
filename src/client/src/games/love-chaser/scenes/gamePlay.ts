@@ -22,6 +22,8 @@ export class GamePlay extends Phaser.Scene {
 
   mapBackground!: Phaser.GameObjects.Container;
   assets: Array<Phaser.Physics.Arcade.Image> = [];
+  doors: Array<Door> = [];
+  hearts: Array<GamePlayHeart> = [];
 
   gameManager!: GameManager;
 
@@ -139,7 +141,6 @@ export class GamePlay extends Phaser.Scene {
   initRoom() {
     this.createMap();
     this.addAssets();
-    this.addKeys();
     this.addClubLights();
     this.addHearts();
 
@@ -150,12 +151,12 @@ export class GamePlay extends Phaser.Scene {
   }
 
   addHearts() {
-    new GamePlayHeart(this, 320, 1260).setDepth(-1);
-    new GamePlayHeart(this, 120, 2290).setDepth(-1);
-    new GamePlayHeart(this, 3300, 1600).setDepth(-1);
-    new GamePlayHeart(this, 3500, 100).setDepth(-1);
-    new GamePlayHeart(this, 2970, 400).setDepth(-1);
-    new GamePlayHeart(this, 1400, 1060).setDepth(-1);
+    let id = 0;
+    Object.values(mapConfig.hearts).forEach((heart) => {
+      const gamePlayHeart = new GamePlayHeart(this, heart.x, heart.y, id);
+      this.hearts.push(gamePlayHeart);
+      id += 1;
+    });
   }
 
   addColliderDetectinos() {
@@ -375,30 +376,14 @@ export class GamePlay extends Phaser.Scene {
     this.assets.push(bar_5);
   }
 
-  addKeys() {
-    const door_1 = new Door(this, 1015, 2500);
-    const key_1 = new MapKey(this, 1100, 2300, door_1);
-
-    const door_2 = new Door(this, 1013, 1590);
-    const key_2 = new MapKey(this, 1100, 1690, door_2);
-
-    const door_3 = new Door(this, 1773, 1270);
-    const key_3 = new MapKey(this, 1970, 1180, door_3);
-
-    const door_4 = new Door(this, 2373, 2170);
-    const key_4 = new MapKey(this, 2170, 2320, door_4);
-
-    const door_5 = new Door(this, 2803, 1500);
-    const key_5 = new MapKey(this, 3000, 1520, door_5);
-
-    const door_6 = new Door(this, 3460, 1570);
-    const key_6 = new MapKey(this, 3370, 1690, door_6);
-
-    const door_7 = new Door(this, 2742, 770);
-    const key_7 = new MapKey(this, 2630, 870, door_7);
-
-    const door_8 = new Door(this, 1267, 870);
-    const key_8 = new MapKey(this, 1190, 750, door_8);
+  addDoors() {
+    let id = 0;
+    Object.values(mapConfig.doors).forEach((doorConfig) => {
+      const door = new Door(this, doorConfig.door.x, doorConfig.door.y, id);
+      new MapKey(this, doorConfig.doorKey.x, doorConfig.doorKey.y, door);
+      this.doors.push(door);
+      id += 1;
+    });
   }
 
   createMap() {
@@ -420,29 +405,6 @@ export class GamePlay extends Phaser.Scene {
         border.y
       );
     });
-  }
-
-  addMapBackground() {
-    this.mapBackground = this.add.container(0, 0).setDepth(-10);
-
-    let x = 0;
-    let y = 0;
-
-    for (let i = 0; i < 35; i++) {
-      const ground = this.add
-        .image(x, y, "floor")
-        .setTint(0x3c608f)
-        .setDepth(-10)
-        .setOrigin(0);
-      this.mapBackground.add(ground);
-
-      x += ground.displayWidth;
-
-      if (i === 6 || i === 13 || i === 20 || i === 27) {
-        x = 0;
-        y += ground.displayHeight;
-      }
-    }
   }
 
   update() {
@@ -469,5 +431,28 @@ export class GamePlay extends Phaser.Scene {
 
   setCameraSettings() {
     this.cameras.main.startFollow(this.player, false, 0.09, 0.09);
+  }
+
+  addMapBackground() {
+    this.mapBackground = this.add.container(0, 0).setDepth(-10);
+
+    let x = 0;
+    let y = 0;
+
+    for (let i = 0; i < 35; i++) {
+      const ground = this.add
+        .image(x, y, "floor")
+        .setTint(0x3c608f)
+        .setDepth(-10)
+        .setOrigin(0);
+      this.mapBackground.add(ground);
+
+      x += ground.displayWidth;
+
+      if (i === 6 || i === 13 || i === 20 || i === 27) {
+        x = 0;
+        y += ground.displayHeight;
+      }
+    }
   }
 }

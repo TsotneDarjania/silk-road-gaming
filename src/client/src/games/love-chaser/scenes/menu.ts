@@ -22,6 +22,8 @@ export class Menu extends Phaser.Scene {
 
   lobby!: Lobby;
 
+  clickSound!: Phaser.Sound.BaseSound;
+
   constructor() {
     super("Menu");
   }
@@ -44,6 +46,10 @@ export class Menu extends Phaser.Scene {
     this.addMenuBackgroundImage();
     this.createMenuButtons();
     this.createBackButton();
+
+    this.clickSound = this.sound.add("clickSound", {
+      volume: 0.2,
+    });
   }
 
   checkUserRoom() {
@@ -100,6 +106,8 @@ export class Menu extends Phaser.Scene {
         this.characterOptionModal.setVisible(false);
         this.roomList.setVisible(false);
         this.backButton.setVisible(false);
+
+        this.clickSound.play();
       })
       .setVisible(false);
   }
@@ -115,6 +123,8 @@ export class Menu extends Phaser.Scene {
       this.backButton.setVisible(true);
       this.menuButtonsContainer.setVisible(false);
       this.characterOptionModal.open();
+
+      this.clickSound.play();
     });
 
     const joinButton = new MenuButton(
@@ -127,6 +137,8 @@ export class Menu extends Phaser.Scene {
       this.backButton.setVisible(true);
       this.menuButtonsContainer.setVisible(false);
       this.roomList.setVisible(true);
+
+      this.clickSound.play();
     });
 
     this.menuButtonsContainer.add([createButton, joinButton]);

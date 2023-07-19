@@ -21,6 +21,16 @@ export class GamePlayInterface extends Phaser.Scene {
 
   gamePlayScene!: GamePlay;
 
+  heart_1!: Phaser.GameObjects.Image;
+  heart_2!: Phaser.GameObjects.Image;
+  heart_3!: Phaser.GameObjects.Image;
+
+  finishModal!: Phaser.GameObjects.Container;
+  finishTitle!: Phaser.GameObjects.Text;
+  finishText!: Phaser.GameObjects.Text;
+
+  clickSound!: Phaser.Sound.BaseSound;
+
   constructor() {
     super("GamePlayInterface");
   }
@@ -34,12 +44,94 @@ export class GamePlayInterface extends Phaser.Scene {
     this.createTimerText();
 
     this.createDoorButtons();
+
+    this.addGuestHeart();
+    this.createFinishModal();
+
+    this.clickSound = this.sound.add("clickSound", {
+      volume: 0.2,
+    });
+  }
+
+  createFinishModal() {
+    this.finishModal = this.add.container(0, 0).setDepth(500).setVisible(false);
+
+    this.finishTitle = this.add
+      .text(
+        this.game.canvas.width / 2,
+        calculatePercentage(20, this.game.canvas.height),
+        "",
+        {
+          align: "center",
+          fontSize: "70px",
+          color: "#FFFBFA",
+          fontFamily: "Bungee",
+          backgroundColor: "#1C1A38",
+        }
+      )
+      .setOrigin(0.5);
+
+    this.finishText = this.add
+      .text(
+        this.game.canvas.width / 2,
+        calculatePercentage(35, this.game.canvas.height),
+        "",
+        {
+          align: "center",
+          fontSize: "40px",
+          color: "#FFFBFA",
+          fontFamily: "Bungee",
+          backgroundColor: "#1C1A38",
+        }
+      )
+      .setOrigin(0.5);
+  }
+
+  addGuestHeart() {
+    this.heart_1 = this.add
+      .image(0, 0, "gameplay-heart")
+      .setScale(0.04)
+      .setOrigin(1, 0.5)
+      .setVisible(false);
+    this.heart_1.setPosition(
+      this.game.canvas.width -
+        this.guestText.displayWidth -
+        calculatePercentage(2, this.game.canvas.width),
+      calculatePercentage(10, this.game.canvas.height)
+    );
+
+    this.heart_2 = this.add
+      .image(0, 0, "gameplay-heart")
+      .setScale(0.04)
+      .setOrigin(1, 0.5)
+      .setVisible(false);
+    this.heart_2.setPosition(
+      this.game.canvas.width -
+        this.guestText.displayWidth -
+        calculatePercentage(2, this.game.canvas.width) -
+        this.heart_1.displayWidth,
+      calculatePercentage(10, this.game.canvas.height)
+    );
+
+    this.heart_3 = this.add
+      .image(0, 0, "gameplay-heart")
+      .setScale(0.04)
+      .setOrigin(1, 0.5)
+      .setVisible(false);
+    this.heart_3.setPosition(
+      this.game.canvas.width -
+        this.guestText.displayWidth -
+        calculatePercentage(2, this.game.canvas.width) -
+        this.heart_1.displayWidth * 2,
+      calculatePercentage(10, this.game.canvas.height)
+    );
   }
 
   createDoorButtons() {
     this.openDoorButton = new GamePlayButton(this, 0, 0, "Open", "#67C732").on(
       Phaser.Input.Events.POINTER_DOWN,
       () => {
+        this.clickSound.play();
         this.gamePlayScene.currentDoor.open();
         this.openDoorButton.setVisible(false);
       }
@@ -60,6 +152,7 @@ export class GamePlayInterface extends Phaser.Scene {
       "Close",
       "#67C732"
     ).on(Phaser.Input.Events.POINTER_DOWN, () => {
+      this.clickSound.play();
       this.gamePlayScene.currentDoor.close();
       this.closeDoorButton.setVisible(false);
     });
@@ -98,10 +191,8 @@ export class GamePlayInterface extends Phaser.Scene {
     this.shadowImage = this.add
       .image(-500, -500, "default-image")
       .setOrigin(0)
-
-      .setTint(0x160d24)
-      .setAlpha(0.7)
-      .setAlpha(0)
+      .setTint(0x103240)
+      .setAlpha(0.5)
       .setDisplaySize(this.game.canvas.width * 2, this.game.canvas.height * 2);
   }
 

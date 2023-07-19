@@ -9,6 +9,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   character!: string;
 
+  walkSound!: Phaser.Sound.BaseSound;
+
   constructor(public scene: GamePlay, x: number, y: number, key: string) {
     super(scene, x, y, key);
     scene.physics.add.existing(this);
@@ -26,6 +28,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   init() {
     this.setDisplaySize(100, 100);
     this.addController();
+    this.addSoundEffects();
 
     this.setSize(43, 30);
     this.setOffset(9, 48);
@@ -39,11 +42,27 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
+  addSoundEffects() {
+    this.walkSound = this.scene.sound.add("walkSound", {
+      volume: 0.1,
+      loop: true,
+      rate: 2.5,
+    });
+  }
+
   addController() {
     const cursors = this.scene.input.keyboard.createCursorKeys();
 
     this.scene.events.on("update", () => {
       this.setVelocity(0);
+
+      if (this.direction !== "none" && this.walkSound.isPlaying === false) {
+        this.walkSound.play();
+      }
+
+      if (this.direction === "none" && this.walkSound.isPlaying) {
+        this.walkSound.stop();
+      }
 
       const { left, right, up, down } = cursors;
 

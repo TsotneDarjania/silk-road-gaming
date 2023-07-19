@@ -8,7 +8,7 @@ export class Door extends Phaser.Physics.Arcade.Image {
 
   collider!: Phaser.Physics.Arcade.Collider;
 
-  constructor(public scene: GamePlay, x: number, y: number) {
+  constructor(public scene: GamePlay, x: number, y: number, public id: number) {
     super(scene, x, y, "default-image");
     scene.add.existing(this);
     scene.physics.add.existing(this);
@@ -22,16 +22,24 @@ export class Door extends Phaser.Physics.Arcade.Image {
     this.setDisplaySize(10, 140);
     this.setTint(this.redColor);
 
-    this.collider = this.scene.physics.add.collider(this, this.scene.player);
+    this.collider = this.scene.physics.add.collider(this, [
+      this.scene.player,
+      this.scene.onlinePlayer,
+    ]);
   }
 
   close() {
+    this.scene.gameManager.ably.sendEvent(["doorClose", this.id.toString()]);
     this.isOpen = false;
     this.setTint(this.redColor);
-    this.collider = this.scene.physics.add.collider(this, this.scene.player);
+    this.collider = this.scene.physics.add.collider(this, [
+      this.scene.player,
+      this.scene.onlinePlayer,
+    ]);
   }
 
   open() {
+    this.scene.gameManager.ably.sendEvent(["doorOpen", this.id.toString()]);
     this.isOpen = true;
     this.setTint(this.greenColor);
     this.collider.destroy();

@@ -1,7 +1,13 @@
+import { GameData } from "../core/gameData";
 import { GamePlay } from "../scenes/gamePlay";
+import { GamePlayInterface } from "../scenes/gameplayInterface";
 
 export class GamePlayHeart extends Phaser.Physics.Arcade.Image {
-  constructor(scene: GamePlay, x: number, y: number) {
+  collider!: Phaser.Physics.Arcade.Collider;
+
+  isDestroy = false;
+
+  constructor(public scene: GamePlay, x: number, y: number, public id: number) {
     super(scene, x, y, "gameplay-heart");
     scene.add.existing(this);
     scene.physics.add.existing(this);
@@ -11,8 +17,48 @@ export class GamePlayHeart extends Phaser.Physics.Arcade.Image {
 
   init() {
     this.setScale(0.04);
-    this.setDepth(300);
+    this.setDepth(-1);
     this.addAnimation();
+    this.addCollisionDetection();
+  }
+
+  addCollisionDetection() {
+    this.collider = this.scene.physics.add.overlap(
+      this,
+      this.scene.player,
+      () => {
+        if (this.scene.gameManager.isOwner) return;
+        this.addHeartScore();
+      }
+    );
+  }
+
+  addHeartScore() {
+    this.isDestroy = true;
+    this.scene.gameManager.ably.sendEvent(["addHeart", this.id.toString()]);
+
+    this.setVisible(false);
+    this.collider.destroy();
+    GameData.guestHeartScore += 1;
+
+    const gamePlayInterfaceScene = this.scene.scene.get(
+      "GamePlayInterface"
+    ) as GamePlayInterface;
+
+    if (GameData.guestHeartScore === 1) {
+      gamePlayInterfaceScene.heart_1.setVisible(true);
+    }
+    if (GameData.guestHeartScore === 2) {
+      gamePlayInterfaceScene.heart_1.setVisible(true);
+      gamePlayInterfaceScene.heart_2.setVisible(true);
+    }
+    if (GameData.guestHeartScore === 3) {
+      gamePlayInterfaceScene.heart_1.setVisible(true);
+      gamePlayInterfaceScene.heart_2.setVisible(true);
+      gamePlayInterfaceScene.heart_3.setVisible(true);
+    }
+
+    this.scene.gameManager.ably.sendEvent(["gameFinish", "guest"]);
   }
 
   addAnimation() {

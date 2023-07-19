@@ -61,6 +61,7 @@ export class CharacterOptions extends Phaser.GameObjects.Container {
         boyCharacter.setScale(1);
       })
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
+        this.scene.clickSound.play();
         this.scene.lobby.createRoom(GameData.username, "boy");
       });
 
@@ -84,6 +85,7 @@ export class CharacterOptions extends Phaser.GameObjects.Container {
         girlCharacter.setScale(1);
       })
       .on(Phaser.Input.Events.POINTER_DOWN, () => {
+        this.scene.clickSound.play();
         this.scene.lobby.createRoom(GameData.username, "girl");
       });
 

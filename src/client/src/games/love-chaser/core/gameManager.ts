@@ -12,6 +12,8 @@ import { GamePlayInterface } from "../scenes/gameplayInterface";
 export class GameManager {
   ably!: myAbly;
 
+  gameIsFinished = false;
+
   ownerPositionX = 1590;
   ownerPositionY = 2380;
 
@@ -57,6 +59,30 @@ export class GameManager {
     );
   }
 
+  initGame(roomData: any) {
+    GameData.owner = roomData.owner;
+    GameData.guest = roomData.guest;
+    GameData.ownerCharacter = roomData.ownerCharacter;
+    GameData.guestCharacter = roomData.guestCharacter;
+
+    if (
+      generateIdToCorrectFormat(transliterate(GameData.username)) ===
+      GameData.owner
+    )
+      this.isOwner = true;
+
+    this.initPlayer();
+    this.scene.initRoom();
+    if (this.scene.gameManager.isOwner) {
+      this.gamePlayInterface.gameStartModal.setVisible(true);
+    }
+    this.makeAblyConnection();
+  }
+
+  makeAblyConnection() {
+    this.ably.makeConnection([GameData.username]);
+  }
+
   /* 
   If someone is logged in to the room, the room should
   not be deleted due to a cron job on the Appwrite service
@@ -76,26 +102,6 @@ export class GameManager {
     }, 60 * 1000);
   }
 
-  initGame(roomData: any) {
-    GameData.owner = roomData.owner;
-    GameData.guest = roomData.guest;
-    GameData.ownerCharacter = roomData.ownerCharacter;
-    GameData.guestCharacter = roomData.guestCharacter;
-
-    if (GameData.username === GameData.owner) this.isOwner = true;
-
-    this.initPlayer();
-    this.scene.initRoom();
-    if (this.scene.gameManager.isOwner) {
-      this.gamePlayInterface.gameStartModal.setVisible(true);
-    }
-    this.makeAblyConnection();
-  }
-
-  makeAblyConnection() {
-    this.ably.makeConnection([GameData.username]);
-  }
-
   /* 
   This function happens automatically when second online 
   player enters the room, ie when the match is ready to start 
@@ -108,17 +114,25 @@ export class GameManager {
     this.isInitMatch = true;
 
     this.gamePlayInterface.gameStartModal.setVisible(false);
-    this.gamePlayInterface.ownerText.setText(
-      `${GameData.owner} : ${GameData.ownerScore}`
-    );
-    this.gamePlayInterface.guestText.setText(
-      `${GameData.guest} : ${GameData.guestScore}`
-    );
+    this.gamePlayInterface.ownerText.setText(`${GameData.owner}`);
+    this.gamePlayInterface.guestText.setText(`${GameData.guest}`);
     this.gamePlayInterface.gameIndicators.setVisible(true);
     this.gamePlayInterface.timerText.setVisible(true);
 
     this.startMatchTimer();
     this.preparePlayersForStart();
+    this.addSong();
+    this.scene.addDoors();
+  }
+
+  addSong() {
+    const song = this.scene.sound.add("song", {
+      volume: 0.07,
+      loop: true,
+      rate: 1,
+    });
+
+    song.play();
   }
 
   preparePlayersForStart() {
@@ -148,8 +162,6 @@ export class GameManager {
     if (this.isStartMtch) return;
     this.isStartMtch = true;
 
-    console.log("start match");
-
     this.scene.player.canMotion = true;
     this.gamePlayInterface.timerText.setVisible(false);
     this.gamePlayInterface.shadowImage.setVisible(false);
@@ -168,21 +180,6 @@ export class GameManager {
 
       this.sendPlayerDirection();
     });
-  }
-
-  sendPlayerPositions() {
-    this.ably.snedPosiions([
-      GameData.username,
-      this.scene.player.x,
-      this.scene.player.y,
-    ]);
-  }
-
-  sendPlayerDirection() {
-    if (this.scene.player.direction !== this.playerLastDirection) {
-      this.playerLastDirection = this.scene.player.direction;
-      this.ably.snedDirection([GameData.username, this.scene.player.direction]);
-    }
   }
 
   initPlayer() {
@@ -229,8 +226,27 @@ export class GameManager {
     this.scene.physics.add.collider(
       this.scene.onlinePlayer,
       this.scene.player,
-      () => {}
+      () => {
+        if (this.gameIsFinished) return;
+        this.gameIsFinished = true;
+        this.ably.sendEvent(["gameFinish", "owner"]);
+      }
     );
+  }
+
+  sendPlayerPositions() {
+    this.ably.snedPosiions([
+      GameData.username,
+      this.scene.player.x,
+      this.scene.player.y,
+    ]);
+  }
+
+  sendPlayerDirection() {
+    if (this.scene.player.direction !== this.playerLastDirection) {
+      this.playerLastDirection = this.scene.player.direction;
+      this.ably.snedDirection([GameData.username, this.scene.player.direction]);
+    }
   }
 
   getOnlinePlayerDirection(user: string, direction: string) {
@@ -243,6 +259,47 @@ export class GameManager {
     if (user !== GameData.username) {
       this.scene.onlinePlayer.x = Number(x);
       this.scene.onlinePlayer.y = Number(y);
+    }
+  }
+
+  gameFinish(winner: string) {
+    this.scene.player.canMotion = false;
+    this.scene.player.direction = "none";
+
+    if (winner === "guest") {
+      this.gamePlayInterface.finishTitle.setText("Winner Is " + GameData.guest);
+      this.gamePlayInterface.finishModal.setVisible(true);
+
+      if (this.isOwner) {
+        this.gamePlayInterface.finishText.setText([
+          "Unfortunately, you didn't manage to keep your relationship,",
+          "your other half chose someone else...",
+          "However, don't lose heart, you're still young!",
+        ]);
+      } else {
+        this.gamePlayInterface.finishText.setText([
+          "happy ! You've gotten out of a toxic relationship",
+          "now you're free and happy as a bird",
+        ]);
+      }
+    }
+
+    if (winner === "owner") {
+      this.gamePlayInterface.finishTitle.setText("Winner Is " + GameData.owner);
+      this.gamePlayInterface.finishModal.setVisible(true);
+
+      if (this.isOwner) {
+        this.gamePlayInterface.finishText.setText([
+          "Congratulations, you have won back the heart",
+          "of your other half, now you are together again",
+          "and not even the devil can separate your relationship",
+        ]);
+      } else {
+        this.gamePlayInterface.finishText.setText([
+          "Unfortunately, you will have to accept",
+          "fate, you will always be together",
+        ]);
+      }
     }
   }
 }

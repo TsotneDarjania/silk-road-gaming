@@ -66,6 +66,31 @@ export class myAbly {
       if (event === "startMatch") {
         this.gameManager.startMatch();
       }
+
+      if (event === "doorOpen") {
+        const doorId = data.data[1];
+        if (this.gameManager.scene.doors[doorId].isOpen === false) {
+          this.gameManager.scene.doors[doorId].open();
+        }
+      }
+      if (event === "doorClose") {
+        const doorId = data.data[1];
+        if (this.gameManager.scene.doors[doorId].isOpen === true) {
+          this.gameManager.scene.doors[doorId].close();
+        }
+      }
+
+      if (event === "addHeart") {
+        const heartId = data.data[1];
+        if (this.gameManager.scene.hearts[heartId].isDestroy === false) {
+          this.gameManager.scene.hearts[heartId].addHeartScore();
+        }
+      }
+
+      if (event === "gameFinish") {
+        const winner = data.data[1];
+        this.gameManager.gameFinish(winner);
+      }
     });
 
     //direction
