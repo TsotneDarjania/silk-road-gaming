@@ -56,9 +56,9 @@ export class GamePlayHeart extends Phaser.Physics.Arcade.Image {
       gamePlayInterfaceScene.heart_1.setVisible(true);
       gamePlayInterfaceScene.heart_2.setVisible(true);
       gamePlayInterfaceScene.heart_3.setVisible(true);
-    }
 
-    this.scene.gameManager.ably.sendEvent(["gameFinish", "guest"]);
+      this.scene.gameManager.ably.sendEvent(["gameFinish", "guest"]);
+    }
   }
 
   addAnimation() {
