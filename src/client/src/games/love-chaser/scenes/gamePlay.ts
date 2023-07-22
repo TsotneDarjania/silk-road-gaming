@@ -10,14 +10,17 @@ import { Door } from "../gameObjects/door";
 import { ClubLight } from "../gameObjects/clubLight";
 import { GamePlayHeart } from "../gameObjects/gamePlayHeart";
 import { Border, HideZone, mapConfig } from "../config/mapConfig";
+import { MenuButton } from "../components/buttons/menuButton";
+import { GamePlayButton } from "../components/buttons/gamePlayButton";
+import { screenSize } from "../config/layoutConfig";
 
 export class GamePlay extends Phaser.Scene {
-  player!: Player;
+  public player!: Player;
   onlinePlayer!: OnlinePlayer;
 
   interface!: GamePlayInterface;
 
-  cameraZoom = 1;
+  cameraZoom = screenSize().gamePlay.camera.minZoom;
   bricks: Array<Phaser.Physics.Arcade.Image> = [];
 
   mapBackground!: Phaser.GameObjects.Container;
@@ -150,6 +153,11 @@ export class GamePlay extends Phaser.Scene {
     this.updateProcess = true;
   }
 
+  update() {
+    if (this.updateProcess === false) return;
+    this.updateCameraZoom();
+  }
+
   addHearts() {
     let id = 0;
     Object.values(mapConfig.hearts).forEach((heart) => {
@@ -160,8 +168,20 @@ export class GamePlay extends Phaser.Scene {
   }
 
   addColliderDetectinos() {
-    this.physics.add.collider(this.player, this.assets, () => {});
-    this.physics.add.collider(this.player, this.bricks, () => {});
+    this.physics.add.collider(
+      this.player,
+      this.assets,
+      () => {},
+      undefined,
+      this
+    );
+    this.physics.add.collider(
+      this.player,
+      this.bricks,
+      () => {},
+      undefined,
+      this
+    );
   }
 
   addClubLights() {
@@ -407,21 +427,19 @@ export class GamePlay extends Phaser.Scene {
     });
   }
 
-  update() {
-    if (this.updateProcess === false) return;
-    this.updateCameraZoom();
-  }
-
   updateCameraZoom() {
+    const minZoom = screenSize().gamePlay.camera.minZoom;
+    const maxZoom = screenSize().gamePlay.camera.maxZoom;
+
     if (
       this.player.body.velocity.x !== 0 ||
       this.player.body.velocity.y !== 0
     ) {
-      if (this.cameraZoom > 0.9) {
+      if (this.cameraZoom > minZoom) {
         this.cameraZoom -= 0.003;
       }
     } else {
-      if (this.cameraZoom < 1) {
+      if (this.cameraZoom < maxZoom) {
         this.cameraZoom += 0.005;
       }
     }

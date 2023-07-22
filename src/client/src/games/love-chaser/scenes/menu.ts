@@ -9,7 +9,7 @@ import { ApiEnums } from "../../../enums/apiEnums";
 import { generateIdToCorrectFormat } from "../../../helper/helperFunctions";
 import { transliterate } from "transliteration";
 import { GameData } from "../core/gameData";
-import { response } from "express";
+import { screenSize } from "../config/layoutConfig";
 
 export class Menu extends Phaser.Scene {
   characterOptionModal!: CharacterOptions;
@@ -92,7 +92,10 @@ export class Menu extends Phaser.Scene {
         "back-button"
       )
       .setOrigin(0)
-      .setDisplaySize(110, 110)
+      .setDisplaySize(
+        screenSize().backButton.width,
+        screenSize().backButton.height
+      )
       .setTint(0xcdbeb4)
       .setInteractive({ cursor: "pointer" })
       .on(Phaser.Input.Events.POINTER_OVER, () => {
@@ -117,7 +120,10 @@ export class Menu extends Phaser.Scene {
       this,
       this.game.canvas.width / 2,
       this.game.canvas.height / 2 -
-        calculatePercentage(5, this.game.canvas.height),
+        calculatePercentage(
+          screenSize().creaeteButton.y,
+          this.game.canvas.height
+        ),
       "Create Room"
     ).on(Phaser.Input.Events.POINTER_DOWN, () => {
       this.backButton.setVisible(true);
@@ -131,7 +137,7 @@ export class Menu extends Phaser.Scene {
       this,
       this.game.canvas.width / 2,
       this.game.canvas.height / 2 +
-        calculatePercentage(5, this.game.canvas.height),
+        calculatePercentage(screenSize().joinButton.y, this.game.canvas.height),
       "Join Room"
     ).on(Phaser.Input.Events.POINTER_DOWN, () => {
       this.backButton.setVisible(true);

@@ -39,6 +39,7 @@ export class Preload extends Phaser.Scene {
     this.load.image("light-effect", "/images/light-effect.png");
     this.load.image("bar-top-part", "/images/bar-top-part.png");
     this.load.image("bar-bottom-part", "/images/bar-bottom-part.png");
+    this.load.image("arrow", "/images/arrow.png");
 
     this.load.image("boy-default", "/images/boy-default.png");
     this.load.image("girl-default", "/images/girl-default.png");
