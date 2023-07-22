@@ -35,11 +35,7 @@ const LatestGame = React.memo(() => {
           <div className={`${style.leftContainer_Div} ${style.descriptionDiv}`}>
             <p>
               <span> Short Description : </span>
-              {/* {gamesInfo.lastGame.shortDescription} */}
-              Our designer strongly dislikes using Lorem Ipsum text, considering
-              it distasteful and unappealing. As a tribute to their preference,
-              we have chosen to replace Lorem Ipsum with the following text
-              whenever we need placeholder contents
+              {gamesInfo.lastGame.shortDescription}
             </p>
           </div>
         </div>

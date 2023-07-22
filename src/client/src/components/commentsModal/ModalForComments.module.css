@@ -53,6 +53,7 @@
 .date{
   position: absolute;
   right: 10px;
+  font-size: 18px;
   color: white;
 }
 
@@ -123,5 +124,8 @@
   .commentSendButton{
     padding-inline: 20px;
     font-size: 22px;
+  }
+  .date{
+    font-size: 16px;
   }
 }

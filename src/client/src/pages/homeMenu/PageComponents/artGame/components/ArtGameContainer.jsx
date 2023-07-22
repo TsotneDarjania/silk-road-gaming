@@ -3,7 +3,6 @@ import style from "./artGameContainer.module.css";
 import gamesInfo from "../../../../../data/gamesInfo.json";
 import gameVideo from "../../../videos/1.mp4";
 import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "react-icons/ai";
-import { MdLeaderboard } from "react-icons/md";
 import ModalForComments from "../../../../../components/commentsModal/ModalForComments";
 import SliderComponent from "../../../../../components/Slider/SliderComponent";
 import image from "../../../images/background.jpg";
@@ -18,7 +17,6 @@ import Leaderboard from "../../../../../components/leaderboard/Leaderboard";
 const ArtGameContainer = (props) => {
   const [showCommentsModal, setShowCommentsModal] = useState(false);
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
-  const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
   const images = [image, image, image, image, image, image];
 
   const pageContext = useContext(PageContext);
@@ -62,8 +60,8 @@ const ArtGameContainer = (props) => {
           <Indicators
             gameName={props.name}
             setShowCommentsModal={setShowCommentsModal}
+            setShowLeaderBoardModal={props.setShowLeaderBoardModal}
           >
-            <MdLeaderboard onClick={() => setShowLeaderBoardModal(true)} />
           </Indicators>
         </div>
       </div>
@@ -111,8 +109,8 @@ const ArtGameContainer = (props) => {
           gameName={props.name}
         />
       )}
-      {showLeaderBoardModal && (
-        <Leaderboard setShowLeaderBoardModal={setShowLeaderBoardModal} />
+      {props.showLeaderBoardModal && (
+        <Leaderboard setShowLeaderBoardModal={props.setShowLeaderBoardModal} />
       )}
     </div>
   );
