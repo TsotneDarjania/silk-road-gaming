@@ -19,7 +19,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.character = scene.gameManager.isOwner
       ? GameData.ownerCharacter
       : GameData.guestCharacter;
-
     this.init();
 
     this.play(`${this.character}-down-idle`);
@@ -40,6 +39,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.setSize(37, 30);
       this.setOffset(16, 48);
     }
+
+    if (this.scene.gameManager.isOwner) this.speed = 270;
   }
 
   addSoundEffects() {
@@ -167,5 +168,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.play(`${this.character}-down-idle`);
       }
     );
+  }
+
+  stopPlayer() {
+    this.direction = "none";
+    this.play(`${this.character}-down-idle`);
   }
 }

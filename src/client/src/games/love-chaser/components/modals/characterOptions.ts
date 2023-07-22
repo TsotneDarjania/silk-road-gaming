@@ -1,4 +1,5 @@
 import { calculatePercentage } from "../../../tbilisi-batumi-1/helper/tatukaMath";
+import { screenSize } from "../../config/layoutConfig";
 import { GameData } from "../../core/gameData";
 import { Menu } from "../../scenes/menu";
 
@@ -30,11 +31,14 @@ export class CharacterOptions extends Phaser.GameObjects.Container {
     const title = this.scene.add
       .text(
         0,
-        -calculatePercentage(12, this.scene.game.canvas.height),
+        -calculatePercentage(
+          screenSize().characterOptionsModal.title.y,
+          this.scene.game.canvas.height
+        ),
         "Select Your Character",
         {
           align: "center",
-          fontSize: "23px",
+          fontSize: screenSize().characterOptionsModal.title.fontSize,
           color: "#65D7FF",
           fontFamily: "Bungee",
         }
@@ -47,10 +51,14 @@ export class CharacterOptions extends Phaser.GameObjects.Container {
   addBoyCharacterButton() {
     const boyCharacter = this.scene.add
       .image(
-        -calculatePercentage(4, this.scene.game.canvas.width),
+        -calculatePercentage(
+          screenSize().characterOptionsModal.boy.x,
+          this.scene.game.canvas.width
+        ),
         0,
         "boy-default"
       )
+      .setScale(screenSize().characterOptionsModal.boy.scale)
       .setInteractive({
         cursor: "pointer",
       })
@@ -71,10 +79,14 @@ export class CharacterOptions extends Phaser.GameObjects.Container {
   addGirlCharacterButton() {
     const girlCharacter = this.scene.add
       .image(
-        calculatePercentage(4, this.scene.game.canvas.width),
+        calculatePercentage(
+          screenSize().characterOptionsModal.girl.x,
+          this.scene.game.canvas.width
+        ),
         0,
         "girl-default"
       )
+      .setScale(screenSize().characterOptionsModal.girl.scale)
       .setInteractive({
         cursor: "pointer",
       })

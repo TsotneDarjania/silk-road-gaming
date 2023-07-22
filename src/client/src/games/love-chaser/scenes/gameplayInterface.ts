@@ -3,6 +3,8 @@ import { GamePlay } from "./gamePlay";
 import { MenuButton } from "../components/buttons/menuButton";
 import { GameData } from "../core/gameData";
 import { GamePlayButton } from "../components/buttons/gamePlayButton";
+import { Player } from "../characters/player";
+import { screenSize } from "../config/layoutConfig";
 
 export class GamePlayInterface extends Phaser.Scene {
   gameStartText!: Phaser.GameObjects.Text;
@@ -31,6 +33,8 @@ export class GamePlayInterface extends Phaser.Scene {
 
   clickSound!: Phaser.Sound.BaseSound;
 
+  canPressEnter = false;
+
   constructor() {
     super("GamePlayInterface");
   }
@@ -52,6 +56,107 @@ export class GamePlayInterface extends Phaser.Scene {
     this.clickSound = this.sound.add("clickSound", {
       volume: 0.2,
     });
+
+    this.input.keyboard.on("keydown", (event: any) => {
+      if (
+        event.key === "Enter" ||
+        event.code === "Enter" ||
+        event.keyCode === 13
+      ) {
+        if (this.canPressEnter === false) return;
+
+        if (this.gamePlayScene.currentDoor.isOpen) {
+          this.clickSound.play();
+          this.gamePlayScene.currentDoor.close();
+          this.closeDoorButton.setVisible(false);
+        } else {
+          this.clickSound.play();
+          this.gamePlayScene.currentDoor.open();
+          this.openDoorButton.setVisible(false);
+        }
+      }
+    });
+
+    if (window.innerWidth < 1000) {
+      this.addMobileController();
+    }
+  }
+
+  addMobileController() {
+    const topButton = this.add
+      .image(0, 0, "arrow")
+      .setOrigin(1)
+      .setScale(0.6)
+      .setRotation(-1.57)
+      .setInteractive()
+      .on(Phaser.Input.Events.POINTER_OVER, () => {
+        this.gamePlayScene.player.direction = "up";
+        topButton.setTint(0x1fe817);
+      })
+      .on(Phaser.Input.Events.POINTER_OUT, () => {
+        this.gamePlayScene.player.stopPlayer();
+        topButton.setTint(0xffffff);
+      });
+    topButton.setPosition(
+      this.game.canvas.width - topButton.width,
+      this.game.canvas.height - topButton.height - 60
+    );
+
+    const bottomButton = this.add
+      .image(0, 0, "arrow")
+      .setOrigin(1)
+      .setScale(0.6)
+      .setRotation(1.57)
+      .setInteractive()
+      .on(Phaser.Input.Events.POINTER_OVER, () => {
+        this.gamePlayScene.player.direction = "down";
+        bottomButton.setTint(0x1fe817);
+      })
+      .on(Phaser.Input.Events.POINTER_OUT, () => {
+        this.gamePlayScene.player.stopPlayer();
+        bottomButton.setTint(0xffffff);
+      });
+    bottomButton.setPosition(
+      this.game.canvas.width - topButton.width - 53,
+      this.game.canvas.height - bottomButton.height + 60
+    );
+
+    const rightButton = this.add
+      .image(0, 0, "arrow")
+      .setOrigin(1)
+      .setScale(0.6)
+      .setInteractive()
+      .on(Phaser.Input.Events.POINTER_OVER, () => {
+        this.gamePlayScene.player.direction = "right";
+        rightButton.setTint(0x1fe817);
+      })
+      .on(Phaser.Input.Events.POINTER_OUT, () => {
+        this.gamePlayScene.player.stopPlayer();
+        rightButton.setTint(0xffffff);
+      });
+    rightButton.setPosition(
+      this.game.canvas.width - topButton.width + 60,
+      this.game.canvas.height - bottomButton.height + 28
+    );
+
+    const leftButton = this.add
+      .image(0, 0, "arrow")
+      .setOrigin(1)
+      .setScale(0.6)
+      .setFlipX(true)
+      .setInteractive()
+      .on(Phaser.Input.Events.POINTER_OVER, () => {
+        this.gamePlayScene.player.direction = "left";
+        leftButton.setTint(0x1fe817);
+      })
+      .on(Phaser.Input.Events.POINTER_OUT, () => {
+        this.gamePlayScene.player.stopPlayer();
+        leftButton.setTint(0xffffff);
+      });
+    leftButton.setPosition(
+      this.game.canvas.width - topButton.width - 62,
+      this.game.canvas.height - bottomButton.height + 28
+    );
   }
 
   addEnterListener() {
@@ -86,13 +191,15 @@ export class GamePlayInterface extends Phaser.Scene {
         "",
         {
           align: "center",
-          fontSize: "70px",
+          fontSize: screenSize().gamePlay.finishModal.title.fontSize,
           color: "#FFFBFA",
           fontFamily: "Bungee",
           backgroundColor: "#1C1A38",
         }
       )
       .setOrigin(0.5);
+
+    this.finishModal.add(this.finishTitle);
 
     this.finishText = this.add
       .text(
@@ -101,13 +208,27 @@ export class GamePlayInterface extends Phaser.Scene {
         "",
         {
           align: "center",
-          fontSize: "40px",
+          fontSize: screenSize().gamePlay.finishModal.text.fontSize,
           color: "#FFFBFA",
           fontFamily: "Bungee",
           backgroundColor: "#1C1A38",
         }
       )
       .setOrigin(0.5);
+
+    this.finishModal.add(this.finishText);
+
+    const gamePlayButton = new GamePlayButton(
+      this,
+      this.game.canvas.width / 2,
+      calculatePercentage(65, this.game.canvas.height),
+      "Again",
+      "#F58953"
+    ).on(Phaser.Input.Events.POINTER_DOWN, () => {
+      window.location.reload();
+    });
+
+    this.finishModal.add(gamePlayButton);
   }
 
   addGuestHeart() {
@@ -120,7 +241,10 @@ export class GamePlayInterface extends Phaser.Scene {
       this.game.canvas.width -
         this.guestText.displayWidth -
         calculatePercentage(2, this.game.canvas.width),
-      calculatePercentage(10, this.game.canvas.height)
+      calculatePercentage(
+        screenSize().gamePlay.heart.y,
+        this.game.canvas.height
+      )
     );
 
     this.heart_2 = this.add
@@ -133,7 +257,10 @@ export class GamePlayInterface extends Phaser.Scene {
         this.guestText.displayWidth -
         calculatePercentage(2, this.game.canvas.width) -
         this.heart_1.displayWidth,
-      calculatePercentage(10, this.game.canvas.height)
+      calculatePercentage(
+        screenSize().gamePlay.heart.y,
+        this.game.canvas.height
+      )
     );
 
     this.heart_3 = this.add
@@ -146,7 +273,10 @@ export class GamePlayInterface extends Phaser.Scene {
         this.guestText.displayWidth -
         calculatePercentage(2, this.game.canvas.width) -
         this.heart_1.displayWidth * 2,
-      calculatePercentage(10, this.game.canvas.height)
+      calculatePercentage(
+        screenSize().gamePlay.heart.y,
+        this.game.canvas.height
+      )
     );
   }
 
@@ -162,7 +292,10 @@ export class GamePlayInterface extends Phaser.Scene {
     this.openDoorButton.setPosition(
       this.game.canvas.width -
         this.openDoorButton.getBounds().width -
-        calculatePercentage(2, this.game.canvas.width),
+        calculatePercentage(
+          screenSize().gamePlay.doorButton.x,
+          this.game.canvas.width
+        ),
       this.game.canvas.height -
         this.openDoorButton.getBounds().height -
         calculatePercentage(2, this.game.canvas.height)
@@ -182,7 +315,10 @@ export class GamePlayInterface extends Phaser.Scene {
     this.closeDoorButton.setPosition(
       this.game.canvas.width -
         this.closeDoorButton.getBounds().width -
-        calculatePercentage(2, this.game.canvas.width),
+        calculatePercentage(
+          screenSize().gamePlay.doorButton.x,
+          this.game.canvas.width
+        ),
       this.game.canvas.height -
         this.closeDoorButton.getBounds().height -
         calculatePercentage(2, this.game.canvas.height)
@@ -201,7 +337,7 @@ export class GamePlayInterface extends Phaser.Scene {
         "10",
         {
           align: "center",
-          fontSize: "100px",
+          fontSize: screenSize().gamePlay.startModal.timer.fontSize,
           color: "#DB7851",
           fontFamily: "Bungee",
         }
@@ -216,7 +352,8 @@ export class GamePlayInterface extends Phaser.Scene {
       .setOrigin(0)
       .setTint(0x103240)
       .setAlpha(0.5)
-      .setDisplaySize(this.game.canvas.width * 2, this.game.canvas.height * 2);
+      .setDisplaySize(this.game.canvas.width * 2, this.game.canvas.height * 2)
+      .setScale(5);
   }
 
   createGameIndicators() {
@@ -226,7 +363,7 @@ export class GamePlayInterface extends Phaser.Scene {
     this.ownerText = this.add
       .text(0, 0, "", {
         align: "center",
-        fontSize: "30px",
+        fontSize: screenSize().gamePlay.gameIndicators.userText.fontSize,
         color: "#DB7851",
         fontFamily: "Bungee",
         backgroundColor: "black",
@@ -245,7 +382,7 @@ export class GamePlayInterface extends Phaser.Scene {
     this.guestText = this.add
       .text(0, 0, "", {
         align: "right",
-        fontSize: "30px",
+        fontSize: screenSize().gamePlay.gameIndicators.userText.fontSize,
         color: "#DB7851",
         fontFamily: "Bungee",
         backgroundColor: "black",
@@ -278,7 +415,7 @@ export class GamePlayInterface extends Phaser.Scene {
         ],
         {
           align: "center",
-          fontSize: "35px",
+          fontSize: screenSize().gamePlay.startModal.fontSize,
           color: "#DB7851",
           fontFamily: "Bungee",
         }
@@ -297,7 +434,7 @@ export class GamePlayInterface extends Phaser.Scene {
         [`${document.URL}`],
         {
           align: "center",
-          fontSize: "30px",
+          fontSize: screenSize().gamePlay.startModal.copyText.fontSize,
           color: "#DB7851",
           fontFamily: "Bungee",
         }
@@ -312,7 +449,10 @@ export class GamePlayInterface extends Phaser.Scene {
       this,
       this.game.canvas.width / 2,
       this.game.canvas.height / 2 -
-        calculatePercentage(20, this.game.canvas.height),
+        calculatePercentage(
+          screenSize().gamePlay.startModal.copyButton.y,
+          this.game.canvas.height
+        ),
       "copy"
     ).on(Phaser.Input.Events.POINTER_DOWN, () => {
       navigator.clipboard.writeText(document.URL);

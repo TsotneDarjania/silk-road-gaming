@@ -20,7 +20,13 @@ export class GamePlayHeart extends Phaser.Physics.Arcade.Image {
     this.setDepth(-1);
     this.addAnimation();
     this.addCollisionDetection();
+
+    if (window.innerWidth < 1000) {
+      this.addMobileController();
+    }
   }
+
+  addMobileController() {}
 
   addCollisionDetection() {
     this.collider = this.scene.physics.add.overlap(
@@ -56,8 +62,7 @@ export class GamePlayHeart extends Phaser.Physics.Arcade.Image {
       gamePlayInterfaceScene.heart_1.setVisible(true);
       gamePlayInterfaceScene.heart_2.setVisible(true);
       gamePlayInterfaceScene.heart_3.setVisible(true);
-
-      this.scene.gameManager.ably.sendEvent(["gameFinish", "guest"]);
+            this.scene.gameManager.ably.sendEvent(["gameFinish", "guest"]);
     }
   }
 

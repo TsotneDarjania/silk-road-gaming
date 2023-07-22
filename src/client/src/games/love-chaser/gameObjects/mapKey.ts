@@ -29,6 +29,7 @@ export class MapKey extends Phaser.Physics.Arcade.Image {
     this.scene.events.on("update", () => {
       if (this.scene.physics.world.overlap(this.scene.player, this)) {
         isOverlap = true;
+        this.gamePlayInterface.canPressEnter = true;
         this.scene.currentDoor = this.door;
         this.door.isOpen
           ? this.gamePlayInterface.closeDoorButton.setVisible(true)
@@ -36,6 +37,7 @@ export class MapKey extends Phaser.Physics.Arcade.Image {
       } else {
         if (isOverlap) {
           isOverlap = false;
+          this.gamePlayInterface.canPressEnter = false;
           this.gamePlayInterface.closeDoorButton.setVisible(false);
           this.gamePlayInterface.openDoorButton.setVisible(false);
         }

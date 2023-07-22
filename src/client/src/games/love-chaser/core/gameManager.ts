@@ -9,7 +9,7 @@ import { AppWrite } from "../services/appwrite";
 import { GameData } from "./gameData";
 import { GamePlayInterface } from "../scenes/gameplayInterface";
 
-export class GameManager {
+export class GameManager extends Phaser.GameObjects.Layer {
   ably!: myAbly;
 
   gameIsFinished = false;
@@ -38,12 +38,15 @@ export class GameManager {
   startSinchronization = false;
 
   constructor(public scene: GamePlay) {
+    super(scene);
+
     this.init();
   }
 
   init() {
     this.ably = new myAbly(this);
     this.appWrite = new AppWrite();
+
     this.gamePlayInterface = this.scene.scene.get(
       "GamePlayInterface"
     ) as GamePlayInterface;
@@ -70,7 +73,6 @@ export class GameManager {
       GameData.owner
     )
       this.isOwner = true;
-
     this.initPlayer();
     this.scene.initRoom();
     if (this.scene.gameManager.isOwner) {

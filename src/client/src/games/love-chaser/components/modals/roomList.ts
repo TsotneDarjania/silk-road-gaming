@@ -1,4 +1,5 @@
 import { calculatePercentage } from "../../../tbilisi-batumi-1/helper/tatukaMath";
+import { screenSize } from "../../config/layoutConfig";
 import { GameData } from "../../core/gameData";
 import { Menu } from "../../scenes/menu";
 
@@ -32,11 +33,14 @@ export class RoomList extends Phaser.GameObjects.Container {
     const title = this.scene.add
       .text(
         0,
-        -calculatePercentage(30, this.scene.game.canvas.height),
+        -calculatePercentage(
+          screenSize().roomListModal.title.y,
+          this.scene.game.canvas.height
+        ),
         "Online Rooms",
         {
           align: "center",
-          fontSize: "23px",
+          fontSize: screenSize().roomListModal.title.fontSize,
           color: "#65D7FF",
           fontFamily: "Bungee",
         }
@@ -51,7 +55,9 @@ export class RoomList extends Phaser.GameObjects.Container {
       0,
       0,
       "div",
-      "width:530px; height:450px; border: 3px solid #65D7FF; overflow-y:scroll;"
+      `width:${screenSize().roomListModal.modalElement.width}; height:${
+        screenSize().roomListModal.modalElement.height
+      }; border: 3px solid #65D7FF; overflow-y:scroll;`
     );
 
     this.add(this.modalElement);
@@ -92,7 +98,10 @@ export class RoomList extends Phaser.GameObjects.Container {
 
     const joinButton = this.scene.add
       .dom(
-        calculatePercentage(50, this.modalElement.displayWidth),
+        calculatePercentage(
+          screenSize().roomListModal.joinButton.x,
+          this.modalElement.displayWidth
+        ),
         calculatePercentage(40, roomItem.displayHeight),
         "button",
         `pposition:absolute; right:300px; background-color:#314859; font-family: Acme, sans-serif; border: 4px solid #577F9E; cursor:pointer; width: ${calculatePercentage(
