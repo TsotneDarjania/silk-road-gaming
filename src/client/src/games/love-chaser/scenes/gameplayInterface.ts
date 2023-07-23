@@ -172,7 +172,7 @@ export class GamePlayInterface extends Phaser.Scene {
           this.gamePlayScene.currentDoor.open();
           this.openDoorButton.setVisible(false);
         }
-        if (this.closeDoorButton.visible) {
+        if (this.openDoorButton.visible) {
           this.clickSound.play();
           this.gamePlayScene.currentDoor.close();
           this.closeDoorButton.setVisible(false);
