@@ -2,14 +2,14 @@
   "lastGame": {
     "name": "Batumisken",
     "publishData": "02.34.2023",
-    "shortDescription": "Our designer strongly dislikes using Lorem Ipsum text, considering it distasteful and unappealing. As a tribute to their preference,  we have chosen to replace Lorem Ipsum with the following text whenever we need placeholder contents",
+    "shortDescription": "Embark on an adventure travel game, braving dangers and wonders, with your mission to reach Batumi. Unravel mysteries, overcome challenges, and forge friendships on this mesmerizing journey. Will you conquer the perils and discover the allure of Batumi?",
     "url": "games/batumisken/"
   },
   "miniGames": [
     {
-      "name": "mini game 1",
-      "description": "mini games description text wich comes from json ",
-      "url": "games/minigame1"
+      "name": "Love Chaser",
+      "description": "Pursue your boyfriend or girlfriend in this thrilling online game of chase",
+      "url": "games/love-chaser"
     },
     {
       "name": "mini game 2",
@@ -20,11 +20,7 @@
   "artGames": [
     {
       "name": "Batumisken",
-      "description": " Our designer strongly dislikes using Lorem Ipsum text, considering it distasteful and unappealing. As a tribute to their preference,  we have chosen to replace Lorem Ipsum with the following text whenever we need placeholder contents"
-    },
-    {
-      "name": "Mafia",
-      "description": " Our designer strongly dislikes using Lorem Ipsum text, considering it distasteful and unappealing. As a tribute to their preference,  we have chosen to replace Lorem Ipsum with the following text whenever we need placeholder contents"
+      "description": "Embark on an adventure travel game, braving dangers and wonders, with your mission to reach Batumi. Unravel mysteries, overcome challenges, and forge friendships on this mesmerizing journey. Will you conquer the perils and discover the allure of Batumi?"
     }
   ]
 }

@@ -8,7 +8,6 @@
   width: 80vw;
   height: 70%;
 
-
   transition: 0.8s;
   display: flex;
   justify-content: center;
@@ -26,7 +25,7 @@
   filter: grayscale(100%);
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../images/games/wallpapers/1.jpg");
+  background-image: url("../../images/games/wallpapers/batumisken.png");
 }
 .content {
   position: absolute;
@@ -47,7 +46,7 @@
 }
 
 .rightContainer {
-  composes: flexCenter from '../../../../global.css';
+  composes: flexCenter from "../../../../global.css";
   position: relative;
 }
 
@@ -77,11 +76,11 @@
 }
 
 @media (max-width: 1050px) {
-  .content{
+  .content {
     grid-template-columns: 1fr;
     grid-template-rows: 40% 40% 20%;
   }
-  .buttonDiv{
+  .buttonDiv {
     justify-content: center;
   }
   .descriptionDiv {
@@ -90,23 +89,23 @@
 }
 
 @media (max-width: 600px) {
-  .latestGameContainer{
+  .latestGameContainer {
     width: 90%;
   }
-  .lastGameVideo{
+  .lastGameVideo {
     width: 90%;
     height: 90%;
   }
 }
-@media (max-width: 480px){
-  .content{
+@media (max-width: 480px) {
+  .content {
     grid-template-rows: 70% 30%;
     gap: 10px;
   }
   .rightContainer {
     display: none;
   }
-  .leftContainer_Div{
+  .leftContainer_Div {
     font-size: 28px;
   }
   .leftContainer_Div span {
@@ -117,7 +116,7 @@
   .rightContainer {
     display: none;
   }
-  .content{
+  .content {
     grid-template-rows: 70% 30%;
     gap: 10px;
   }

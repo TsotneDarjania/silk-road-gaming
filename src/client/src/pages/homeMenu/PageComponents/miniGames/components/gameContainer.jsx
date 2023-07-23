@@ -2,7 +2,6 @@ import { useState } from "react";
 import style from "./gameContainer.module.css";
 import ModalForComments from "../../../../../components/commentsModal/ModalForComments";
 import AuthenticationModal from "../../../../../components/autenticationModal/AuthenticationModal";
-import bgImage from "../../../images/games/miniGames/wallpapers/1.jpg";
 import Indicators from "../../../components/Indicators";
 import LinkButton from "../../../../../components/buttons/LinkButton";
 import Leaderboard from "../../../../../components/leaderboard/Leaderboard";
@@ -23,7 +22,7 @@ const GameContainer = (props) => {
         />
       )}
       <div className={style.gameBackgroundImage}>
-        <img src={bgImage} alt="MiniGamesBackgroundImg" />
+        <img src={props.bgImage} alt="MiniGamesBackgroundImg" />
       </div>
       <div className={style.content}>
         <p className={style.name}> {props.data.name} </p>
@@ -48,7 +47,7 @@ const GameContainer = (props) => {
         />
       )}
       {props.showLeaderBoardModal && (
-        <Leaderboard setShowLeaderBoardModal={props.setShowLeaderBoardModal}/>
+        <Leaderboard setShowLeaderBoardModal={props.setShowLeaderBoardModal} />
       )}
     </div>
   );
