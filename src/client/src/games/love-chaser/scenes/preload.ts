@@ -115,12 +115,6 @@ export class Preload extends Phaser.Scene {
   }
 
   create() {
-    if (getCookie("loginSession").length > 3) {
-      GameData.username = JSON.parse(getCookie("loginSession")).userName;
-      this.scene.start("Menu");
-    } else {
-      //@ts-ignore
-      window.location = "../../";
-    }
+    this.scene.start("Menu");
   }
 }

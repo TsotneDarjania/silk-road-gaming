@@ -1,5 +1,7 @@
 import Phaser from "phaser";
 import { LoadingScreen } from "../../common/loadingScreen";
+import { getCookie } from "../../../helper/cookie";
+import { GameData } from "../core/gameData";
 
 export class Boot extends Phaser.Scene {
   constructor() {
@@ -20,6 +22,12 @@ export class Boot extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start("Preload");
+    if (getCookie("loginSession").length > 3) {
+      GameData.username = JSON.parse(getCookie("loginSession")).userName;
+      this.scene.start("Preload");
+    } else {
+      //@ts-ignore
+      window.location = "../../";
+    }
   }
 }

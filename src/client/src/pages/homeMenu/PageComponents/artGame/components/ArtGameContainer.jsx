@@ -54,15 +54,14 @@ const ArtGameContainer = (props) => {
         <div className={style.buttonsDiv}>
           <LinkButton
             innerText="Play"
-            gameUrl={gamesInfo.lastGame.url}
+            gameUrl={`games/${props.name}`}
             setShowAutenticationModal={setShowAutenticationModal}
           />
           <Indicators
             gameName={props.name}
             setShowCommentsModal={setShowCommentsModal}
             setShowLeaderBoardModal={props.setShowLeaderBoardModal}
-          >
-          </Indicators>
+          ></Indicators>
         </div>
       </div>
       <div

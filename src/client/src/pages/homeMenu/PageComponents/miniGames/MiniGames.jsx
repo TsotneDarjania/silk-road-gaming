@@ -5,6 +5,9 @@ import gamesInfo from "../../../../data/gamesInfo.json";
 import Warning from "../../../../components/warning/Warning";
 import PageContext from "../../../../context/PageContext";
 
+import bgImage_1 from "../../images/games/miniGames/wallpapers/1.png";
+import bgImage_2 from "../../images/games/miniGames/wallpapers/1.jpg";
+
 const MiniGames = React.memo(() => {
   const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
   const pageContext = useContext(PageContext);
@@ -15,12 +18,8 @@ const MiniGames = React.memo(() => {
     >
       {pageContext.warningProps.show && <Warning />}
       <GameContainer
+        bgImage={bgImage_1}
         data={gamesInfo.miniGames[0]}
-        showLeaderBoardModal={showLeaderBoardModal}
-        setShowLeaderBoardModal={setShowLeaderBoardModal}
-      />
-      <GameContainer
-        data={gamesInfo.miniGames[1]}
         showLeaderBoardModal={showLeaderBoardModal}
         setShowLeaderBoardModal={setShowLeaderBoardModal}
       />
