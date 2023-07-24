@@ -26,7 +26,7 @@ const ArtGameContainer = (props) => {
       {showAutenticationModal && (
         <AuthenticationModal
           accessAction={() => {
-            window.open(`${window.location.href}${props.data.url}`);
+            window.open(`${window.location.href}games/${props.name}`);
             setShowAutenticationModal(false);
           }}
           setShowAutenticationModal={setShowAutenticationModal}

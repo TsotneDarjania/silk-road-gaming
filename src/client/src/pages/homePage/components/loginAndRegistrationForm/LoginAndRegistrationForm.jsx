@@ -58,7 +58,7 @@ const LoginAndRegistrationForm = () => {
           <div className={style.userInputDiv}>
             <p className={style.userInputTitle}> Player Name </p>
             <input
-              maxLength={20}
+              maxLength={15}
               ref={userLoginNameRef}
               className={style.userInput}
               type="text"
@@ -68,7 +68,7 @@ const LoginAndRegistrationForm = () => {
             <p className={style.userInputTitle}> Password </p>
             <input
               ref={userLoginPasswordRef}
-              maxLength={20}
+              maxLength={15}
               className={style.userInput}
               type="password"
             />
@@ -88,7 +88,7 @@ const LoginAndRegistrationForm = () => {
             <p className={style.userInputTitle}> Player Name </p>
             <input
               ref={userRegistrationNameRef}
-              maxLength={20}
+              maxLength={15}
               className={style.userInput}
               type="text"
             />
@@ -97,7 +97,7 @@ const LoginAndRegistrationForm = () => {
             <p className={style.userInputTitle}> Password </p>
             <input
               ref={userRegistrationPassowrdRef}
-              maxLength={20}
+              maxLength={15}
               className={style.userInput}
               type="password"
             />

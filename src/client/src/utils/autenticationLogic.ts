@@ -81,6 +81,7 @@ export function registration(
       accesAction !== undefined && accesAction();
     },
     (error) => {
+      console.log(error.code);
       if (error.code === 409) {
         setWarningProps({
           text: "This username already exists, please try another",
