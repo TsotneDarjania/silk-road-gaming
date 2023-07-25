@@ -45,7 +45,8 @@ const AuthenticationModal = ({ accessAction, setShowAutenticationModal }) => {
         userName,
         userPassword,
         userContext.setIsLogin,
-        pageContext.setWarningProps
+        pageContext.setWarningProps,
+        accessAction()
       );
     }
     event.preventDefault();

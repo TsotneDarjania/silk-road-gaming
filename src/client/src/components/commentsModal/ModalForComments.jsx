@@ -1,16 +1,24 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 import style from "./ModalForComments.module.css";
 import { Api } from "../../api/api";
 import { ApiEnums } from "../../enums/apiEnums";
 import { getCookie } from "../../helper/cookie";
+
 import "../../global.css";
+import UserContext from "../../context/UserContext";
 
 const api = new Api();
 
 const ModalForComments = (props) => {
+  const userContext = useContext(UserContext);
+
   const commentRef = useRef(null);
   const commentSendButtonRef = useRef(null);
   const [commentsData, setCommentsData] = useState();
+
+  const [imageVersion, setImageVersion] = useState(
+    Math.floor(Math.random() * 100000000000)
+  );
 
   const renderComments = (comments) => {
     const commentItems = [];
@@ -20,7 +28,10 @@ const ModalForComments = (props) => {
       commentItems.push(
         <div className={style.singleComment} key={Math.random(100000)}>
           <div className={style.userAvatar}>
-            <img src={data.userAvatarImageProfiles} alt="user Avatar" />
+            <img
+              src={`${data.userAvatarImageProfiles}v=${imageVersion}`}
+              alt="user Avatar"
+            />
           </div>
           <div>
             <div className={style.userInfo}>
@@ -53,7 +64,6 @@ const ModalForComments = (props) => {
     api
       .getGameComments(ApiEnums.gameCommentsCollectionId, props.gameName)
       .then((response) => {
-        // commentsData = response.documents;
         setCommentsData(response.documents);
         renderComments(commentsData);
       });
@@ -102,7 +112,7 @@ const ModalForComments = (props) => {
 
                   api
                     .insertCommentForGame(
-                      JSON.parse(getCookie("loginSession")).userName,
+                      userContext.userName,
                       ApiEnums.gameCommentsCollectionId,
                       props.gameName,
                       commentRef.current.value,

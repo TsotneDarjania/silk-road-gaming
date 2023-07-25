@@ -10,11 +10,6 @@
       "name": "Love Chaser",
       "description": "Pursue your boyfriend or girlfriend in this thrilling online game of chase",
       "url": "games/love-chaser"
-    },
-    {
-      "name": "mini game 2",
-      "description": "mini games description text wich comes from json ",
-      "url": "games/minigame2"
     }
   ],
   "artGames": [

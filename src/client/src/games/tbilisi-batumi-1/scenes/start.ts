@@ -73,7 +73,20 @@ export class StartScene extends Phaser.Scene {
   }
 
   startGame() {
-    gameConfig.username = JSON.parse(loginSession).userName;
-    this.scene.start("Boot");
+    const api = new Api();
+
+    api
+      .insertLastGameData(JSON.parse(loginSession).userName, "Batumisken")
+      .then(
+        (response) => {
+          gameConfig.username = JSON.parse(loginSession).userName;
+          this.scene.start("Boot");
+        },
+        (error) => {
+          console.log(error);
+          gameConfig.username = JSON.parse(loginSession).userName;
+          this.scene.start("Boot");
+        }
+      );
   }
 }

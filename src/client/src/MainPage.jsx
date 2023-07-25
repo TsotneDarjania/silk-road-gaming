@@ -54,8 +54,8 @@ function MainPage() {
   return (
     <div className="App">
       {/* {page === "intro" && <Intro />} */}
-      {page === "homeMenu" && <HomeMenu/>}
-      {page === "homePage" && <HomePage/>}
+      {page === "homeMenu" && <HomeMenu />}
+      {page === "homePage" && <HomePage />}
       {pageContext.isShowTransitionAnimation && (
         <TransitionAnimation
           transitionAnimationAction={transitionAnimationAction}

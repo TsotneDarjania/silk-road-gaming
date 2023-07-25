@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { LoadingScreen } from "../../common/loadingScreen";
 import { getCookie } from "../../../helper/cookie";
 import { GameData } from "../core/gameData";
+import { Api } from "../../../api/api";
 
 export class Boot extends Phaser.Scene {
   constructor() {
@@ -24,7 +25,23 @@ export class Boot extends Phaser.Scene {
   create() {
     if (getCookie("loginSession").length > 3) {
       GameData.username = JSON.parse(getCookie("loginSession")).userName;
-      this.scene.start("Preload");
+
+      const api = new Api();
+
+      api
+        .insertLastGameData(
+          JSON.parse(getCookie("loginSession")).userName,
+          "Love Chaser"
+        )
+        .then(
+          (response) => {
+            this.scene.start("Preload");
+          },
+          (error) => {
+            console.log(error);
+            this.scene.start("Preload");
+          }
+        );
     } else {
       //@ts-ignore
       window.location = "../../";
