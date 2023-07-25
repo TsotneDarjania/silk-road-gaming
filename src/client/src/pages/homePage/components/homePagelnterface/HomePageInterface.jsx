@@ -26,7 +26,7 @@ const HomePageInterface = () => {
 
   useEffect(() => {
     getLastPlayedGames();
-  }, []);
+  }, [userContext.userName]);
 
   const getLastPlayedGames = () => {
     const items = [];
