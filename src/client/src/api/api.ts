@@ -242,9 +242,14 @@ export class Api {
         ApiEnums.gameCommentsCollectionId,
         [Query.equal("user", ["user", username])]
       )
+
       .then(
         (response) => {
           let lastDocumentIndex = response.total;
+
+          if (response.total === 0) {
+            window.location.reload();
+          }
           response.documents.forEach((data) => {
             this.databases()
               .updateDocument(
@@ -446,9 +451,7 @@ export class Api {
                         .createDocument(
                           ApiEnums.silkRoadDatabaseID,
                           ApiEnums.gameCommentsCollectionId,
-                          `defaultId${generateIdToCorrectFormat(
-                            transliterate(newName)
-                          )}`,
+                          ID.unique(),
                           {
                             user: newName,
                             gameName,
