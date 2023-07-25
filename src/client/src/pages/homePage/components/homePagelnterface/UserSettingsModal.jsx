@@ -4,11 +4,15 @@ import { AiFillCamera } from "react-icons/ai";
 import "../../../../global.css";
 import UserContext from "../../../../context/UserContext";
 import { Api } from "../../../../api/api";
+import Warning from "../../../../components/warning/Warning";
+import PageContext from "../../../../context/PageContext";
 
 const api = new Api();
 
 const UserSettingsModal = (props) => {
   const userContext = useContext(UserContext);
+  const pageContext = useContext(PageContext);
+
   const fileInputRef = useRef(null);
   const [fileVersion, setFileVersion] = useState(
     Math.floor(Math.random() * 100000000000)
@@ -23,7 +27,12 @@ const UserSettingsModal = (props) => {
   function changeName(e) {
     e.preventDefault();
     if (name.length >= 3 && name.trim()) {
-      api.changeUserName(userContext.userName, name);
+      api.changeUserName(
+        userContext.userName,
+        name,
+        pageContext.setWarningProps
+      );
+
       userContext.setUserName(name);
     }
     setName("");
@@ -41,6 +50,8 @@ const UserSettingsModal = (props) => {
 
   return (
     <div className={style.userSettingsModal}>
+      {pageContext.warningProps.show && <Warning />}
+
       <div
         className="shadow"
         onClick={() =>

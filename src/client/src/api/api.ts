@@ -262,7 +262,6 @@ export class Api {
               .then(
                 (response) => {
                   lastDocumentIndex -= 1;
-                  console.log(lastDocumentIndex);
                   if (lastDocumentIndex === 0) {
                     window.location.reload();
                   }
@@ -294,58 +293,76 @@ export class Api {
     );
   }
 
-  changeUserName(oldName: string, newName: string) {
-    //users
-    this.databases()
-      .getDocument(
-        ApiEnums.silkRoadDatabaseID,
-        ApiEnums.usersCollectionID,
-        `defaultId${generateIdToCorrectFormat(transliterate(oldName))}`
-      )
-      .then(
-        (response) => {
-          const documentId = response.$id;
-          const password = response.password;
-          const avatar = response.avatar;
-          const rating = response.rating;
+  changeUserName(oldName: string, newName: string, setWarningProps: any) {
+    return this.databases()
+      .listDocuments(ApiEnums.silkRoadDatabaseID, ApiEnums.usersCollectionID, [
+        Query.equal("name", ["name", newName]),
+      ])
+      .then((response) => {
+        if (response.total > 0) {
+          console.log("this name already exist");
 
+          setWarningProps({
+            text: "this name already exist",
+            show: true,
+          });
+        } else {
+          //users
           this.databases()
-            .deleteDocument(
+            .getDocument(
               ApiEnums.silkRoadDatabaseID,
               ApiEnums.usersCollectionID,
-              documentId
+              `defaultId${generateIdToCorrectFormat(transliterate(oldName))}`
             )
-            .then((response) => {
-              this.databases().createDocument(
-                ApiEnums.silkRoadDatabaseID,
-                ApiEnums.usersCollectionID,
-                `defaultId${generateIdToCorrectFormat(transliterate(newName))}`,
-                {
-                  name: newName,
-                  password,
-                  avatar,
-                  rating,
-                }
-              );
-            })
-            .then((response) => {
-              console.log("user name is Changed");
+            .then(
+              (response) => {
+                const documentId = response.$id;
+                const password = response.password;
+                const avatar = response.avatar;
+                const rating = response.rating;
 
-              setCookie(
-                "loginSession",
-                JSON.stringify({
-                  userName: newName,
-                  password: JSON.parse(getCookie("loginSession")).password,
-                }),
-                2100
-              );
-              updateAllDatabase(this.databases);
-            });
-        },
-        (error) => {
-          console.log(error);
+                this.databases()
+                  .deleteDocument(
+                    ApiEnums.silkRoadDatabaseID,
+                    ApiEnums.usersCollectionID,
+                    documentId
+                  )
+                  .then((response) => {
+                    this.databases().createDocument(
+                      ApiEnums.silkRoadDatabaseID,
+                      ApiEnums.usersCollectionID,
+                      `defaultId${generateIdToCorrectFormat(
+                        transliterate(newName)
+                      )}`,
+                      {
+                        name: newName,
+                        password,
+                        avatar,
+                        rating,
+                      }
+                    );
+                  })
+                  .then((response) => {
+                    console.log("user name is Changed");
+
+                    setCookie(
+                      "loginSession",
+                      JSON.stringify({
+                        userName: newName,
+                        password: JSON.parse(getCookie("loginSession"))
+                          .password,
+                      }),
+                      2100
+                    );
+                    updateAllDatabase(this.databases);
+                  });
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
         }
-      );
+      });
 
     function updateAllDatabase(database: () => Databases) {
       //batumisken
@@ -458,17 +475,17 @@ export class Api {
         )
         .then(
           (response) => {
-            response.documents.forEach((data) => {
+            response.documents.forEach((data, index) => {
               database()
                 .getDocument(
                   ApiEnums.silkRoadDatabaseID,
                   ApiEnums.likesAndDeslikesForGamesCollectionId,
                   data.$id
                 )
-                .then((response) => {
-                  const documentId = response.$id;
-                  const gameName = response.gameName;
-                  const reaction = response.reaction;
+                .then((res) => {
+                  const documentId = res.$id;
+                  const gameName = res.gameName;
+                  const reaction = res.reaction;
 
                   database()
                     .deleteDocument(
@@ -476,7 +493,7 @@ export class Api {
                       ApiEnums.likesAndDeslikesForGamesCollectionId,
                       documentId
                     )
-                    .then((response) => {
+                    .then((res) => {
                       database()
                         .createDocument(
                           ApiEnums.silkRoadDatabaseID,
@@ -492,11 +509,16 @@ export class Api {
                             reaction,
                           }
                         )
-                        .then((response) => {
-                          console.log(
-                            "user name in likes and deslikes is changed"
-                          );
-                        });
+                        .then(
+                          (res) => {
+                            if (index + 1 === response.total) {
+                              console.log(
+                                "user name in likes and deslikes is changed"
+                              );
+                            }
+                          },
+                          (error) => {}
+                        );
                     });
                 });
             });
@@ -505,6 +527,114 @@ export class Api {
             console.log(error);
           }
         );
+
+      //last played Games
+      database()
+        .listDocuments(ApiEnums.silkRoadDatabaseID, "last-played-games", [
+          Query.equal("user", ["user", oldName]),
+        ])
+        .then((response) => {
+          response.documents.forEach((document, index) => {
+            setTimeout(() => {
+              database()
+                .updateDocument(
+                  ApiEnums.silkRoadDatabaseID,
+                  "last-played-games",
+                  document.$id,
+                  {
+                    user: newName,
+                  }
+                )
+                .then(
+                  (res) => {
+                    if (response.total - 1 === index) {
+                      console.log("finish last games update");
+                    }
+                  },
+                  (error) => {
+                    console.log(
+                      `${document.$id}   /   ${newName}     /   ${oldName}`
+                    );
+                    console.log(error);
+                    alert("something went wrong");
+                    window.location.reload();
+                  }
+                );
+            }, index * 1000);
+          });
+        });
     }
+  }
+
+  insertLastGameData(user: string, gameName: string) {
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    const gameDate = `${day}.${month}.${year}`;
+
+    let dateIndex = 0;
+
+    return this.databases()
+      .listDocuments(ApiEnums.silkRoadDatabaseID, "last-played-games", [
+        Query.equal("user", ["user", user]),
+      ])
+      .then((response) => {
+        dateIndex = response.total;
+        let alreadyExist = false;
+
+        response.documents.forEach((document) => {
+          if (document.gameName === gameName) {
+            alreadyExist = true;
+
+            this.databases()
+              .deleteDocument(
+                ApiEnums.silkRoadDatabaseID,
+                "last-played-games",
+                document.$id
+              )
+              .then(
+                (response) => {
+                  this.databases().createDocument(
+                    ApiEnums.silkRoadDatabaseID,
+                    "last-played-games",
+                    ID.unique(),
+                    {
+                      user: user,
+                      date: gameDate,
+                      date_index: dateIndex,
+                      gameName,
+                    }
+                  );
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+          }
+        });
+
+        if (alreadyExist) return;
+
+        this.databases().createDocument(
+          ApiEnums.silkRoadDatabaseID,
+          "last-played-games",
+          ID.unique(),
+          {
+            user: user,
+            date: gameDate,
+            date_index: dateIndex,
+            gameName,
+          }
+        );
+      });
+  }
+
+  getLastPlayedGames(user: string) {
+    return this.databases().listDocuments(
+      ApiEnums.silkRoadDatabaseID,
+      "last-played-games",
+      [Query.equal("user", ["user", user])]
+    );
   }
 }
