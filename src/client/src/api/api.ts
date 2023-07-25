@@ -177,8 +177,6 @@ export class Api {
       )
       .then(
         (response) => {
-          console.log(response);
-
           this.databases()
             .updateDocument(
               ApiEnums.silkRoadDatabaseID,
@@ -293,7 +291,12 @@ export class Api {
     );
   }
 
-  changeUserName(oldName: string, newName: string, setWarningProps: any) {
+  changeUserName(
+    oldName: string,
+    newName: string,
+    setWarningProps: any,
+    setUserName: any
+  ) {
     return this.databases()
       .listDocuments(ApiEnums.silkRoadDatabaseID, ApiEnums.usersCollectionID, [
         Query.equal("name", ["name", newName]),
@@ -307,6 +310,7 @@ export class Api {
             show: true,
           });
         } else {
+          setUserName(newName);
           //users
           this.databases()
             .getDocument(
