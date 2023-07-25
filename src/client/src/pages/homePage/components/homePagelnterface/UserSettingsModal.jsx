@@ -30,10 +30,9 @@ const UserSettingsModal = (props) => {
       api.changeUserName(
         userContext.userName,
         name,
-        pageContext.setWarningProps
+        pageContext.setWarningProps,
+        userContext.setUserName
       );
-
-      userContext.setUserName(name);
     }
     setName("");
   }
