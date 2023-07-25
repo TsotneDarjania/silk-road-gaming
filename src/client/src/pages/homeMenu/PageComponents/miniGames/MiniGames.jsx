@@ -6,7 +6,6 @@ import Warning from "../../../../components/warning/Warning";
 import PageContext from "../../../../context/PageContext";
 
 import bgImage_1 from "../../images/games/miniGames/wallpapers/1.png";
-import bgImage_2 from "../../images/games/miniGames/wallpapers/1.jpg";
 
 const MiniGames = React.memo(() => {
   const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);

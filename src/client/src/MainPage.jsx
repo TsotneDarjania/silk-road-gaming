@@ -43,7 +43,7 @@ function MainPage() {
     }
   };
 
-  const [page, setPage] = useState("homeMenu");
+  const [page, setPage] = useState("intro");
 
   const pageContext = useContext(PageContext);
 
@@ -53,7 +53,7 @@ function MainPage() {
 
   return (
     <div className="App">
-      {/* {page === "intro" && <Intro />} */}
+      {page === "intro" && <Intro />}
       {page === "homeMenu" && <HomeMenu />}
       {page === "homePage" && <HomePage />}
       {pageContext.isShowTransitionAnimation && (
