@@ -16,25 +16,24 @@
 }
 
 /* width */
-::-webkit-scrollbar {
+.miniGames::-webkit-scrollbar {
   width: 20px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
-  background: #161616;
-  border-radius: 30px;
+.miniGames::-webkit-scrollbar-track {
+  background: none;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
-  background: #187391;
+.miniGames::-webkit-scrollbar-thumb {
+  background: white;
   border-radius: 30px;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #55cdf6;
+.miniGames::-webkit-scrollbar-thumb:hover {
+  background: white;
 }
 
 @media screen and (max-width: 570px) {

@@ -13,6 +13,7 @@ import AuthenticationModal from "../../../../../components/autenticationModal/Au
 import Indicators from "../../../components/Indicators";
 import LinkButton from "../../../../../components/buttons/LinkButton";
 import Leaderboard from "../../../../../components/leaderboard/Leaderboard";
+import { MdLeaderboard } from "react-icons/md";
 
 const ArtGameContainer = (props) => {
   const [showCommentsModal, setShowCommentsModal] = useState(false);
@@ -61,7 +62,9 @@ const ArtGameContainer = (props) => {
             gameName={props.name}
             setShowCommentsModal={setShowCommentsModal}
             setShowLeaderBoardModal={props.setShowLeaderBoardModal}
-          ></Indicators>
+          >
+            {/* <MdLeaderboard onClick={() => props.setShowLeaderBoardModal(true)}/> */}
+          </Indicators>
         </div>
       </div>
       <div
@@ -108,9 +111,9 @@ const ArtGameContainer = (props) => {
           gameName={props.name}
         />
       )}
-      {props.showLeaderBoardModal && (
+      {/* {props.showLeaderBoardModal && (
         <Leaderboard setShowLeaderBoardModal={props.setShowLeaderBoardModal} />
-      )}
+      )} */}
     </div>
   );
 };

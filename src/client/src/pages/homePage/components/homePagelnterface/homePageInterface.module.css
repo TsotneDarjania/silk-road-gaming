@@ -163,7 +163,7 @@
 @media (max-width: 1137px) {
   .gameHistoryContainer {
     position: absolute;
-    width: 40vw;
+    width: 70vw;
     height: 60vh;
   }
   .continueButton {
@@ -205,7 +205,7 @@
   .gameHistoryContainer {
     position: absolute;
     height: 60vh;
-    width: 70vw;
+    width: 90vw;
     margin: 0 auto;
     top: 15%;
   }
@@ -223,6 +223,21 @@
   }
   .gamesItem {
     height: 70px;
+  }
+}
+
+@media (max-width: 400px) {
+  .gameHistoryContainer{
+    width: 95vw;
+  }
+  .gamesContainer{
+    padding: 5px;
+  }
+  .gamesItem ul{
+    gap: 7px;
+  }
+  .continueButton{
+    width: 70px;
   }
 }
 

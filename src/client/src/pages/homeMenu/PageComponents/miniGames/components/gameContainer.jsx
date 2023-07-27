@@ -5,6 +5,7 @@ import AuthenticationModal from "../../../../../components/autenticationModal/Au
 import Indicators from "../../../components/Indicators";
 import LinkButton from "../../../../../components/buttons/LinkButton";
 import Leaderboard from "../../../../../components/leaderboard/Leaderboard";
+import { MdLeaderboard } from "react-icons/md";
 
 const GameContainer = (props) => {
   const [showAutenticationModal, setShowAutenticationModal] = useState(false);
@@ -32,7 +33,9 @@ const GameContainer = (props) => {
             gameName={props.data.name}
             setShowCommentsModal={setShowCommentsModal}
             setShowLeaderBoardModal={props.setShowLeaderBoardModal}
-          />
+          >
+            {/* <MdLeaderboard onClick={() => props.setShowLeaderBoardModal(true)}/> */}
+          </Indicators>
           <LinkButton
             innerText={"Play"}
             gameUrl={props.data.url}
@@ -46,9 +49,9 @@ const GameContainer = (props) => {
           setShowCommentsModal={setShowCommentsModal}
         />
       )}
-      {props.showLeaderBoardModal && (
+      {/* {props.showLeaderBoardModal && (
         <Leaderboard setShowLeaderBoardModal={props.setShowLeaderBoardModal} />
-      )}
+      )} */}
     </div>
   );
 };

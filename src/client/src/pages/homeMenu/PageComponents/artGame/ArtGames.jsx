@@ -38,10 +38,14 @@ const ArtGames = React.memo(() => {
           setShowLeaderBoardModal={setShowLeaderBoardModal}
         />
       ))}
-      <div className={style.scrollDiv} onClick={handleClick}>
-        <Scroll />
-      </div>
-      <div className={style.bottomDiv} ref={artGameRef}></div>
+      {gameInfo.artGames.length > 1 && (
+        <>
+          <div className={style.scrollDiv} onClick={handleClick}>
+            <Scroll />
+          </div>
+          <div className={style.bottomDiv} ref={artGameRef}></div>
+        </>
+      )}
     </div>
   );
 });

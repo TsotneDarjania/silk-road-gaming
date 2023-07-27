@@ -5,11 +5,10 @@ import UserContext from "../../../context/UserContext";
 import PageContext from "../../../context/PageContext";
 import style from "./indicators.module.css";
 import { Api } from "../../../api/api";
-import { MdLeaderboard } from "react-icons/md";
 
 const api = new Api();
 
-const Indicators = ({ setShowCommentsModal, gameName, setShowLeaderBoardModal }) => {
+const Indicators = ({ setShowCommentsModal, gameName, children }) => {
   const userContext = useContext(UserContext);
   const pageContext = useContext(PageContext);
 
@@ -114,7 +113,7 @@ const Indicators = ({ setShowCommentsModal, gameName, setShowLeaderBoardModal })
         </li>
 
         <li>
-          <MdLeaderboard onClick={() => setShowLeaderBoardModal(true)}/>
+            {children}
         </li>
       </ul>
     </div>
