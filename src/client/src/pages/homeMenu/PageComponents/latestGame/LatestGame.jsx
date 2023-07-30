@@ -13,7 +13,9 @@ const LatestGame = React.memo(() => {
       {showAutenticationModal && (
         <AuthenticationModal
           accessAction={() => {
-            window.open(`${window.location.href}${gamesInfo.lastGame.url}`);
+            window.open(
+              `https://silk-road-gaming-3g2l.vercel.app/${gamesInfo.lastGame.url}`
+            );
             setShowAutenticationModal(false);
           }}
           setShowAutenticationModal={setShowAutenticationModal}

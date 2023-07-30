@@ -1,0 +1,33 @@
+.gamePlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: black;
+}
+
+.screenImage {
+  position: fixed;
+
+  width: 34vw;
+  height: 100vh;
+
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.gift {
+  position: fixed;
+
+  width: 17vw;
+  height: 25vh;
+
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

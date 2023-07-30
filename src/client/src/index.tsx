@@ -7,6 +7,7 @@ import { TbilisiBatumi } from "./games/tbilisi-batumi-1/TbilisiBatumi";
 import { Bagrationi } from "./games/bagrationi/Bagrationi";
 import { LoveChaser } from "./games/love-chaser/LoveChaser";
 import DonationPage from "./pages/donationPage/DonationPage";
+import { SaveTbilisi } from "./games/save-tbilisi/SaveTbilisi";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,6 +18,7 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="/donation" element={<DonationPage />} />
       <Route path="/games/love-chaser" element={<LoveChaser />} />
+      <Route path="/games/save-tbilisi" element={<SaveTbilisi />} />
       <Route path="/games/bagrationi" element={<Bagrationi />} />
       <Route path="/games/batumisken" element={<TbilisiBatumi />} />
     </Routes>

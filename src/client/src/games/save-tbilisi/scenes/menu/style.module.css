@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Acme&family=Orbitron&display=swap");
+
+.mainContainer {
+  width: 100%;
+  height: 100%;
+
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.backgroundImage {
+  position: fixed;
+  background-image: url("../..//assets//images/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 2300px 1500px;
+  filter: grayscale(100%);
+  opacity: 0.3;
+
+  width: 100%;
+  height: 100%;
+
+  animation-name: background-image;
+  animation-duration: 50s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+
+@keyframes background-image {
+  0% {
+  }
+  20% {
+    background-position: top;
+    background-size: 2100px 1340px;
+  }
+  40% {
+    background-position: left;
+  }
+  60% {
+    background-position: right;
+    background-size: 2600px 1640px;
+  }
+  80% {
+    background-position: bottom;
+  }
+}
+
+.gameTitle {
+  color: aliceblue;
+  font-size: 60px;
+  letter-spacing: 4px;
+  font-family: "Orbitron", sans-serif;
+
+  text-align: center;
+  position: absolute;
+  top: 10vh;
+}
+
+.playButton {
+  background-color: transparent;
+  color: rgb(228, 195, 195);
+  width: 220px;
+  z-index: var(--thirdLayer);
+  transition: 0.3s;
+  border: none;
+  outline: 4px solid rgb(253, 248, 248);
+  cursor: pointer;
+  padding: 0 20px;
+  height: 57px;
+  font-size: 26px;
+  font-weight: bold;
+  font-family: "Orbitron", sans-serif;
+  position: relative;
+  overflow: hidden;
+  transition: 1.2s;
+}
+
+.playButton::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: 0;
+  background: rgb(235, 229, 229);
+  z-index: -1;
+  transition: 1.2s;
+}
+.playButton:hover {
+  color: black;
+}
+.playButton:hover::before {
+  width: 180%;
+}
+
+.informationIcon {
+  position: fixed;
+  bottom: 10vh;
+
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.informationIcon :hover {
+  color: gray;
+}
