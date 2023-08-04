@@ -39,7 +39,9 @@ const HomePageInterface = () => {
             <li
               key={Math.random()}
               onClick={() =>
-                window.open(`${window.location.href}games/${document.gameName}`)
+                window.open(
+                  `https://silk-road-gaming-3g2l.vercel.app/games/${document.gameName}`
+                )
               }
               className={style.continueButton}
             >
