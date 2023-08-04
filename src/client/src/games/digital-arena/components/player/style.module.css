@@ -10,3 +10,17 @@
 
   z-index: 1;
 }
+
+@media (max-width: 950px) {
+  .player {
+    width: 47px;
+    height: 47px;
+  }
+}
+
+@media (max-width: 710px) {
+  .player {
+    width: 37px;
+    height: 37px;
+  }
+}

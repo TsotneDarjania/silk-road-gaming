@@ -61,3 +61,45 @@
 .replayBoardButton :hover {
   color: rgb(120, 63, 226);
 }
+
+@media (max-width: 950px) {
+  .replayBoardButton {
+    font-size: 60px;
+  }
+  .timerText {
+    font-size: 30px;
+  }
+
+  .inputFieldText {
+    font-size: 30px;
+  }
+
+  .targetNumberText {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 710px) {
+  .replayBoardButton {
+    top: inherit;
+    bottom: 10px;
+    left: 10px;
+    margin: inherit;
+    font-size: 50px;
+  }
+  .timerText {
+    top: 10px;
+    left: 10px;
+    font-size: 30px;
+  }
+
+  .inputFieldText {
+    top: 10px;
+    font-size: 30px;
+  }
+
+  .targetNumberText {
+    top: 50px;
+    font-size: 30px;
+  }
+}
