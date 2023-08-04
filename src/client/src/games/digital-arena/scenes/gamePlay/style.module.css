@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap");
+.gamePlay {
+  width: 100vw;
+  height: 100vh;
+
+  position: fixed;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+  background-color: rgb(0, 0, 0);
+}
+
+.timerText {
+  position: fixed;
+  bottom: 100px;
+  font-size: 40px;
+  color: rgb(241, 159, 18);
+
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.inputFieldText {
+  position: fixed;
+  top: 100px;
+  font-size: 40px;
+  color: rgb(67, 206, 81);
+
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.targetNumberText {
+  position: fixed;
+  top: 160px;
+  font-size: 40px;
+  color: rgb(90, 137, 255);
+
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.replayBoardButton {
+  font-size: 90px;
+  width: min-content;
+  height: min-content;
+
+  position: fixed;
+  right: 10px;
+
+  margin-top: auto;
+  margin-bottom: auto;
+  top: 0;
+  bottom: 0;
+
+  cursor: pointer;
+
+  color: aliceblue;
+}
+
+.replayBoardButton :hover {
+  color: rgb(120, 63, 226);
+}
+
+@media (max-width: 950px) {
+  .replayBoardButton {
+    font-size: 60px;
+  }
+  .timerText {
+    font-size: 30px;
+  }
+
+  .inputFieldText {
+    font-size: 30px;
+  }
+
+  .targetNumberText {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 710px) {
+  .replayBoardButton {
+    top: inherit;
+    bottom: 10px;
+    left: 10px;
+    margin: inherit;
+    font-size: 50px;
+  }
+  .timerText {
+    top: 10px;
+    left: 10px;
+    font-size: 30px;
+  }
+
+  .inputFieldText {
+    top: 10px;
+    font-size: 30px;
+  }
+
+  .targetNumberText {
+    top: 50px;
+    font-size: 30px;
+  }
+}

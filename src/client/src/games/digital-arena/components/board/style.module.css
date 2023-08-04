@@ -1,0 +1,119 @@
+.board {
+  width: 700px;
+  height: min-content;
+
+  outline: 3px solid rgb(25, 83, 122);
+
+  position: fixed;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.boardItem {
+  width: 70px;
+  height: 70px;
+  border: 3px solid rgb(25, 83, 122);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgb(54, 34, 8);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.plus {
+  background-color: rgb(136, 224, 232);
+}
+
+.minus {
+  color: white;
+  background-color: rgb(4, 38, 56);
+}
+
+@media (max-width: 950px) {
+  .board {
+    width: 500px;
+  }
+  .boardItem {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 710px) {
+  .board {
+    width: 200px;
+  }
+  .boardItem {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.mobileController {
+  position: fixed;
+  width: 100vw;
+
+  bottom: 0;
+  left: 0;
+
+  color: white;
+  font-size: 40px;
+}
+
+.rightButton {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+
+  cursor: pointer;
+}
+.rightButton:hover {
+  color: rgb(234, 144, 0);
+}
+
+.leftButton {
+  position: fixed;
+  right: 110px;
+  bottom: 24px;
+
+  transform: rotateY(180deg);
+
+  cursor: pointer;
+}
+.leftButton:hover {
+  color: rgb(234, 144, 0);
+}
+
+.bottomButton {
+  position: fixed;
+  right: 70px;
+  bottom: 4px;
+
+  transform: rotate(90deg);
+
+  cursor: pointer;
+}
+.bottomButton:hover {
+  color: rgb(234, 144, 0);
+}
+
+.topButton {
+  position: fixed;
+  right: 60px;
+  bottom: 50px;
+
+  transform: rotate(-90deg);
+
+  cursor: pointer;
+}
+.topButton:hover {
+  color: rgb(234, 144, 0);
+}
