@@ -3,7 +3,7 @@ import { ApiEnums } from "../../enums/apiEnums";
 import { generateIdToCorrectFormat } from "../../helper/helperFunctions";
 import { transliterate } from "transliteration";
 
-export class Api {
+export class LocalApi {
   client = new Client()
     .setEndpoint(ApiEnums.endpoint)
     .setProject(ApiEnums.projectID);

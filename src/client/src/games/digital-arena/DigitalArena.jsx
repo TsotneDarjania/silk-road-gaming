@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import GamePlay from "./scenes/gamePlay/GamePlay";
 import GameContext from "./context/gameContext";
-import { Api } from "./api";
+import { LocalApi } from "./api";
 import { getCookie } from "../../helper/cookie";
 import Menu from "./scenes/menu/Menu";
+import { Api } from "../../api/api";
 
-const api = new Api();
+const api = new LocalApi();
 
 const DigitalArena = () => {
   const gameContext = useContext(GameContext);
@@ -40,6 +41,12 @@ const DigitalArena = () => {
     api.initGame(userName).then((res) => {
       setTargetNumberText(res.record + 10);
       setScene("menu");
+
+      const api = new Api();
+      api.insertLastGameData(
+        JSON.parse(getCookie("loginSession")).userName,
+        "Digital Arena"
+      );
     });
   };
 

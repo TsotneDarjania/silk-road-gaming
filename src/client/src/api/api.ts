@@ -415,6 +415,45 @@ export class Api {
           }
         );
 
+      //Digital Arena
+      database()
+        .getDocument(
+          ApiEnums.silkRoadDatabaseID,
+          "digital-arena",
+          `${generateIdToCorrectFormat(transliterate(oldName))}`
+        )
+        .then(
+          (response) => {
+            const documentId = response.$id;
+            const record = response.record;
+
+            database()
+              .deleteDocument(
+                ApiEnums.silkRoadDatabaseID,
+                "digital-arena",
+                documentId
+              )
+              .then((response) => {
+                database()
+                  .createDocument(
+                    ApiEnums.silkRoadDatabaseID,
+                    "digital-arena",
+                    `${generateIdToCorrectFormat(transliterate(newName))}`,
+                    {
+                      user: newName,
+                      record,
+                    }
+                  )
+                  .then((response) => {
+                    console.log("user name in Digital Arena is changed");
+                  });
+              });
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+
       //gameComments
       database()
         .listDocuments(

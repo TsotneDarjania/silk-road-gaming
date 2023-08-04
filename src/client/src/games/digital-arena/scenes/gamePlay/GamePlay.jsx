@@ -5,10 +5,10 @@ import GameContext from "../../context/gameContext";
 
 import { MdReplayCircleFilled } from "react-icons/md";
 import Modal from "../../components/modal/Modal";
-import { Api } from "../../api";
+import { LocalApi } from "../../api";
 import { getCookie } from "../../../../helper/cookie";
 
-const api = new Api();
+const api = new LocalApi();
 const userName = JSON.parse(getCookie("loginSession")).userName;
 
 const GamePlay = () => {

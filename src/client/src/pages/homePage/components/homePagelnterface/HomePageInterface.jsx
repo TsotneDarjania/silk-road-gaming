@@ -38,11 +38,12 @@ const HomePageInterface = () => {
             <li key={Math.random()}>{document.date} </li>
             <li
               key={Math.random()}
-              onClick={() =>
+              onClick={() => {
+                const gameUrl = document.gameName.replace(" ", "-");
                 window.open(
-                  `https://silk-road-gaming-3g2l.vercel.app/games/${document.gameName}`
-                )
-              }
+                  `https://silk-road-gaming-3g2l.vercel.app/games/${gameUrl}`
+                );
+              }}
               className={style.continueButton}
             >
               Continue

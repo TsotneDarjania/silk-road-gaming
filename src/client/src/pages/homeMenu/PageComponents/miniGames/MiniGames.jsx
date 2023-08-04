@@ -6,6 +6,7 @@ import Warning from "../../../../components/warning/Warning";
 import PageContext from "../../../../context/PageContext";
 
 import bgImage_1 from "../../images/games/miniGames/wallpapers/1.png";
+import bgImage_2 from "../../images/games/miniGames/wallpapers/2.jpg";
 
 const MiniGames = React.memo(() => {
   const [showLeaderBoardModal, setShowLeaderBoardModal] = useState(false);
@@ -19,6 +20,12 @@ const MiniGames = React.memo(() => {
       <GameContainer
         bgImage={bgImage_1}
         data={gamesInfo.miniGames[0]}
+        showLeaderBoardModal={showLeaderBoardModal}
+        setShowLeaderBoardModal={setShowLeaderBoardModal}
+      />
+      <GameContainer
+        bgImage={bgImage_2}
+        data={gamesInfo.miniGames[1]}
         showLeaderBoardModal={showLeaderBoardModal}
         setShowLeaderBoardModal={setShowLeaderBoardModal}
       />

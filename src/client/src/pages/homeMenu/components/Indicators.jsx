@@ -9,7 +9,11 @@ import { MdLeaderboard } from "react-icons/md";
 
 const api = new Api();
 
-const Indicators = ({ setShowCommentsModal, gameName, setShowLeaderBoardModal }) => {
+const Indicators = ({
+  setShowCommentsModal,
+  gameName,
+  setShowLeaderBoardModal,
+}) => {
   const userContext = useContext(UserContext);
   const pageContext = useContext(PageContext);
 
@@ -114,7 +118,7 @@ const Indicators = ({ setShowCommentsModal, gameName, setShowLeaderBoardModal })
         </li>
 
         <li>
-          <MdLeaderboard onClick={() => setShowLeaderBoardModal(true)}/>
+          {/* <MdLeaderboard onClick={() => setShowLeaderBoardModal(true)}/> */}
         </li>
       </ul>
     </div>
