@@ -1,0 +1,12 @@
+.player {
+  width: 67px;
+  height: 67px;
+
+  background-color: rgb(25, 83, 122);
+
+  position: absolute;
+
+  transition: 0.05s;
+
+  z-index: 1;
+}

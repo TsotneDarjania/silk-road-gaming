@@ -1,0 +1,33 @@
+.menu {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 50px;
+}
+
+.text {
+  text-align: center;
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 30px;
+  color: rgb(110, 110, 128);
+}
+
+.startButton {
+  padding: 10px 70px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+}
