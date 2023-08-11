@@ -9,7 +9,11 @@ import { LocalApi } from "../../api";
 import { getCookie } from "../../../../helper/cookie";
 
 const api = new LocalApi();
-const userName = JSON.parse(getCookie("loginSession")).userName;
+
+let userName = "";
+if (getCookie("loginSession").length > 3) {
+  userName = JSON.parse(getCookie("loginSession")).userName;
+}
 
 const GamePlay = () => {
   const gameContext = useContext(GameContext);
